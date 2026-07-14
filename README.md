@@ -1,0 +1,1 @@
+# bo7-endgame-jp
