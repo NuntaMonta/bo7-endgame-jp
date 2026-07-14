@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BO7 Endgame 日本語攻略メモ</title>
+<style>
+  /* ============================================
+     色・フォントはここで一括管理しています。
+     デザインを変えたい時はまずこの :root の中身を
+     書き換えるだけでサイト全体の見た目が変わります。
+     ============================================ */
+  :root {
+    --color-bg: #ffffff;
+    --color-bg-soft: #f6f6f7;
+    --color-text: #1c1c1c;
+    --color-text-muted: #6b6b6b;
+    --color-border: #e2e2e2;
+    --color-accent: #b45309;      /* 見出しやリンクのアクセント色 */
+    --color-header-bg: #1c1c1c;   /* テーブルの見出し行の背景色 */
+    --color-header-text: #ffffff;
+    --color-status-ok: #eaf4ea;
+    --color-status-todo: #fdf1e0;
+    --font-body: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+    --font-heading: var(--font-body);
+    --max-width: 900px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  header.page-header {
+    background: var(--color-header-bg);
+    color: var(--color-header-text);
+    padding: 48px 24px 32px;
+    text-align: center;
+  }
+
+  header.page-header h1 {
+    margin: 0 0 8px;
+    font-size: clamp(24px, 5vw, 34px);
+    font-family: var(--font-heading);
+  }
+
+  header.page-header p {
+    margin: 0;
+    color: #cfcfcf;
+    font-size: 14px;
+  }
+
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+  }
+
+  nav.toc {
+    background: var(--color-bg-soft);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin-bottom: 40px;
+  }
+
+  nav.toc h2 {
+    font-size: 15px;
+    margin: 0 0 10px;
+    color: var(--color-text-muted);
+  }
+
+  nav.toc ol {
+    margin: 0;
+    padding-left: 20px;
+  }
+
+  nav.toc a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  nav.toc a:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+
+  section {
+    margin-bottom: 56px;
+    scroll-margin-top: 20px;
+  }
+
+  section h2 {
+    font-size: 22px;
+    border-bottom: 2px solid var(--color-accent);
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+  }
+
+  section h3 {
+    font-size: 17px;
+    margin: 28px 0 10px;
+    color: var(--color-text);
+  }
+
+  .lead {
+    color: var(--color-text-muted);
+    font-size: 14px;
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+
+  .note {
+    background: var(--color-bg-soft);
+    border-left: 3px solid var(--color-accent);
+    padding: 12px 16px;
+    font-size: 14px;
+    margin: 16px 0;
+    border-radius: 0 4px 4px 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  caption {
+    text-align: left;
+    font-size: 13px;
+    color: var(--color-text-muted);
+    margin-bottom: 6px;
+  }
+
+  th, td {
+    border: 1px solid var(--color-border);
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    background: var(--color-header-bg);
+    color: var(--color-header-text);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  tr:nth-child(even) td {
+    background: var(--color-bg-soft);
+  }
+
+  .status-ok {
+    background: var(--color-status-ok) !important;
+  }
+
+  .status-todo {
+    background: var(--color-status-todo) !important;
+  }
+
+  .table-scroll {
+    overflow-x: auto;
+    border-radius: 6px;
+  }
+
+  .effect-icon {
+    display: block;
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+
+  ul.todo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  ul.todo-list li {
+    padding: 10px 14px;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  ul.todo-list li .badge {
+    flex-shrink: 0;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--color-bg-soft);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+  }
+
+  footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--color-text-muted);
+    padding: 24px;
+    border-top: 1px solid var(--color-border);
+  }
+
+  a.back-to-top {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+
+  a.back-to-top:hover {
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 600px) {
+    table, thead, tbody, th, td, tr { display: block; }
+    thead tr { display: none; }
+    td {
+      border: none;
+      border-bottom: 1px solid var(--color-border);
+      padding: 6px 4px;
+    }
+    td::before {
+      content: attr(data-label);
+      display: block;
+      font-size: 11px;
+      color: var(--color-text-muted);
+      margin-bottom: 2px;
+    }
+    tr {
+      margin-bottom: 16px;
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      padding: 8px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="page-header" id="top">
+  <h1>Call of Duty: Black Ops 7「Endgame」日本語攻略メモ</h1>
+  <p>日本語の攻略情報が少ないため、実機検証と海外情報をもとにまとめている非公式メモです（随時更新）</p>
+</header>
+
+<div class="container">
+
+  <nav class="toc" aria-label="目次">
+    <h2>目次</h2>
+    <ol>
+      <li><a href="#exotic-effects">エキゾチック効果（Rounds）一覧</a></li>
+      <li><a href="#named-exotics">名前付きエキゾチック武器と属性(Affinity)</a></li>
+      <li><a href="#utility-bonus">ユーティリティボーナス（汎用）</a></li>
+      <li><a href="#affinity-bonus">属性一致ユーティリティボーナス（推定訳）</a></li>
+      <li><a href="#weapon-specific">武器固有ボーナスの仮説</a></li>
+      <li><a href="#game-rules">ゲームルール・仕様メモ</a></li>
+      <li><a href="#missions">ミッション概要</a></li>
+      <li><a href="#todo">今後の検証タスク</a></li>
+    </ol>
+  </nav>
+
+  <!-- ============================================
+       1. エキゾチック効果
+       ============================================ -->
+  <section id="exotic-effects">
+    <h2>1. エキゾチック効果（Rounds）一覧</h2>
+    <p class="lead">武器に付与される8種類の弾薬効果。エキゾチックの「属性(Affinity)」を決める基礎効果。すべて実機で確認済み。</p>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>英語名</th>
+            <th>日本語名</th>
+            <th>アイコン</th>
+            <th>効果</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="英語名">Frost</td>
+            <td data-label="日本語名">凍結弾</td>
+            <td data-label="アイコン"><img src="assets/icons/frost.png" alt="凍結弾アイコン" class="effect-icon"></td>
+            <td data-label="効果">命中で動きを鈍らせる。ダメージ・命中率が向上</td>
+          </tr>
+          <tr>
+            <td data-label="英語名">Graviton</td>
+            <td data-label="日本語名">重力子弾</td>
+            <td data-label="アイコン"><img src="assets/icons/graviton.png" alt="重力子弾アイコン" class="effect-icon"></td>
+            <td data-label="効果">命中でブラックホールを生成し、周囲の敵を致死的に吹き飛ばす</td>
+          </tr>
+          <tr>
+            <td data-label="英語名">Incendiary</td>
+            <td data-label="日本語名">熱子弾</td>
+            <td data-label="アイコン"><img src="assets/icons/incendiary.png" alt="熱子弾アイコン" class="effect-icon"></td>
+            <td data-label="効果">命中で燃焼効果、時間経過とともにダメージを付与</td>
+          </tr>
+          <tr>
+            <td data-label="英語名">Mortar</td>
+            <td data-label="日本語名">花閃弾</td>
+            <td data-label="アイコン"><img src="assets/icons/mortar.png" alt="花閃弾アイコン" class="effect-icon"></td>
+            <td data-label="効果">命中で敵を狙う花火（追撃弾）を打ち上げる</td>
+          </tr>
+          <tr>
+            <td data-label="英語名">Neuro-Disruption</td>
+            <td data-label="日本語名">崩脳弾</td>
+            <td data-label="アイコン"><img src="assets/icons/neuro-disruption.png" alt="崩脳弾アイコン" class="effect-icon"></td>
+            <td data-label="効果">命中で確率により一時的に敵を味方に転向させる</td>
+          </tr>
+          <tr>
+            <td data-label="英語名">Photon</td>
+            <td data-label="日本語名">光子弾</td>
+            <td data-label="アイコン"><img src="assets/icons/photon.png" alt="光子弾アイコン" class="effect-icon"></td>
+            <td data-label="効果">命中した敵から回復アイテム「ヒールグリフ」がドロップし、拾うと回復</td>
+          </tr>
+          <tr>
+            <td data-label="英語名">Shock</td>
+            <td data-label="日本語名">電子弾</td>
+            <td data-label="アイコン"><img src="assets/icons/shock.png" alt="電子弾アイコン" class="effect-icon"></td>
+            <td data-label="効果">命中でスタンさせ、電撃ダメージフィールドを生成</td>
+          </tr>
+          <tr>
+            <td data-label="英語名">Shrapnel</td>
+            <td data-label="日本語名">榴散弾</td>
+            <td data-label="アイコン"><img src="assets/icons/shrapnel.png" alt="榴散弾アイコン" class="effect-icon"></td>
+            <td data-label="効果">命中で確率によりアーマーを破壊</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <strong>メモ：</strong> 「Mortar → 花閃弾」は直訳（迫撃）ではなく見た目の花火から命名。「Photon → 光子弾」の公式効果文：「各弾薬は通常の敵/スペシャルエネミーに命中すると確率で敵のHPを『ヒールグリフ』に変える」。ドロップアイテムは緑色に発光するカプセル型で中央に心電図の波形マーク。
+    </div>
+    <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
+  </section>
+
+  <!-- ============================================
+       2. 名前付きエキゾチック武器
+       ============================================ -->
+  <section id="named-exotics">
+    <h2>2. 名前付きエキゾチック武器と属性(Affinity)</h2>
+    <p class="lead">各武器固有のエキゾチック名と対応する属性(Rounds)。属性一致でドロップすると専用のユーティリティボーナスが追加される。</p>
+    <div class="note">日本語名は現時点で未確認（<a href="#todo">要検証タスク参照</a>）。</div>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>エキゾチック名</th>
+            <th>武器名</th>
+            <th>属性(英語)</th>
+            <th>属性(日本語)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td data-label="エキゾチック名">Flashburst</td><td data-label="武器名">M8A1</td><td data-label="属性(英語)">Frost</td><td data-label="属性(日本語)">凍結弾</td></tr>
+          <tr><td data-label="エキゾチック名">Zeotrope</td><td data-label="武器名">Echo 12</td><td data-label="属性(英語)">Frost</td><td data-label="属性(日本語)">凍結弾</td></tr>
+          <tr><td data-label="エキゾチック名">Continuum</td><td data-label="武器名">Hawker HX</td><td data-label="属性(英語)">Graviton</td><td data-label="属性(日本語)">重力子弾</td></tr>
+          <tr><td data-label="エキゾチック名">Torrent</td><td data-label="武器名">M15 Mod 0</td><td data-label="属性(英語)">Graviton</td><td data-label="属性(日本語)">重力子弾</td></tr>
+          <tr><td data-label="エキゾチック名">Collateral</td><td data-label="武器名">EGRT-17</td><td data-label="属性(英語)">Incendiary</td><td data-label="属性(日本語)">熱子弾</td></tr>
+          <tr><td data-label="エキゾチック名">Overcharge</td><td data-label="武器名">M10 Breacher</td><td data-label="属性(英語)">Incendiary</td><td data-label="属性(日本語)">熱子弾</td></tr>
+          <tr><td data-label="エキゾチック名">Criticality</td><td data-label="武器名">A.R.C. M1</td><td data-label="属性(英語)">Mortar</td><td data-label="属性(日本語)">花閃弾</td></tr>
+          <tr><td data-label="エキゾチック名">Redline</td><td data-label="武器名">XM325</td><td data-label="属性(英語)">Mortar</td><td data-label="属性(日本語)">花閃弾</td></tr>
+          <tr><td data-label="エキゾチック名">Ghostmind</td><td data-label="武器名">VS Recon</td><td data-label="属性(英語)">Neuro-Disruption</td><td data-label="属性(日本語)">崩脳弾</td></tr>
+          <tr><td data-label="エキゾチック名">Neurowall</td><td data-label="武器名">Warden 308</td><td data-label="属性(英語)">Neuro-Disruption</td><td data-label="属性(日本語)">崩脳弾</td></tr>
+          <tr><td data-label="エキゾチック名">Malspike <em>(表記:MALSPIKE)</em></td><td data-label="武器名">VELOX 5.7</td><td data-label="属性(英語)">Photon</td><td data-label="属性(日本語)">光子弾</td></tr>
+          <tr><td data-label="エキゾチック名">Swarmforge</td><td data-label="武器名">MPC-25</td><td data-label="属性(英語)">Photon</td><td data-label="属性(日本語)">光子弾</td></tr>
+          <tr><td data-label="エキゾチック名">Backdrive</td><td data-label="武器名">Dravec 45</td><td data-label="属性(英語)">Shock</td><td data-label="属性(日本語)">電子弾</td></tr>
+          <tr><td data-label="エキゾチック名">Hypersurge</td><td data-label="武器名">Sokol 545</td><td data-label="属性(英語)">Shock</td><td data-label="属性(日本語)">電子弾</td></tr>
+          <tr><td data-label="エキゾチック名">Reboot</td><td data-label="武器名">1911</td><td data-label="属性(英語)">Shock</td><td data-label="属性(日本語)">電子弾</td></tr>
+          <tr><td data-label="エキゾチック名">Barrage</td><td data-label="武器名">Razor 9mm</td><td data-label="属性(英語)">Shrapnel</td><td data-label="属性(日本語)">榴散弾</td></tr>
+          <tr><td data-label="エキゾチック名">Killswitch</td><td data-label="武器名">AK-27</td><td data-label="属性(英語)">Shrapnel</td><td data-label="属性(日本語)">榴散弾</td></tr>
+          <tr><td data-label="エキゾチック名">Pulsebreach</td><td data-label="武器名">Swordfish A1</td><td data-label="属性(英語)">Shrapnel</td><td data-label="属性(日本語)">榴散弾</td></tr>
+          <tr><td data-label="エキゾチック名">Cryoshear <em>(表記:CRYOSHEAR)</em></td><td data-label="武器名">KATANA（近接武器）</td><td data-label="属性(英語)">Graviton <em>(ドロップ時のランダム効果)</em></td><td data-label="属性(日本語)">重力子弾 <em>(現地ドロップのため変動あり)</em></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <strong>ルール：</strong> Fabricatorでアップグレードした自作エキゾチックには属性一致ボーナスは付かない。Exotic Weapon Caseから出た名前付きエキゾチックのみ対象。
+    </div>
+    <div class="note">
+      <strong>確認済み：</strong> 武器名・エキゾチック名は日本語版でも翻訳されず英語/ローマ字表記のまま（MALSPIKE / VELOX 5.7で確認）。フレーバーテキストも付く。例:「小型ながら最大火力を引き出すよう改造されたバーストピストル。光子弾との相性が良い」
+    </div>
+    <div class="note">
+      <strong>確認済み（仕様）：</strong> 現地入手のエキゾチック銃器・武器は、付与されているRounds効果が武器のフレーバーテキストと一致しないことがよくある。CRYOSHEAR(KATANA)はフレーバーで「凍結弾との相性が良い」とあるが実際は重力子弾が付与されていた。ランダムに決定される仕様と考えられる（CRYOSHEAR固有の不具合ではなく既知の挙動）。
+    </div>
+    <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
+  </section>
+
+  <!-- ============================================
+       3. ユーティリティボーナス（汎用）
+       ============================================ -->
+  <section id="utility-bonus">
+    <h2>3. ユーティリティボーナス（汎用）</h2>
+    <p class="lead">属性に関係なく出現する汎用ボーナス。アイコンごとにグループ分けされている。</p>
+
+    <h3>🖐️ 手（機動力系）</h3>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>日本語名</th><th>効果</th></tr></thead>
+        <tbody>
+          <tr><td data-label="日本語名">高速</td><td data-label="効果">あらゆる移動速度が上昇</td></tr>
+          <tr><td data-label="日本語名">LIFESTYLE <span style="font-weight:normal;color:var(--color-text-muted);">(未ローカライズ)</span></td><td data-label="効果">ヘッドショットで敵をキルするとHPが回復</td></tr>
+          <tr><td data-label="日本語名">ウルトラライト</td><td data-label="効果">エイム中のプレイヤーの移動速度が低下しない</td></tr>
+          <tr><td data-label="日本語名">キル&ラン</td><td data-label="効果">敵をキルすると一時的に移動速度がブースト</td></tr>
+          <tr><td data-label="日本語名">コンバットレディ</td><td data-label="効果">エイムとダッシュ後の射撃速度が大幅に向上</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>💀 髑髏（ダメージ系）</h3>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>日本語名</th><th>効果</th></tr></thead>
+        <tbody>
+          <tr><td data-label="日本語名">狙い撃ち</td><td data-label="効果">上半身に命中するとヘッドショットと同じダメージを与える</td></tr>
+          <tr><td data-label="日本語名">スラッシャー</td><td data-label="効果">近接攻撃を繰り出す速度が向上</td></tr>
+          <tr><td data-label="日本語名">グレネード弾</td><td data-label="効果">弾丸が爆発し、追加の範囲ダメージを与える <em>(1911のみ確認・仮説段階)</em></td></tr>
+          <tr><td data-label="日本語名">炸裂弾</td><td data-label="効果">弾丸が爆発し、追加の範囲ダメージを与える <em>(グレネード弾と説明文が同一)</em></td></tr>
+          <tr><td data-label="日本語名">デュアル [武器名] <span style="font-weight:normal;color:var(--color-text-muted);">(例: デュアルVELOX 5.7)</span></td><td data-label="効果">対象武器がデュアル武器（2丁持ち）になる <em>(武器名がボーナス名に入る特殊枠。武器ごとに個別名称の可能性、要検証)</em></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>🎯 照準（反動・命中系）</h3>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>日本語名</th><th>効果</th></tr></thead>
+        <tbody>
+          <tr><td data-label="日本語名">反動削除</td><td data-label="効果">反動制御が大幅に向上</td></tr>
+          <tr><td data-label="日本語名">ロングショット</td><td data-label="効果">射程距離が大幅に向上。反動をわずかに軽減</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>🔫 弾薬系</h3>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>日本語名</th><th>効果</th></tr></thead>
+        <tbody>
+          <tr><td data-label="日本語名">撃ち放題</td><td data-label="効果">全ての弾薬が1つの大きなマガジンに入っている</td></tr>
+          <tr><td data-label="日本語名">弾薬リチャージャー</td><td data-label="効果">武器の収納中に弾薬が補充される</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>⚔️ 近接系（アイコン未確認）</h3>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>日本語名</th><th>効果</th></tr></thead>
+        <tbody>
+          <tr><td data-label="日本語名">Parry（パリー）<span style="font-weight:normal;color:var(--color-text-muted);"> (未ローカライズ)</span></td><td data-label="効果">強近接攻撃チャージ中の被ダメージを軽減（近接武器専用）</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
+  </section>
+
+  <!-- ============================================
+       4. 属性一致ユーティリティボーナス
+       ============================================ -->
+  <section id="affinity-bonus">
+    <h2>4. 属性一致ユーティリティボーナス（推定訳）</h2>
+    <p class="lead">名前付きエキゾチックが対応する属性のRoundsを伴ってドロップした場合のみ出現。</p>
+    <div class="note">
+      <strong>日本語名は未確認のため、以下は英語からの推定訳です。</strong> 実機確認が最優先タスク。
+    </div>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>属性</th><th>ボーナス名(英語)</th><th>推定日本語訳</th></tr>
+        </thead>
+        <tbody>
+          <tr><td data-label="属性">凍結弾</td><td data-label="英語">Flash Freeze</td><td data-label="推定訳">フラッシュフリーズ</td></tr>
+          <tr><td data-label="属性">凍結弾</td><td data-label="英語">Ice Cloud</td><td data-label="推定訳">アイスクラウド</td></tr>
+          <tr><td data-label="属性">重力子弾</td><td data-label="英語">Black Hole</td><td data-label="推定訳">ブラックホール <em>(強力とされる)</em></td></tr>
+          <tr><td data-label="属性">重力子弾</td><td data-label="英語">Warp</td><td data-label="推定訳">ワープ</td></tr>
+          <tr><td data-label="属性">熱子弾</td><td data-label="英語">Firebomb</td><td data-label="推定訳">ファイアーボム</td></tr>
+          <tr><td data-label="属性">熱子弾</td><td data-label="英語">Petrol</td><td data-label="推定訳">ペトロール</td></tr>
+          <tr><td data-label="属性">花閃弾</td><td data-label="英語">Fire Wheel</td><td data-label="推定訳">ファイアーホイール</td></tr>
+          <tr><td data-label="属性">花閃弾</td><td data-label="英語">Starburst</td><td data-label="推定訳">スターバースト</td></tr>
+          <tr><td data-label="属性">崩脳弾</td><td data-label="英語">Mass Disruption</td><td data-label="推定訳">マスディスラプション</td></tr>
+          <tr><td data-label="属性">崩脳弾</td><td data-label="英語">Neural Attraction</td><td data-label="推定訳">ニューラルアトラクション</td></tr>
+          <tr><td data-label="属性">光子弾</td><td data-label="英語">Blessing</td><td data-label="推定訳">ブレッシング</td></tr>
+          <tr><td data-label="属性">光子弾</td><td data-label="英語">Dual Action</td><td data-label="推定訳">デュアルアクション <strong>(確定)</strong> — ヒールグリフ消費で体力自動回復が一時的に向上。光子弾Roundsとセットで現地ドロップした実例で確認（属性一致ボーナス実例第1号）</td></tr>
+          <tr><td data-label="属性">電子弾</td><td data-label="英語">Chain Lightning</td><td data-label="推定訳">チェインライトニング <em>(強力とされる)</em></td></tr>
+          <tr><td data-label="属性">電子弾</td><td data-label="英語">Lightning Strike</td><td data-label="推定訳">ライトニングストライク</td></tr>
+          <tr><td data-label="属性">榴散弾</td><td data-label="英語">Blast Chain</td><td data-label="推定訳">ブラストチェイン <em>(強力とされる)</em></td></tr>
+          <tr><td data-label="属性">榴散弾</td><td data-label="英語">Blast Shield</td><td data-label="推定訳">ブラストシールド</td></tr>
+          <tr><td data-label="属性">全属性共通</td><td data-label="英語">Big Game</td><td data-label="推定訳">ビッグゲーム</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
+  </section>
+
+  <!-- ============================================
+       5. 武器固有ボーナスの仮説
+       ============================================ -->
+  <section id="weapon-specific">
+    <h2>5. 武器固有ボーナスの仮説</h2>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>武器</th><th>ボーナス</th><th>状態</th></tr></thead>
+        <tbody>
+          <tr>
+            <td data-label="武器">1911</td>
+            <td data-label="ボーナス">グレネード弾／炸裂弾</td>
+            <td data-label="状態">他のハンドガンでは未確認。属性一致枠とは別の武器固有枠の可能性（仮説・要検証）</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
+  </section>
+
+  <!-- ============================================
+       6. ゲームルール・仕様メモ
+       ============================================ -->
+  <section id="game-rules">
+    <h2>6. ゲームルール・仕様メモ</h2>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>カテゴリ</th><th>内容</th><th>検証状況</th></tr></thead>
+        <tbody>
+          <tr>
+            <td data-label="カテゴリ">現地入手エキゾチックの所持制限</td>
+            <td data-label="内容">近接武器の現地入手エキゾチックは、銃器の現地入手エキゾチックを既に所持していても追加で入手・所持可能（別枠扱い）</td>
+            <td data-label="検証状況">確認済み</td>
+          </tr>
+          <tr>
+            <td data-label="カテゴリ">ファブリケーターの可逆性</td>
+            <td data-label="内容">ユーティリティボーナスの変更は必ず元に戻せるとは限らない可能性あり。実例:デュアルアクション→デュアルVELOX5.7変更後、再アクセス不可に</td>
+            <td data-label="検証状況">要注意（実例あり）</td>
+          </tr>
+          <tr>
+            <td data-label="カテゴリ">現地ドロップのRoundsはランダム</td>
+            <td data-label="内容">現地入手のエキゾチック銃器は、付与されているRounds効果が武器の説明文と一致しないことがよくある。ランダムに決定される仕様と思われる</td>
+            <td data-label="検証状況">確認済み（既知の仕様）</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
+  </section>
+
+  <!-- ============================================
+       7. ミッション概要
+       ============================================ -->
+  <section id="missions">
+    <h2>7. ミッション概要</h2>
+    <p class="lead">未着手。今後追記予定。</p>
+    <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
+  </section>
+
+  <!-- ============================================
+       8. TODO
+       ============================================ -->
+  <section id="todo">
+    <h2>8. 今後の検証タスク</h2>
+    <ul class="todo-list">
+      <li><span class="badge">中</span> 18種の名前付きエキゾチック武器名の日本語表示を確認（カタカナ or 英語表記）</li>
+      <li><span class="badge">高</span> 各属性一致ボーナスの実機日本語名を確認</li>
+      <li><span class="badge">低</span> 1911の「グレネード弾/炸裂弾」が他武器で本当に出ないか継続検証</li>
+      <li><span class="badge">中</span> 「グレネード弾」と「炸裂弾」が別枠か同一枠のバリエーションか確認</li>
+      <li><span class="badge">中</span> Xbox本体言語を英語に切り替えて対応関係を直接確認</li>
+      <li><span class="badge">中</span> エンドゲームモードのミッション/ラウンド構成の情報収集</li>
+      <li><span class="badge" style="background:#fdf1e0;border-color:#e0a94e;">要注意</span> <strong>ファブリケーターでのユーティリティボーナス変更は必ず元に戻せるとは限らない可能性。</strong>実例：デュアルアクション→デュアルVELOX5.7に変更後、再アクセス不可になり元に戻せなかった。再現性・条件を確認</li>
+    </ul>
+    <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
+  </section>
+
+</div>
+
+<footer>
+  このページは個人の検証記録であり、公式情報ではありません。誤りに気づいた場合は随時修正します。
+</footer>
+
+</body>
+</html>
