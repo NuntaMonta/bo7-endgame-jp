@@ -279,6 +279,11 @@
     }
   }
 
+  .effect-icon-box.emoji {
+    font-size: 26px;
+    line-height: 1;
+  }
+
   ul.todo-list {
     list-style: none;
     padding: 0;
@@ -349,6 +354,368 @@
       padding: 8px;
     }
   }
+
+  /* ============================================
+     登場人物相関図（捜査ボード風）
+     ダークネイビー配色 + 赤い糸 + 画鋲。
+     カードはドラッグで移動でき、糸が追従します。
+     ============================================ */
+  .board-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+
+  .board-hint {
+    font-size: 13px;
+    color: var(--color-text-muted);
+  }
+
+  .board-reset {
+    font-size: 13px;
+    font-family: var(--font-heading-jp);
+    color: var(--color-text);
+    background: var(--color-bg-soft);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 6px 14px;
+    cursor: pointer;
+  }
+  .board-reset:hover { border-color: var(--color-accent-teal); color: var(--color-accent-teal-light); }
+
+  .board-scroll {
+    overflow-x: auto;
+    border-radius: 10px;
+  }
+
+  .board {
+    position: relative;
+    width: 1040px;
+    height: 780px;
+    background:
+      radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1.4px) 0 0 / 22px 22px,
+      linear-gradient(160deg, #1c1533 0%, #171029 100%);
+    border: 12px solid #0d0a18;
+    border-radius: 10px;
+    box-shadow: inset 0 0 60px rgba(0,0,0,0.55);
+    touch-action: none;
+    user-select: none;
+  }
+
+  /* SVG（赤い糸）はカードの背面 */
+  #boardStrings {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+  #boardStrings .string-solid {
+    stroke: #d24b3a;
+    stroke-width: 2.4;
+    stroke-linecap: round;
+  }
+  #boardStrings .string-dashed {
+    stroke: rgba(210,75,58,0.55);
+    stroke-width: 1.8;
+    stroke-dasharray: 7 7;
+    stroke-linecap: round;
+  }
+
+  /* 共通ドラッグ要素 */
+  .case-card, .sticky, .board-title {
+    position: absolute;
+    z-index: 2;
+    cursor: grab;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.45);
+    transition: box-shadow 0.15s ease;
+  }
+  .case-card.dragging, .sticky.dragging, .board-title.dragging {
+    cursor: grabbing;
+    box-shadow: 0 14px 30px rgba(0,0,0,0.6);
+  }
+
+  /* 画鋲（各要素の上辺中央） */
+  .case-card::before, .sticky::before {
+    content: "";
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #ff8a6b, #eb532c 55%, #a5301a);
+    box-shadow: 0 2px 3px rgba(0,0,0,0.5);
+    z-index: 3;
+  }
+
+  /* 人物カード */
+  .case-card {
+    width: 158px;
+    min-height: 104px;
+    padding: 14px 12px 12px;
+    border-radius: 6px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    border: 1px solid var(--color-border);
+    background: #241c3d;
+  }
+  .cc-letter {
+    font-family: var(--font-display);
+    font-size: 34px;
+    line-height: 1;
+    letter-spacing: 1px;
+    opacity: 0.9;
+  }
+  .cc-face {
+    width: 88px;
+    height: 88px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 2px solid rgba(255,255,255,0.15);
+    -webkit-user-drag: none;
+    user-select: none;
+  }
+  .case-card.jsoc    .cc-face { border-color: #3d5cff; }
+  .case-card.guild   .cc-face { border-color: #b23a48; }
+  .case-card.neutral .cc-face { border-color: #4a4460; }
+
+  /* オペレーター一覧ギャラリー */
+  .op-faction-ttl {
+    font-family: var(--font-heading-jp);
+    font-weight: 700;
+    font-size: 16px;
+    margin: 26px 0 14px;
+    padding-left: 10px;
+    border-left: 4px solid var(--color-accent-teal);
+    color: var(--color-text);
+  }
+  .op-faction-ttl small { font-weight: 400; font-size: 12px; color: var(--color-text-muted); margin-left: 8px; }
+  .op-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 14px;
+  }
+  .op-card {
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 10px 10px 12px;
+    text-align: center;
+    background: var(--color-bg-soft);
+  }
+  .op-card img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 6px;
+    display: block;
+  }
+  .op-name { font-family: var(--font-heading-jp); font-weight: 700; font-size: 13.5px; color: var(--color-text); margin-top: 8px; line-height: 1.3; white-space: nowrap; display: inline-block; transform-origin: center; }
+  .op-en   { font-size: 10.5px; color: var(--color-text-muted); letter-spacing: 0.3px; }
+  .op-tag  { display: inline-block; margin-top: 6px; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: rgba(255,255,255,0.08); color: var(--color-text-muted); }
+  .op-role { font-size: 11px; color: var(--color-text-muted); margin-top: 5px; line-height: 1.35; }
+
+  /* 敵カード（クリックでモーダル） */
+  .enemy-hint { font-size: 12px; color: var(--color-text-muted); margin: 2px 0 12px; }
+  button.enemy-card {
+    font: inherit; color: inherit; cursor: pointer;
+    appearance: none; -webkit-appearance: none; width: 100%;
+    transition: transform .08s ease, border-color .12s ease;
+  }
+  button.enemy-card:hover { border-color: var(--color-accent-teal); transform: translateY(-2px); }
+  button.enemy-card:focus-visible { outline: 2px solid var(--color-accent-teal); outline-offset: 2px; }
+
+  /* モーダル */
+  .enemy-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px; }
+  .enemy-modal[hidden] { display: none; }
+  .enemy-modal-backdrop { position: absolute; inset: 0; background: rgba(8,6,18,0.78); }
+  .enemy-modal-box { position: relative; max-width: 460px; width: 100%; max-height: 88vh; overflow-y: auto; background: var(--color-bg-soft); border: 1px solid var(--color-border); border-radius: 12px; padding: 22px 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+  .enemy-modal-img { width: 190px; height: 190px; object-fit: contain; display: block; margin: 0 auto 12px; border-radius: 8px; background: #0d0a18; }
+  .enemy-modal-title { font-family: var(--font-heading-jp); font-size: 20px; text-align: center; margin: 0 0 2px; }
+  .enemy-modal-en { text-align: center; font-size: 12px; color: var(--color-text-muted); margin: 0 0 14px; letter-spacing: .3px; }
+  .enemy-modal-body p { margin: 0 0 8px; font-size: 14px; line-height: 1.6; }
+  .enemy-modal-body ul { margin: 0; padding-left: 1.2em; }
+  .enemy-modal-body li { font-size: 14px; line-height: 1.6; margin-bottom: 6px; }
+  .enemy-modal-close { position: absolute; top: 8px; right: 12px; background: none; border: none; color: var(--color-text-muted); font-size: 28px; line-height: 1; cursor: pointer; padding: 2px 6px; }
+  .enemy-modal-close:hover { color: var(--color-text); }
+
+  /* 属性アイコン（テーブル内） */
+  .attr { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+  .attr img { width: 26px; height: 26px; flex: none; object-fit: contain; }
+  .cc-name {
+    font-family: var(--font-heading-jp);
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--color-text);
+    margin-top: 2px;
+  }
+  .cc-role {
+    font-size: 11px;
+    color: var(--color-text-muted);
+  }
+
+  /* 陣営別カラー */
+  .case-card.jsoc    { background: linear-gradient(150deg, #1a234f, #141a3a); border-color: #3d5cff; }
+  .case-card.jsoc .cc-letter { color: #9fb4ff; }
+  .case-card.guild   { background: linear-gradient(150deg, #3a1622, #2a1018); border-color: #b23a48; }
+  .case-card.guild .cc-letter { color: #ff9aa6; }
+  .case-card.neutral { background: linear-gradient(150deg, #2c2740, #23202f); border-color: #4a4460; }
+  .case-card.neutral .cc-letter { color: #cfc9e0; }
+
+  /* 付箋 */
+  .sticky {
+    width: 190px;
+    padding: 14px 16px;
+    background: #efe07a;
+    color: #2a2410;
+    border-radius: 2px;
+    font-size: 12.5px;
+    line-height: 1.55;
+  }
+  .sticky::before {
+    background: radial-gradient(circle at 35% 30%, #fff3a0, #e6c53d 55%, #b7982a);
+  }
+  .sticky h4 {
+    margin: 0 0 6px;
+    font-family: var(--font-heading-jp);
+    font-size: 14px;
+    color: #3a2f0c;
+  }
+  .sticky ul { margin: 0; padding-left: 16px; }
+  .sticky li { margin-bottom: 2px; }
+  .sticky.rot-l { transform: rotate(-2.5deg); }
+  .sticky.rot-r { transform: rotate(2deg); }
+
+  /* タイトルの貼り紙 */
+  .board-title {
+    width: 300px;
+    padding: 14px 18px;
+    background: #efe9dc;
+    color: #211c30;
+    border-radius: 2px;
+    text-align: left;
+    transform: rotate(-1deg);
+  }
+  .board-title::after {
+    content: "";
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%) rotate(4deg);
+    width: 78px;
+    height: 24px;
+    background: rgba(255,255,255,0.35);
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+  .board-title .bt-main {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 24px;
+    letter-spacing: 1px;
+    color: #191424;
+  }
+  .board-title .bt-sub {
+    display: block;
+    font-family: var(--font-heading-jp);
+    font-size: 12px;
+    color: #5a5240;
+    margin-top: 2px;
+  }
+
+  .board-legend {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: var(--color-text-muted);
+    margin-top: 10px;
+  }
+  .board-legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .lg-swatch { width: 22px; height: 3px; border-radius: 2px; display: inline-block; }
+  .lg-solid { background: #d24b3a; }
+  .lg-dashed { background: repeating-linear-gradient(90deg, rgba(210,75,58,0.7) 0 5px, transparent 5px 9px); }
+  .lg-box { width: 12px; height: 12px; border-radius: 2px; }
+
+  /* ============================================
+     ストーリー年表（シーズン別アコーディオン）
+     ============================================ */
+  .story-intro {
+    background: var(--color-bg-soft);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-bottom: 20px;
+  }
+  .story-intro h3 {
+    margin: 0 0 8px;
+    font-size: 16px;
+    color: var(--color-accent-teal-light);
+    font-family: var(--font-heading-jp);
+  }
+  .story-intro p { margin: 0; font-size: 14px; }
+
+  .season-list { display: flex; flex-direction: column; gap: 12px; }
+
+  details.season {
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--color-accent);
+    border-radius: 6px;
+    background: var(--color-bg-soft);
+    overflow: hidden;
+  }
+  details.season > summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    font-family: var(--font-heading-jp);
+  }
+  details.season > summary::-webkit-details-marker { display: none; }
+  .season-badge {
+    flex-shrink: 0;
+    font-family: var(--font-display);
+    font-size: 15px;
+    letter-spacing: 1px;
+    background: var(--color-accent);
+    color: #fff;
+    padding: 3px 12px;
+    border-radius: 4px;
+  }
+  .season-ttl { flex: 1; font-weight: 700; font-size: 15px; color: var(--color-text); }
+  .season-sub { font-size: 12px; color: var(--color-text-muted); font-weight: 400; }
+  .season-chevron { flex-shrink: 0; color: var(--color-text-muted); transition: transform 0.2s ease; }
+  details.season[open] > summary .season-chevron { transform: rotate(180deg); }
+  details.season[open] > summary { border-bottom: 1px solid var(--color-border); }
+
+  .season-body { padding: 6px 18px 18px; }
+  .season-body h4 {
+    margin: 16px 0 6px;
+    font-size: 14px;
+    color: var(--color-accent-teal-light);
+    font-family: var(--font-heading-jp);
+  }
+  .season-body h4:first-child { margin-top: 10px; }
+  .season-body p { margin: 0 0 10px; font-size: 14px; }
+  .season-body .term { color: var(--color-accent-teal-light); font-weight: 700; }
+
+  .season-summary-box {
+    margin-top: 14px;
+    background: var(--color-bg-soft2);
+    border-radius: 6px;
+    padding: 12px 14px;
+    font-size: 13.5px;
+  }
+  .season-summary-box strong { color: var(--color-accent-teal-light); }
 </style>
 </head>
 <body>
@@ -362,6 +729,8 @@
   <nav class="toc" aria-label="目次">
     <h2>目次</h2>
     <ol>
+      <li><a href="#operators">オペレーター一覧</a></li>
+      <li><a href="#enemies">敵・ボス図鑑</a></li>
       <li><a href="#missions">ミッション概要</a></li>
       <li><a href="#game-rules">ゲームルール・仕様メモ</a></li>
       <li><a href="#exotic-effects">エキゾチック効果（Rounds）一覧</a></li>
@@ -369,15 +738,260 @@
       <li><a href="#affinity-bonus">属性一致ユーティリティボーナス（推定訳）</a></li>
       <li><a href="#named-exotics">名前付きエキゾチック武器と属性(Affinity)</a></li>
       <li><a href="#weapon-specific">武器固有ボーナスの仮説</a></li>
+      <li><a href="#story-timeline">ストーリー年表（シーズンの流れ）</a></li>
       <li><a href="#todo">今後の検証タスク</a></li>
     </ol>
   </nav>
+
+  <div class="story-intro">
+    <h3>エンドゲームとは</h3>
+    <p>4人までのスクアッドを組み、最大32人が参加できる設計で、難易度が上がるゾーンを攻略しながら戦闘評価やスキルツリーを育て、成果を持ち帰るために脱出を目指す、脱出系シューター的なルールです。アヴァロンの広大な地を探索し、謎の毒素で汚染された危険地域を戦い抜きながら、ギルドの残存司令部を突き止めていきます。</p>
+  </div>
+
+  <section id="operators">
+    <h2>1. オペレーター一覧</h2>
+
+    <h3 class="op-faction-ttl">スペクター1 <small>JSOC</small></h3>
+    <div class="op-grid">
+      <div class="op-card">
+        <img src="assets/operators/mason.webp" alt="デイビッド・メイソン" loading="lazy">
+        <div class="op-name">デイビッド・メイソン</div>
+        <div class="op-en">David Mason</div>
+        <div class="op-role">リーダー</div>
+      </div>
+      <div class="op-card">
+        <img src="assets/operators/harper.webp" alt="マイク・ハーパー" loading="lazy">
+        <div class="op-name">マイク・ハーパー</div>
+        <div class="op-en">Mike Harper</div>
+        <div class="op-role">エリート工作員</div>
+      </div>
+      <div class="op-card">
+        <img src="assets/operators/samuels.webp" alt="エリック・サミュエルズ" loading="lazy">
+        <div class="op-name">エリック・サミュエルズ</div>
+        <div class="op-en">Eric Samuels</div>
+        <div class="op-role">元シークレットサービス</div>
+      </div>
+      <div class="op-card">
+        <img src="assets/operators/tupuola.webp" alt="レイラニ・トゥプオラ" loading="lazy">
+        <div class="op-name">レイラニ・トゥプオラ</div>
+        <div class="op-en">Leilani Tupuola</div>
+        <div class="op-role">バイオニックボディ</div>
+      </div>
+    </div>
+
+    <h3 class="op-faction-ttl">スペクター2 <small>JSOC</small></h3>
+    <div class="op-grid">
+      <div class="op-card">
+        <img src="assets/operators/barrick.webp" alt="スレイド・バリック" loading="lazy">
+        <div class="op-name">スレイド・バリック</div>
+        <div class="op-en">Slade Barrick</div>
+        <div class="op-role">リーダー「レイザー」</div>
+      </div>
+      <div class="op-card">
+        <img src="assets/operators/vermaak.webp" alt="アクセル・フェルマーク" loading="lazy">
+        <div class="op-name">アクセル・フェルマーク</div>
+        <div class="op-en">Axel Vermaak</div>
+        <div class="op-role">偵察スペシャリスト</div>
+      </div>
+      <div class="op-card">
+        <img src="assets/operators/anderson.webp" alt="ノラ・アンダーソン" loading="lazy">
+        <div class="op-name">ノラ・アンダーソン</div>
+        <div class="op-en">Nora Anderson</div>
+        <div class="op-role">ベテランパイロット・大尉</div>
+      </div>
+      <div class="op-card">
+        <img src="assets/operators/weilin.webp" alt="ウェイ・リン" loading="lazy">
+        <div class="op-name">ウェイ・リン</div>
+        <div class="op-en">Wei Lin</div>
+        <div class="op-role">経験豊富な軍医</div>
+      </div>
+    </div>
+
+    <h3 class="op-faction-ttl">その他 <small>JSOC</small></h3>
+    <div class="op-grid">
+      <div class="op-card">
+        <img src="assets/operators/karma.webp" alt="クロエ・カルマ・リンチ" loading="lazy">
+        <div class="op-name">クロエ・カルマ・リンチ</div>
+        <div class="op-en">Chloe "Karma" Lynch</div>
+        <div class="op-role">ハッカー・オペレーティブ</div>
+      </div>
+      <div class="op-card">
+        <img src="assets/operators/donovan.webp" alt="コール・ドノヴァン" loading="lazy">
+        <div class="op-name">コール・ドノヴァン</div>
+        <div class="op-en">Cole Donovan</div>
+        <div class="op-role">偵察工作員「ジャベリン」</div>
+      </div>
+    </div>
+
+    <h3 class="op-faction-ttl">ギルド</h3>
+    <div class="op-grid">
+      <div class="op-card">
+        <img src="assets/operators/kagan.webp" alt="エマ・ケーガン" loading="lazy">
+        <div class="op-name">エマ・ケーガン</div>
+        <div class="op-en">Emma Kagan</div>
+        <div class="op-role">前CEO</div>
+      </div>
+      <div class="op-card">
+        <img src="assets/operators/falkner.webp" alt="ギデオン・フォークナー" loading="lazy">
+        <div class="op-name">ギデオン・フォークナー</div>
+        <div class="op-en">Gideon Falkner</div>
+        <div class="op-role">バイオ部門責任者</div>
+      </div>
+      <div class="op-card">
+        <img src="assets/operators/rook.webp" alt="レオン・ルーク" loading="lazy">
+        <div class="op-name">レオン・ルーク</div>
+        <div class="op-en">Leon Rook</div>
+        <div class="op-role">S4「キングキラー」の脅威</div>
+      </div>
+      <div class="op-card">
+        <img src="assets/operators/grimm.webp" alt="アニカ・グリム" loading="lazy">
+        <div class="op-name">アニカ・グリム</div>
+        <div class="op-en">Anika Grimm</div>
+      </div>
+      <div class="op-card">
+        <img src="assets/operators/jurado.webp" alt="シロ・フラード" loading="lazy">
+        <div class="op-name">シロ・フラード</div>
+        <div class="op-en">Ciro Jurado</div>
+      </div>
+      <div class="op-card">
+        <img src="assets/operators/zaveri.webp" alt="プリヤ・ザヴェリ" loading="lazy">
+        <div class="op-name">プリヤ・ザヴェリ</div>
+        <div class="op-en">Priya Zaveri</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="enemies">
+    <h2>2. 敵・ボス図鑑</h2>
+    <p class="lead">まず「誰を・何を倒すのか」を把握するためのパート。スペシャル・エリートエネミーとワールドボスの一覧です。</p>
+
+    <h3>スペシャル・エリートエネミー図鑑</h3>
+    <p class="enemy-hint">🖱️ カードをクリックすると詳細（特徴・攻撃パターン）が開きます。</p>
+    <div class="op-grid">
+      <button type="button" class="op-card enemy-card">
+        <img src="assets/enemies/amalgam.webp" alt="アマルガム" loading="lazy">
+        <div class="op-name">アマルガム</div>
+        <div class="op-en">Amalgam</div>
+        <div class="enemy-detail" hidden>
+          <p><strong>特徴：</strong>複数体のゾンビが合体したような姿</p>
+          <p><strong>攻撃パターン：</strong>腕を伸ばして噛み付いて攻撃</p>
+        </div>
+      </button>
+      <button type="button" class="op-card enemy-card">
+        <img src="assets/enemies/mimics.webp" alt="シフター" loading="lazy">
+        <div class="op-name">シフター</div>
+        <div class="op-en">Mimics</div>
+        <div class="enemy-detail" hidden>
+          <p><strong>特徴：</strong>白い大きな口、背中からも腕が生えている</p>
+          <p><strong>攻撃パターン：</strong>背中の腕でプレイヤーを掴んで噛みつき攻撃</p>
+        </div>
+      </button>
+      <button type="button" class="op-card enemy-card">
+        <img src="assets/enemies/mangler.webp" alt="モーラー" loading="lazy">
+        <div class="op-name">モーラー</div>
+        <div class="op-en">Mangler</div>
+        <div class="enemy-detail" hidden>
+          <p><strong>特徴：</strong>通常の敵より体が大きく、重装甲を身にまとっている</p>
+          <p><strong>攻撃パターン：</strong>何かを喋っている（詳細不明）</p>
+        </div>
+      </button>
+      <button type="button" class="op-card enemy-card">
+        <img src="assets/enemies/elderdisciple.webp" alt="エルダーディサイプル" loading="lazy">
+        <div class="op-name">エルダーディサイプル</div>
+        <div class="op-en">Elder Disciple</div>
+        <div class="enemy-detail" hidden>
+          <p><strong>特徴：</strong>ローブ/フードをまとった人型の敵。空中を飛行する</p>
+          <p><strong>攻撃パターン：</strong>フィアーエネミーを召喚する</p>
+        </div>
+      </button>
+      <button type="button" class="op-card enemy-card">
+        <img src="assets/enemies/haunt.webp" alt="ホーント" loading="lazy">
+        <div class="op-name">ホーント</div>
+        <div class="op-en">Haunt</div>
+        <div class="enemy-detail" hidden>
+          <p><strong>特徴：</strong>白くて腕がなく、首から下は触手が沢山</p>
+          <p><strong>攻撃パターン：</strong>プレイヤーの動きを遅くする弾をばら撒く</p>
+        </div>
+      </button>
+    </div>
+
+    <h3 style="margin-top:28px;">ワールドボス</h3>
+    <p class="enemy-hint">🖱️ カードをクリックすると詳細（出現条件・攻略・報酬）が開きます。</p>
+    <div class="op-grid">
+      <button type="button" class="op-card enemy-card">
+        <img src="assets/enemies/elderdisciple.webp" alt="フォークナー" loading="lazy">
+        <div class="op-name">フォークナー</div>
+        <div class="op-en">Falkner</div>
+        <div class="enemy-detail" hidden>
+          <ul>
+            <li><strong>見た目：</strong>出現時はエルダーディサイプルと同じ姿。倒すと頭のない人間の体だけが地面に横たわっており、本体は人間と推測される</li>
+            <li><strong>出現場所・条件：</strong>マップ南西端の隔離された島。咲いている赤黒い花を破壊し、表示される数値が100%になると島のヘリポートに本物のボス「フォークナー」が出現</li>
+            <li><strong>攻略手順：</strong>倒した後、死体を確認するとミッションクリアとなり専用エンディングが流れて任務終了</li>
+            <li><strong>撃破報酬：</strong>エキゾチック武器ケースが確定ドロップ</li>
+          </ul>
+        </div>
+      </button>
+      <button type="button" class="op-card enemy-card">
+        <img src="assets/enemies/megaabomination.webp" alt="メガアボミネーション" loading="lazy">
+        <div class="op-name">メガアボミネーション</div>
+        <div class="op-en">Mega Abomination</div>
+        <div class="enemy-detail" hidden>
+          <ul>
+            <li><strong>出現場所・条件：</strong>ミッション「謎のギルドコンテナ」終了後のナイトメアゾーンに出現するインタラクト可能な死体（?）を調べると発生。敵が大量発生し、数値が100%になると出現</li>
+            <li><strong>見た目：</strong>3つの口を持ち、後ろ足と尻尾しかない特異な姿</li>
+            <li><strong>撃破報酬：</strong>エキゾチック武器ケースが確定ドロップ</li>
+          </ul>
+        </div>
+      </button>
+      <button type="button" class="op-card enemy-card">
+        <img src="assets/enemies/zursa.webp" alt="ズーサ" loading="lazy">
+        <div class="op-name">ズーサ</div>
+        <div class="op-en">Zursa</div>
+        <div class="enemy-detail" hidden>
+          <ul>
+            <li><strong>出現場所・条件：</strong>ミッション「乗っ取られた車列」で、巡回している3台の装甲車を破壊すると出現</li>
+            <li><strong>見た目：</strong>腐ったクマのような姿。顔などに蜂の塊（巣？）が付着しており、その塊ごと飛んでくる</li>
+            <li><strong>撃破報酬：</strong>エキゾチック武器ケースを確定ドロップ</li>
+            <li><strong>【2026/07公式確認】：</strong>公式パッチノートによると、このボスに関連するアクティビティは「Possessed Convoy」と呼ばれる（Possessed Guild Convoyを破壊してズーサを撃破する内容）</li>
+          </ul>
+        </div>
+      </button>
+      <button type="button" class="op-card enemy-card">
+        <img src="assets/enemies/zrex.webp" alt="ゾンビザウルス" loading="lazy">
+        <div class="op-name">ゾンビザウルス</div>
+        <div class="op-en">Z-REX（巨大）</div>
+        <div class="enemy-detail" hidden data-title="ゾンビザウルス（ミッション名：トキシックタイラント）">
+          <ul>
+            <li><strong>出現場所・条件：</strong>ミッション発生時に通知が来る。ミッションエリア各所にひび割れたガラス状のものが出現</li>
+            <li><strong>攻略手順：</strong>敵が大量発生し、エリートエネミーを倒すとアイテムをドロップするので、それを拾ってガラスにインタラクト。10箇所終えると出現</li>
+            <li><strong>見た目：</strong>ゾンビのティラノサウルスのような姿</li>
+            <li><strong>撃破報酬：</strong>オペレーターにエキゾチックスキルが付くケースをドロップ</li>
+            <li><strong>名称：</strong>ミッション名は「トキシックタイラント」。ボス戦のHPバー表示名は「ゾンビザウルス」（2026/07確認）</li>
+          </ul>
+        </div>
+      </button>
+      <button type="button" class="op-card enemy-card">
+        <img src="assets/enemies/hel-a27.webp" alt="HEL-A27" loading="lazy">
+        <div class="op-name">アヴァロンの巨像</div>
+        <div class="op-en">HEL-A27（巨大）</div>
+        <div class="enemy-detail" hidden data-title="巨大ロボット アヴァロンの巨像「HEL-A27」">
+          <ul>
+            <li><strong>出現場所・条件：</strong>ミッション発生時に通知が来る。地面から指のようなものが出現し、赤い部分にインタラクトするとロボットの手足が生えてくる。倒し続けて100%まで貯まるとロボット本体が召喚される</li>
+            <li><strong>攻略手順：</strong>足の裏または背中から内部へ侵入可能。内部では敵を倒していると床の一部が赤く光り、踏むと赤い光が走ってどこかの壁/天井のランプが点灯するので、それを破壊。これを繰り返すと中央天井のコアのバリアが解除され攻撃可能になる。破壊を繰り返すと撃破。終了後は数秒以内に出口から脱出するか、上にジャンプして頭部へ行き任務終了するかの2択</li>
+            <li><strong>撃破報酬：</strong>オペレーターにエキゾチックスキルが付くケースをドロップ</li>
+          </ul>
+        </div>
+      </button>
+    </div>
+
+    <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
+  </section>
 
   <!-- ============================================
        7. ミッション概要
        ============================================ -->
   <section id="missions">
-    <h2>1. ミッション概要</h2>
+    <h2>3. ミッション概要</h2>
 
     <h3>基本ルール</h3>
     <p class="lead">モードの目標：<strong>「出発して生きて帰る」</strong>。チームプレイ推奨。</p>
@@ -416,83 +1030,14 @@
       </table>
     </div>
 
-    <h3>スペシャル・エリートエネミー図鑑</h3>
-    <div class="table-scroll">
-      <table>
-        <thead><tr><th>名前</th><th>特徴</th><th>攻撃パターン</th></tr></thead>
-        <tbody>
-          <tr>
-            <td data-label="名前">アマルガム</td>
-            <td data-label="特徴">白い腕がなく、首から下はウネウネとした触手状の体</td>
-            <td data-label="攻撃パターン">触手を伸ばしてプレイヤーを引き寄せて攻撃。足が速い</td>
-          </tr>
-          <tr>
-            <td data-label="名前">シフター</td>
-            <td data-label="特徴">白い大きな口、背中からも腕が生えている</td>
-            <td data-label="攻撃パターン">背中の腕でプレイヤーを掴んで噛みつき攻撃</td>
-          </tr>
-          <tr>
-            <td data-label="名前">モーラー</td>
-            <td data-label="特徴">通常の敵より体が大きく、重装甲を身にまとっている</td>
-            <td data-label="攻撃パターン">何かを喋っている（詳細不明）</td>
-          </tr>
-          <tr>
-            <td data-label="名前">エルダーディサイプル</td>
-            <td data-label="特徴">ローブ/フードをまとった人型の敵。空中を飛行する</td>
-            <td data-label="攻撃パターン">「フィアーエネミー」という敵を召喚する</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>ワールドボス</h3>
-
-    <h4 style="margin:20px 0 6px;font-size:15px;">フォークナー</h4>
-    <ul>
-      <li><strong>出現場所・条件：</strong>マップ南西端の隔離された島。咲いている赤黒い花を破壊し、表示される数値が100%になると島のヘリポートに本物のボス「フォークナー」が出現</li>
-      <li><strong>攻略手順：</strong>倒した後、死体を確認するとミッションクリアとなり専用エンディングが流れて任務終了</li>
-      <li><strong>撃破報酬：</strong>エキゾチック武器ケースが確定ドロップ</li>
-    </ul>
-
-    <h4 style="margin:20px 0 6px;font-size:15px;">ゾンビザウルス（旧仮称：トキシックタイラント）</h4>
-    <ul>
-      <li><strong>出現場所・条件：</strong>ミッション発生時に通知が来る。ミッションエリア各所にひび割れたガラス状のものが出現</li>
-      <li><strong>攻略手順：</strong>敵が大量発生し、エリートエネミーを倒すとアイテムをドロップするので、それを拾ってガラスにインタラクト。10箇所終えると出現</li>
-      <li><strong>見た目：</strong>ゾンビのティラノサウルスのような姿</li>
-      <li><strong>撃破報酬：</strong>オペレーターにエキゾチックスキルが付くケースをドロップ</li>
-      <li><strong>【2026/07確認】：</strong>ボス戦のHPバー表示で「ゾンビザウルス」という名前を確認。旧仮称「トキシックタイラント」から正式名称が判明した可能性が高い</li>
-    </ul>
-
-    <h4 style="margin:20px 0 6px;font-size:15px;">巨大ロボット アヴァロンの巨像「HEL-A27」</h4>
-    <ul>
-      <li><strong>出現場所・条件：</strong>ミッション発生時に通知が来る。地面から指のようなものが出現し、赤い部分にインタラクトするとロボットの手足が生えてくる。倒し続けて100%まで貯まるとロボット本体が召喚される</li>
-      <li><strong>攻略手順：</strong>足の裏または背中から内部へ侵入可能。内部では敵を倒していると床の一部が赤く光り、踏むと赤い光が走ってどこかの壁/天井のランプが点灯するので、それを破壊。これを繰り返すと中央天井のコアのバリアが解除され攻撃可能になる。破壊を繰り返すと撃破。終了後は数秒以内に出口から脱出するか、上にジャンプして頭部へ行き任務終了するかの2択</li>
-      <li><strong>撃破報酬：</strong>オペレーターにエキゾチックスキルが付くケースをドロップ</li>
-    </ul>
-
-    <h4 style="margin:20px 0 6px;font-size:15px;">メガアボミネーション</h4>
-    <ul>
-      <li><strong>出現場所・条件：</strong>ミッション「謎のギルドコンテナ」終了後のナイトメアゾーンに出現するインタラクト可能な死体（?）を調べると発生。敵が大量発生し、数値が100%になると出現</li>
-      <li><strong>見た目：</strong>3つの口を持ち、後ろ足と尻尾しかない特異な姿</li>
-      <li><strong>撃破報酬：</strong>エキゾチック武器ケースが確定ドロップ</li>
-    </ul>
-
-    <h4 style="margin:20px 0 6px;font-size:15px;">ズーサ</h4>
-    <ul>
-      <li><strong>出現場所・条件：</strong>ミッション「乗っ取られた車列」で、巡回している3台の装甲車を破壊すると出現</li>
-      <li><strong>見た目：</strong>腐ったクマのような姿。顔などに蜂の塊（巣？）が付着しており、その塊ごと飛んでくる</li>
-      <li><strong>撃破報酬：</strong>エキゾチック武器ケースを確定ドロップ</li>
-      <li><strong>【2026/07公式確認】：</strong>公式パッチノートによると、このボスに関連するアクティビティは「Possessed Convoy」と呼ばれる（Possessed Guild Convoyを破壊してズーサを撃破する内容）</li>
-    </ul>
-
-    <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
+        <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
   </section>
 
   <!-- ============================================
        6. ゲームルール・仕様メモ
        ============================================ -->
   <section id="game-rules">
-    <h2>2. ゲームルール・仕様メモ</h2>
+    <h2>4. ゲームルール・仕様メモ</h2>
     <div class="table-scroll">
       <table>
         <thead><tr><th>カテゴリ</th><th>内容</th></tr></thead>
@@ -548,7 +1093,7 @@
        ============================================ -->
   <img src="assets/img/Exotic_Fabricator.gif" alt="エキゾチックファブリケーター エキゾチック特性を選択してリロール" style="display:block;width:100%;max-width:700px;height:auto;margin:0 auto 24px;">
   <section id="exotic-effects">
-    <h2>3. エキゾチック効果（Rounds）</h2>
+    <h2>5. エキゾチック効果（Rounds）</h2>
     <p class="lead">武器に付与可能な8種類の弾薬属性（Affinity）</p>
 
     <div class="effect-list">
@@ -604,75 +1149,142 @@
        3. ユーティリティボーナス（汎用）
        ============================================ -->
   <section id="utility-bonus">
-    <h2>4. ユーティリティボーナス（汎用）</h2>
+    <h2>6. ユーティリティボーナス（汎用）</h2>
     <p class="lead">属性に関係なく出現する汎用ボーナス。アイコンごとにグループ分けされている。</p>
 
     <h3>🖐️ 手（機動力系）</h3>
-    <div class="table-scroll">
-      <table>
-        <thead><tr><th>日本語名</th><th>効果</th></tr></thead>
-        <tbody>
-          <tr><td data-label="日本語名">高速</td><td data-label="効果">あらゆる移動速度が上昇</td></tr>
-          <tr><td data-label="日本語名">LIFESTYLE <span style="font-weight:normal;color:var(--color-text-muted);">(英語:Lifestyle)</span></td><td data-label="効果">ヘッドショットで敵をキルするとHPが回復 <em>(日本語ローカライズされておらず英語のまま表示。ファブリケーター選択画面・HYPERSURGEなどで確認)</em></td></tr>
-          <tr><td data-label="日本語名">ウルトラライト</td><td data-label="効果">エイム中のプレイヤーの移動速度が低下しない</td></tr>
-          <tr><td data-label="日本語名">キル&ラン</td><td data-label="効果">敵をキルすると一時的に移動速度がブースト</td></tr>
-          <tr><td data-label="日本語名">コンバットレディ</td><td data-label="効果">エイムとダッシュ後の射撃速度が大幅に向上</td></tr>
-          <tr><td data-label="日本語名">高速射撃</td><td data-label="効果">武器の連射速度が上昇 <em>(BARRAGEで確認)</em></td></tr>
-          <tr><td data-label="日本語名">ガンマン</td><td data-label="効果">腰だめ撃ち時のばらつきと反動が大幅に向上 <em>(KILONOVA・崩脳弾ドロップ時で確認)</em></td></tr>
-          <tr><td data-label="日本語名">リロード切替</td><td data-label="効果">武器が交換時に常にリロードされる <em>(TORRENTで確認)</em></td></tr>
-        </tbody>
-      </table>
+    <div class="effect-list">
+      <div class="effect-row">
+        <div class="effect-icon-box emoji">🖐️</div>
+        <div class="effect-name"><span class="jp">高速</span></div>
+        <div class="effect-desc">あらゆる移動速度が上昇</div>
+      </div>
+      <div class="effect-row">
+        <div class="effect-icon-box emoji">🖐️</div>
+        <div class="effect-name"><span class="jp">LIFESTYLE</span><span class="en">Lifestyle</span></div>
+        <div class="effect-desc">ヘッドショットで敵をキルするとHPが回復 <em>(日本語ローカライズされておらず英語のまま表示。ファブリケーター選択画面・HYPERSURGEなどで確認)</em></div>
+      </div>
+      <div class="effect-row">
+        <div class="effect-icon-box emoji">🖐️</div>
+        <div class="effect-name"><span class="jp">ウルトラライト</span></div>
+        <div class="effect-desc">エイム中のプレイヤーの移動速度が低下しない</div>
+      </div>
+      <div class="effect-row">
+        <div class="effect-icon-box emoji">🖐️</div>
+        <div class="effect-name"><span class="jp">キル&ラン</span></div>
+        <div class="effect-desc">敵をキルすると一時的に移動速度がブースト</div>
+      </div>
+      <div class="effect-row">
+        <div class="effect-icon-box emoji">🖐️</div>
+        <div class="effect-name"><span class="jp">コンバットレディ</span></div>
+        <div class="effect-desc">エイムとダッシュ後の射撃速度が大幅に向上</div>
+      </div>
+      <div class="effect-row">
+        <div class="effect-icon-box emoji">🖐️</div>
+        <div class="effect-name"><span class="jp">高速射撃</span></div>
+        <div class="effect-desc">武器の連射速度が上昇 <em>(BARRAGEで確認)</em></div>
+      </div>
+      <div class="effect-row">
+        <div class="effect-icon-box emoji">🖐️</div>
+        <div class="effect-name"><span class="jp">ガンマン</span></div>
+        <div class="effect-desc">腰だめ撃ち時のばらつきと反動が大幅に向上 <em>(KILONOVA・崩脳弾ドロップ時で確認)</em></div>
+      </div>
+      <div class="effect-row">
+        <div class="effect-icon-box emoji">🖐️</div>
+        <div class="effect-name"><span class="jp">リロード切替</span></div>
+        <div class="effect-desc">武器が交換時に常にリロードされる <em>(TORRENTで確認)</em></div>
+      </div>
     </div>
 
     <h3>💀 髑髏（ダメージ系）</h3>
-    <div class="table-scroll">
-      <table>
-        <thead><tr><th>日本語名</th><th>効果</th></tr></thead>
-        <tbody>
-          <tr><td data-label="日本語名">狙い撃ち <em>(Sharpshooter)</em></td><td data-label="効果">上半身に命中するとヘッドショットと同じダメージを与える（コミュニティ内ではスナイパーライフルとの組み合わせでメタ言及されることが多く、「シャープシューター」とカタカナで呼ばれることも。新規アサルトライフル「VX Compact」でも装備可能なことを確認）</td></tr>
-          <tr><td data-label="日本語名">スラッシャー</td><td data-label="効果">近接攻撃を繰り出す速度が向上 <em>(近接武器以外での出現は未確認。近接武器専用の可能性あり。海外コミュニティ情報（Steamガイド）でも、通常武器のユーティリティ対応表のどこにも出現しておらず、近接武器専用説を補強する材料あり。ただし二次情報のため断定はできない)</em></td></tr>
-          <tr><td data-label="日本語名">グレネード弾</td><td data-label="効果">弾丸が爆発し、追加の範囲ダメージを与える <em>(1911のみ確認・仮説段階)</em></td></tr>
-          <tr><td data-label="日本語名">炸裂弾 <em>(Explosive Bullets・推定)</em></td><td data-label="効果">弾丸が爆発し、追加の範囲ダメージを与える <em>(グレネード弾と説明文が同一。PULSEBREACHのShock属性ドロップ時でも確認され、汎用枠として存在することを実証)</em></td></tr>
-          <tr><td data-label="日本語名">Velox Akimbo 5.7 <span style="font-weight:normal;color:var(--color-text-muted);">(表示は「デュアルVELOX 5.7」)</span></td><td data-label="効果">対象武器がデュアル武器（2丁持ち）になる <em>【訂正】以前「デュアル[武器名]」という汎用枠と推測していたが、海外wiki情報によりMalspike専用の武器固有ボーナスであり、他の武器では出現しないことが判明</em></td></tr>
-          <tr><td data-label="日本語名">ショットガニフィケーター <em>(Shotgunificator)</em></td><td data-label="効果">武器の弾が拡散するようになる <em>(KILONOVA・花閃弾ドロップ時で確認。海外wiki確認: KILONOVA専用の武器固有ボーナスで他の武器では出現しない)</em></td></tr>
-        </tbody>
-      </table>
+    <div class="effect-list">
+      <div class="effect-row">
+        <div class="effect-icon-box emoji">💀</div>
+        <div class="effect-name"><span class="jp">狙い撃ち</span><span class="en">Sharpshooter</span></div>
+        <div class="effect-desc">上半身に命中するとヘッドショットと同じダメージを与える（コミュニティ内ではスナイパーライフルとの組み合わせでメタ言及されることが多く、「シャープシューター」とカタカナで呼ばれることも。新規アサルトライフル「VX Compact」でも装備可能なことを確認）</div>
+      </div>
+      <div class="effect-row">
+        <div class="effect-icon-box emoji">💀</div>
+        <div class="effect-name"><span class="jp">スラッシャー</span></div>
+        <div class="effect-desc">近接攻撃を繰り出す速度が向上 <em>(近接武器以外での出現は未確認。近接武器専用の可能性あり。海外コミュニティ情報（Steamガイド）でも、通常武器のユーティリティ対応表のどこにも出現しておらず、近接武器専用説を補強する材料あり。ただし二次情報のため断定はできない)</em></div>
+      </div>
+      <div class="effect-row">
+        <div class="effect-icon-box emoji">💀</div>
+        <div class="effect-name"><span class="jp">グレネード弾</span></div>
+        <div class="effect-desc">弾丸が爆発し、追加の範囲ダメージを与える <em>(1911のみ確認・仮説段階)</em></div>
+      </div>
+      <div class="effect-row">
+        <div class="effect-icon-box emoji">💀</div>
+        <div class="effect-name"><span class="jp">炸裂弾</span><span class="en">Explosive Bullets（推定）</span></div>
+        <div class="effect-desc">弾丸が爆発し、追加の範囲ダメージを与える <em>(グレネード弾と説明文が同一。PULSEBREACHのShock属性ドロップ時でも確認され、汎用枠として存在することを実証)</em></div>
+      </div>
+      <div class="effect-row">
+        <div class="effect-icon-box emoji">💀</div>
+        <div class="effect-name"><span class="jp">Velox Akimbo 5.7</span><span class="en">表示は「デュアルVELOX 5.7」</span></div>
+        <div class="effect-desc">対象武器がデュアル武器（2丁持ち）になる <em>【訂正】以前「デュアル[武器名]」という汎用枠と推測していたが、海外wiki情報によりMalspike専用の武器固有ボーナスであり、他の武器では出現しないことが判明</em></div>
+      </div>
+      <div class="effect-row">
+        <div class="effect-icon-box emoji">💀</div>
+        <div class="effect-name"><span class="jp">ショットガニフィケーター</span><span class="en">Shotgunificator</span></div>
+        <div class="effect-desc">武器の弾が拡散するようになる <em>(KILONOVA・花閃弾ドロップ時で確認。海外wiki確認: KILONOVA専用の武器固有ボーナスで他の武器では出現しない)</em></div>
+      </div>
     </div>
 
     <h3>🎯 照準（反動・命中系）</h3>
-    <div class="table-scroll">
-      <table>
-        <thead><tr><th>日本語名</th><th>効果</th></tr></thead>
-        <tbody>
-          <tr><td data-label="日本語名">反動削除</td><td data-label="効果">反動制御が大幅に向上</td></tr>
-          <tr><td data-label="日本語名">ロングショット</td><td data-label="効果">射程距離が大幅に向上。反動をわずかに軽減</td></tr>
-        </tbody>
-      </table>
+    <div class="effect-list">
+      <div class="effect-row">
+        <div class="effect-icon-box emoji">🎯</div>
+        <div class="effect-name"><span class="jp">反動削除</span></div>
+        <div class="effect-desc">反動制御が大幅に向上</div>
+      </div>
+      <div class="effect-row">
+        <div class="effect-icon-box emoji">🎯</div>
+        <div class="effect-name"><span class="jp">ロングショット</span></div>
+        <div class="effect-desc">射程距離が大幅に向上。反動をわずかに軽減</div>
+      </div>
     </div>
 
     <h3>🔫 弾薬系</h3>
-    <div class="table-scroll">
-      <table>
-        <thead><tr><th>日本語名</th><th>効果</th></tr></thead>
-        <tbody>
-          <tr><td data-label="日本語名">撃ち放題</td><td data-label="効果">全ての弾薬が1つの大きなマガジンに入っている</td></tr>
-          <tr><td data-label="日本語名">弾薬リチャージャー</td><td data-label="効果">武器の収納中に弾薬が補充される</td></tr>
-          <tr><td data-label="日本語名">廃棄物ゼロ <span style="font-weight:normal;color:var(--color-text-muted);">(英語:Zero Waste)</span></td><td data-label="効果">弾丸を発射しても50%の確率で弾薬を消費しない <em>(ZEOTROPEで確認)</em></td></tr>
-          <tr><td data-label="日本語名">弾薬減少</td><td data-label="効果">キル後に弾薬をマガジンに追加 <em>(PULSEBREACHで確認。弾薬リチャージャーとは発動条件が異なる別ボーナス)</em></td></tr>
-          <tr><td data-label="日本語名">ロングバースト</td><td data-label="効果">各バーストで発射する弾の数が増える <em>(Pulsebreach(Swordfish A1)で確認)</em></td></tr>
-          <tr><td data-label="日本語名">近接リロード</td><td data-label="効果">近接ヒット後、すぐに武器のマガジンが充填される <em>(SWARMFORGE・OVERCHARGEで確認。アイコンは弾薬系と共通と実機確認済み)</em></td></tr>
-        </tbody>
-      </table>
+    <div class="effect-list">
+      <div class="effect-row">
+        <div class="effect-icon-box emoji">🔫</div>
+        <div class="effect-name"><span class="jp">撃ち放題</span></div>
+        <div class="effect-desc">全ての弾薬が1つの大きなマガジンに入っている</div>
+      </div>
+      <div class="effect-row">
+        <div class="effect-icon-box emoji">🔫</div>
+        <div class="effect-name"><span class="jp">弾薬リチャージャー</span></div>
+        <div class="effect-desc">武器の収納中に弾薬が補充される</div>
+      </div>
+      <div class="effect-row">
+        <div class="effect-icon-box emoji">🔫</div>
+        <div class="effect-name"><span class="jp">廃棄物ゼロ</span><span class="en">Zero Waste</span></div>
+        <div class="effect-desc">弾丸を発射しても50%の確率で弾薬を消費しない <em>(ZEOTROPEで確認)</em></div>
+      </div>
+      <div class="effect-row">
+        <div class="effect-icon-box emoji">🔫</div>
+        <div class="effect-name"><span class="jp">弾薬減少</span></div>
+        <div class="effect-desc">キル後に弾薬をマガジンに追加 <em>(PULSEBREACHで確認。弾薬リチャージャーとは発動条件が異なる別ボーナス)</em></div>
+      </div>
+      <div class="effect-row">
+        <div class="effect-icon-box emoji">🔫</div>
+        <div class="effect-name"><span class="jp">ロングバースト</span><span class="en">Longburst</span></div>
+        <div class="effect-desc">各バーストで発射する弾の数が増える <em>(Pulsebreach(Swordfish A1)で確認)</em></div>
+      </div>
+      <div class="effect-row">
+        <div class="effect-icon-box emoji">🔫</div>
+        <div class="effect-name"><span class="jp">近接リロード</span></div>
+        <div class="effect-desc">近接ヒット後、すぐに武器のマガジンが充填される <em>(SWARMFORGE・OVERCHARGEで確認。アイコンは弾薬系と共通と実機確認済み)</em></div>
+      </div>
     </div>
 
     <h3>⚔️ 近接系（アイコン未確認）</h3>
-    <div class="table-scroll">
-      <table>
-        <thead><tr><th>日本語名</th><th>効果</th></tr></thead>
-        <tbody>
-          <tr><td data-label="日本語名">Parry（パリー）<span style="font-weight:normal;color:var(--color-text-muted);"> (未ローカライズ)</span></td><td data-label="効果">強近接攻撃チャージ中の被ダメージを軽減（近接武器専用）。海外wikiの武器対応表では「紫」表記＝エキゾチック武器ケース限定の専用ボーナス</td></tr>
-        </tbody>
-      </table>
+    <div class="effect-list">
+      <div class="effect-row">
+        <div class="effect-icon-box emoji">⚔️</div>
+        <div class="effect-name"><span class="jp">Parry（パリー）</span><span class="en">未ローカライズ</span></div>
+        <div class="effect-desc">強近接攻撃チャージ中の被ダメージを軽減（近接武器専用）。海外wikiの武器対応表では「紫」表記＝エキゾチック武器ケース限定の専用ボーナス</div>
+      </div>
     </div>
     <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
   </section>
@@ -681,7 +1293,7 @@
        4. 属性一致ユーティリティボーナス
        ============================================ -->
   <section id="affinity-bonus">
-    <h2>5. 属性一致ユーティリティボーナス（推定訳）</h2>
+    <h2>7. 属性一致ユーティリティボーナス（推定訳）</h2>
     <p class="lead"><strong>【謎が解明・海外wiki情報】</strong>「Affinity Exotic」（対応する属性で発見された個体）の判定は<strong>発見時点のRounds属性で決まり、ファブリケーターでのリロール後も変わらない</strong>。Affinity Exoticは対応する属性一致ボーナスを<strong>確率で</strong>引く（保証ではない）ため、同じ個体でも出たり出なかったりする。これらのボーナスの多くは標準ユーティリティボーナスより弱いとされ、強さ目的ではなくレア度・見た目狙いで集めるものとされている。</p>
     <div class="note">
       <strong>日本語名は未確認のため、以下は英語からの推定訳です。</strong> 実機確認が最優先タスク。
@@ -693,22 +1305,22 @@
           <tr><th>属性</th><th>ボーナス名(英語)</th><th>効果（日本語名は一部未確認）</th></tr>
         </thead>
         <tbody>
-          <tr><td data-label="属性">凍結弾</td><td data-label="英語">Flash Freeze</td><td data-label="効果">凍結弾が複数の敵に同時発動することがある</td></tr>
-          <tr><td data-label="属性">凍結弾</td><td data-label="英語">Ice Cloud</td><td data-label="推定訳">氷雲 <strong>(確定)</strong> — 凍結した敵をキルすると、敵の動きを鈍らせる雲が残ることがある。ZEOTROPE(ショットガン)で凍結弾Roundsとセットで現地ドロップした実例で確認（属性一致ボーナス実例第6号）</td></tr>
-          <tr><td data-label="属性">重力子弾</td><td data-label="英語">Black Hole</td><td data-label="推定訳">ブラックホール <strong>(確定)</strong> — 重力子弾がブラックホールを作り出して敵を吸い込んだ後、近くの生存者達をテレポートさせる。KILONOVA(サブマシンガン)で重力子弾Roundsとセットで現地ドロップした実例で確認（属性一致ボーナス実例第2号）</td></tr>
-          <tr><td data-label="属性">重力子弾</td><td data-label="英語">Warp</td><td data-label="効果">ワープした敵がダメージを与え、周囲の敵を巻き込む</td></tr>
-          <tr><td data-label="属性">熱子弾</td><td data-label="英語">Firebomb</td><td data-label="効果">燃焼中の敵を倒すと爆発する</td></tr>
-          <tr><td data-label="属性">熱子弾</td><td data-label="英語">Petrol</td><td data-label="効果">熱子弾が地面に炎だまりを残す</td></tr>
-          <tr><td data-label="属性">花閃弾</td><td data-label="英語">Fire Wheel</td><td data-label="効果">敵の周囲を回転する火の輪を2つ生成する</td></tr>
-          <tr><td data-label="属性">花閃弾</td><td data-label="英語">Starburst</td><td data-label="推定訳">スターバースト <strong>(確定)</strong> — 花閃弾が爆発し、敵にフレアを放つ。DEFRAGで花閃弾Roundsとセットで現地ドロップした実例で確認（属性一致ボーナス実例第3号）</td></tr>
-          <tr><td data-label="属性">崩脳弾</td><td data-label="英語">Mass Disruption</td><td data-label="効果">大規模妨害 <strong>(確定)</strong> — 味方になっている敵が一定確率で他の敵を味方につける。NEUROWALL(Warden 308)のファブリケーター選択画面で確認（属性一致ボーナス実例第7号）</td></tr>
-          <tr><td data-label="属性">崩脳弾</td><td data-label="英語">Neural Attraction</td><td data-label="推定訳">神経の引力 <strong>(確定)</strong> — 味方になっている敵が他の敵の注意を一時的にそらす。NEUROWALL(Warden 308)で確認（属性一致ボーナス実例第5号）。<strong>このドロップの実際のRounds属性は電子弾(Shock)で崩脳弾ではなかったが、フレーバーテキスト上の属性(崩脳弾)に対応するボーナスが出現した</strong></td></tr>
-          <tr><td data-label="属性">光子弾</td><td data-label="英語">Blessing</td><td data-label="効果">ヒールグリフに一時的なボーナス体力が付くことがある</td></tr>
-          <tr><td data-label="属性">光子弾</td><td data-label="英語">Dual Action</td><td data-label="推定訳">デュアルアクション <strong>(確定)</strong> — ヒールグリフ消費で体力自動回復が一時的に向上。光子弾Roundsとセットで現地ドロップした実例で確認（属性一致ボーナス実例第1号）</td></tr>
-          <tr><td data-label="属性">電子弾</td><td data-label="英語">Chain Lightning</td><td data-label="効果">スタンした敵が他の敵にもスタンを伝播させる <em>(メタ的に強いと言われる)</em></td></tr>
-          <tr><td data-label="属性">電子弾</td><td data-label="英語">Lightning Strike</td><td data-label="効果">上空から雷が落ち、敵をスタンさせる</td></tr>
-          <tr><td data-label="属性">榴散弾</td><td data-label="英語">Blast Chain</td><td data-label="推定訳">ブラストチェイン <strong>(確定)</strong> — アーマーを破壊する爆発が発生すると、追加の爆発が3回連続で発生。KILLSWITCH(AK-27)で榴散弾Roundsとセットで現地ドロップした実例で確認（属性一致ボーナス実例第4号）</td></tr>
-          <tr><td data-label="属性">榴散弾</td><td data-label="英語">Blast Shield</td><td data-label="効果">榴散弾が複数の敵に命中すると、被ダメージが軽減される</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/frost.png" alt="凍結弾アイコン">凍結弾</span></td><td data-label="英語">Flash Freeze</td><td data-label="効果">凍結弾が複数の敵に同時発動することがある</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/frost.png" alt="凍結弾アイコン">凍結弾</span></td><td data-label="英語">Ice Cloud</td><td data-label="推定訳">氷雲 <strong>(確定)</strong> — 凍結した敵をキルすると、敵の動きを鈍らせる雲が残ることがある。ZEOTROPE(ショットガン)で凍結弾Roundsとセットで現地ドロップした実例で確認（属性一致ボーナス実例第6号）</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/graviton.png" alt="重力子弾アイコン">重力子弾</span></td><td data-label="英語">Black Hole</td><td data-label="推定訳">ブラックホール <strong>(確定)</strong> — 重力子弾がブラックホールを作り出して敵を吸い込んだ後、近くの生存者達をテレポートさせる。KILONOVA(サブマシンガン)で重力子弾Roundsとセットで現地ドロップした実例で確認（属性一致ボーナス実例第2号）</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/graviton.png" alt="重力子弾アイコン">重力子弾</span></td><td data-label="英語">Warp</td><td data-label="効果">ワープした敵がダメージを与え、周囲の敵を巻き込む</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/incendiary.png" alt="熱子弾アイコン">熱子弾</span></td><td data-label="英語">Firebomb</td><td data-label="効果">燃焼中の敵を倒すと爆発する</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/incendiary.png" alt="熱子弾アイコン">熱子弾</span></td><td data-label="英語">Petrol</td><td data-label="効果">熱子弾が地面に炎だまりを残す</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/mortar.png" alt="花閃弾アイコン">花閃弾</span></td><td data-label="英語">Fire Wheel</td><td data-label="効果">敵の周囲を回転する火の輪を2つ生成する</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/mortar.png" alt="花閃弾アイコン">花閃弾</span></td><td data-label="英語">Starburst</td><td data-label="推定訳">スターバースト <strong>(確定)</strong> — 花閃弾が爆発し、敵にフレアを放つ。DEFRAGで花閃弾Roundsとセットで現地ドロップした実例で確認（属性一致ボーナス実例第3号）</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/neuro-disruption.png" alt="崩脳弾アイコン">崩脳弾</span></td><td data-label="英語">Mass Disruption</td><td data-label="効果">大規模妨害 <strong>(確定)</strong> — 味方になっている敵が一定確率で他の敵を味方につける。NEUROWALL(Warden 308)のファブリケーター選択画面で確認（属性一致ボーナス実例第7号）</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/neuro-disruption.png" alt="崩脳弾アイコン">崩脳弾</span></td><td data-label="英語">Neural Attraction</td><td data-label="推定訳">神経の引力 <strong>(確定)</strong> — 味方になっている敵が他の敵の注意を一時的にそらす。NEUROWALL(Warden 308)で確認（属性一致ボーナス実例第5号）。<strong>このドロップの実際のRounds属性は電子弾(Shock)で崩脳弾ではなかったが、フレーバーテキスト上の属性(崩脳弾)に対応するボーナスが出現した</strong></td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/photon.png" alt="光子弾アイコン">光子弾</span></td><td data-label="英語">Blessing</td><td data-label="効果">ヒールグリフに一時的なボーナス体力が付くことがある</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/photon.png" alt="光子弾アイコン">光子弾</span></td><td data-label="英語">Dual Action</td><td data-label="推定訳">デュアルアクション <strong>(確定)</strong> — ヒールグリフ消費で体力自動回復が一時的に向上。光子弾Roundsとセットで現地ドロップした実例で確認（属性一致ボーナス実例第1号）</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/shock.png" alt="電子弾アイコン">電子弾</span></td><td data-label="英語">Chain Lightning</td><td data-label="効果">スタンした敵が他の敵にもスタンを伝播させる <em>(メタ的に強いと言われる)</em></td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/shock.png" alt="電子弾アイコン">電子弾</span></td><td data-label="英語">Lightning Strike</td><td data-label="効果">上空から雷が落ち、敵をスタンさせる</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/shrapnel.png" alt="榴散弾アイコン">榴散弾</span></td><td data-label="英語">Blast Chain</td><td data-label="推定訳">ブラストチェイン <strong>(確定)</strong> — アーマーを破壊する爆発が発生すると、追加の爆発が3回連続で発生。KILLSWITCH(AK-27)で榴散弾Roundsとセットで現地ドロップした実例で確認（属性一致ボーナス実例第4号）</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/shrapnel.png" alt="榴散弾アイコン">榴散弾</span></td><td data-label="英語">Blast Shield</td><td data-label="効果">榴散弾が複数の敵に命中すると、被ダメージが軽減される</td></tr>
           <tr><td data-label="属性">全属性共通</td><td data-label="英語">Big Game</td><td data-label="効果">対応する属性の効果がエリートエネミーにも発動するようになる（属性ごとに個別のBig Gameが存在）。<strong>光子弾版は確定・実機確認済み</strong> — 効果:「光子弾がエリートエネミーに発動可能」。MALSPIKE(ピストル)で光子弾Roundsとセットで現地ドロップした実例で確認（属性一致ボーナスの実例第8号）</td></tr>
         </tbody>
       </table>
@@ -720,10 +1332,10 @@
        2. 名前付きエキゾチック武器
        ============================================ -->
   <section id="named-exotics">
-    <h2>6. 名前付きエキゾチック武器と属性(Affinity)</h2>
+    <h2>8. 名前付きエキゾチック武器と属性(Affinity)</h2>
     <p class="lead">各武器固有のエキゾチック名と対応する属性(Rounds)。属性一致でドロップすると専用のユーティリティボーナスが追加される。</p>
     <div class="note">日本語名は現時点で未確認（<a href="#todo">要検証タスク参照</a>）。</div>
-    <div class="note">⚠️【要検証】下表の属性(Rounds)はフレーバーテキストに記載された想定属性。実際のドロップ時の属性はこれと異なる場合が多いことが判明している（現地ドロップのRoundsランダム仕様の可能性）。2026/07時点、確認済み8種のうち<strong>一致3種（Killswitch/Kilonova/DEFRAG）・不一致5種（Barrage/Cryoshear/Backdrive/Criticality/Continuum）</strong>。ランダム仕様の可能性が高くなってきたが、断定するにはサンプル継続収集が必要。</div>
+    <div class="note">⚠️【確定】下表の属性(Rounds)はフレーバーテキストに記載された想定属性。実際のドロップ時の属性は、フレーバーテキストとは無関係にドロップごとにランダムに決定される。KILONOVA（3種）、BACKDRIVE（2種）、KILLSWITCH（榴散弾/光子弾の2種）、HYPERSURGE（凍結弾/熱子弾の2種）、REBOOT（凍結弾/榴散弾など3種）のように、<strong>同一武器でもドロップごとに異なる属性が出ることが複数の武器で実証</strong>されている（2026/07時点）。表中の「一致」表記は、たまたまその回のドロップがフレーバー通りだっただけで、その武器の属性が固定されていることを意味しない。</div>
 
     <div class="table-scroll">
       <table>
@@ -749,10 +1361,10 @@
           <tr><td data-label="エキゾチック名">Malspike <em>(表記:MALSPIKE)</em></td><td data-label="武器名">VELOX 5.7</td><td data-label="属性(英語)">Photon</td><td data-label="属性(日本語)">光子弾 <strong>(一致・実機確認済み)</strong></td></tr>
           <tr><td data-label="エキゾチック名">Swarmforge</td><td data-label="武器名">MPC-25</td><td data-label="属性(英語)">Photon</td><td data-label="属性(日本語)">光子弾（フレーバー）／実際は凍結弾 <strong>(不一致・実機確認済み)</strong></td></tr>
           <tr><td data-label="エキゾチック名">Backdrive</td><td data-label="武器名">Dravec 45</td><td data-label="属性(英語)">Shock</td><td data-label="属性(日本語)">電子弾（フレーバー）／実際は花閃弾 <strong>(不一致・実機確認済み)</strong></td></tr>
-          <tr><td data-label="エキゾチック名">Hypersurge</td><td data-label="武器名">Sokol 545</td><td data-label="属性(英語)">Shock</td><td data-label="属性(日本語)">電子弾</td></tr>
-          <tr><td data-label="エキゾチック名">Reboot</td><td data-label="武器名">1911</td><td data-label="属性(英語)">Shock</td><td data-label="属性(日本語)">電子弾（フレーバー）／実際は電子弾以外 <strong>(不一致・複数回ドロップで確認。1回目は具体的属性未記録、2回目は凍結弾)</strong></td></tr>
+          <tr><td data-label="エキゾチック名">Hypersurge</td><td data-label="武器名">Sokol 545</td><td data-label="属性(英語)">Shock</td><td data-label="属性(日本語)">電子弾（フレーバー）／複数回ドロップで確認：①凍結弾 ②熱子弾。いずれも不一致 <strong>(Roundsはランダムと確定)</strong></td></tr>
+          <tr><td data-label="エキゾチック名">Reboot</td><td data-label="武器名">1911</td><td data-label="属性(英語)">Shock</td><td data-label="属性(日本語)">電子弾（フレーバー）／複数回ドロップで確認：①属性不明+グレネード弾 ②凍結弾+グレネード弾 ③榴散弾+高速。いずれも不一致 <strong>(Roundsはランダムと確定)</strong></td></tr>
           <tr><td data-label="エキゾチック名">Barrage</td><td data-label="武器名">Razor 9mm</td><td data-label="属性(英語)">Shrapnel</td><td data-label="属性(日本語)">榴散弾</td></tr>
-          <tr><td data-label="エキゾチック名">Killswitch</td><td data-label="武器名">AK-27</td><td data-label="属性(英語)">Shrapnel</td><td data-label="属性(日本語)">榴散弾</td></tr>
+          <tr><td data-label="エキゾチック名">Killswitch</td><td data-label="武器名">AK-27</td><td data-label="属性(英語)">Shrapnel</td><td data-label="属性(日本語)">榴散弾（フレーバー）／複数回ドロップで確認：①榴散弾(一致) ②光子弾(不一致) <strong>(Roundsはランダムと確定)</strong></td></tr>
           <tr><td data-label="エキゾチック名">Pulsebreach</td><td data-label="武器名">Swordfish A1</td><td data-label="属性(英語)">Shrapnel</td><td data-label="属性(日本語)">榴散弾</td></tr>
           <tr><td data-label="エキゾチック名">Cryoshear <em>(表記:CRYOSHEAR)</em></td><td data-label="武器名">KATANA（近接武器）</td><td data-label="属性(英語)">Graviton <em>(ドロップ時のランダム効果)</em></td><td data-label="属性(日本語)">重力子弾 <em>(現地ドロップのため変動あり)</em></td></tr>
           <tr><td data-label="エキゾチック名">DEFRAG（表記のまま）</td><td data-label="武器名">MK35 ISR<em>(海外wikiで確認)</em></td><td data-label="属性(英語)">Mortar</td><td data-label="属性(日本語)">花閃弾</td></tr>
@@ -787,10 +1399,16 @@
       <strong>REBOOT(1911) 追加ドロップ実例：</strong> 凍結弾(Frost)+グレネード弾のドロップを確認（上記とは別タイミングの実例）。本来の属性は電子弾(Shock)のはずだが、現地ドロップのRoundsランダム仕様の追加実例となった。
     </div>
     <div class="note">
+      <strong>REBOOT(1911) 3回目のドロップ実例：</strong> 榴散弾(Shrapnel)+高速のドロップも確認。同一武器で3種の異なる属性が確認されたことになる。
+    </div>
+    <div class="note">
       <strong>OVERCHARGE(ショットガン)：</strong> 熱子弾(Incendiary)+近接リロードのドロップを確認。本来の属性通りで一致（Killswitch/Kilonova/DEFRAGに続く一致例）。武器名「M10 Breacher」の実機表示は、この時点ではまだ別画面（武器詳細/インベントリ等）で確認できていない（要継続確認）。
     </div>
     <div class="note">
       <strong>KILLSWITCH(AK-27)：</strong> 榴散弾+撃ち放題のドロップを確認（属性通り）。武器カテゴリ表示は「レトライフル」（アサルトライフルの表示が画面端で切れている可能性あり）。
+    </div>
+    <div class="note">
+      <strong>KILLSWITCH(AK-27) 追加ドロップ実例：</strong> 光子弾(Photon)+狙い撃ち(Sharpshooter)のドロップも確認。本来の属性(Shrapnel)とは不一致で、同一武器で2種の異なる属性が確認されたことになる。
     </div>
     <div class="note">
       <strong>BARRAGE(Razor 9mm)：</strong> 崩脳弾+高速射撃のドロップを確認。本来の属性は榴散弾のはずだが、現地ドロップのRoundsランダム仕様の追加実例となった。武器カテゴリ表示は「プマシンガン」（サブマシンガンの表示が画面端で切れている可能性あり）。
@@ -809,6 +1427,9 @@
     </div>
     <div class="note">
       <strong>HYPERSURGE(Sokol 545)：</strong> 凍結弾(Frost)+ウルトラライトのドロップを確認。本来の属性は電子弾(Shock)のはずだが、現地ドロップのRoundsランダム仕様の追加実例となった。
+    </div>
+    <div class="note">
+      <strong>HYPERSURGE(Sokol 545) 追加ドロップ実例：</strong> 熱子弾(Incendiary)+ウルトラライトのドロップも確認。同一武器で2種の異なる属性が確認されたことになる。
     </div>
     <div class="note">
       <strong>TORRENT(M15 Mod 0)：</strong> 重力子弾(Graviton)+リロード切替のドロップを確認。本来の属性通りで一致。新規ボーナス「リロード切替」（効果:「武器が交換時に常にリロードされる」）を確認。
@@ -841,7 +1462,7 @@
        5. 武器固有ボーナスの仮説
        ============================================ -->
   <section id="weapon-specific">
-    <h2>7. 武器固有ボーナスの仮説</h2>
+    <h2>9. 武器固有ボーナスの仮説</h2>
     <div class="table-scroll">
       <table>
         <thead><tr><th>武器</th><th>ボーナス</th><th>状態</th></tr></thead>
@@ -858,10 +1479,100 @@
   </section>
 
   <!-- ============================================
-       8. TODO
+       9. ストーリー年表（シーズン別アコーディオン）
        ============================================ -->
+  <section id="story-timeline">
+    <h2>10. ストーリー年表（シーズンの流れ）</h2>
+    <p class="lead">エンドゲームを初めて遊ぶ人が、世界観にグッと入り込めるように——各シーズンの物語の流れをまとめました。</p>
+    <div class="note">
+      <strong>⚠ ストーリーのネタバレを含みます。</strong> 各シーズンは初期状態で閉じています。読みたいシーズンをクリックして開いてください。
+    </div>
+
+    <div class="season-list">
+
+      <details class="season">
+        <summary>
+          <span class="season-badge">S1</span>
+          <span class="season-ttl">エンドゲームの結末<span class="season-sub">　ドーンのクーデターと、フォークナー討伐</span></span>
+          <span class="season-chevron" aria-hidden="true">▾</span>
+        </summary>
+        <div class="season-body">
+          <h4>キャンペーン終了時点の状況</h4>
+          <p>キャンペーン本編では、デイビッド・メイソン率いるJSOCがギルドを打倒し、「敗北の灰から這い上がる」ほどの大打撃を与えます。しかしその隙を突いたのが、CEOエマ・ケーガンの信頼できる右腕だった<span class="term">アルデン・ドーン</span>でした。</p>
+          <h4>クーデターという裏切り</h4>
+          <p>ドーンは無慈悲なクーデターを起こし、ケーガンを永久追放して自らギルドの新たなトップの座に就きます。彼のビジョンには一切の情け容赦がなく、あらゆる犠牲を払ってでもデイビッド・メイソンを捕らえ、JSOCエリートだけが持つ最先端の神経技術「<span class="term">電脳リンク（C-Link）</span>」に埋め込まれた秘密を解き明かすことを目論みます。公式の煽り文句を借りると、これは単なる復讐ではなく「血と野望に導かれた新時代の幕開け」とされています。</p>
+          <h4>フォークナー討伐イベント</h4>
+          <p>シーズン1のエンドゲームに実装された討伐イベントの相手は、ギルドのバイオエンジニアリング部門責任者フォークナー。彼は前作BO6の主人公ウィリアム・"ケース"・カルデロンの遺体をギルドが回収し、そこから威力を最大限まで増幅させて生み出した巨大兵器「アヴァロンの巨像（ロボットHEL-A27）」を操っていました。プレイヤーはアヴァロン各地でこの巨大ロボットの信号を追い、コアを破壊することでイベントをクリアします。</p>
+          <div class="season-summary-box">
+            <strong>この時点のまとめ：</strong> 表のギルドのトップはドーンにすり替わり、ケーガンは行方不明（追放）状態。デイビッド・メイソンは狙われる立場になり、電脳リンクの秘密を奪われる危機に晒されます。
+          </div>
+        </div>
+      </details>
+
+      <details class="season">
+        <summary>
+          <span class="season-badge">S2</span>
+          <span class="season-ttl">プロジェクト・シナプス<span class="season-sub">　ギルドストライク、グリッチ追加、ジャベリン潜入</span></span>
+          <span class="season-chevron" aria-hidden="true">▾</span>
+        </summary>
+        <div class="season-body">
+          <h4>冒頭の状況</h4>
+          <p>「ギルドは倒れたが、まだ終わっていない」という煽り文句で幕を開けます。新たなトップとなったアルデン・ドーンには、秘密兵器とも言うべき重要な協力者がいました。神経科学者<span class="term">ヴィクトリア・アットウッド</span>です。</p>
+          <h4>「プロジェクト・シナプス」とデイビッド・メイソン</h4>
+          <p>シーズン1のクーデターでデイビッド・メイソンを拘束したドーンは、アットウッドと緊密に連携し、メイソンの精神を利用して電脳リンク（C-Link）技術の再現を試みる「プロジェクト・シナプス」を始動させます。</p>
+          <h4>エンドゲームでのドーンの反撃</h4>
+          <p>ドーンはJSOCチームの根絶を狙い、アヴァロン各地に隠しておいた<span class="term">クレードル（貯蔵庫）</span>を起爆させる「ギルドストライク」を仕掛けてきます。これが発生すると、その一帯は通常より遥かに危険な「<span class="term">ナイトメアゾーン</span>」と化し、討伐対象となる「ストライクボス」が出現します。シーズン中盤にはさらに深い仕掛けとして「<span class="term">グリッチ</span>」が追加されました。ストライクボスを倒すと発生することがある、地図外の隔離された体験で、プレイヤーは破損・汚染されたC-Linkデータの中に引きずり込まれ、複数ウェーブの敵を凌いで「グリッチボス」を倒す必要があります。</p>
+          <h4>ストーリーの結末（シーズン3への橋渡し）</h4>
+          <p>カルマは、ギルドへの反撃として"ジャベリン"ことコール・ドノヴァンという工作員を送り込みます。ジャベリンは北極圏上空の国際空域からギルド施設へ降下し、敵の脅威を巧みに無力化していきます。しかしそこに、自律型ロボット「ライノ」を従えたヴィクトリア・アットウッド本人が現れ、戦況は一気に緊迫します。ところが実はこの対峙が起きた時点で、ジャベリンはすでにカルマの支援を受けて目的を達成済みでした。電脳リンクを使ってギルドのシステムに侵入し、彼らの致命的な技術情報を盗み出していたのです。</p>
+        </div>
+      </details>
+
+      <details class="season">
+        <summary>
+          <span class="season-badge">S3</span>
+          <span class="season-ttl">ポイズンピル作戦<span class="season-sub">　リンクフォージャー解禁、ブロークンミラー作戦</span></span>
+          <span class="season-chevron" aria-hidden="true">▾</span>
+        </summary>
+        <div class="season-body">
+          <h4>リンクフォージャー解禁</h4>
+          <p>新たなグリッチ（地図外の隔離戦闘イベント）「リンクフォージャー」への直通アクセスが解禁されます。</p>
+          <h4>「ポイズンピル作戦」開始</h4>
+          <p>ジャベリンが仕込んだハッキングの成果を、JSOC側が本格的に起動・利用していく作戦です。</p>
+          <h4>「ブロークンミラー作戦」</h4>
+          <p>ギルドのネットワークやアヴァロン各地に広がる毒素・汚染との絡みが引き続き描かれています。</p>
+        </div>
+      </details>
+
+      <details class="season">
+        <summary>
+          <span class="season-badge">S4</span>
+          <span class="season-ttl">メイソン拘束からの二段構え<span class="season-sub">　ウォールブレーカー作戦、キングキラー作戦</span></span>
+          <span class="season-chevron" aria-hidden="true">▾</span>
+        </summary>
+        <div class="season-body">
+          <h4>開幕の状況</h4>
+          <p>シーズン4開幕時点で、デイビッド・メイソンはギルドに捕らえられているという衝撃的な展開になっています。一方でスペクターツーはギルド内部の協力者を得て攻勢に転じ、カルマが開発を進めていた「ギルド殲滅ウイルス」もいよいよ実戦投入できる段階に。しかしドーンにはまだ最後の切り札が残されています。</p>
+          <h4>「ウォールブレーカー作戦」</h4>
+          <p>アヴァロンに隠されたネットワークハブを捜索し、ハブを発見したらギルドのファイアウォールを突破して司令部ノードへのアクセス権限を獲得。ノードを突破した後は「コマンドキラー グリッチフラクチャー」という新しい隔離戦闘イベントに突入します。シーズン3で仕込んだ「盗んだ技術情報（ジャベリンの成果）」を、ここでついに実戦投入し、ギルドのネットワーク防御そのものを内側から破壊する作戦です。</p>
+          <h4>「キングキラー作戦」</h4>
+          <p>「レオン・ルーク」が登場します。彼はギルドのC-Linkと新たに接続された存在で、JSOCの執拗な干渉に対するギルド側の"答え"。デイビッド・メイソンを直接の標的とする新たな脅威です。</p>
+          <div class="season-summary-box">
+            <strong>まとめ：</strong> シーズン4は「デイビッド・メイソン拘束」という大きなショックから幕を開け、①盗んだ技術でギルドの防衛網を破壊する（ウォールブレーカー作戦）、②その勢いでギルド中枢そのものを叩く（キングキラー作戦）という二段構えの構成になっています。同時にルークという新たな"顔"のギルド側オペレーターが投入されており、単なる組織の残党狩りではなく、新たな個人対個人の対立軸も生まれつつある段階と言えそうです。
+          </div>
+        </div>
+      </details>
+
+    </div>
+
+    <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
+  </section>
+
+  <!-- ============================================
+       10. TODO
+       ============================================ -->
+
   <section id="todo">
-    <h2>8. 今後の検証タスク</h2>
+    <h2>11. 今後の検証タスク</h2>
     <ul class="todo-list">
       <li><span class="badge">中</span> 18種の名前付きエキゾチック武器名の日本語表示を確認（カタカナ or 英語表記）</li>
       <li><span class="badge">高</span> 各属性一致ボーナスの実機日本語名を確認</li>
@@ -870,7 +1581,7 @@
       <li><span class="badge">中</span> Xbox本体言語を英語に切り替えて対応関係を直接確認</li>
       <li><span class="badge" style="background:var(--color-status-ok-bg);border-color:var(--color-status-ok-border);color:var(--color-status-ok-text);">確認済</span> DEFRAGの属性(Rounds)を確認 → 公式情報でMortar(花閃弾)と確認済み。ただし武器モデル名は未確定のため引き続き要確認</li>
       <li><span class="badge">中</span> エンドゲームモードのミッション/ラウンド構成の情報収集</li>
-      <li><span class="badge">高</span> 名前付きエキゾチック武器の属性(Rounds)がフレーバーテキスト通り固定か、現地ドロップ同様ランダムか検証。2026/07時点、確認済み8種中一致3種(Killswitch/Kilonova/DEFRAG)・不一致5種(Barrage/Cryoshear/Backdrive/Criticality/Continuum)。ランダム仕様の可能性が高くなってきたが断定には継続検証が必要</li>
+      <li><span class="badge" style="background:var(--color-status-ok-bg);border-color:var(--color-status-ok-border);color:var(--color-status-ok-text);">確定</span> 名前付きエキゾチック武器の属性(Rounds)は、フレーバーテキストとは無関係にドロップごとにランダムに決定される。Killswitch/Hypersurge/Rebootなど複数の武器で同一武器でも毎回異なる属性がドロップする実例を確認。以前「一致」としていたKillswitchも別ドロップで不一致が確認されたため、フレーバーテキストとの一致は偶然であり、Roundsが固定されている武器は存在しないと判断できる</li>
       <li><span class="badge" style="background:var(--color-status-todo-bg);border-color:var(--color-status-todo-border);color:var(--color-status-todo-text);">要注意</span> <strong>ファブリケーターでのユーティリティボーナス変更は必ず元に戻せるとは限らない可能性。</strong>実例：デュアルアクション→デュアルVELOX5.7に変更後、再アクセス不可になり元に戻せなかった。再現性・条件を確認</li>
       <li><span class="badge">中</span> 「スラッシャー」が近接武器専用ボーナスかどうか継続検証（近接武器以外での出現例を探す）</li>
     </ul>
@@ -882,6 +1593,200 @@
 <footer>
   このページは個人の検証記録であり、公式情報ではありません。誤りに気づいた場合は随時修正します。
 </footer>
+
+<script>
+/* ============================================
+   登場人物相関図：ドラッグ移動＋赤い糸の追従描画
+   ============================================ */
+(function () {
+  var board = document.getElementById('storyBoard');
+  if (!board) return;
+  var svg = document.getElementById('boardStrings');
+  var SVGNS = 'http://www.w3.org/2000/svg';
+
+  /* つなぐ関係：[起点id, 終点id, 種類] */
+  var connections = [
+    ['menendes', 'mason',   'solid'],   /* 黒幕→JSOC */
+    ['menendes', 'dawn',    'solid'],    /* 黒幕→ギルド */
+    ['mason',    'harper',  'solid'],    /* 相棒 */
+    ['mason',    'woods',   'solid'],    /* 養父 */
+    ['woods',    'karma',   'solid'],    /* 協力者 */
+    ['dawn',     'attwood', 'solid'],
+    ['attwood',  'razor',   'solid'],
+    ['dawn',     'kagan',   'solid'],    /* 前CEO */
+    ['mason',    'attwood', 'dashed'],   /* 対立 */
+    ['woods',    'dawn',    'dashed'],   /* 対立 */
+    ['razor',    'mason',   'dashed']    /* 寝返り */
+  ];
+
+  var cards = {};
+  var els = board.querySelectorAll('.case-card');
+  for (var i = 0; i < els.length; i++) cards[els[i].dataset.id] = els[i];
+
+  /* 糸(line)を生成 */
+  var lines = connections.map(function (c) {
+    var l = document.createElementNS(SVGNS, 'line');
+    l.setAttribute('class', c[2] === 'dashed' ? 'string-dashed' : 'string-solid');
+    svg.appendChild(l);
+    return { el: l, a: c[0], b: c[1] };
+  });
+
+  function anchor(el) {
+    return { x: el.offsetLeft + el.offsetWidth / 2, y: el.offsetTop };
+  }
+
+  function redraw() {
+    for (var i = 0; i < lines.length; i++) {
+      var a = cards[lines[i].a], b = cards[lines[i].b];
+      if (!a || !b) continue;
+      var pa = anchor(a), pb = anchor(b);
+      lines[i].el.setAttribute('x1', pa.x);
+      lines[i].el.setAttribute('y1', pa.y);
+      lines[i].el.setAttribute('x2', pb.x);
+      lines[i].el.setAttribute('y2', pb.y);
+    }
+  }
+
+  /* ドラッグ対象（カード＋付箋＋タイトル） */
+  var draggables = board.querySelectorAll('.case-card, .sticky, .board-title');
+  var initial = {};
+  for (var j = 0; j < draggables.length; j++) {
+    var d = draggables[j];
+    initial[d.dataset.id] = { left: d.style.left, top: d.style.top };
+  }
+
+  var dragEl = null, offX = 0, offY = 0, zTop = 10;
+
+  function onDown(e) {
+    dragEl = e.currentTarget;
+    dragEl.setPointerCapture(e.pointerId);
+    var r = dragEl.getBoundingClientRect();
+    offX = e.clientX - r.left;
+    offY = e.clientY - r.top;
+    dragEl.style.zIndex = (++zTop);
+    dragEl.classList.add('dragging');
+  }
+  function onMove(e) {
+    if (!dragEl) return;
+    var br = board.getBoundingClientRect();
+    var x = e.clientX - br.left - offX;
+    var y = e.clientY - br.top - offY;
+    x = Math.max(0, Math.min(x, board.clientWidth - dragEl.offsetWidth));
+    y = Math.max(0, Math.min(y, board.clientHeight - dragEl.offsetHeight));
+    dragEl.style.left = x + 'px';
+    dragEl.style.top = y + 'px';
+    redraw();
+  }
+  function onUp() {
+    if (dragEl) { dragEl.classList.remove('dragging'); dragEl = null; }
+  }
+
+  for (var k = 0; k < draggables.length; k++) {
+    var el = draggables[k];
+    el.addEventListener('pointerdown', onDown);
+    el.addEventListener('pointermove', onMove);
+    el.addEventListener('pointerup', onUp);
+    el.addEventListener('pointercancel', onUp);
+  }
+
+  var resetBtn = document.getElementById('boardReset');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', function () {
+      for (var m = 0; m < draggables.length; m++) {
+        var d = draggables[m];
+        d.style.left = initial[d.dataset.id].left;
+        d.style.top = initial[d.dataset.id].top;
+        d.style.zIndex = '';
+      }
+      redraw();
+    });
+  }
+
+  window.addEventListener('resize', redraw);
+  /* Webフォント読込後にもう一度描画（サイズ確定のため） */
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(redraw);
+  }
+  redraw();
+})();
+</script>
+
+<script>
+/* オペレーター名を1行に固定し、はみ出す場合のみ長体（横圧縮）で収める */
+(function () {
+  function fitOpNames() {
+    var names = document.querySelectorAll('.op-name');
+    for (var i = 0; i < names.length; i++) {
+      var el = names[i];
+      el.style.transform = 'none';
+      var avail = el.parentElement.clientWidth - 20; /* カード左右padding */
+      var w = el.scrollWidth;
+      if (w > avail + 0.5) {
+        var s = Math.max(avail / w, 0.6); /* 圧縮しすぎ防止の下限 */
+        el.style.transform = 'scaleX(' + s.toFixed(3) + ')';
+      }
+    }
+  }
+  window.addEventListener('resize', fitOpNames);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitOpNames);
+  fitOpNames();
+})();
+</script>
+
+<div class="enemy-modal" id="enemyModal" hidden>
+  <div class="enemy-modal-backdrop" data-close></div>
+  <div class="enemy-modal-box" role="dialog" aria-modal="true" aria-labelledby="enemyModalTitle">
+    <button type="button" class="enemy-modal-close" data-close aria-label="閉じる">×</button>
+    <img class="enemy-modal-img" id="enemyModalImg" src="" alt="">
+    <h3 class="enemy-modal-title" id="enemyModalTitle"></h3>
+    <div class="enemy-modal-en" id="enemyModalEn"></div>
+    <div class="enemy-modal-body" id="enemyModalBody"></div>
+  </div>
+</div>
+
+<script>
+/* 敵・ボスカード：クリックでモーダル表示 */
+(function () {
+  var modal = document.getElementById('enemyModal');
+  if (!modal) return;
+  var mImg = document.getElementById('enemyModalImg');
+  var mTitle = document.getElementById('enemyModalTitle');
+  var mEn = document.getElementById('enemyModalEn');
+  var mBody = document.getElementById('enemyModalBody');
+  var lastFocus = null;
+
+  function openModal(card) {
+    var detail = card.querySelector('.enemy-detail');
+    var nameEl = card.querySelector('.op-name');
+    var enEl = card.querySelector('.op-en');
+    var imgEl = card.querySelector('img');
+    mTitle.textContent = (detail && detail.dataset.title) ? detail.dataset.title : (nameEl ? nameEl.textContent : '');
+    mEn.textContent = enEl ? enEl.textContent : '';
+    if (imgEl) { mImg.src = imgEl.src; mImg.alt = imgEl.alt; }
+    mBody.innerHTML = detail ? detail.innerHTML : '';
+    lastFocus = card;
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    modal.querySelector('.enemy-modal-close').focus();
+  }
+  function closeModal() {
+    modal.hidden = true;
+    document.body.style.overflow = '';
+    if (lastFocus) lastFocus.focus();
+  }
+
+  var cards = document.querySelectorAll('.enemy-card');
+  for (var i = 0; i < cards.length; i++) {
+    cards[i].addEventListener('click', function () { openModal(this); });
+  }
+  modal.addEventListener('click', function (e) {
+    if (e.target.hasAttribute('data-close')) closeModal();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !modal.hidden) closeModal();
+  });
+})();
+</script>
 
 </body>
 </html>
