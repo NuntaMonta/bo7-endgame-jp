@@ -744,6 +744,55 @@
   }
   .season-summary-box strong { color: var(--color-accent-teal-light); }
 
+  /* 武器カテゴリ アコーディオン（セクション8） */
+  details.wcat {
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--color-accent);
+    border-radius: 6px;
+    background: var(--color-bg-soft);
+    overflow: hidden;
+    margin: 10px 0;
+  }
+  details.wcat > summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    font-family: var(--font-heading-jp);
+    font-weight: 700;
+  }
+  details.wcat > summary::-webkit-details-marker { display: none; }
+  .wcat-ttl { flex: 1; font-size: 16px; color: var(--color-text); }
+  .wcat-count {
+    flex-shrink: 0;
+    font-family: var(--font-display);
+    font-size: 12px;
+    letter-spacing: 1px;
+    background: var(--color-accent);
+    color: #fff;
+    padding: 2px 10px;
+    border-radius: 4px;
+  }
+  .wcat-chevron { flex-shrink: 0; color: var(--color-text-muted); transition: transform 0.2s ease; }
+  details.wcat[open] > summary .wcat-chevron { transform: rotate(180deg); }
+  details.wcat[open] > summary { border-bottom: 1px solid var(--color-border); }
+  details.wcat > .wgrid { padding: 14px; margin: 0; }
+  .wcat-controls { display: flex; justify-content: flex-end; margin: 6px 0 4px; }
+  .wcat-btn {
+    cursor: pointer;
+    font-family: var(--font-heading-jp);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-text);
+    background: var(--color-bg-soft2);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 7px 14px;
+  }
+  .wcat-btn:hover { border-color: var(--color-accent); }
+
   /* 武器カード（セクション8・新レイアウト） */
   .wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin:14px 0 8px;}
   .wcard{background:var(--color-bg-soft);border:1px solid var(--color-border);border-radius:12px;padding:14px;}
@@ -1291,8 +1340,10 @@
     <p class="lead">各武器で入手できるエキゾチック特性（ユーティリティボーナス）の一覧です。各カードに、その武器に付くボーナスをすべて表示しています。</p>
     <div class="note"><strong>データ出典：</strong>Reddit r/bo7endgame の u/Fate_Messenger 氏「All weapons exotic traits list」（<a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRrbirGBrbZkHvkiJ9FdmynO3CBp9Fc6ydmlIZ1qjD7S1m0dOBaTIyIyA3VrPjht3lHATWQErO_CW2D/pubhtml" target="_blank" rel="noopener">元データ</a>）。表示中のボーナスはいずれも入手可能なもので、末尾に<strong>「（箱からの入手限定）」</strong>と付くものはエキゾボックス限定です。</div>
 
-    <h3 class="op-faction-ttl">アサルトライフル</h3>
-    <div class="wgrid">
+        <div class="wcat-controls"><button type="button" id="wcatToggleAll" class="wcat-btn" aria-expanded="false">すべて開く</button></div>
+    <details class="wcat">
+      <summary><span class="wcat-ttl">アサルトライフル</span><span class="wcat-count">13種</span><span class="wcat-chevron">▾</span></summary>
+      <div class="wgrid">
       <div class="wcard">
         <div class="wframe">
           <div class="wimg-wrap"><img src="assets/weapons/fg42.webp" alt="FG42" loading="lazy"></div>
@@ -1385,9 +1436,10 @@
         <div class="wchips"><span class="wchip">撃ち放題</span><span class="wchip">弾薬リチャージャー</span><span class="wchip">コンバットレディ</span><span class="wchip">リロード切替</span></div>
       </div>
     </div>
-
-    <h3 class="op-faction-ttl">サブマシンガン</h3>
-    <div class="wgrid">
+    </details>
+    <details class="wcat">
+      <summary><span class="wcat-ttl">サブマシンガン</span><span class="wcat-count">12種</span><span class="wcat-chevron">▾</span></summary>
+      <div class="wgrid">
       <div class="wcard">
         <div class="wframe">
           <div class="wimg-wrap"><img src="assets/weapons/gremlin.webp" alt="Gremlin" loading="lazy"></div>
@@ -1473,9 +1525,10 @@
         <div class="wchips"><span class="wchip">近接リロード</span><span class="wchip">ウルトラライト</span><span class="wchip">コンバットレディ</span><span class="wchip">ガンマン</span></div>
       </div>
     </div>
-
-    <h3 class="op-faction-ttl">ショットガン</h3>
-    <div class="wgrid">
+    </details>
+    <details class="wcat">
+      <summary><span class="wcat-ttl">ショットガン</span><span class="wcat-count">4種</span><span class="wcat-chevron">▾</span></summary>
+      <div class="wgrid">
       <div class="wcard">
         <div class="wframe">
           <div class="wimg-wrap"><img src="assets/weapons/sg12.webp" alt="SG-12" loading="lazy"></div>
@@ -1505,9 +1558,10 @@
         <div class="wchips"><span class="wchip">ガンマン</span><span class="wchip">コンバットレディ</span><span class="wchip">激化</span><span class="wchip">高速</span></div>
       </div>
     </div>
-
-    <h3 class="op-faction-ttl">LMG</h3>
-    <div class="wgrid">
+    </details>
+    <details class="wcat">
+      <summary><span class="wcat-ttl">LMG</span><span class="wcat-count">3種</span><span class="wcat-chevron">▾</span></summary>
+      <div class="wgrid">
       <div class="wcard">
         <div class="wframe">
           <div class="wimg-wrap"><img src="assets/weapons/sokol545.webp" alt="Sokol 545" loading="lazy"></div>
@@ -1530,9 +1584,10 @@
         <div class="wchips"><span class="wchip">コンバットレディ</span><span class="wchip">反動削除</span><span class="wchip">激化</span><span class="wchip">高速</span></div>
       </div>
     </div>
-
-    <h3 class="op-faction-ttl">マークスマンライフル</h3>
-    <div class="wgrid">
+    </details>
+    <details class="wcat">
+      <summary><span class="wcat-ttl">マークスマンライフル</span><span class="wcat-count">5種</span><span class="wcat-chevron">▾</span></summary>
+      <div class="wgrid">
       <div class="wcard">
         <div class="wframe">
           <div class="wimg-wrap"><img src="assets/weapons/krs762.webp" alt="KRS-7.62" loading="lazy"></div>
@@ -1569,9 +1624,10 @@
         <div class="wchips"><span class="wchip">炸裂弾</span><span class="wchip">反動削除</span><span class="wchip">ウルトラライト</span><span class="wchip">撃ち放題</span></div>
       </div>
     </div>
-
-    <h3 class="op-faction-ttl">スナイパーライフル</h3>
-    <div class="wgrid">
+    </details>
+    <details class="wcat">
+      <summary><span class="wcat-ttl">スナイパーライフル</span><span class="wcat-count">5種</span><span class="wcat-chevron">▾</span></summary>
+      <div class="wgrid">
       <div class="wcard">
         <div class="wframe">
           <div class="wimg-wrap"><img src="assets/weapons/strider300.webp" alt="Strider 300" loading="lazy"></div>
@@ -1608,9 +1664,10 @@
         <div class="wchips"><span class="wchip">狙い撃ち</span><span class="wchip">炸裂弾</span><span class="wchip">コンバットレディ</span><span class="wchip">廃棄物ゼロ</span></div>
       </div>
     </div>
-
-    <h3 class="op-faction-ttl">ピストル</h3>
-    <div class="wgrid pistol-grid">
+    </details>
+    <details class="wcat">
+      <summary><span class="wcat-ttl">ピストル</span><span class="wcat-count">4種</span><span class="wcat-chevron">▾</span></summary>
+      <div class="wgrid pistol-grid">
       <div class="wcard">
         <div class="wframe">
           <div class="wimg-wrap"><img src="assets/weapons/1911.webp" alt="1911" loading="lazy"></div>
@@ -1640,9 +1697,10 @@
         <div class="wchips"><span class="wchip">ガンマン</span><span class="wchip">ロングショット</span><span class="wchip">近接リロード</span><span class="wchip">高速</span></div>
       </div>
     </div>
-
-    <h3 class="op-faction-ttl">ランチャー・特殊</h3>
-    <div class="wgrid">
+    </details>
+    <details class="wcat">
+      <summary><span class="wcat-ttl">ランチャー・特殊</span><span class="wcat-count">6種</span><span class="wcat-chevron">▾</span></summary>
+      <div class="wgrid">
       <div class="wcard">
         <div class="wframe">
           <div class="wimg-wrap"><img src="assets/weapons/aarow109.webp" alt="AAROW 109" loading="lazy"></div>
@@ -1686,9 +1744,10 @@
         <div class="wchips"><span class="wchip">コンバットレディ</span><span class="wchip">廃棄物ゼロ</span><span class="wchip">ウルトラライト</span><span class="wchip">弾薬リチャージャー</span></div>
       </div>
     </div>
-
-    <h3 class="op-faction-ttl">近接武器</h3>
-    <div class="wgrid">
+    </details>
+    <details class="wcat">
+      <summary><span class="wcat-ttl">近接武器</span><span class="wcat-count">6種</span><span class="wcat-chevron">▾</span></summary>
+      <div class="wgrid">
       <div class="wcard">
         <div class="wframe">
           <div class="wimg-wrap"><img src="assets/weapons/executionersduet.webp" alt="Executioner's Duet" loading="lazy"></div>
@@ -1732,6 +1791,7 @@
         <div class="wchips"><span class="wchip">スラッシャー</span><span class="wchip">高速</span><span class="wchip">キル&amp;ラン</span></div>
       </div>
     </div>
+    </details>
     <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
   </section>
 
@@ -2307,5 +2367,24 @@
 })();
 </script>
 
+<script>
+(function(){
+  var btn=document.getElementById('wcatToggleAll');
+  if(!btn) return;
+  var cats=Array.prototype.slice.call(document.querySelectorAll('details.wcat'));
+  function sync(){
+    var allOpen=cats.length && cats.every(function(d){return d.open;});
+    btn.textContent=allOpen?'すべて閉じる':'すべて開く';
+    btn.setAttribute('aria-expanded',allOpen?'true':'false');
+  }
+  btn.addEventListener('click',function(){
+    var allOpen=cats.length && cats.every(function(d){return d.open;});
+    cats.forEach(function(d){d.open=!allOpen;});
+    sync();
+  });
+  cats.forEach(function(d){d.addEventListener('toggle',sync);});
+  sync();
+})();
+</script>
 </body>
 </html>
