@@ -754,6 +754,8 @@
   .wframe .wname{margin-top:6px;padding-top:6px;border-top:1px solid rgba(150,140,180,.4);text-align:center;color:var(--color-text);font-weight:700;font-size:clamp(14px,2.3vw,19px);line-height:1.2;}
   .wchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
   .wchip{background:#2a2240;border:1px solid #4a4068;color:#f0eef8;font-size:12px;line-height:1.4;border-radius:10px;padding:3px 9px;}
+  /* ピストルは小さめの武器なので画像を80%・中央に */
+  .pistol-grid .wframe .wimg-wrap img{max-width:80%;max-height:80%;}
 </style>
 </head>
 <body>
@@ -1608,7 +1610,7 @@
     </div>
 
     <h3 class="op-faction-ttl">ピストル</h3>
-    <div class="wgrid">
+    <div class="wgrid pistol-grid">
       <div class="wcard">
         <div class="wframe">
           <div class="wimg-wrap"><img src="assets/weapons/1911.webp" alt="1911" loading="lazy"></div>
@@ -1905,7 +1907,7 @@
           <tr><td data-label="属性"><span class="attr"><img src="assets/icons/neuro-disruption.png" alt="崩脳弾アイコン">崩脳弾</span></td><td data-label="ボーナス名">Neural Attraction<br>神経の引力</td><td data-label="効果">味方になっている敵が他の敵の注意を一時的にそらす</td></tr>
           <tr><td data-label="属性"><span class="attr"><img src="assets/icons/photon.png" alt="光子弾アイコン">光子弾</span></td><td data-label="ボーナス名">Blessing<br>（未確認）</td><td data-label="効果">ヒールグリフに一時的なボーナス体力が付くことがある（未確認）</td></tr>
           <tr><td data-label="属性"><span class="attr"><img src="assets/icons/photon.png" alt="光子弾アイコン">光子弾</span></td><td data-label="ボーナス名">Dual Action<br>デュアルアクション</td><td data-label="効果">ヒールグリフ消費で体力自動回復が一時的に向上</td></tr>
-          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/shock.png" alt="電子弾アイコン">電子弾</span></td><td data-label="ボーナス名">Chain Lightning<br>（未確認）</td><td data-label="効果">スタンした敵が他の敵にもスタンを伝播させる（未確認）</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/shock.png" alt="電子弾アイコン">電子弾</span></td><td data-label="ボーナス名">Chain Lightning<br>チェーンライトニング</td><td data-label="効果">スタン効果を周囲の敵に拡散する</td></tr>
           <tr><td data-label="属性"><span class="attr"><img src="assets/icons/shock.png" alt="電子弾アイコン">電子弾</span></td><td data-label="ボーナス名">Lightning Strike<br>（未確認）</td><td data-label="効果">上空から雷が落ち、敵をスタンさせる（未確認）</td></tr>
           <tr><td data-label="属性"><span class="attr"><img src="assets/icons/shrapnel.png" alt="榴散弾アイコン">榴散弾</span></td><td data-label="ボーナス名">Blast Chain<br>ブラストチェイン</td><td data-label="効果">アーマーを破壊する爆発が発生すると、追加の爆発が3回連続で発生</td></tr>
           <tr><td data-label="属性"><span class="attr"><img src="assets/icons/shrapnel.png" alt="榴散弾アイコン">榴散弾</span></td><td data-label="ボーナス名">Blast Shield<br>（未確認）</td><td data-label="効果">榴散弾が複数の敵に命中すると、被ダメージが軽減される（未確認）</td></tr>
