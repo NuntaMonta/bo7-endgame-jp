@@ -571,6 +571,8 @@
   .round-card img { object-fit: contain; background: #0d0a18; padding: 14%; }
   .round-grid { grid-template-columns: repeat(4, 1fr); }
   @media (max-width: 560px) { .round-grid { grid-template-columns: repeat(2, 1fr); } }
+  .map-wrap { max-width: 740px; margin: 4px auto 12px; }
+  .map-wrap svg { width: 100%; height: auto; display: block; }
 
   /* 属性アイコン（テーブル内） */
   .attr { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
@@ -741,6 +743,17 @@
     font-size: 13.5px;
   }
   .season-summary-box strong { color: var(--color-accent-teal-light); }
+
+  /* 武器カード（セクション8・新レイアウト） */
+  .wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin:14px 0 8px;}
+  .wcard{background:var(--color-bg-soft);border:1px solid var(--color-border);border-radius:12px;padding:14px;}
+  .wframe{aspect-ratio:452/360;background:url(assets/weapons/frames/frame.webp) center/100% 100% no-repeat;padding:9% 10% 7%;display:flex;flex-direction:column;box-sizing:border-box;}
+  .wframe .wimg-wrap{flex:1;display:flex;align-items:center;justify-content:center;min-height:0;}
+  .wframe .wimg-wrap img{max-width:100%;max-height:100%;object-fit:contain;}
+  .wframe .wph{font-size:40px;opacity:.5;}
+  .wframe .wname{margin-top:6px;padding-top:6px;border-top:1px solid rgba(150,140,180,.4);text-align:center;color:var(--color-text);font-weight:700;font-size:clamp(14px,2.3vw,19px);line-height:1.2;}
+  .wchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+  .wchip{background:#2a2240;border:1px solid #4a4068;color:#f0eef8;font-size:12px;line-height:1.4;border-radius:10px;padding:3px 9px;}
 </style>
 </head>
 <body>
@@ -757,12 +770,14 @@
       <li><a href="#operators">オペレーター一覧</a></li>
       <li><a href="#enemies">敵・ボス図鑑</a></li>
       <li><a href="#missions">ミッション概要</a></li>
+      <li><a href="#avalon-map">アヴァロン マップ</a></li>
+      <li><a href="#glitches">グリッチ一覧</a></li>
       <li><a href="#game-rules">ゲームルール・仕様メモ</a></li>
       <li><a href="#exotic-effects">エキゾチック効果（Rounds）一覧</a></li>
       <li><a href="#weapon-traits">武器別 つくボーナス早見表</a></li>
       <li><a href="#utility-bonus">ユーティリティボーナス（汎用）</a></li>
       <li><a href="#affinity-bonus">属性一致ユーティリティボーナス（推定訳）</a></li>
-      <li><a href="#named-exotics">名前付きエキゾチック武器と属性(Affinity)</a></li>
+      <li><a href="#named-exotics">名前付きエキゾチック武器</a></li>
       <li><a href="#weapon-specific">武器固有ボーナスの仮説</a></li>
       <li><a href="#story-timeline">ストーリー年表（シーズンの流れ）</a></li>
       <li><a href="#todo">今後の検証タスク</a></li>
@@ -954,6 +969,7 @@
             <li><strong>出現場所・条件：</strong>マップ南西端の隔離された島。咲いている赤黒い花を破壊し、表示される数値が100%になると島のヘリポートに本物のボス「フォークナー」が出現</li>
             <li><strong>攻略手順：</strong>倒した後、死体を確認するとミッションクリアとなり専用エンディングが流れて任務終了</li>
             <li><strong>撃破報酬：</strong>エキゾチック武器ケースが確定ドロップ</li>
+            <li><strong>注意：</strong>討伐後、死体にインタラクトするとその時点でミッションクリアが確定する。武器ケースからの試し撃ち・交換作業中にうっかり死体へ触れると、意図しない所持状態のまま確定してしまう可能性があるため注意</li>
           </ul>
         </div>
       </button>
@@ -1020,7 +1036,7 @@
     <h2>3. ミッション概要</h2>
 
     <h3>基本ルール</h3>
-    <p class="lead">モードの目標：<strong>「出発して生きて帰る」</strong>。チームプレイ推奨。</p>
+    <p class="lead">モードの目標：<strong>「出発して50分以内に生きて帰る」</strong>。チームプレイ推奨。</p>
     <div class="table-scroll">
       <table>
         <thead><tr><th>項目</th><th>内容</th></tr></thead>
@@ -1029,8 +1045,8 @@
           <tr><td data-label="項目">チームプレイのメリット</td><td data-label="内容">チームを組んでいる場合、倒れてもミッション失敗にはならず、リスポンできる（ソロだとミッション失敗になりやすい）</td></tr>
           <tr><td data-label="項目">ロードアウト武器の扱い</td><td data-label="内容">任務の成功・失敗に関わらず、常に設定・使用可能</td></tr>
           <tr><td data-label="項目">現地入手武器の制限</td><td data-label="内容">アタッチメントの設定などのカスタマイズはできない</td></tr>
-          <tr><td data-label="項目">Operator Prestige（プレステージ）の条件</td><td data-label="内容">レベルMAX到達＋エキゾチックスキルLv3＋ナイトメアスキルLv3＋グリッチ(Glitch)を複数回クリア（ソロでは難易度が高い）が必要。すべて満たすと「プレステージ可能」の表示が出る</td></tr>
-          <tr><td data-label="項目">Prestigeによるリセット内容</td><td data-label="内容">実行するとレベルが0に戻り、厳選したスキル（エキゾチック・ナイトメア含む）も最初から。厳選した現地入手武器も消失。ロードアウト武器もノーマルランクに戻る。最大3回まで可能（公式パッチノート情報）。進めるかどうかはプレイヤー自身の判断（実行前に説明文をよく確認することを推奨）</td></tr>
+          <tr><td data-label="項目">オペレータープレステージの条件</td><td data-label="内容">レベルMAX到達＋エキゾチックスキルLv3＋ナイトメアスキルLv3が必要。すべて満たすと「プレステージ可能」の表示が出る</td></tr>
+          <tr><td data-label="項目">プレステージによるリセット内容</td><td data-label="内容">実行するとレベルが0に戻り、厳選したスキル（エキゾチック・ナイトメア含む）も最初から。厳選した現地入手武器も消失。ロードアウト武器もノーマルランクに戻る。最大3回まで可能（公式パッチノート情報）。進めるかどうかはプレイヤー自身の判断（実行前に説明文をよく確認することを推奨）</td></tr>
           <tr><td data-label="項目">レベルキャップ到達後の隠し仕様</td><td data-label="内容">通常のレベル上限に達すると経験値を貯めてもレベルが上がらなくなる。グリッチ(Glitch)をクリアするとスキル選択画面が表示され、「既存スキルのレベルを+1する」か「新しいナイトメアスキルを追加する」かを選択できる。このスキル選択がオペレーターレベルの上昇に連動しており、結果としてグリッチを3回クリアするとレベルが+3される仕組みになっている（ユーザー実機確認）</td></tr>
           <tr><td data-label="項目">グリッチ(Glitch)への参加方法</td><td data-label="内容">ソロクリアは相当な実力が必要な高難度ミッション。マップ内チャットで「グリッチ行きませんか？」といった募集が英語・中国語で行われることが多く、日本語チャットはほぼ見られない。参加するには翻訳しながらチャットするか、マッチしたチームメンバーとマップ上のグリッチ地点にマーキングしてアピールするなどの対応が必要。<br><strong>【Xboxでの翻訳手順例（ユーザー実践）】</strong> ①スマートフォンの翻訳アプリのカメラ翻訳でゲーム画面のチャット内容を確認 → ②返信メッセージを翻訳アプリで翻訳してコピー → ③スマートフォンのXboxアプリ（本体リモート操作画面）でメッセージ欄にペーストしてゲーム内に送信（※上記はXboxでの一例）</td></tr>
         </tbody>
@@ -1059,11 +1075,99 @@
         <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
   </section>
 
+  <section id="avalon-map">
+    <h2>4. アヴァロン マップ</h2>
+    <p class="lead">アヴァロンの主要ランドマークを日本語で示した参考マップです。グリッチの発生場所（コロッセオ／チョップショップ＝解体工場／旧兵器庫）もこの地図上で確認できます。<strong>個人作成の参考マップ</strong>で、公式マップの転載ではありません。</p>
+    <div class="map-wrap">
+<img src="assets/img/avalon_map.png" alt="アヴァロン マップ（日本語ラベル付き）" style="width:100%;height:auto;display:block;border-radius:12px;" loading="lazy">
+    </div>
+    <div class="note"><strong>グリッチの場所について：</strong>グリッチ（グリッチフラクチャー）は、対応オペレーションをクリアし「同じ試合でギルドストライクボスを撃破」すると出現します。発生場所は多くが固定ランドマークで、実機確認済み：ルートクラッシャー＝解体工場／リンクフォージャー＝旧武器庫／ウイルスインジェクション＝コロシアム（いずれも推奨戦闘評価60）。コマンドキラー・プライムターゲットの発生場所は未確認です。</div>
+    <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
+  </section>
+
+  <section id="glitches">
+    <h2>5. グリッチ一覧</h2>
+    <p class="lead">グリッチ（グリッチフラクチャー）は、通常のアヴァロンマップ外で行われる特殊アクティビティ。対応オペレーションをクリアし、同じ試合でギルドストライクボスを倒すと出現します。発生場所は多くが固定のランドマーク（実機確認済み）。カードをクリックすると各グリッチの詳細が開きます。</p>
+    <div class="note"><strong>報酬について：</strong>グリッチをクリアすると「ナイトメアスキル」（最強クラスのパッシブ強化。1つだけ装備可・2回強化可・フル強化でCR+3）が得られます。推奨CRは45以上、エキゾチック武器の持ち込み推奨。</div>
+    <p class="enemy-hint">🖱️ グリッチカードをクリックすると詳細が開きます。</p>
+    <div class="op-grid">
+      <button type="button" class="op-card weapon-card">
+        <div class="weapon-ph">🌀</div>
+        <div class="op-name">ルートクラッシャー</div>
+        <div class="op-en">Root Crasher</div>
+        <div class="enemy-detail" hidden data-title="ルートクラッシャー">
+          <ul>
+            <li><strong>実装：</strong>シーズン2</li>
+            <li><strong>出現条件：</strong>ギルドストライクの「ストライクボス」を倒すと発生することがある</li>
+            <li><strong>発生場所：</strong>解体工場（実機確認・固定）。推奨戦闘評価60／ナイトメア</li>
+            <li><strong>内容：</strong>地図外の隔離された体験。破損・汚染されたC-Linkデータの中に引きずり込まれ、複数ウェーブの敵を凌いで「グリッチボス」を撃破する</li>
+            <li><strong>備考：</strong>グリッチというシステム自体がシーズン2で初めて追加された、最初のグリッチ。英語名は Root Crasher</li>
+          </ul>
+        </div>
+      </button>
+      <button type="button" class="op-card weapon-card">
+        <div class="weapon-ph">🌀</div>
+        <div class="op-name">リンクフォージャー</div>
+        <div class="op-en">Link Forger</div>
+        <div class="enemy-detail" hidden data-title="リンクフォージャー（Link Forger）">
+          <ul>
+            <li><strong>実装：</strong>シーズン3・ポイズンピル作戦（Act1）</li>
+            <li><strong>出現条件：</strong>ポイズンピル作戦をクリア＋同じ試合でギルドストライクボスを撃破すると、Tacマップに出現</li>
+            <li><strong>発生場所：</strong>旧武器庫（実機確認・固定）。推奨戦闘評価60／ナイトメア</li>
+            <li><strong>内容：</strong>フラクチャーシャードを集め、メカ型ボス「Skybreaker」を撃破する</li>
+            <li><strong>報酬：</strong>ナイトメアスキル</li>
+          </ul>
+        </div>
+      </button>
+      <button type="button" class="op-card weapon-card">
+        <div class="weapon-ph">🌀</div>
+        <div class="op-name">ウイルスインジェクション</div>
+        <div class="op-en">Virus Injection</div>
+        <div class="enemy-detail" hidden data-title="ウイルスインジェクション（Virus Injection）">
+          <ul>
+            <li><strong>実装：</strong>シーズン3 Reloaded・ブロークンミラー作戦（Act2）</li>
+            <li><strong>出現条件：</strong>ブロークンミラー作戦をクリア＋同じ試合でギルドストライクボスを撃破すると出現</li>
+            <li><strong>発生場所：</strong>コロシアム（実機確認・固定）。推奨戦闘評価60／ナイトメア</li>
+            <li><strong>内容：</strong>ナイトメア難度のウェーブを凌ぎ、専用ボスを撃破する</li>
+            <li><strong>報酬：</strong>ナイトメアスキル</li>
+          </ul>
+        </div>
+      </button>
+      <button type="button" class="op-card weapon-card">
+        <div class="weapon-ph">🌀</div>
+        <div class="op-name">コマンドキラー</div>
+        <div class="op-en">Command Killer</div>
+        <div class="enemy-detail" hidden data-title="コマンドキラー（Command Killer）">
+          <ul>
+            <li><strong>実装：</strong>シーズン4・ウォールブレーカー作戦（Act3）</li>
+            <li><strong>出現条件：</strong>ウォールブレーカー作戦をクリア＋同じ試合でギルドストライクボスを撃破すると出現</li>
+            <li><strong>内容：</strong>6ウェーブを凌ぎ、ボスを撃破する</li>
+            <li><strong>報酬：</strong>ナイトメアスキル</li>
+          </ul>
+        </div>
+      </button>
+      <button type="button" class="op-card weapon-card">
+        <div class="weapon-ph">🌀</div>
+        <div class="op-name">プライムターゲット</div>
+        <div class="op-en">Prime Target</div>
+        <div class="enemy-detail" hidden data-title="プライムターゲット（Prime Target）">
+          <ul>
+            <li><strong>実装：</strong>シーズン4 Reloaded・キングキラー作戦（Act4）</li>
+            <li><strong>出現条件：</strong>キングキラー作戦の最終ステップ。Terminal Vectorアクティビティ経由で到達。Coastal Security南の島に出現</li>
+            <li><strong>内容：</strong>3つのセクターで、3体のグリッチボスを制限時間内に撃破する</li>
+            <li><strong>報酬：</strong>ナイトメアスキル（スキン・カモ等の報酬も）</li>
+          </ul>
+        </div>
+      </button>
+    </div>
+    <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
+  </section>
+
   <!-- ============================================
        6. ゲームルール・仕様メモ
        ============================================ -->
   <section id="game-rules">
-    <h2>4. ゲームルール・仕様メモ</h2>
+    <h2>6. ゲームルール・仕様メモ</h2>
     <div class="table-scroll">
       <table>
         <thead><tr><th>カテゴリ</th><th>内容</th></tr></thead>
@@ -1073,16 +1177,8 @@
             <td data-label="内容">現地調達の名前付きエキゾチック武器（銃器）は1つしか所持できない。新しいものを拾うと所持中のものと交換される。近接武器は別枠のため、銃器とは別に1つ所持可能</td>
           </tr>
           <tr>
-            <td data-label="カテゴリ">現地入手エキゾチックの所持制限</td>
-            <td data-label="内容">近接武器の現地入手エキゾチックは、銃器の現地入手エキゾチックを既に所持していても追加で入手・所持可能（別枠扱い）</td>
-          </tr>
-          <tr>
             <td data-label="カテゴリ">ファブリケーターの可逆性</td>
             <td data-label="内容">ユーティリティボーナスの変更は必ず元に戻せるとは限らない可能性あり。実例:デュアルアクション→デュアルVELOX5.7変更後、再アクセス不可に</td>
-          </tr>
-          <tr>
-            <td data-label="カテゴリ">ワールドボスの死体インタラクトに関する注意</td>
-            <td data-label="内容">ワールドボス討伐後、死体にインタラクトするとその時点でミッションクリアが確定する。武器ケースからの試し撃ち・交換作業中にうっかり死体へ触れると、意図しない所持状態のまま確定してしまう可能性があるため注意</td>
           </tr>
           <tr>
             <td data-label="カテゴリ">現地ドロップのRoundsはランダム</td>
@@ -1100,14 +1196,6 @@
             <td data-label="カテゴリ">用語：Affinity Utility Bonus</td>
             <td data-label="内容">Affinity Exoticになると、対応する属性専用のユーティリティボーナス（属性一致ボーナス）を確率で引く可能性が生まれる（保証ではない）。ファブリケーターでこのボーナスだけを狙ってリロールすることも可能（海外報告では26回失敗した例もあり、根気が必要）</td>
           </tr>
-          <tr>
-            <td data-label="カテゴリ">用語：Exotic Cache（エキゾチック武器ケース）</td>
-            <td data-label="内容">確定ドロップ: Dr.Falkner討伐、メガアボミネーション討伐、Possessed Convoy(ズーサ)討伐、Terminal Vectorアクティビティクリア。確率ドロップ: Zone4以上のHVT Elim/Prime Target/Surprise Shipment/Strongbox Crack/Gear Drop、Zone3以上のToxin Field、Zone4以上のエリート/Command Center titan撃破、Zone4以上のCommand Center内キャッシュ</td>
-          </tr>
-          <tr>
-            <td data-label="カテゴリ">用語：Nightmare Zone(ゾーン5)</td>
-            <td data-label="内容">ボス戦開始時に出現し、以降ゲーム終了まで残り続ける円形エリア。最も敵が強く、報酬ランクも最高になる。メガアボミネーションはボス討伐後にこのゾーンに出現するリポップ型アクティビティ</td>
-          </tr>
         </tbody>
       </table>
     </div>
@@ -1119,7 +1207,7 @@
        ============================================ -->
   <img src="assets/img/Exotic_Fabricator.gif" alt="エキゾチックファブリケーター エキゾチック特性を選択してリロール" style="display:block;width:100%;max-width:700px;height:auto;margin:0 auto 24px;">
   <section id="exotic-effects">
-    <h2>5. エキゾチック効果（Rounds）</h2>
+    <h2>7. エキゾチック効果（Rounds）</h2>
     <p class="lead">武器に付与可能な8種類の弾薬属性（Affinity）</p>
 
     <p class="enemy-hint">🖱️ 属性アイコンをクリックすると効果の詳細が開きます。</p>
@@ -1197,875 +1285,451 @@
   </section>
 
   <section id="weapon-traits">
-    <h2>6. 武器別 つくボーナス早見表</h2>
-    <p class="lead">各武器で入手できるエキゾチック特性（ユーティリティボーナス）の早見表。武器カードをクリックすると、その武器に付くボーナスが開きます。</p>
-    <div class="note"><strong>データ出典：</strong>Reddit r/bo7endgame の u/Fate_Messenger 氏「All weapons exotic traits list」（<a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRrbirGBrbZkHvkiJ9FdmynO3CBp9Fc6ydmlIZ1qjD7S1m0dOBaTIyIyA3VrPjht3lHATWQErO_CW2D/pubhtml" target="_blank" rel="noopener">元データ</a>）。赤/黄/緑＝入手可、<span style="color:#c9a6e6;">紫＝エキゾボックス限定</span>。武器アイコンは順次追加予定です。</div>
-    <p class="enemy-hint">🖱️ 武器カードをクリックすると、付くボーナス一覧が開きます。</p>
+    <h2>8. 武器別 つくボーナス早見表</h2>
+    <p class="lead">各武器で入手できるエキゾチック特性（ユーティリティボーナス）の一覧です。各カードに、その武器に付くボーナスをすべて表示しています。</p>
+    <div class="note"><strong>データ出典：</strong>Reddit r/bo7endgame の u/Fate_Messenger 氏「All weapons exotic traits list」（<a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRrbirGBrbZkHvkiJ9FdmynO3CBp9Fc6ydmlIZ1qjD7S1m0dOBaTIyIyA3VrPjht3lHATWQErO_CW2D/pubhtml" target="_blank" rel="noopener">元データ</a>）。表示中のボーナスはいずれも入手可能なもので、末尾に<strong>「（箱からの入手限定）」</strong>と付くものはエキゾボックス限定です。</div>
 
     <h3 class="op-faction-ttl">アサルトライフル</h3>
-    <div class="op-grid">
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">FG42</div>
-        <div class="op-en">アサルトライフル</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>反動削除</li>
-            <li>弾薬リチャージャー</li>
-            <li>コンバットレディ</li>
-            <li>ウルトラライト</li>
-          </ul>
+    <div class="wgrid">
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><span class="wph">🔫</span></div>
+          <div class="wname">FG42</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">AN-94</div>
-        <div class="op-en">アサルトライフル</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>反動削除</li>
-            <li>弾薬リチャージャー</li>
-            <li>コンバットレディ</li>
-            <li>リロード切替</li>
-          </ul>
+        <div class="wchips"><span class="wchip">反動削除</span><span class="wchip">弾薬リチャージャー</span><span class="wchip">コンバットレディ</span><span class="wchip">ウルトラライト</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/an94.webp" alt="AN-94" loading="lazy"></div>
+          <div class="wname">AN-94</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">VX compact</div>
-        <div class="op-en">アサルトライフル</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>撃ち放題</li>
-            <li>反動削除</li>
-            <li>コンバットレディ</li>
-            <li>狙い撃ち</li>
-          </ul>
+        <div class="wchips"><span class="wchip">反動削除</span><span class="wchip">弾薬リチャージャー</span><span class="wchip">コンバットレディ</span><span class="wchip">リロード切替</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/vxcompact.webp" alt="VX compact" loading="lazy"></div>
+          <div class="wname">VX compact</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">MK35 ISR</div>
-        <div class="op-en">アサルトライフル</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>撃ち放題</li>
-            <li>反動削除</li>
-            <li>弾薬リチャージャー</li>
-            <li>コンバットレディ</li>
-          </ul>
+        <div class="wchips"><span class="wchip">撃ち放題</span><span class="wchip">反動削除</span><span class="wchip">コンバットレディ</span><span class="wchip">狙い撃ち</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/mk35isr.webp" alt="MK35 ISR" loading="lazy"></div>
+          <div class="wname">MK35 ISR</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">Voyak KT-3</div>
-        <div class="op-en">アサルトライフル</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>撃ち放題</li>
-            <li>反動削除</li>
-            <li>弾薬リチャージャー</li>
-            <li>コンバットレディ</li>
-          </ul>
+        <div class="wchips"><span class="wchip">撃ち放題</span><span class="wchip">反動削除</span><span class="wchip">弾薬リチャージャー</span><span class="wchip">コンバットレディ</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/voyakkt3.webp" alt="Voyak KT-3" loading="lazy"></div>
+          <div class="wname">Voyak KT-3</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">EGRT-17</div>
-        <div class="op-en">アサルトライフル</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>撃ち放題</li>
-            <li>反動削除</li>
-            <li>弾薬リチャージャー</li>
-            <li>コンバットレディ</li>
-          </ul>
+        <div class="wchips"><span class="wchip">撃ち放題</span><span class="wchip">反動削除</span><span class="wchip">弾薬リチャージャー</span><span class="wchip">コンバットレディ</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/egrt17.webp" alt="EGRT-17" loading="lazy"></div>
+          <div class="wname">EGRT-17</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">Maddox RFB</div>
-        <div class="op-en">アサルトライフル</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>反動削除</li>
-            <li>弾薬リチャージャー</li>
-            <li>コンバットレディ</li>
-            <li>リロード切替</li>
-          </ul>
+        <div class="wchips"><span class="wchip">撃ち放題</span><span class="wchip">反動削除</span><span class="wchip">弾薬リチャージャー</span><span class="wchip">コンバットレディ</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/maddoxrfb.webp" alt="Maddox RFB" loading="lazy"></div>
+          <div class="wname">Maddox RFB</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">M15 MOD0</div>
-        <div class="op-en">アサルトライフル</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>撃ち放題</li>
-            <li>弾薬リチャージャー</li>
-            <li>コンバットレディ</li>
-            <li>リロード切替</li>
-          </ul>
+        <div class="wchips"><span class="wchip">反動削除</span><span class="wchip">弾薬リチャージャー</span><span class="wchip">コンバットレディ</span><span class="wchip">リロード切替</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/m15mod0.webp" alt="M15 MOD0" loading="lazy"></div>
+          <div class="wname">M15 MOD0</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">AK-27</div>
-        <div class="op-en">アサルトライフル</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>撃ち放題</li>
-            <li>反動削除</li>
-            <li>コンバットレディ</li>
-            <li>狙い撃ち</li>
-          </ul>
+        <div class="wchips"><span class="wchip">撃ち放題</span><span class="wchip">弾薬リチャージャー</span><span class="wchip">コンバットレディ</span><span class="wchip">リロード切替</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/ak27.webp" alt="AK-27" loading="lazy"></div>
+          <div class="wname">AK-27</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">MXR-17</div>
-        <div class="op-en">アサルトライフル</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>反動削除</li>
-            <li>弾薬リチャージャー</li>
-            <li>コンバットレディ</li>
-            <li>リロード切替</li>
-          </ul>
+        <div class="wchips"><span class="wchip">撃ち放題</span><span class="wchip">反動削除</span><span class="wchip">コンバットレディ</span><span class="wchip">狙い撃ち</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/mxr17.webp" alt="MXR-17" loading="lazy"></div>
+          <div class="wname">MXR-17</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">X9 Maverick</div>
-        <div class="op-en">アサルトライフル</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>反動削除</li>
-            <li>弾薬リチャージャー</li>
-            <li>コンバットレディ</li>
-            <li>リロード切替</li>
-          </ul>
+        <div class="wchips"><span class="wchip">反動削除</span><span class="wchip">弾薬リチャージャー</span><span class="wchip">コンバットレディ</span><span class="wchip">リロード切替</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/x9maverick.webp" alt="X9 Maverick" loading="lazy"></div>
+          <div class="wname">X9 Maverick</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">DS20 Mirage</div>
-        <div class="op-en">アサルトライフル</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>撃ち放題</li>
-            <li>反動削除</li>
-            <li>弾薬リチャージャー</li>
-            <li>コンバットレディ</li>
-          </ul>
+        <div class="wchips"><span class="wchip">反動削除</span><span class="wchip">弾薬リチャージャー</span><span class="wchip">コンバットレディ</span><span class="wchip">リロード切替</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/ds20mirage.webp" alt="DS20 Mirage" loading="lazy"></div>
+          <div class="wname">DS20 Mirage</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">Peacekeeper MK1</div>
-        <div class="op-en">アサルトライフル</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>撃ち放題</li>
-            <li>弾薬リチャージャー</li>
-            <li>コンバットレディ</li>
-            <li>リロード切替</li>
-          </ul>
+        <div class="wchips"><span class="wchip">撃ち放題</span><span class="wchip">反動削除</span><span class="wchip">弾薬リチャージャー</span><span class="wchip">コンバットレディ</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/peacekeepermk1.webp" alt="Peacekeeper MK1" loading="lazy"></div>
+          <div class="wname">Peacekeeper MK1</div>
         </div>
-      </button>
+        <div class="wchips"><span class="wchip">撃ち放題</span><span class="wchip">弾薬リチャージャー</span><span class="wchip">コンバットレディ</span><span class="wchip">リロード切替</span></div>
+      </div>
     </div>
 
     <h3 class="op-faction-ttl">サブマシンガン</h3>
-    <div class="op-grid">
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">Gremlin</div>
-        <div class="op-en">サブマシンガン</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>近接リロード</li>
-            <li>ガンマン</li>
-            <li>キル&amp;ラン</li>
-            <li>Lightspeed <span class="tr-unk">（訳未確認）</span></li>
-          </ul>
+    <div class="wgrid">
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><span class="wph">🔫</span></div>
+          <div class="wname">Gremlin</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">CBRS-3</div>
-        <div class="op-en">サブマシンガン</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>近接リロード</li>
-            <li>ウルトラライト</li>
-            <li>ガンマン</li>
-            <li>ロングショット</li>
-          </ul>
+        <div class="wchips"><span class="wchip">近接リロード</span><span class="wchip">ガンマン</span><span class="wchip">キル&amp;ラン</span><span class="wchip">Lightspeed （訳未確認）</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/cbrs3.webp" alt="CBRS-3" loading="lazy"></div>
+          <div class="wname">CBRS-3</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">VST</div>
-        <div class="op-en">サブマシンガン</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>近接リロード</li>
-            <li>ウルトラライト</li>
-            <li>コンバットレディ</li>
-            <li>ガンマン</li>
-          </ul>
-          <p class="wp-lbl box">エキゾボックス限定</p>
-          <ul class="wp-bonus">
-            <li>ショットガニフィケーター <span class="box-tag">box限定</span></li>
-          </ul>
+        <div class="wchips"><span class="wchip">近接リロード</span><span class="wchip">ウルトラライト</span><span class="wchip">ガンマン</span><span class="wchip">ロングショット</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/vst.webp" alt="VST" loading="lazy"></div>
+          <div class="wname">VST</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">REV-46</div>
-        <div class="op-en">サブマシンガン</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>ウルトラライト</li>
-            <li>コンバットレディ</li>
-            <li>ガンマン</li>
-            <li>ロングショット</li>
-          </ul>
+        <div class="wchips"><span class="wchip">近接リロード</span><span class="wchip">ウルトラライト</span><span class="wchip">コンバットレディ</span><span class="wchip">ガンマン</span><span class="wchip box">ショットガニフィケーター（箱からの入手限定）</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/rev46.webp" alt="REV-46" loading="lazy"></div>
+          <div class="wname">REV-46</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">Sturmwolf 45</div>
-        <div class="op-en">サブマシンガン</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>ウルトラライト</li>
-            <li>コンバットレディ</li>
-            <li>ガンマン</li>
-            <li>ロングショット</li>
-          </ul>
+        <div class="wchips"><span class="wchip">ウルトラライト</span><span class="wchip">コンバットレディ</span><span class="wchip">ガンマン</span><span class="wchip">ロングショット</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/sturmwolf45.webp" alt="Sturmwolf 45" loading="lazy"></div>
+          <div class="wname">Sturmwolf 45</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">Kogot-7</div>
-        <div class="op-en">サブマシンガン</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>近接リロード</li>
-            <li>ウルトラライト</li>
-            <li>コンバットレディ</li>
-            <li>ガンマン</li>
-          </ul>
+        <div class="wchips"><span class="wchip">ウルトラライト</span><span class="wchip">コンバットレディ</span><span class="wchip">ガンマン</span><span class="wchip">ロングショット</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/kogot7.webp" alt="Kogot-7" loading="lazy"></div>
+          <div class="wname">Kogot-7</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">Ryden 45K</div>
-        <div class="op-en">サブマシンガン</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>近接リロード</li>
-            <li>ウルトラライト</li>
-            <li>コンバットレディ</li>
-            <li>ガンマン</li>
-          </ul>
+        <div class="wchips"><span class="wchip">近接リロード</span><span class="wchip">ウルトラライト</span><span class="wchip">コンバットレディ</span><span class="wchip">ガンマン</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/ryden45k.webp" alt="Ryden 45K" loading="lazy"></div>
+          <div class="wname">Ryden 45K</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">RK-9</div>
-        <div class="op-en">サブマシンガン</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>近接リロード</li>
-            <li>ウルトラライト</li>
-            <li>コンバットレディ</li>
-            <li>ガンマン</li>
-          </ul>
+        <div class="wchips"><span class="wchip">近接リロード</span><span class="wchip">ウルトラライト</span><span class="wchip">コンバットレディ</span><span class="wchip">ガンマン</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/rk9.webp" alt="RK-9" loading="lazy"></div>
+          <div class="wname">RK-9</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">Razor 9mm</div>
-        <div class="op-en">サブマシンガン</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>ウルトラライト</li>
-            <li>高速射撃</li>
-            <li>弾薬リチャージャー</li>
-            <li>キル&amp;ラン</li>
-          </ul>
+        <div class="wchips"><span class="wchip">近接リロード</span><span class="wchip">ウルトラライト</span><span class="wchip">コンバットレディ</span><span class="wchip">ガンマン</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/razor9mm.webp" alt="Razor 9mm" loading="lazy"></div>
+          <div class="wname">Razor 9mm</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">Dravec 45</div>
-        <div class="op-en">サブマシンガン</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>近接リロード</li>
-            <li>ウルトラライト</li>
-            <li>コンバットレディ</li>
-            <li>ロングショット</li>
-          </ul>
+        <div class="wchips"><span class="wchip">ウルトラライト</span><span class="wchip">高速射撃</span><span class="wchip">弾薬リチャージャー</span><span class="wchip">キル&amp;ラン</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/dravec45.webp" alt="Dravec 45" loading="lazy"></div>
+          <div class="wname">Dravec 45</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">Carbon 57</div>
-        <div class="op-en">サブマシンガン</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>近接リロード</li>
-            <li>ウルトラライト</li>
-            <li>コンバットレディ</li>
-            <li>ガンマン</li>
-          </ul>
+        <div class="wchips"><span class="wchip">近接リロード</span><span class="wchip">ウルトラライト</span><span class="wchip">コンバットレディ</span><span class="wchip">ロングショット</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/carbon57.webp" alt="Carbon 57" loading="lazy"></div>
+          <div class="wname">Carbon 57</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">MPC-25</div>
-        <div class="op-en">サブマシンガン</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>近接リロード</li>
-            <li>ウルトラライト</li>
-            <li>コンバットレディ</li>
-            <li>ガンマン</li>
-          </ul>
+        <div class="wchips"><span class="wchip">近接リロード</span><span class="wchip">ウルトラライト</span><span class="wchip">コンバットレディ</span><span class="wchip">ガンマン</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/mpc25.webp" alt="MPC-25" loading="lazy"></div>
+          <div class="wname">MPC-25</div>
         </div>
-      </button>
+        <div class="wchips"><span class="wchip">近接リロード</span><span class="wchip">ウルトラライト</span><span class="wchip">コンバットレディ</span><span class="wchip">ガンマン</span></div>
+      </div>
     </div>
 
     <h3 class="op-faction-ttl">ショットガン</h3>
-    <div class="op-grid">
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">SG-12</div>
-        <div class="op-en">ショットガン</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>ガンマン</li>
-            <li>ロングショット</li>
-            <li>近接リロード</li>
-            <li>コンバットレディ</li>
-          </ul>
+    <div class="wgrid">
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/sg12.webp" alt="SG-12" loading="lazy"></div>
+          <div class="wname">SG-12</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">M10 Breacher</div>
-        <div class="op-en">ショットガン</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>ガンマン</li>
-            <li>ロングショット</li>
-            <li>近接リロード</li>
-            <li>コンバットレディ</li>
-          </ul>
+        <div class="wchips"><span class="wchip">ガンマン</span><span class="wchip">ロングショット</span><span class="wchip">近接リロード</span><span class="wchip">コンバットレディ</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/m10breacher.webp" alt="M10 Breacher" loading="lazy"></div>
+          <div class="wname">M10 Breacher</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">Echo 12</div>
-        <div class="op-en">ショットガン</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>ガンマン</li>
-            <li>廃棄物ゼロ</li>
-            <li>近接リロード</li>
-            <li>キル&amp;ラン</li>
-          </ul>
+        <div class="wchips"><span class="wchip">ガンマン</span><span class="wchip">ロングショット</span><span class="wchip">近接リロード</span><span class="wchip">コンバットレディ</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/echo12.webp" alt="Echo 12" loading="lazy"></div>
+          <div class="wname">Echo 12</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">Akita</div>
-        <div class="op-en">ショットガン</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>ガンマン</li>
-            <li>コンバットレディ</li>
-            <li>Escalation <span class="tr-unk">（訳未確認）</span></li>
-            <li>Lightspeed <span class="tr-unk">（訳未確認）</span></li>
-          </ul>
+        <div class="wchips"><span class="wchip">ガンマン</span><span class="wchip">廃棄物ゼロ</span><span class="wchip">近接リロード</span><span class="wchip">キル&amp;ラン</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/akita.webp" alt="Akita" loading="lazy"></div>
+          <div class="wname">Akita</div>
         </div>
-      </button>
+        <div class="wchips"><span class="wchip">ガンマン</span><span class="wchip">コンバットレディ</span><span class="wchip">Escalation （訳未確認）</span><span class="wchip">Lightspeed （訳未確認）</span></div>
+      </div>
     </div>
 
     <h3 class="op-faction-ttl">LMG</h3>
-    <div class="op-grid">
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">Sokol 545</div>
-        <div class="op-en">LMG</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>Lightweight <span class="tr-unk">（訳未確認）</span></li>
-            <li>Hip-infernd <span class="tr-unk">（訳未確認）</span></li>
-            <li>狙い撃ち</li>
-            <li>撃ち放題</li>
-          </ul>
+    <div class="wgrid">
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/sokol545.webp" alt="Sokol 545" loading="lazy"></div>
+          <div class="wname">Sokol 545</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">MK78</div>
-        <div class="op-en">LMG</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>コンバットレディ</li>
-            <li>リロード切替</li>
-            <li>反動削除</li>
-            <li>Hip-infernd <span class="tr-unk">（訳未確認）</span></li>
-          </ul>
+        <div class="wchips"><span class="wchip">Lightweight （訳未確認）</span><span class="wchip">Hip-infernd （訳未確認）</span><span class="wchip">狙い撃ち</span><span class="wchip">撃ち放題</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/mk78.webp" alt="MK78" loading="lazy"></div>
+          <div class="wname">MK78</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">XM325</div>
-        <div class="op-en">LMG</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>コンバットレディ</li>
-            <li>反動削除</li>
-            <li>Escalation <span class="tr-unk">（訳未確認）</span></li>
-            <li>Lightspeed <span class="tr-unk">（訳未確認）</span></li>
-          </ul>
+        <div class="wchips"><span class="wchip">コンバットレディ</span><span class="wchip">リロード切替</span><span class="wchip">反動削除</span><span class="wchip">Hip-infernd （訳未確認）</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/xm325.webp" alt="XM325" loading="lazy"></div>
+          <div class="wname">XM325</div>
         </div>
-      </button>
+        <div class="wchips"><span class="wchip">コンバットレディ</span><span class="wchip">反動削除</span><span class="wchip">Escalation （訳未確認）</span><span class="wchip">Lightspeed （訳未確認）</span></div>
+      </div>
     </div>
 
     <h3 class="op-faction-ttl">マークスマンライフル</h3>
-    <div class="op-grid">
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">KRS-7.62</div>
-        <div class="op-en">マークスマンライフル</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>炸裂弾</li>
-            <li>反動削除</li>
-            <li>LIFESTYLE</li>
-            <li>ウルトラライト</li>
-          </ul>
+    <div class="wgrid">
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/krs762.webp" alt="KRS-7.62" loading="lazy"></div>
+          <div class="wname">KRS-7.62</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">Swordfish A1</div>
-        <div class="op-en">マークスマンライフル</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>炸裂弾</li>
-            <li>リロード切替</li>
-            <li>反動削除</li>
-            <li>弾薬リチャージャー</li>
-          </ul>
-          <p class="wp-lbl box">エキゾボックス限定</p>
-          <ul class="wp-bonus">
-            <li>LIFESTYLE <span class="box-tag">box限定</span></li>
-            <li>ロングバースト <span class="box-tag">box限定</span></li>
-            <li>弾薬減少 <span class="box-tag">box限定</span></li>
-          </ul>
+        <div class="wchips"><span class="wchip">炸裂弾</span><span class="wchip">反動削除</span><span class="wchip">LIFESTYLE</span><span class="wchip">ウルトラライト</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/swordfisha1.webp" alt="Swordfish A1" loading="lazy"></div>
+          <div class="wname">Swordfish A1</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">M8A1</div>
-        <div class="op-en">マークスマンライフル</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>炸裂弾</li>
-            <li>反動削除</li>
-            <li>弾薬リチャージャー</li>
-            <li>撃ち放題</li>
-          </ul>
+        <div class="wchips"><span class="wchip">炸裂弾</span><span class="wchip">リロード切替</span><span class="wchip">反動削除</span><span class="wchip">弾薬リチャージャー</span><span class="wchip box">LIFESTYLE（箱からの入手限定）</span><span class="wchip box">ロングバースト（箱からの入手限定）</span><span class="wchip box">弾薬減少（箱からの入手限定）</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/m8a1.webp" alt="M8A1" loading="lazy"></div>
+          <div class="wname">M8A1</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">Warden 308</div>
-        <div class="op-en">マークスマンライフル</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>炸裂弾</li>
-            <li>反動削除</li>
-            <li>LIFESTYLE</li>
-            <li>ウルトラライト</li>
-          </ul>
+        <div class="wchips"><span class="wchip">炸裂弾</span><span class="wchip">反動削除</span><span class="wchip">弾薬リチャージャー</span><span class="wchip">撃ち放題</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/warden308.webp" alt="Warden 308" loading="lazy"></div>
+          <div class="wname">Warden 308</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">M34 Novaline</div>
-        <div class="op-en">マークスマンライフル</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>炸裂弾</li>
-            <li>反動削除</li>
-            <li>ウルトラライト</li>
-            <li>撃ち放題</li>
-          </ul>
+        <div class="wchips"><span class="wchip">炸裂弾</span><span class="wchip">反動削除</span><span class="wchip">LIFESTYLE</span><span class="wchip">ウルトラライト</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/m34novaline.webp" alt="M34 Novaline" loading="lazy"></div>
+          <div class="wname">M34 Novaline</div>
         </div>
-      </button>
+        <div class="wchips"><span class="wchip">炸裂弾</span><span class="wchip">反動削除</span><span class="wchip">ウルトラライト</span><span class="wchip">撃ち放題</span></div>
+      </div>
     </div>
 
     <h3 class="op-faction-ttl">スナイパーライフル</h3>
-    <div class="op-grid">
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">Strider 300</div>
-        <div class="op-en">スナイパーライフル</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>狙い撃ち</li>
-            <li>炸裂弾</li>
-            <li>コンバットレディ</li>
-            <li>廃棄物ゼロ</li>
-          </ul>
+    <div class="wgrid">
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/strider300.webp" alt="Strider 300" loading="lazy"></div>
+          <div class="wname">Strider 300</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">Hawker HX</div>
-        <div class="op-en">スナイパーライフル</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>狙い撃ち</li>
-            <li>炸裂弾</li>
-            <li>コンバットレディ</li>
-            <li>廃棄物ゼロ</li>
-          </ul>
+        <div class="wchips"><span class="wchip">狙い撃ち</span><span class="wchip">炸裂弾</span><span class="wchip">コンバットレディ</span><span class="wchip">廃棄物ゼロ</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/hawkerhx.webp" alt="Hawker HX" loading="lazy"></div>
+          <div class="wname">Hawker HX</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">VS Recon</div>
-        <div class="op-en">スナイパーライフル</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>狙い撃ち</li>
-            <li>炸裂弾</li>
-            <li>コンバットレディ</li>
-            <li>廃棄物ゼロ</li>
-          </ul>
+        <div class="wchips"><span class="wchip">狙い撃ち</span><span class="wchip">炸裂弾</span><span class="wchip">コンバットレディ</span><span class="wchip">廃棄物ゼロ</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/vsrecon.webp" alt="VS Recon" loading="lazy"></div>
+          <div class="wname">VS Recon</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">Shadow SK</div>
-        <div class="op-en">スナイパーライフル</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>狙い撃ち</li>
-            <li>炸裂弾</li>
-            <li>コンバットレディ</li>
-            <li>廃棄物ゼロ</li>
-          </ul>
+        <div class="wchips"><span class="wchip">狙い撃ち</span><span class="wchip">炸裂弾</span><span class="wchip">コンバットレディ</span><span class="wchip">廃棄物ゼロ</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/shadowsk.webp" alt="Shadow SK" loading="lazy"></div>
+          <div class="wname">Shadow SK</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">XR-3 Ion</div>
-        <div class="op-en">スナイパーライフル</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>狙い撃ち</li>
-            <li>炸裂弾</li>
-            <li>コンバットレディ</li>
-            <li>廃棄物ゼロ</li>
-          </ul>
+        <div class="wchips"><span class="wchip">狙い撃ち</span><span class="wchip">炸裂弾</span><span class="wchip">コンバットレディ</span><span class="wchip">廃棄物ゼロ</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/xr3ion.webp" alt="XR-3 Ion" loading="lazy"></div>
+          <div class="wname">XR-3 Ion</div>
         </div>
-      </button>
+        <div class="wchips"><span class="wchip">狙い撃ち</span><span class="wchip">炸裂弾</span><span class="wchip">コンバットレディ</span><span class="wchip">廃棄物ゼロ</span></div>
+      </div>
     </div>
 
     <h3 class="op-faction-ttl">ピストル</h3>
-    <div class="op-grid">
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">1911</div>
-        <div class="op-en">ピストル</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>ガンマン</li>
-            <li>ロングショット</li>
-            <li>近接リロード</li>
-            <li>Lightspeed <span class="tr-unk">（訳未確認）</span></li>
-          </ul>
-          <p class="wp-lbl box">エキゾボックス限定</p>
-          <ul class="wp-bonus">
-            <li>グレネード弾 <span class="box-tag">box限定</span></li>
-          </ul>
+    <div class="wgrid">
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/1911.webp" alt="1911" loading="lazy"></div>
+          <div class="wname">1911</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">Jager 45</div>
-        <div class="op-en">ピストル</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>ガンマン</li>
-            <li>ロングショット</li>
-            <li>近接リロード</li>
-            <li>Lightspeed <span class="tr-unk">（訳未確認）</span></li>
-          </ul>
+        <div class="wchips"><span class="wchip">ガンマン</span><span class="wchip">ロングショット</span><span class="wchip">近接リロード</span><span class="wchip">Lightspeed （訳未確認）</span><span class="wchip box">グレネード弾（箱からの入手限定）</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/jager45.webp" alt="Jager 45" loading="lazy"></div>
+          <div class="wname">Jager 45</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">Velox 5.7</div>
-        <div class="op-en">ピストル</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>ガンマン</li>
-            <li>ロングショット</li>
-            <li>Lightspeed <span class="tr-unk">（訳未確認）</span></li>
-            <li>ロングバースト</li>
-          </ul>
-          <p class="wp-lbl box">エキゾボックス限定</p>
-          <ul class="wp-bonus">
-            <li>デュアルVELOX 5.7 <span class="box-tag">box限定</span></li>
-          </ul>
+        <div class="wchips"><span class="wchip">ガンマン</span><span class="wchip">ロングショット</span><span class="wchip">近接リロード</span><span class="wchip">Lightspeed （訳未確認）</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/velox57.webp" alt="Velox 5.7" loading="lazy"></div>
+          <div class="wname">Velox 5.7</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">CODA9</div>
-        <div class="op-en">ピストル</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>ガンマン</li>
-            <li>ロングショット</li>
-            <li>近接リロード</li>
-            <li>Lightspeed <span class="tr-unk">（訳未確認）</span></li>
-          </ul>
+        <div class="wchips"><span class="wchip">ガンマン</span><span class="wchip">ロングショット</span><span class="wchip">Lightspeed （訳未確認）</span><span class="wchip">ロングバースト</span><span class="wchip box">デュアルVELOX 5.7（箱からの入手限定）</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/coda9.webp" alt="CODA9" loading="lazy"></div>
+          <div class="wname">CODA9</div>
         </div>
-      </button>
+        <div class="wchips"><span class="wchip">ガンマン</span><span class="wchip">ロングショット</span><span class="wchip">近接リロード</span><span class="wchip">Lightspeed （訳未確認）</span></div>
+      </div>
     </div>
 
     <h3 class="op-faction-ttl">ランチャー・特殊</h3>
-    <div class="op-grid">
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">AAROW 109</div>
-        <div class="op-en">ランチャー・特殊</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>リロード切替</li>
-            <li>廃棄物ゼロ</li>
-            <li>キル&amp;ラン</li>
-            <li>ウルトラライト</li>
-          </ul>
+    <div class="wgrid">
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/aarow109.webp" alt="AAROW 109" loading="lazy"></div>
+          <div class="wname">AAROW 109</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">A.R.C. M1</div>
-        <div class="op-en">ランチャー・特殊</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>リロード切替</li>
-            <li>廃棄物ゼロ</li>
-            <li>高速射撃</li>
-            <li>ウルトラライト</li>
-          </ul>
+        <div class="wchips"><span class="wchip">リロード切替</span><span class="wchip">廃棄物ゼロ</span><span class="wchip">キル&amp;ラン</span><span class="wchip">ウルトラライト</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/arcm1.webp" alt="A.R.C. M1" loading="lazy"></div>
+          <div class="wname">A.R.C. M1</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">GRIMHAWK</div>
-        <div class="op-en">ランチャー・特殊</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>リロード切替</li>
-            <li>キル&amp;ラン</li>
-            <li>Lightspeed <span class="tr-unk">（訳未確認）</span></li>
-            <li>弾薬リチャージャー</li>
-          </ul>
+        <div class="wchips"><span class="wchip">リロード切替</span><span class="wchip">廃棄物ゼロ</span><span class="wchip">高速射撃</span><span class="wchip">ウルトラライト</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/grimhawk.webp" alt="GRIMHAWK" loading="lazy"></div>
+          <div class="wname">GRIMHAWK</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">SIREN</div>
-        <div class="op-en">ランチャー・特殊</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>廃棄物ゼロ</li>
-            <li>キル&amp;ラン</li>
-            <li>Lightspeed <span class="tr-unk">（訳未確認）</span></li>
-            <li>弾薬リチャージャー</li>
-          </ul>
+        <div class="wchips"><span class="wchip">リロード切替</span><span class="wchip">キル&amp;ラン</span><span class="wchip">Lightspeed （訳未確認）</span><span class="wchip">弾薬リチャージャー</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/siren.webp" alt="SIREN" loading="lazy"></div>
+          <div class="wname">SIREN</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">GDL HAVOC</div>
-        <div class="op-en">ランチャー・特殊</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>廃棄物ゼロ</li>
-            <li>キル&amp;ラン</li>
-            <li>Lightspeed <span class="tr-unk">（訳未確認）</span></li>
-            <li>弾薬リチャージャー</li>
-          </ul>
+        <div class="wchips"><span class="wchip">廃棄物ゼロ</span><span class="wchip">キル&amp;ラン</span><span class="wchip">Lightspeed （訳未確認）</span><span class="wchip">弾薬リチャージャー</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/gdlhavoc.webp" alt="GDL HAVOC" loading="lazy"></div>
+          <div class="wname">GDL HAVOC</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">NX RAVAGER</div>
-        <div class="op-en">ランチャー・特殊</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>コンバットレディ</li>
-            <li>廃棄物ゼロ</li>
-            <li>ウルトラライト</li>
-            <li>弾薬リチャージャー</li>
-          </ul>
+        <div class="wchips"><span class="wchip">廃棄物ゼロ</span><span class="wchip">キル&amp;ラン</span><span class="wchip">Lightspeed （訳未確認）</span><span class="wchip">弾薬リチャージャー</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/nxravager.webp" alt="NX RAVAGER" loading="lazy"></div>
+          <div class="wname">NX RAVAGER</div>
         </div>
-      </button>
+        <div class="wchips"><span class="wchip">コンバットレディ</span><span class="wchip">廃棄物ゼロ</span><span class="wchip">ウルトラライト</span><span class="wchip">弾薬リチャージャー</span></div>
+      </div>
     </div>
 
     <h3 class="op-faction-ttl">近接武器</h3>
-    <div class="op-grid">
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">Executioner&#x27;s Duet</div>
-        <div class="op-en">近接武器</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>スラッシャー</li>
-            <li>Lightspeed <span class="tr-unk">（訳未確認）</span></li>
-            <li>キル&amp;ラン</li>
-          </ul>
+    <div class="wgrid">
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><span class="wph">🔫</span></div>
+          <div class="wname">Executioner&#x27;s Duet</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">KATANA</div>
-        <div class="op-en">近接武器</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>スラッシャー</li>
-            <li>Lightspeed <span class="tr-unk">（訳未確認）</span></li>
-            <li>キル&amp;ラン</li>
-          </ul>
-          <p class="wp-lbl box">エキゾボックス限定</p>
-          <ul class="wp-bonus">
-            <li>パリー <span class="box-tag">box限定</span></li>
-          </ul>
+        <div class="wchips"><span class="wchip">スラッシャー</span><span class="wchip">Lightspeed （訳未確認）</span><span class="wchip">キル&amp;ラン</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><span class="wph">🔫</span></div>
+          <div class="wname">KATANA</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">H311-SAW</div>
-        <div class="op-en">近接武器</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>スラッシャー</li>
-            <li>Lightspeed <span class="tr-unk">（訳未確認）</span></li>
-            <li>キル&amp;ラン</li>
-          </ul>
+        <div class="wchips"><span class="wchip">スラッシャー</span><span class="wchip">Lightspeed （訳未確認）</span><span class="wchip">キル&amp;ラン</span><span class="wchip box">パリー（箱からの入手限定）</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><span class="wph">🔫</span></div>
+          <div class="wname">H311-SAW</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">Ballistic knife</div>
-        <div class="op-en">近接武器</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>スラッシャー</li>
-            <li>Lightspeed <span class="tr-unk">（訳未確認）</span></li>
-            <li>キル&amp;ラン</li>
-          </ul>
+        <div class="wchips"><span class="wchip">スラッシャー</span><span class="wchip">Lightspeed （訳未確認）</span><span class="wchip">キル&amp;ラン</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><span class="wph">🔫</span></div>
+          <div class="wname">Ballistic knife</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">Knife</div>
-        <div class="op-en">近接武器</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>スラッシャー</li>
-            <li>Lightspeed <span class="tr-unk">（訳未確認）</span></li>
-            <li>キル&amp;ラン</li>
-          </ul>
+        <div class="wchips"><span class="wchip">スラッシャー</span><span class="wchip">Lightspeed （訳未確認）</span><span class="wchip">キル&amp;ラン</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><span class="wph">🔫</span></div>
+          <div class="wname">Knife</div>
         </div>
-      </button>
-      <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🔫</div>
-        <div class="op-name">Flatline MK.II</div>
-        <div class="op-en">近接武器</div>
-        <div class="enemy-detail" hidden>
-          <p class="wp-lbl">付くボーナス</p>
-          <ul class="wp-bonus">
-            <li>スラッシャー</li>
-            <li>Lightspeed <span class="tr-unk">（訳未確認）</span></li>
-            <li>キル&amp;ラン</li>
-          </ul>
+        <div class="wchips"><span class="wchip">スラッシャー</span><span class="wchip">Lightspeed （訳未確認）</span><span class="wchip">キル&amp;ラン</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><span class="wph">🔫</span></div>
+          <div class="wname">Flatline MK.II</div>
         </div>
-      </button>
+        <div class="wchips"><span class="wchip">スラッシャー</span><span class="wchip">Lightspeed （訳未確認）</span><span class="wchip">キル&amp;ラン</span></div>
+      </div>
     </div>
-
     <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
   </section>
 
@@ -2073,7 +1737,7 @@
        3. ユーティリティボーナス（汎用）
        ============================================ -->
   <section id="utility-bonus">
-    <h2>7. ユーティリティボーナス（汎用）</h2>
+    <h2>9. ユーティリティボーナス（汎用）</h2>
     <p class="lead">属性に関係なく出現する汎用ボーナス。アイコンごとにグループ分けされている。</p>
 
     <h3>🖐️ 手（機動力系）</h3>
@@ -2135,12 +1799,12 @@
       <div class="effect-row">
         <div class="effect-icon-box emoji">💀</div>
         <div class="effect-name"><span class="jp">グレネード弾</span></div>
-        <div class="effect-desc">弾丸が爆発し、追加の範囲ダメージを与える <em>(1911のみ確認・仮説段階)</em></div>
+        <div class="effect-desc">弾丸が爆発し、追加の範囲ダメージを与える <em>(炸裂弾とは別のユーティリティボーナス。1911／REBOOTで確認)</em></div>
       </div>
       <div class="effect-row">
         <div class="effect-icon-box emoji">💀</div>
         <div class="effect-name"><span class="jp">炸裂弾</span><span class="en">Explosive Bullets（推定）</span></div>
-        <div class="effect-desc">弾丸が爆発し、追加の範囲ダメージを与える <em>(グレネード弾と説明文が同一。PULSEBREACHのShock属性ドロップ時でも確認され、汎用枠として存在することを実証)</em></div>
+        <div class="effect-desc">弾丸が爆発し、追加の範囲ダメージを与える <em>(説明文はグレネード弾と同じだが、両者は別のユーティリティボーナス。炸裂弾はPULSEBREACH等でも確認され汎用枠として存在)</em></div>
       </div>
       <div class="effect-row">
         <div class="effect-icon-box emoji">💀</div>
@@ -2217,35 +1881,35 @@
        4. 属性一致ユーティリティボーナス
        ============================================ -->
   <section id="affinity-bonus">
-    <h2>8. 属性一致ユーティリティボーナス（推定訳）</h2>
+    <h2>10. 属性一致ユーティリティボーナス（推定訳）</h2>
     <p class="lead"><strong>【謎が解明・海外wiki情報】</strong>「Affinity Exotic」（対応する属性で発見された個体）の判定は<strong>発見時点のRounds属性で決まり、ファブリケーターでのリロール後も変わらない</strong>。Affinity Exoticは対応する属性一致ボーナスを<strong>確率で</strong>引く（保証ではない）ため、同じ個体でも出たり出なかったりする。これらのボーナスの多くは標準ユーティリティボーナスより弱いとされ、強さ目的ではなくレア度・見た目狙いで集めるものとされている。</p>
     <div class="note">
-      <strong>日本語名は未確認のため、以下は英語からの推定訳です。</strong> 実機確認が最優先タスク。
+      ボーナス名は<strong>英語／日本語</strong>で併記しています。<strong>日本語名が未確認のものは（未確認）</strong>と表記しています。
     </div>
 
     <div class="table-scroll">
       <table>
         <thead>
-          <tr><th>属性</th><th>ボーナス名(英語)</th><th>効果（日本語名は一部未確認）</th></tr>
+          <tr><th>属性</th><th>ボーナス名（英語／日本語）</th><th>効果</th></tr>
         </thead>
         <tbody>
-          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/frost.png" alt="凍結弾アイコン">凍結弾</span></td><td data-label="英語">Flash Freeze</td><td data-label="効果">凍結弾が複数の敵に同時発動することがある</td></tr>
-          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/frost.png" alt="凍結弾アイコン">凍結弾</span></td><td data-label="英語">Ice Cloud</td><td data-label="推定訳">氷雲 <strong>(確定)</strong> — 凍結した敵をキルすると、敵の動きを鈍らせる雲が残ることがある。ZEOTROPE(ショットガン)で凍結弾Roundsとセットで現地ドロップした実例で確認（属性一致ボーナス実例第6号）</td></tr>
-          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/graviton.png" alt="重力子弾アイコン">重力子弾</span></td><td data-label="英語">Black Hole</td><td data-label="推定訳">ブラックホール <strong>(確定)</strong> — 重力子弾がブラックホールを作り出して敵を吸い込んだ後、近くの生存者達をテレポートさせる。KILONOVA(サブマシンガン)で重力子弾Roundsとセットで現地ドロップした実例で確認（属性一致ボーナス実例第2号）</td></tr>
-          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/graviton.png" alt="重力子弾アイコン">重力子弾</span></td><td data-label="英語">Warp</td><td data-label="効果">ワープした敵がダメージを与え、周囲の敵を巻き込む</td></tr>
-          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/incendiary.png" alt="熱子弾アイコン">熱子弾</span></td><td data-label="英語">Firebomb</td><td data-label="効果">燃焼中の敵を倒すと爆発する</td></tr>
-          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/incendiary.png" alt="熱子弾アイコン">熱子弾</span></td><td data-label="英語">Petrol</td><td data-label="効果">熱子弾が地面に炎だまりを残す</td></tr>
-          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/mortar.png" alt="花閃弾アイコン">花閃弾</span></td><td data-label="英語">Fire Wheel</td><td data-label="効果">敵の周囲を回転する火の輪を2つ生成する</td></tr>
-          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/mortar.png" alt="花閃弾アイコン">花閃弾</span></td><td data-label="英語">Starburst</td><td data-label="推定訳">スターバースト <strong>(確定)</strong> — 花閃弾が爆発し、敵にフレアを放つ。DEFRAGで花閃弾Roundsとセットで現地ドロップした実例で確認（属性一致ボーナス実例第3号）</td></tr>
-          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/neuro-disruption.png" alt="崩脳弾アイコン">崩脳弾</span></td><td data-label="英語">Mass Disruption</td><td data-label="効果">大規模妨害 <strong>(確定)</strong> — 味方になっている敵が一定確率で他の敵を味方につける。NEUROWALL(Warden 308)のファブリケーター選択画面で確認（属性一致ボーナス実例第7号）</td></tr>
-          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/neuro-disruption.png" alt="崩脳弾アイコン">崩脳弾</span></td><td data-label="英語">Neural Attraction</td><td data-label="推定訳">神経の引力 <strong>(確定)</strong> — 味方になっている敵が他の敵の注意を一時的にそらす。NEUROWALL(Warden 308)で確認（属性一致ボーナス実例第5号）。<strong>このドロップの実際のRounds属性は電子弾(Shock)で崩脳弾ではなかったが、フレーバーテキスト上の属性(崩脳弾)に対応するボーナスが出現した</strong></td></tr>
-          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/photon.png" alt="光子弾アイコン">光子弾</span></td><td data-label="英語">Blessing</td><td data-label="効果">ヒールグリフに一時的なボーナス体力が付くことがある</td></tr>
-          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/photon.png" alt="光子弾アイコン">光子弾</span></td><td data-label="英語">Dual Action</td><td data-label="推定訳">デュアルアクション <strong>(確定)</strong> — ヒールグリフ消費で体力自動回復が一時的に向上。光子弾Roundsとセットで現地ドロップした実例で確認（属性一致ボーナス実例第1号）</td></tr>
-          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/shock.png" alt="電子弾アイコン">電子弾</span></td><td data-label="英語">Chain Lightning</td><td data-label="効果">スタンした敵が他の敵にもスタンを伝播させる <em>(メタ的に強いと言われる)</em></td></tr>
-          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/shock.png" alt="電子弾アイコン">電子弾</span></td><td data-label="英語">Lightning Strike</td><td data-label="効果">上空から雷が落ち、敵をスタンさせる</td></tr>
-          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/shrapnel.png" alt="榴散弾アイコン">榴散弾</span></td><td data-label="英語">Blast Chain</td><td data-label="推定訳">ブラストチェイン <strong>(確定)</strong> — アーマーを破壊する爆発が発生すると、追加の爆発が3回連続で発生。KILLSWITCH(AK-27)で榴散弾Roundsとセットで現地ドロップした実例で確認（属性一致ボーナス実例第4号）</td></tr>
-          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/shrapnel.png" alt="榴散弾アイコン">榴散弾</span></td><td data-label="英語">Blast Shield</td><td data-label="効果">榴散弾が複数の敵に命中すると、被ダメージが軽減される</td></tr>
-          <tr><td data-label="属性">全属性共通</td><td data-label="英語">Big Game</td><td data-label="効果">対応する属性の効果がエリートエネミーにも発動するようになる（属性ごとに個別のBig Gameが存在）。<strong>光子弾版は確定・実機確認済み</strong> — 効果:「光子弾がエリートエネミーに発動可能」。MALSPIKE(ピストル)で光子弾Roundsとセットで現地ドロップした実例で確認（属性一致ボーナスの実例第8号）</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/frost.png" alt="凍結弾アイコン">凍結弾</span></td><td data-label="ボーナス名">Flash Freeze<br>（未確認）</td><td data-label="効果">凍結弾が複数の敵に同時発動することがある（未確認）</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/frost.png" alt="凍結弾アイコン">凍結弾</span></td><td data-label="ボーナス名">Ice Cloud<br>氷雲</td><td data-label="効果">凍結した敵をキルすると、敵の動きを鈍らせる雲が残ることがある</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/graviton.png" alt="重力子弾アイコン">重力子弾</span></td><td data-label="ボーナス名">Black Hole<br>ブラックホール</td><td data-label="効果">重力子弾がブラックホールを作り出して敵を吸い込んだ後、近くの生存者達をテレポートさせる</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/graviton.png" alt="重力子弾アイコン">重力子弾</span></td><td data-label="ボーナス名">Warp<br>（未確認）</td><td data-label="効果">ワープした敵がダメージを与え、周囲の敵を巻き込む（未確認）</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/incendiary.png" alt="熱子弾アイコン">熱子弾</span></td><td data-label="ボーナス名">Firebomb<br>（未確認）</td><td data-label="効果">燃焼中の敵を倒すと爆発する（未確認）</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/incendiary.png" alt="熱子弾アイコン">熱子弾</span></td><td data-label="ボーナス名">Petrol<br>（未確認）</td><td data-label="効果">熱子弾が地面に炎だまりを残す（未確認）</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/mortar.png" alt="花閃弾アイコン">花閃弾</span></td><td data-label="ボーナス名">Fire Wheel<br>（未確認）</td><td data-label="効果">敵の周囲を回転する火の輪を2つ生成する（未確認）</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/mortar.png" alt="花閃弾アイコン">花閃弾</span></td><td data-label="ボーナス名">Starburst<br>スターバースト</td><td data-label="効果">花閃弾が爆発し、敵にフレアを放つ</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/neuro-disruption.png" alt="崩脳弾アイコン">崩脳弾</span></td><td data-label="ボーナス名">Mass Disruption<br>大規模妨害</td><td data-label="効果">味方になっている敵が一定確率で他の敵を味方につける</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/neuro-disruption.png" alt="崩脳弾アイコン">崩脳弾</span></td><td data-label="ボーナス名">Neural Attraction<br>神経の引力</td><td data-label="効果">味方になっている敵が他の敵の注意を一時的にそらす</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/photon.png" alt="光子弾アイコン">光子弾</span></td><td data-label="ボーナス名">Blessing<br>（未確認）</td><td data-label="効果">ヒールグリフに一時的なボーナス体力が付くことがある（未確認）</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/photon.png" alt="光子弾アイコン">光子弾</span></td><td data-label="ボーナス名">Dual Action<br>デュアルアクション</td><td data-label="効果">ヒールグリフ消費で体力自動回復が一時的に向上</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/shock.png" alt="電子弾アイコン">電子弾</span></td><td data-label="ボーナス名">Chain Lightning<br>（未確認）</td><td data-label="効果">スタンした敵が他の敵にもスタンを伝播させる（未確認）</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/shock.png" alt="電子弾アイコン">電子弾</span></td><td data-label="ボーナス名">Lightning Strike<br>（未確認）</td><td data-label="効果">上空から雷が落ち、敵をスタンさせる（未確認）</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/shrapnel.png" alt="榴散弾アイコン">榴散弾</span></td><td data-label="ボーナス名">Blast Chain<br>ブラストチェイン</td><td data-label="効果">アーマーを破壊する爆発が発生すると、追加の爆発が3回連続で発生</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/shrapnel.png" alt="榴散弾アイコン">榴散弾</span></td><td data-label="ボーナス名">Blast Shield<br>（未確認）</td><td data-label="効果">榴散弾が複数の敵に命中すると、被ダメージが軽減される（未確認）</td></tr>
+          <tr><td data-label="属性">全属性共通</td><td data-label="ボーナス名">Big Game<br>ビッグゲーム</td><td data-label="効果">対応する属性の効果がエリートエネミーにも発動するようになる（属性ごとに個別のBig Gameが存在）</td></tr>
         </tbody>
       </table>
     </div>
@@ -2256,10 +1920,8 @@
        2. 名前付きエキゾチック武器
        ============================================ -->
   <section id="named-exotics">
-    <h2>9. 名前付きエキゾチック武器と属性(Affinity)</h2>
-    <p class="lead">各武器固有のエキゾチック名と対応する属性(Rounds)。属性一致でドロップすると専用のユーティリティボーナスが追加される。</p>
-    <div class="note">日本語名は現時点で未確認（<a href="#todo">要検証タスク参照</a>）。</div>
-    <div class="note">⚠️【確定】下表の属性(Rounds)はフレーバーテキストに記載された想定属性。実際のドロップ時の属性は、フレーバーテキストとは無関係にドロップごとにランダムに決定される。KILONOVA（3種）、BACKDRIVE（2種）、KILLSWITCH（榴散弾/光子弾の2種）、HYPERSURGE（凍結弾/熱子弾の2種）、REBOOT（凍結弾/榴散弾など3種）のように、<strong>同一武器でもドロップごとに異なる属性が出ることが複数の武器で実証</strong>されている（2026/07時点）。表中の「一致」表記は、たまたまその回のドロップがフレーバー通りだっただけで、その武器の属性が固定されていることを意味しない。</div>
+    <h2>11. 名前付きエキゾチック武器</h2>
+    <p class="lead">エンドゲームに存在する名前付きエキゾチック武器と、その元になる武器の一覧です。属性(Rounds)はドロップごとにランダムに決まるため、この表では割愛しています。</p>
 
     <div class="table-scroll">
       <table>
@@ -2267,118 +1929,39 @@
           <tr>
             <th>エキゾチック名</th>
             <th>武器名</th>
-            <th>属性(英語)</th>
-            <th>属性(日本語)</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td data-label="エキゾチック名">Flashburst</td><td data-label="武器名">M8A1</td><td data-label="属性(英語)">Frost</td><td data-label="属性(日本語)">凍結弾（フレーバー）／実際は花閃弾 <strong>(不一致・実機確認済み)</strong></td></tr>
-          <tr><td data-label="エキゾチック名">Zeotrope</td><td data-label="武器名">Echo 12</td><td data-label="属性(英語)">Frost</td><td data-label="属性(日本語)">凍結弾 <strong>(一致・実機確認済み)</strong></td></tr>
-          <tr><td data-label="エキゾチック名">Continuum</td><td data-label="武器名">Hawker HX</td><td data-label="属性(英語)">Graviton</td><td data-label="属性(日本語)">重力子弾（フレーバー）／実際は電子弾 <strong>(不一致・実機確認済み)</strong></td></tr>
-          <tr><td data-label="エキゾチック名">Torrent</td><td data-label="武器名">M15 Mod 0</td><td data-label="属性(英語)">Graviton</td><td data-label="属性(日本語)">重力子弾</td></tr>
-          <tr><td data-label="エキゾチック名">Collateral</td><td data-label="武器名">EGRT-17</td><td data-label="属性(英語)">Incendiary</td><td data-label="属性(日本語)">熱子弾（フレーバー）／実際は榴散弾 <strong>(不一致・実機確認済み)</strong></td></tr>
-          <tr><td data-label="エキゾチック名">Overcharge</td><td data-label="武器名">M10 Breacher（表示未確認）</td><td data-label="属性(英語)">Incendiary</td><td data-label="属性(日本語)">熱子弾 <strong>(一致・実機確認済み)</strong></td></tr>
-          <tr><td data-label="エキゾチック名">Criticality</td><td data-label="武器名">A.R.C. M1</td><td data-label="属性(英語)">Mortar</td><td data-label="属性(日本語)">花閃弾（フレーバー）／実際は熱子弾 <strong>(不一致・実機確認済み)</strong></td></tr>
-          <tr><td data-label="エキゾチック名">Redline</td><td data-label="武器名">XM325</td><td data-label="属性(英語)">Mortar</td><td data-label="属性(日本語)">花閃弾</td></tr>
-          <tr><td data-label="エキゾチック名">Ghostmind</td><td data-label="武器名">VS Recon</td><td data-label="属性(英語)">Neuro-Disruption</td><td data-label="属性(日本語)">崩脳弾（フレーバー）／実際は光子弾 <strong>(不一致・実機確認済み)</strong></td></tr>
-          <tr><td data-label="エキゾチック名">Neurowall</td><td data-label="武器名">Warden 308</td><td data-label="属性(英語)">Neuro-Disruption</td><td data-label="属性(日本語)">崩脳弾（フレーバー、実機確認）／実際のRoundsは電子弾 <strong>(不一致だが属性一致ボーナスは出現)</strong></td></tr>
-          <tr><td data-label="エキゾチック名">Malspike <em>(表記:MALSPIKE)</em></td><td data-label="武器名">VELOX 5.7</td><td data-label="属性(英語)">Photon</td><td data-label="属性(日本語)">光子弾 <strong>(一致・実機確認済み)</strong></td></tr>
-          <tr><td data-label="エキゾチック名">Swarmforge</td><td data-label="武器名">MPC-25</td><td data-label="属性(英語)">Photon</td><td data-label="属性(日本語)">光子弾（フレーバー）／実際は凍結弾 <strong>(不一致・実機確認済み)</strong></td></tr>
-          <tr><td data-label="エキゾチック名">Backdrive</td><td data-label="武器名">Dravec 45</td><td data-label="属性(英語)">Shock</td><td data-label="属性(日本語)">電子弾（フレーバー）／実際は花閃弾 <strong>(不一致・実機確認済み)</strong></td></tr>
-          <tr><td data-label="エキゾチック名">Hypersurge</td><td data-label="武器名">Sokol 545</td><td data-label="属性(英語)">Shock</td><td data-label="属性(日本語)">電子弾（フレーバー）／複数回ドロップで確認：①凍結弾 ②熱子弾。いずれも不一致 <strong>(Roundsはランダムと確定)</strong></td></tr>
-          <tr><td data-label="エキゾチック名">Reboot</td><td data-label="武器名">1911</td><td data-label="属性(英語)">Shock</td><td data-label="属性(日本語)">電子弾（フレーバー）／複数回ドロップで確認：①属性不明+グレネード弾 ②凍結弾+グレネード弾 ③榴散弾+高速。いずれも不一致 <strong>(Roundsはランダムと確定)</strong></td></tr>
-          <tr><td data-label="エキゾチック名">Barrage</td><td data-label="武器名">Razor 9mm</td><td data-label="属性(英語)">Shrapnel</td><td data-label="属性(日本語)">榴散弾</td></tr>
-          <tr><td data-label="エキゾチック名">Killswitch</td><td data-label="武器名">AK-27</td><td data-label="属性(英語)">Shrapnel</td><td data-label="属性(日本語)">榴散弾（フレーバー）／複数回ドロップで確認：①榴散弾(一致) ②光子弾(不一致) <strong>(Roundsはランダムと確定)</strong></td></tr>
-          <tr><td data-label="エキゾチック名">Pulsebreach</td><td data-label="武器名">Swordfish A1</td><td data-label="属性(英語)">Shrapnel</td><td data-label="属性(日本語)">榴散弾</td></tr>
-          <tr><td data-label="エキゾチック名">Cryoshear <em>(表記:CRYOSHEAR)</em></td><td data-label="武器名">KATANA（近接武器）</td><td data-label="属性(英語)">Graviton <em>(ドロップ時のランダム効果)</em></td><td data-label="属性(日本語)">重力子弾 <em>(現地ドロップのため変動あり)</em></td></tr>
-          <tr><td data-label="エキゾチック名">DEFRAG（表記のまま）</td><td data-label="武器名">MK35 ISR<em>(海外wikiで確認)</em></td><td data-label="属性(英語)">Mortar</td><td data-label="属性(日本語)">花閃弾</td></tr>
-          <tr><td data-label="エキゾチック名">Kilonova</td><td data-label="武器名">VST<em>(海外wikiで確認)</em></td><td data-label="属性(英語)">Graviton</td><td data-label="属性(日本語)">重力子弾 <em>(実機確認済み)</em></td></tr>
-          <tr><td data-label="エキゾチック名">Infraradiance</td><td data-label="武器名">SG-12<em>(海外wikiで確認)</em></td><td data-label="属性(英語)">Photon</td><td data-label="属性(日本語)">光子弾（フレーバー）／実際の属性は不明 <strong>(実機確認済み・表示バグあり・具体的属性は未記録)</strong></td></tr>
+          <tr><td data-label="エキゾチック名">Flashburst</td><td data-label="武器名">M8A1</td></tr>
+          <tr><td data-label="エキゾチック名">Zeotrope</td><td data-label="武器名">Echo 12</td></tr>
+          <tr><td data-label="エキゾチック名">Continuum</td><td data-label="武器名">Hawker HX</td></tr>
+          <tr><td data-label="エキゾチック名">Torrent</td><td data-label="武器名">M15 Mod 0</td></tr>
+          <tr><td data-label="エキゾチック名">Collateral</td><td data-label="武器名">EGRT-17</td></tr>
+          <tr><td data-label="エキゾチック名">Overcharge</td><td data-label="武器名">M10 Breacher（未確認）</td></tr>
+          <tr><td data-label="エキゾチック名">Criticality</td><td data-label="武器名">A.R.C. M1</td></tr>
+          <tr><td data-label="エキゾチック名">Redline</td><td data-label="武器名">XM325</td></tr>
+          <tr><td data-label="エキゾチック名">Ghostmind</td><td data-label="武器名">VS Recon</td></tr>
+          <tr><td data-label="エキゾチック名">Neurowall</td><td data-label="武器名">Warden 308</td></tr>
+          <tr><td data-label="エキゾチック名">Malspike <em>(表記:MALSPIKE)</em></td><td data-label="武器名">VELOX 5.7</td></tr>
+          <tr><td data-label="エキゾチック名">Swarmforge</td><td data-label="武器名">MPC-25</td></tr>
+          <tr><td data-label="エキゾチック名">Backdrive</td><td data-label="武器名">Dravec 45</td></tr>
+          <tr><td data-label="エキゾチック名">Hypersurge</td><td data-label="武器名">Sokol 545</td></tr>
+          <tr><td data-label="エキゾチック名">Reboot</td><td data-label="武器名">1911</td></tr>
+          <tr><td data-label="エキゾチック名">Barrage</td><td data-label="武器名">Razor 9mm</td></tr>
+          <tr><td data-label="エキゾチック名">Killswitch</td><td data-label="武器名">AK-27</td></tr>
+          <tr><td data-label="エキゾチック名">Pulsebreach</td><td data-label="武器名">Swordfish A1</td></tr>
+          <tr><td data-label="エキゾチック名">Cryoshear <em>(表記:CRYOSHEAR)</em></td><td data-label="武器名">KATANA（近接武器）</td></tr>
+          <tr><td data-label="エキゾチック名">DEFRAG（表記のまま）</td><td data-label="武器名">MK35 ISR（未確認）</td></tr>
+          <tr><td data-label="エキゾチック名">Kilonova</td><td data-label="武器名">VST（未確認）</td></tr>
+          <tr><td data-label="エキゾチック名">Infraradiance</td><td data-label="武器名">SG-12（未確認）</td></tr>
         </tbody>
       </table>
     </div>
 
-    <div class="note">
-      <strong>ルール：</strong> Fabricatorでアップグレードした自作エキゾチックには属性一致ボーナスは付かない。Exotic Weapon Caseから出た名前付きエキゾチックのみ対象。
-    </div>
-    <div class="note">
-      <strong>確認済み：</strong> 武器名・エキゾチック名は日本語版でも翻訳されず英語/ローマ字表記のまま（MALSPIKE / VELOX 5.7で確認）。フレーバーテキストも付く。例:「小型ながら最大火力を引き出すよう改造されたバーストピストル。光子弾との相性が良い」
-    </div>
-    <div class="note">
-      <strong>確認済み（仕様）：</strong> 現地入手のエキゾチック銃器・武器は、付与されているRounds効果が武器のフレーバーテキストと一致しないことがよくある。CRYOSHEAR(KATANA)はフレーバーで「凍結弾との相性が良い」とあるが実際は重力子弾が付与されていた。ランダムに決定される仕様と考えられる（CRYOSHEAR固有の不具合ではなく既知の挙動）。なお2026/07、公式情報でも「Melee weapon cold-forged into an unstoppable force. Affinity for Frost Rounds.」と記載されており、フレーバーテキスト側の属性（凍結弾）自体は公式に裏付けられた。
-    </div>
-    <div class="note">
-      <strong>新規発見：</strong> DEFRAG・Kilonova・Infraradianceは元のリスト(18種)には無い新しいエキゾチック。シーズン04の公式パッチノート（2026/06/03・6/25 Reloaded）で追加が確認された。DEFRAGの武器カテゴリ表示は「アサルトライフル」（実機で完全表示を確認済み）。<strong>属性(Rounds)は公式情報でMortar(花閃弾)と確認済み</strong>（公式フレーバーテキスト:「Full-auto assault rifle augmented for extreme accuracy. Affinity for Mortar Rounds.」）。ただし具体的な武器モデル名は未確定。ユーティリティボーナスは「コンバットレディ」を確認。<strong>実機で花閃弾(Mortar)Roundsを伴うドロップを確認済み。フレーバーテキストと一致</strong>。属性一致ボーナス「スターバースト」（効果:「花閃弾が爆発し、敵にフレアを放つ」）も同時に付与されていた（属性一致ボーナスの実例第3号）。<strong>Kilonova</strong>（サブマシンガン、公式フレーバーテキスト:「Full-auto submachine gun enhanced for mobility and close-quarters power. Affinity for Graviton Rounds.」）は<strong>実機で3回のドロップを確認、毎回異なる属性</strong>：①重力子弾(Graviton)+ブラックホール（フレーバー通り・属性一致ボーナス実例第2号）②花閃弾(Mortar)+ショットガニフィケーター（効果:「武器の弾が拡散するようになる」）③崩脳弾(Neuro-Disruption)+ガンマン（効果:「腰だめ撃ち時のばらつきと反動が大幅に向上」）。同一武器で3種の異なる属性が確認されたことで、Roundsはドロップごとに独立してランダム決定される仕様である可能性が非常に高いと言える。Infraradiance（ショットガン、公式フレーバーテキスト:「Semi-auto shotgun altered for non-stop assault and aggression. Affinity for Photon Rounds.」）は属性(Rounds)は公式確認済み。実機ドロップも確認済みだが、表示バグがあり、ドロップ時に付与されていた具体的な属性の種類までは未記録。武器モデル名は未確定。
-    </div>
-    <div class="note">
-      <strong>実証済み：</strong> PULSEBREACH(Swordfish A1)で複数回ドロップを確認（崩脳弾+弾薬減少／電子弾+炸裂弾）。炸裂弾がShrapnel以外の属性でも出現したことから、1911専用の「グレネード弾」とは別に、炸裂弾は汎用枠として複数の武器に出現することが実証された。
-    </div>
-    <div class="note">
-      <strong>SWARMFORGE(MPC-25)：</strong> 凍結弾(Frost)+近接リロードのドロップを確認。本来の属性は光子弾(Photon)のはずだが、現地ドロップのRoundsランダム仕様の追加実例となった。
-    </div>
-    <div class="note">
-      <strong>REBOOT(1911)：</strong> グレネード弾ボーナスのドロップを確認。実際のRounds属性は本来のフレーバー(電子弾/Shock)とは異なっていた（不一致）ことは判明しているが、具体的にどの属性だったかは未記録。
-    </div>
-    <div class="note">
-      <strong>REBOOT(1911) 追加ドロップ実例：</strong> 凍結弾(Frost)+グレネード弾のドロップを確認（上記とは別タイミングの実例）。本来の属性は電子弾(Shock)のはずだが、現地ドロップのRoundsランダム仕様の追加実例となった。
-    </div>
-    <div class="note">
-      <strong>REBOOT(1911) 3回目のドロップ実例：</strong> 榴散弾(Shrapnel)+高速のドロップも確認。同一武器で3種の異なる属性が確認されたことになる。
-    </div>
-    <div class="note">
-      <strong>OVERCHARGE(ショットガン)：</strong> 熱子弾(Incendiary)+近接リロードのドロップを確認。本来の属性通りで一致（Killswitch/Kilonova/DEFRAGに続く一致例）。武器名「M10 Breacher」の実機表示は、この時点ではまだ別画面（武器詳細/インベントリ等）で確認できていない（要継続確認）。
-    </div>
-    <div class="note">
-      <strong>KILLSWITCH(AK-27)：</strong> 榴散弾+撃ち放題のドロップを確認（属性通り）。武器カテゴリ表示は「レトライフル」（アサルトライフルの表示が画面端で切れている可能性あり）。
-    </div>
-    <div class="note">
-      <strong>KILLSWITCH(AK-27) 追加ドロップ実例：</strong> 光子弾(Photon)+狙い撃ち(Sharpshooter)のドロップも確認。本来の属性(Shrapnel)とは不一致で、同一武器で2種の異なる属性が確認されたことになる。
-    </div>
-    <div class="note">
-      <strong>BARRAGE(Razor 9mm)：</strong> 崩脳弾+高速射撃のドロップを確認。本来の属性は榴散弾のはずだが、現地ドロップのRoundsランダム仕様の追加実例となった。武器カテゴリ表示は「プマシンガン」（サブマシンガンの表示が画面端で切れている可能性あり）。
-    </div>
-    <div class="note">
-      <strong>BACKDRIVE(Dravec 45)：</strong> 花閃弾(Mortar)+ロングショットのドロップを確認。本来の属性は電子弾(Shock)のはずだが、現地ドロップのRoundsランダム仕様の追加実例となった。武器カテゴリ表示は「フマシンガン」（サブマシンガンの表示が画面端で切れている可能性あり）。
-    </div>
-    <div class="note">
-      <strong>CRITICALITY(A.R.C. M1)：</strong> 熱子弾(Incendiary)+ウルトラライトのドロップを確認。本来の属性は花閃弾(Mortar)のはずだが、現地ドロップのRoundsランダム仕様の追加実例となった。武器カテゴリ表示は「擲弾ランチャー」（推定、視認しづらい表示）。
-    </div>
-    <div class="note">
-      <strong>CONTINUUM(Hawker HX)：</strong> 電子弾(Shock)+コンバットレディのドロップを確認。本来の属性は重力子弾(Graviton)のはずだが、現地ドロップのRoundsランダム仕様の追加実例となった。武器カテゴリ表示は「スナイパーライフル」（表示が画面端で切れている可能性あり）。
-    </div>
-    <div class="note">
-      <strong>REDLINE(XM325)：</strong> 榴散弾(Shrapnel)+コンバットレディのドロップを確認。本来の属性は花閃弾(Mortar)のはずだが、現地ドロップのRoundsランダム仕様の追加実例となった。武器カテゴリ表示は「サブマシンガン」。
-    </div>
-    <div class="note">
-      <strong>HYPERSURGE(Sokol 545)：</strong> 凍結弾(Frost)+ウルトラライトのドロップを確認。本来の属性は電子弾(Shock)のはずだが、現地ドロップのRoundsランダム仕様の追加実例となった。
-    </div>
-    <div class="note">
-      <strong>HYPERSURGE(Sokol 545) 追加ドロップ実例：</strong> 熱子弾(Incendiary)+ウルトラライトのドロップも確認。同一武器で2種の異なる属性が確認されたことになる。
-    </div>
-    <div class="note">
-      <strong>TORRENT(M15 Mod 0)：</strong> 重力子弾(Graviton)+リロード切替のドロップを確認。本来の属性通りで一致。新規ボーナス「リロード切替」（効果:「武器が交換時に常にリロードされる」）を確認。
-    </div>
-    <div class="note">
-      <strong>KILLSWITCH(AK-27)の追加ドロップ：</strong> 属性一致ボーナス「ブラストチェイン」（効果:「アーマーを破壊する爆発が発生すると、追加の爆発が3回連続で発生」）を確認（属性一致ボーナスの実例第4号）。
-    </div>
-    <div class="note">
-      <strong>NEUROWALL(Warden 308)：</strong> 電子弾(Shock)+神経の引力(Neural Attraction)のドロップを確認。フレーバーテキスト（実機確認）:「高精度射撃に特化したダブルアクション。崩脳弾との相性が良い」。<strong>このドロップの実際のRounds属性は電子弾で、フレーバーテキスト上の属性(崩脳弾)とは異なっていたが、崩脳弾用の属性一致ボーナス「神経の引力」が出現した</strong>（属性一致ボーナスの実例第5号）。<strong>追加ドロップ確認：</strong>同じ電子弾(Shock)Roundsで再度ドロップしたが、今回は汎用ボーナス「炸裂弾」が出現し、「神経の引力」は出なかった。<strong>【謎が解明】</strong>海外wiki情報により、「Affinity Exotic」の判定は発見時点のRounds属性で決まり、ファブリケーターで後からRoundsだけをリロールしても判定は変わらないことが判明。よってこのNEUROWALLは元々崩脳弾で発見されたAffinity Exoticの個体が、後でRoundsだけ電子弾にリロールされ、属性一致ボーナスを引く資格（確率）は保持されたまま、という可能性が高い。
-    </div>
-    <div class="note">
-      <strong>COLLATERAL(EGRT-17)：</strong> 榴散弾(Shrapnel)+撃ち放題のドロップを確認。本来の属性は熱子弾(Incendiary)のはずだが、現地ドロップのRoundsランダム仕様の追加実例となった。武器カテゴリ表示は「レトライフル」。
-    </div>
-    <div class="note">
-      <strong>ZEOTROPE(Echo 12)：</strong> 凍結弾(Frost)+氷雲(Ice Cloud)のドロップを確認。武器カテゴリ表示は「ショットガン」。本来の属性通りで一致。属性一致ボーナス「氷雲」（効果:「凍結した敵をキルすると、敵の動きを鈍らせる雲が残ることがある」）を確認（属性一致ボーナスの実例第6号）。
-    </div>
-    <div class="note">
-      <strong>FLASHBURST(M8A1)：</strong> 公式フレーバーテキスト（実機確認）:「持続的かつ致命的な制圧効果を雨のごとく降らせることに特化したバーストマークスマンライフル。凍結弾との相性が良い」。2回のドロップを確認: ①花閃弾(Mortar)+弾薬リチャージャー ②花閃弾(Mortar)+炸裂弾。2回とも花閃弾で、フレーバー属性(凍結弾)とは不一致。武器カテゴリ表示は「バーストDM」。
-    </div>
-    <div class="note">
-      <strong>MALSPIKE(VELOX 5.7)：</strong> 光子弾(Photon)+ビッグゲームのドロップを確認。武器カテゴリ表示は「ピストル」。本来の属性通りで一致。属性一致ボーナス「ビッグゲーム」（効果:「光子弾がエリートエネミーに発動可能」）を確認（属性一致ボーナスの実例第8号）。
-    </div>
-    <div class="note">
-      <strong>GHOSTMIND(VS Recon)：</strong> 光子弾(Photon)+炸裂弾のドロップを確認。武器カテゴリ表示は「スナイパーライフル」。本来の属性は崩脳弾(Neuro-Disruption)のはずだが、現地ドロップのRoundsランダム仕様の追加実例となった。
-    </div>
+    <div class="note">属性(Rounds)はドロップごとにランダムに決まります。フレーバーの属性に縛られず、<strong>好きなエキゾチック効果を狙って付けられます</strong>。</div>
+    <div class="note"><strong>確認中：</strong>発見時点のRounds属性で「属性一致ボーナス」を引く資格が決まるのか確認中。</div>
+    <div class="note"><strong>ルール：</strong>Fabricatorでアップグレードした自作エキゾチックには属性一致ボーナスは付かない。Exotic Weapon Caseから出た名前付きエキゾチックのみ対象。</div>
+    <div class="note">武器名・エキゾチック名は日本語版でも英語/ローマ字表記のまま（フレーバーテキストも付く）。<strong>（未確認）</strong>の武器モデル名は海外wiki情報などによるもので、実機表示は未確認です。</div>
     <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
   </section>
 
@@ -2386,7 +1969,7 @@
        5. 武器固有ボーナスの仮説
        ============================================ -->
   <section id="weapon-specific">
-    <h2>10. 武器固有ボーナスの仮説</h2>
+    <h2>12. 武器固有ボーナスの仮説</h2>
     <div class="table-scroll">
       <table>
         <thead><tr><th>武器</th><th>ボーナス</th><th>状態</th></tr></thead>
@@ -2406,7 +1989,7 @@
        9. ストーリー年表（シーズン別アコーディオン）
        ============================================ -->
   <section id="story-timeline">
-    <h2>11. ストーリー年表（シーズンの流れ）</h2>
+    <h2>13. ストーリー年表（シーズンの流れ）</h2>
     <p class="lead">エンドゲームを初めて遊ぶ人が、世界観にグッと入り込めるように——各シーズンの物語の流れをまとめました。</p>
     <div class="note">
       <strong>⚠ ストーリーのネタバレを含みます。</strong> 各シーズンは初期状態で閉じています。読みたいシーズンをクリックして開いてください。
@@ -2426,7 +2009,7 @@
           <h4>クーデターという裏切り</h4>
           <p>ドーンは無慈悲なクーデターを起こし、ケーガンを永久追放して自らギルドの新たなトップの座に就きます。彼のビジョンには一切の情け容赦がなく、あらゆる犠牲を払ってでもデイビッド・メイソンを捕らえ、JSOCエリートだけが持つ最先端の神経技術「<span class="term">電脳リンク（C-Link）</span>」に埋め込まれた秘密を解き明かすことを目論みます。公式の煽り文句を借りると、これは単なる復讐ではなく「血と野望に導かれた新時代の幕開け」とされています。</p>
           <h4>フォークナー討伐イベント</h4>
-          <p>シーズン1のエンドゲームに実装された討伐イベントの相手は、ギルドのバイオエンジニアリング部門責任者フォークナー。彼は前作BO6の主人公ウィリアム・"ケース"・カルデロンの遺体をギルドが回収し、そこから威力を最大限まで増幅させて生み出した巨大兵器「アヴァロンの巨像（ロボットHEL-A27）」を操っていました。プレイヤーはアヴァロン各地でこの巨大ロボットの信号を追い、コアを破壊することでイベントをクリアします。</p>
+          <p>シーズン1のエンドゲームに実装された討伐イベントの相手は、ギルドのバイオエンジニアリング部門責任者ギデオン・フォークナー博士。彼は前作BO6の主人公ウィリアム・"ケース"・カルデロンの遺体をギルドが回収し、そこから威力を最大限まで増幅させて生み出した巨大兵器「アヴァロンの巨像（ロボットHEL-A27）」を操っていました。プレイヤーはアヴァロン各地でこの巨大ロボットの信号を追い、コアを破壊することでイベントをクリアします。</p>
           <div class="season-summary-box">
             <strong>この時点のまとめ：</strong> 表のギルドのトップはドーンにすり替わり、ケーガンは行方不明（追放）状態。デイビッド・メイソンは狙われる立場になり、電脳リンクの秘密を奪われる危機に晒されます。
           </div>
@@ -2481,7 +2064,7 @@
           <h4>「キングキラー作戦」</h4>
           <p>「レオン・ルーク」が登場します。彼はギルドのC-Linkと新たに接続された存在で、JSOCの執拗な干渉に対するギルド側の"答え"。デイビッド・メイソンを直接の標的とする新たな脅威です。</p>
           <div class="season-summary-box">
-            <strong>まとめ：</strong> シーズン4は「デイビッド・メイソン拘束」という大きなショックから幕を開け、①盗んだ技術でギルドの防衛網を破壊する（ウォールブレーカー作戦）、②その勢いでギルド中枢そのものを叩く（キングキラー作戦）という二段構えの構成になっています。同時にルークという新たな"顔"のギルド側オペレーターが投入されており、単なる組織の残党狩りではなく、新たな個人対個人の対立軸も生まれつつある段階と言えそうです。
+            <strong>まとめ：</strong> シーズン4は「デイビッド・メイソン拘束」という大きなショックから幕を開け、①盗んだ技術でギルドの防衛網を破壊する（ウォールブレーカー作戦）、②その勢いでギルド中枢そのものを叩く（キングキラー作戦）という二段構えの構成になっています。同時にルークやカタリストという新たな"顔"のギルド側オペレーターが投入されており、単なる組織の残党狩りではなく、新たな個人対個人の対立軸も生まれつつある段階と言えそうです。
           </div>
         </div>
       </details>
@@ -2496,12 +2079,12 @@
        ============================================ -->
 
   <section id="todo">
-    <h2>12. 今後の検証タスク</h2>
+    <h2>14. 今後の検証タスク</h2>
     <ul class="todo-list">
       <li><span class="badge">中</span> 18種の名前付きエキゾチック武器名の日本語表示を確認（カタカナ or 英語表記）</li>
       <li><span class="badge">高</span> 各属性一致ボーナスの実機日本語名を確認</li>
       <li><span class="badge">低</span> 1911の「グレネード弾/炸裂弾」が他武器で本当に出ないか継続検証</li>
-      <li><span class="badge">中</span> 「グレネード弾」と「炸裂弾」が別枠か同一枠のバリエーションか確認</li>
+      <li><span class="badge">確認済</span> 「グレネード弾」と「炸裂弾」は別のユーティリティボーナスと確定（実機確認）</li>
       <li><span class="badge">中</span> Xbox本体言語を英語に切り替えて対応関係を直接確認</li>
       <li><span class="badge" style="background:var(--color-status-ok-bg);border-color:var(--color-status-ok-border);color:var(--color-status-ok-text);">確認済</span> DEFRAGの属性(Rounds)を確認 → 公式情報でMortar(花閃弾)と確認済み。ただし武器モデル名は未確定のため引き続き要確認</li>
       <li><span class="badge">中</span> エンドゲームモードのミッション/ラウンド構成の情報収集</li>
