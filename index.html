@@ -19,7 +19,7 @@
 <meta name="twitter:image" content="https://nuntamonta.github.io/bo7-endgame-jp/assets/img/top_title.gif">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Zen+Kaku+Gothic+New:wght@700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
   /* ============================================
      色・フォントはここで一括管理しています。
@@ -1067,97 +1067,109 @@
 </style>
 
 <style>
-/* ============================================================
-   TACTICAL TERMINAL テーマ（本番適用・2026-07-30）
-   既存CSSの後に読み込み、:root変数と要所の枠を上書きします。
-   元に戻したい時はこの<style>ブロックを削除するだけでOK。
-   ============================================================ */
+/* ==== TACTICAL TERMINAL テーマ（本番・整理版 2026-07-30）==== */
 :root{
-  --color-bg:#05090c;
-  --color-bg-soft:#0b1519;
-  --color-bg-soft2:#0e1c22;
-  --color-text:#e8f5f8;
-  --color-text-muted:#83a8b2;
-  --color-border:#17505d;
-  --color-accent:#ff7a1a;
-  --color-accent-teal:#20c6df;
-  --color-accent-teal-light:#7ff2ff;
-  --color-header-bg:#0c1c23;
-  --color-header-text:#e6f7fb;
-  --hud:#20c6df;
+  --color-bg:#05090c; --color-bg-soft:#0b1519; --color-bg-soft2:#0e1c22;
+  --color-text:#e8f5f8; --color-text-muted:#8aa9b2; --color-border:#1b4551;
+  --color-accent:#ff7a1a; --color-accent-teal:#20c6df; --color-accent-teal-light:#7ff2ff;
+  --color-header-bg:#0c1c23; --color-header-text:#e6f7fb; --hud:#20c6df;
+  --font-display:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif;
+  --font-heading-jp:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif;
+  --font-heading:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif;
+  --font-body:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif;
 }
+/* 背景：静かに（スキャンライン撤去・淡いグローのみ）*/
 body{
   background:
-    repeating-linear-gradient(0deg, rgba(32,198,223,.045) 0 1px, transparent 1px 3px),
-    radial-gradient(1200px 720px at 50% -220px, rgba(255,122,26,.10), transparent 70%),
-    radial-gradient(900px 600px at 100% 6%, rgba(32,198,223,.10), transparent 65%),
+    radial-gradient(1100px 640px at 50% -240px, rgba(255,122,26,.08), transparent 70%),
+    radial-gradient(900px 620px at 100% 4%, rgba(32,198,223,.07), transparent 65%),
     #05090c;
-  background-attachment: fixed;
+  background-attachment: fixed; font-size:16px;
 }
-.container{ position:relative; }
 .container::before{
   content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
   background-image:
-    linear-gradient(rgba(32,198,223,.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(32,198,223,.045) 1px, transparent 1px);
-  background-size: 46px 46px;
-  mask-image: radial-gradient(circle at 50% 30%, #000 30%, transparent 80%);
+    linear-gradient(rgba(32,198,223,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(32,198,223,.03) 1px, transparent 1px);
+  background-size:52px 52px;
+  -webkit-mask-image:radial-gradient(circle at 50% 18%, #000 18%, transparent 74%);
+  mask-image:radial-gradient(circle at 50% 18%, #000 18%, transparent 74%);
 }
-header.page-header{
-  border-bottom:1px solid var(--hud);
-  box-shadow: inset 0 -14px 30px rgba(32,198,223,.08);
-}
-header.page-header::after{
-  content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTABLISHED";
-  position:absolute; left:14px; top:10px;
-  font-family: var(--font-display), monospace; letter-spacing:2px;
-  font-size:11px; color:var(--hud); opacity:.8;
-}
-section h2{
-  color:var(--color-text);
-  text-shadow:0 0 12px rgba(32,198,223,.25);
-}
-section h2::before{ background:var(--hud) !important; box-shadow:0 0 8px rgba(32,198,223,.6); }
+/* ==== 固定トップナビ ==== */
+.topnav{ position:sticky; top:0; z-index:1000; background:rgba(6,12,15,.92); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); border-bottom:1px solid rgba(32,198,223,.28); }
+.topnav .tn-inner{ max-width:var(--max-width); margin:0 auto; display:flex; align-items:center; gap:6px; padding:8px 12px; overflow-x:auto; scrollbar-width:thin; }
+.topnav .tn-brand{ flex-shrink:0; font-family:var(--font-display); font-weight:900; font-size:13px; letter-spacing:1px; color:var(--hud); padding-right:10px; border-right:1px solid rgba(32,198,223,.25); margin-right:4px; white-space:nowrap; }
+.topnav a{ flex-shrink:0; font-family:var(--font-heading-jp); font-size:12.5px; font-weight:700; color:var(--color-text-muted); text-decoration:none; white-space:nowrap; padding:6px 11px; border-radius:6px; border:1px solid transparent; transition:all .15s ease; }
+.topnav a:hover{ color:var(--color-accent-teal-light); background:rgba(32,198,223,.08); }
+.topnav a.active{ color:#04222a; background:var(--hud); border-color:var(--hud); }
+@media (max-width:600px){ .topnav .tn-brand{ display:none; } }
+section, header.page-header{ scroll-margin-top:60px; }
+/* ==== 見出し（統一）==== */
+section{ margin-bottom:48px; }
+section h2{ font-size:22px; color:var(--color-text); text-shadow:0 0 10px rgba(32,198,223,.18); }
+section h2::before{ background:var(--hud) !important; }
 section h2::after{ background:linear-gradient(90deg, var(--hud) 0%, var(--color-accent) 60%, transparent 100%) !important; }
-nav.toc, .note, .newbox, .story-intro, .util-card, details.season,
-details.wcat, .map-frame, .season-summary-box, .table-scroll, .enemy-modal-box{
-  position:relative;
-  border:1px solid rgba(32,198,223,.28) !important;
-  border-radius:2px !important;
-  box-shadow: 0 0 0 1px rgba(0,0,0,.4), 0 6px 22px rgba(0,0,0,.45), inset 0 0 30px rgba(32,198,223,.04);
+section h3{ font-size:16px; }
+/* ==== パネル：シンプル統一（ブラケット撤去・枠控えめ）==== */
+nav.toc, .note, .story-intro, .util-card, details.season, details.wcat,
+.table-scroll, .enemy-modal-box, .season-summary-box{
+  border:1px solid var(--color-border) !important; border-radius:8px !important; box-shadow:none !important;
 }
-nav.toc::before, .note::before, .newbox::before, .story-intro::before, .util-card::before,
-details.season::before, details.wcat::before, .map-frame::before, .season-summary-box::before,
-.table-scroll::before, .enemy-modal-box::before,
-nav.toc::after, .note::after, .newbox::after, .story-intro::after, .util-card::after,
-details.season::after, details.wcat::after, .map-frame::after, .season-summary-box::after,
-.table-scroll::after, .enemy-modal-box::after{
-  content:""; position:absolute; width:12px; height:12px; pointer-events:none; z-index:3;
-  border:2px solid var(--hud);
+nav.toc::before,nav.toc::after,.note::before,.note::after,.story-intro::before,.story-intro::after,
+.util-card::before,.util-card::after,details.season::before,details.season::after,
+details.wcat::before,details.wcat::after,.table-scroll::before,.table-scroll::after,
+.season-summary-box::before,.season-summary-box::after,.enemy-modal-box::before,.enemy-modal-box::after{ display:none !important; content:none !important; }
+/* ブラケット枠は「新着(S05)」「マップ」だけに限定 */
+.newbox, .map-frame{ position:relative; border:1px solid rgba(32,198,223,.5) !important; border-radius:2px !important; }
+.newbox::before,.newbox::after,.map-frame::before,.map-frame::after{ content:""; position:absolute; width:14px; height:14px; border:2px solid var(--hud); pointer-events:none; z-index:3; display:block; }
+.newbox::before,.map-frame::before{ top:-1px; left:-1px; border-right:none; border-bottom:none; }
+.newbox::after,.map-frame::after{ bottom:-1px; right:-1px; border-left:none; border-top:none; }
+/* テーブル */
+th{ background:#0c2028; color:var(--color-accent-teal-light); border-color:rgba(32,198,223,.22); }
+td{ border-color:rgba(32,198,223,.14); }
+tr:nth-child(even) td{ background:rgba(32,198,223,.035); }
+/* カード枠色 */
+.op-card,.wcard,.wchip,.effect-icon-box{ border-color:rgba(32,198,223,.2); }
+.op-card:hover,button.enemy-card:hover{ border-color:var(--hud); box-shadow:0 6px 18px rgba(0,0,0,.4); }
+.wcard:hover{ border-color:var(--color-accent); box-shadow:0 6px 18px rgba(0,0,0,.4); }
+.wchip{ background:#0c2028; border-color:rgba(32,198,223,.28); color:#dff6fb; }
+.season-badge,.wcat-count{ background:var(--color-accent); }
+nav.toc a::before{ background:linear-gradient(150deg, var(--color-accent), #b5371c) !important; }
+nav.toc li:hover{ border-color:var(--hud) !important; }
+header.page-header{ border-bottom:1px solid var(--hud); }
+header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTABLISHED"; position:absolute; left:14px; top:10px; font-family:var(--font-display); letter-spacing:2px; font-size:11px; color:var(--hud); opacity:.75; }
+.fab-top{ background:linear-gradient(150deg, var(--hud), #0f7d8c); box-shadow:0 4px 14px rgba(0,0,0,.5); }
+/* ==== 走査線（下→上へ流れる光線・常時ループ）==== */
+.scanbeam{
+  position:fixed; left:0; right:0; z-index:-1; pointer-events:none;
+  height:2px; background:var(--hud);
+  box-shadow:0 0 12px 2px rgba(32,198,223,.4);
+  opacity:.18;
+  animation:scanUp 13s linear infinite;
 }
-nav.toc::before, .note::before, .newbox::before, .story-intro::before, .util-card::before,
-details.season::before, details.wcat::before, .map-frame::before, .season-summary-box::before,
-.table-scroll::before, .enemy-modal-box::before{ top:-1px; left:-1px; border-right:none; border-bottom:none; }
-nav.toc::after, .note::after, .newbox::after, .story-intro::after, .util-card::after,
-details.season::after, details.wcat::after, .map-frame::after, .season-summary-box::after,
-.table-scroll::after, .enemy-modal-box::after{ bottom:-1px; right:-1px; border-left:none; border-top:none; }
-nav.toc a::before{ background:linear-gradient(150deg, var(--color-accent), #b5371c) !important; box-shadow:0 0 8px rgba(255,122,26,.4); }
-nav.toc li:hover{ border-color:var(--hud) !important; background:rgba(32,198,223,.10); }
-th{ background:#0c2028; color:var(--color-accent-teal-light); border-color:rgba(32,198,223,.25); text-shadow:0 0 8px rgba(32,198,223,.25); }
-td{ border-color:rgba(32,198,223,.16); }
-tr:nth-child(even) td{ background:rgba(32,198,223,.04); }
-.op-card, .wcard, .wchip, .effect-icon-box{ border-color:rgba(32,198,223,.22); }
-button.enemy-card:hover, .op-card:hover{ border-color:var(--hud); box-shadow:0 0 16px rgba(32,198,223,.25); }
-.wcard:hover{ border-color:var(--color-accent); box-shadow:0 0 18px rgba(255,122,26,.22); }
-.wchip{ background:#0c2028; border-color:rgba(32,198,223,.3); color:#dff6fb; }
-.season-badge, .wcat-count{ background:var(--color-accent); box-shadow:0 0 10px rgba(255,122,26,.4); }
-.new-tag{ box-shadow:0 0 10px rgba(255,122,26,.4); }
-.fab-top{ background:linear-gradient(150deg, var(--hud), #0f7d8c); box-shadow:0 0 18px rgba(32,198,223,.5); }
-nav.toc a:hover, .season-body .term, .term{ color:var(--color-accent-teal-light); }
+.scanbeam::before{
+  content:""; position:absolute; left:0; right:0; bottom:0; height:120px;
+  background:linear-gradient(to top, rgba(32,198,223,.07), transparent);
+}
+@keyframes scanUp{
+  0%{ transform:translateY(100vh); opacity:0; }
+  10%{ opacity:.18; }
+  90%{ opacity:.18; }
+  100%{ transform:translateY(-140px); opacity:0; }
+}
+@media (prefers-reduced-motion: reduce){ .scanbeam{ display:none; } }
+
+/* ==== アイコン（絵文字置換）==== */
+.ic-inline{ width:1em; height:1em; vertical-align:-0.12em; margin-right:5px; color:var(--color-accent-teal-light); }
+.weapon-ph .ph-ic{ width:46px; height:46px; color:var(--hud); opacity:.9; }
+.leg-dot{ display:inline-block; width:11px; height:11px; border-radius:50%; background:var(--color-accent); border:2px solid #fff; vertical-align:-1px; margin-right:5px; }
 </style>
 
 </head>
 <body>
+<nav class="topnav" aria-label="セクションナビ"><div class="tn-inner"><span class="tn-brand">BO7 ENDGAME</span><a href="#top" data-sec="top">ホーム</a><a href="#operators" data-sec="operators">オペレーター</a><a href="#enemies" data-sec="enemies">敵ボス</a><a href="#missions" data-sec="missions">ミッション</a><a href="#avalon-map" data-sec="avalon-map">マップ</a><a href="#glitches" data-sec="glitches">グリッチ</a><a href="#game-rules" data-sec="game-rules">ルール</a><a href="#exotic-effects" data-sec="exotic-effects">エキゾ効果</a><a href="#weapon-traits" data-sec="weapon-traits">武器早見</a><a href="#utility-bonus" data-sec="utility-bonus">汎用ボーナス</a><a href="#affinity-bonus" data-sec="affinity-bonus">属性一致</a><a href="#named-exotics" data-sec="named-exotics">名前付き</a><a href="#weapon-specific" data-sec="weapon-specific">武器固有</a><a href="#story-timeline" data-sec="story-timeline">年表</a><a href="#todo" data-sec="todo">検証タスク</a></div></nav>
+<div class="scanbeam" aria-hidden="true"></div>
+
 
 <header class="page-header" id="top">
   <img src="assets/img/top_title.gif" alt="Call of Duty Black Ops 7 Endgame 日本語攻略メモ　日本語の攻略情報が少ないため、実機検証と海外情報をもとにまとめている非公式メモです（随時更新）" class="hero-image">
@@ -1308,7 +1320,7 @@ nav.toc a:hover, .season-body .term, .term{ color:var(--color-accent-teal-light)
     <p class="lead">まず「誰を・何を倒すのか」を把握するためのパート。スペシャル・エリートエネミーとワールドボスの一覧です。</p>
 
     <h3>スペシャル・エリートエネミー図鑑</h3>
-    <p class="enemy-hint">🖱️ カードをクリックすると詳細（特徴・攻撃パターン）が開きます。</p>
+    <p class="enemy-hint"><svg class="ic-inline" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 2l15 9-6.6 1.5L10 20z"/></svg>カードをクリックすると詳細（特徴・攻撃パターン）が開きます。</p>
     <div class="op-grid">
       <button type="button" class="op-card enemy-card">
         <img src="assets/enemies/amalgam.webp" alt="アマルガム" loading="lazy">
@@ -1358,7 +1370,7 @@ nav.toc a:hover, .season-body .term, .term{ color:var(--color-accent-teal-light)
     </div>
 
     <h3 style="margin-top:28px;">ワールドボス</h3>
-    <p class="enemy-hint">🖱️ カードをクリックすると詳細（出現条件・攻略・報酬）が開きます。</p>
+    <p class="enemy-hint"><svg class="ic-inline" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 2l15 9-6.6 1.5L10 20z"/></svg>カードをクリックすると詳細（出現条件・攻略・報酬）が開きます。</p>
     <div class="op-grid">
       <button type="button" class="op-card enemy-card">
         <img src="assets/enemies/elderdisciple.webp" alt="フォークナー" loading="lazy">
@@ -1491,20 +1503,20 @@ nav.toc a:hover, .season-body .term, .term{ color:var(--color-accent-teal-light)
 
   <section id="avalon-map">
     <h2>4. アヴァロン マップ</h2>
-    <p class="lead">アヴァロン島のタクティカルマップです。<span style="color:var(--color-accent);font-weight:700;">🔴 赤いピン</span>は、実機確認済みのグリッチ発生場所（固定ランドマーク）を示しています。<strong>個人作成の参考マップ</strong>で、公式マップの転載ではありません。</p>
+    <p class="lead">アヴァロン島のタクティカルマップです。<span style="color:var(--color-accent);font-weight:700;"><span class="leg-dot"></span>赤いピン</span>は、実機確認済みのグリッチ発生場所（固定ランドマーク）を示しています。<strong>個人作成の参考マップ</strong>で、公式マップの転載ではありません。</p>
     <div class="map-frame">
       <img src="assets/img/avalon_map.webp" alt="アヴァロン島 タクティカルマップ（グリッチ発生場所ピン付き）" loading="lazy">
-      <div class="gpin" style="left:80.5%;top:27.5%;">
+      <div class="gpin" style="left:84%;top:29%;">
         <div class="gpin-label">ウイルスインジェクション<span>コロッセオ</span></div>
         <div class="gpin-stem"></div>
         <div class="gpin-mark"></div>
       </div>
-      <div class="gpin" style="left:51.5%;top:87%;">
+      <div class="gpin" style="left:54%;top:88.5%;">
         <div class="gpin-label">ルートクラッシャー<span>チョップショップ（解体工場）</span></div>
         <div class="gpin-stem"></div>
         <div class="gpin-mark"></div>
       </div>
-      <div class="gpin" style="left:67%;top:92%;">
+      <div class="gpin" style="left:69.2%;top:92.5%;">
         <div class="gpin-label">リンクフォージャー<span>旧兵器庫（旧武器庫）</span></div>
         <div class="gpin-stem"></div>
         <div class="gpin-mark"></div>
@@ -1522,10 +1534,10 @@ nav.toc a:hover, .season-body .term, .term{ color:var(--color-accent-teal-light)
     <p class="lead">グリッチ（グリッチフラクチャー）は、通常のアヴァロンマップ外で行われる特殊アクティビティ。対応オペレーションをクリアし、同じ試合でギルドストライクボスを倒すと出現します。発生場所は多くが固定のランドマーク（実機確認済み）。カードをクリックすると各グリッチの詳細が開きます。</p>
     <div class="note"><strong>報酬について：</strong>グリッチをクリアすると「ナイトメアスキル」（最強クラスのパッシブ強化。1つだけ装備可・2回強化可・フル強化でCR+3）が得られます。推奨CRは45以上、エキゾチック武器の持ち込み推奨。</div>
     <div class="note" style="border-left-color:var(--color-accent);"><strong>S05メモ：</strong>シーズン5では新しいグリッチの追加はありません。S05の新エンドゲーム要素は<strong>「バーンラン」アサインメント</strong>と<strong>エキゾチックアビリティブースト</strong>です（→<a href="#missions" style="color:var(--color-accent-teal-light);">セクション3</a>参照）。</div>
-    <p class="enemy-hint">🖱️ グリッチカードをクリックすると詳細が開きます。</p>
+    <p class="enemy-hint"><svg class="ic-inline" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 2l15 9-6.6 1.5L10 20z"/></svg>グリッチカードをクリックすると詳細が開きます。</p>
     <div class="op-grid">
       <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🌀</div>
+        <div class="weapon-ph"><svg class="ph-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.7" fill="currentColor" stroke="none"/></svg></div>
         <div class="op-name">ルートクラッシャー</div>
         <div class="op-en">Root Crasher</div>
         <div class="enemy-detail" hidden data-title="ルートクラッシャー">
@@ -1539,7 +1551,7 @@ nav.toc a:hover, .season-body .term, .term{ color:var(--color-accent-teal-light)
         </div>
       </button>
       <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🌀</div>
+        <div class="weapon-ph"><svg class="ph-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.7" fill="currentColor" stroke="none"/></svg></div>
         <div class="op-name">リンクフォージャー</div>
         <div class="op-en">Link Forger</div>
         <div class="enemy-detail" hidden data-title="リンクフォージャー（Link Forger）">
@@ -1553,7 +1565,7 @@ nav.toc a:hover, .season-body .term, .term{ color:var(--color-accent-teal-light)
         </div>
       </button>
       <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🌀</div>
+        <div class="weapon-ph"><svg class="ph-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.7" fill="currentColor" stroke="none"/></svg></div>
         <div class="op-name">ウイルスインジェクション</div>
         <div class="op-en">Virus Injection</div>
         <div class="enemy-detail" hidden data-title="ウイルスインジェクション（Virus Injection）">
@@ -1567,7 +1579,7 @@ nav.toc a:hover, .season-body .term, .term{ color:var(--color-accent-teal-light)
         </div>
       </button>
       <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🌀</div>
+        <div class="weapon-ph"><svg class="ph-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.7" fill="currentColor" stroke="none"/></svg></div>
         <div class="op-name">コマンドキラー</div>
         <div class="op-en">Command Killer</div>
         <div class="enemy-detail" hidden data-title="コマンドキラー（Command Killer）">
@@ -1580,7 +1592,7 @@ nav.toc a:hover, .season-body .term, .term{ color:var(--color-accent-teal-light)
         </div>
       </button>
       <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph">🌀</div>
+        <div class="weapon-ph"><svg class="ph-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.7" fill="currentColor" stroke="none"/></svg></div>
         <div class="op-name">プライムターゲット</div>
         <div class="op-en">Prime Target</div>
         <div class="enemy-detail" hidden data-title="プライムターゲット（Prime Target）">
@@ -1651,7 +1663,7 @@ nav.toc a:hover, .season-body .term, .term{ color:var(--color-accent-teal-light)
     <h2>7. エキゾチック効果（Rounds）</h2>
     <p class="lead">武器に付与可能な8種類の弾薬属性（Affinity）</p>
 
-    <p class="enemy-hint">🖱️ 属性アイコンをクリックすると効果の詳細が開きます。</p>
+    <p class="enemy-hint"><svg class="ic-inline" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 2l15 9-6.6 1.5L10 20z"/></svg>属性アイコンをクリックすると効果の詳細が開きます。</p>
     <div class="op-grid round-grid">
       <button type="button" class="op-card enemy-card round-card">
         <img src="assets/icons/frost.png" alt="凍結弾">
@@ -2357,7 +2369,7 @@ nav.toc a:hover, .season-body .term, .term{ color:var(--color-accent-teal-light)
     <h2>13. ストーリー年表（シーズンの流れ）</h2>
     <p class="lead">エンドゲームを初めて遊ぶ人が、世界観にグッと入り込めるように——各シーズンの物語の流れをまとめました。</p>
     <div class="note">
-      <strong>⚠ ストーリーのネタバレを含みます。</strong> 各シーズンは初期状態で閉じています。読みたいシーズンをクリックして開いてください。
+      <strong><svg class="ic-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l9 16H3z"/><path d="M12 10v4"/><circle cx="12" cy="16.7" r="0.6" fill="currentColor" stroke="none"/></svg>ストーリーのネタバレを含みます。</strong> 各シーズンは初期状態で閉じています。読みたいシーズンをクリックして開いてください。
     </div>
 
     <div class="season-list">
@@ -2700,6 +2712,23 @@ nav.toc a:hover, .season-body .term, .term{ color:var(--color-accent-teal-light)
   });
   cats.forEach(function(d){d.addEventListener('toggle',sync);});
   sync();
+})();
+</script>
+<script>
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.topnav a[data-sec]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('data-sec')]=a; });
+  var secs=links.map(function(a){ return document.getElementById(a.getAttribute('data-sec')); }).filter(Boolean);
+  if(!('IntersectionObserver' in window)||!secs.length) return;
+  var obs=new IntersectionObserver(function(ents){
+    ents.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(l){ l.classList.remove('active'); });
+        var a=map[e.target.id]; if(a){ a.classList.add('active'); a.scrollIntoView({inline:'center',block:'nearest'}); }
+      }
+    });
+  },{rootMargin:'-55% 0px -40% 0px',threshold:0});
+  secs.forEach(function(x){ obs.observe(x); });
 })();
 </script>
 </body>
