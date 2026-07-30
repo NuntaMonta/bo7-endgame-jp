@@ -805,7 +805,357 @@
   .wchip{background:#2a2240;border:1px solid #4a4068;color:#f0eef8;font-size:12px;line-height:1.4;border-radius:10px;padding:3px 9px;}
   /* ピストルは小さめの武器なので画像を80%・中央に */
   .pistol-grid .wframe .wimg-wrap img{max-width:80%;max-height:80%;}
+
+  /* ============================================
+     デザイン強化（2026-07-30 追加）
+     既存の配色変数を活かしつつ、質感・立体感・
+     動きを足して見栄えを底上げする追加スタイル。
+     ============================================ */
+
+  /* スクロールを滑らかに */
+  html { scroll-behavior: smooth; }
+
+  /* 背景に奥行きを持たせる淡いグロー */
+  body {
+    background:
+      radial-gradient(1100px 620px at 50% -220px, rgba(235,83,44,0.16), transparent 70%),
+      radial-gradient(900px 600px at 100% 8%, rgba(46,139,158,0.12), transparent 65%),
+      var(--color-bg);
+    background-attachment: fixed;
+  }
+
+  /* ヒーロー：タイトル背後にオレンジのグロー */
+  header.page-header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(600px 320px at 50% 40%, rgba(235,83,44,0.30), transparent 70%);
+    z-index: -1;
+  }
+  .hero-image { box-shadow: 0 18px 50px rgba(0,0,0,0.45); }
+
+  /* 見出し：単色の下線 → オレンジ→ティールのグラデ＋左に色ブロック */
+  section h2 {
+    position: relative;
+    border-bottom: none;
+    padding-bottom: 12px;
+    padding-left: 16px;
+    letter-spacing: 0.5px;
+  }
+  section h2::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 4px; bottom: 12px;
+    width: 6px;
+    border-radius: 3px;
+    background: linear-gradient(180deg, var(--color-accent), var(--color-accent-teal));
+  }
+  section h2::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 3px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-teal) 55%, transparent 100%);
+  }
+
+  /* 目次：番号付きリスト → クリックしやすいチップのグリッド */
+  nav.toc {
+    background: linear-gradient(150deg, var(--color-bg-soft), var(--color-bg-soft2));
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  }
+  nav.toc ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 8px;
+    counter-reset: toc;
+  }
+  nav.toc li {
+    counter-increment: toc;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background: rgba(255,255,255,0.02);
+    transition: border-color .15s ease, transform .1s ease, background .15s ease;
+  }
+  nav.toc li:hover {
+    border-color: var(--color-accent-teal);
+    transform: translateY(-2px);
+    background: rgba(46,139,158,0.10);
+  }
+  nav.toc a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    font-size: 13px;
+    font-family: var(--font-heading-jp);
+  }
+  nav.toc a:hover { text-decoration: none; color: var(--color-accent-teal-light); }
+  nav.toc a::before {
+    content: counter(toc);
+    flex-shrink: 0;
+    width: 24px; height: 24px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-size: 13px;
+    color: #fff;
+    background: linear-gradient(150deg, var(--color-accent), #b5371c);
+    border-radius: 6px;
+  }
+
+  /* カード類：ホバーで浮き上がり＋アクセント枠 */
+  .op-card, .effect-icon-box, .wcard {
+    transition: transform .12s ease, border-color .15s ease, box-shadow .15s ease;
+  }
+  .op-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--color-accent-teal);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+  }
+  .wcard:hover {
+    transform: translateY(-3px);
+    border-color: var(--color-accent);
+    box-shadow: 0 10px 26px rgba(0,0,0,0.4);
+  }
+  /* クリック可能なカード（敵・グリッチ）はより強く反応 */
+  button.op-card:hover { border-color: var(--color-accent); }
+
+  /* チップ（武器ボーナス）にホバー反応 */
+  .wchip { transition: background .15s ease, border-color .15s ease; }
+  .wcard:hover .wchip { border-color: #6b5e94; }
+
+  /* 新コンテンツ用ハイライトカード（S05など） */
+  .newbox {
+    position: relative;
+    border: 1px solid var(--color-accent);
+    border-radius: 10px;
+    background:
+      linear-gradient(150deg, rgba(235,83,44,0.14), rgba(46,139,158,0.10));
+    padding: 16px 18px 16px;
+    margin: 16px 0 20px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.28);
+  }
+  .newbox .new-tag {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 12px;
+    letter-spacing: 1px;
+    background: var(--color-accent);
+    color: #fff;
+    padding: 2px 10px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+  }
+  .newbox h4 {
+    margin: 6px 0 6px;
+    font-size: 15px;
+    font-family: var(--font-heading-jp);
+    color: var(--color-text);
+  }
+  .newbox p { margin: 0 0 8px; font-size: 14px; }
+  .newbox p:last-child { margin-bottom: 0; }
+  .newbox .term { color: var(--color-accent-teal-light); font-weight: 700; }
+
+  /* 右下フローティング「先頭へ」ボタン */
+  .fab-top {
+    position: fixed;
+    right: 18px; bottom: 18px;
+    width: 46px; height: 46px;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(150deg, var(--color-accent), #b5371c);
+    color: #fff;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.45);
+    z-index: 900;
+    opacity: 0.92;
+    transition: transform .12s ease, opacity .15s ease;
+  }
+  .fab-top:hover { transform: translateY(-3px); opacity: 1; }
+  @media (max-width: 600px) { .fab-top { width: 42px; height: 42px; right: 14px; bottom: 14px; } }
+
+  /* ============================================
+     アヴァロン マップ：グリッチのピン オーバーレイ
+     （2026-07-30 新タクティカルマップに差し替え）
+     ============================================ */
+  .map-frame { position: relative; max-width: 860px; margin: 4px auto 14px; }
+  .map-frame > img { width: 100%; height: auto; display: block; border-radius: 12px; }
+  .gpin {
+    position: absolute;
+    transform: translate(-50%, -100%);
+    display: flex; flex-direction: column; align-items: center;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .gpin-label {
+    background: rgba(13,10,24,0.85);
+    border: 1px solid var(--color-accent);
+    color: #fff;
+    font-family: var(--font-heading-jp);
+    font-weight: 700;
+    font-size: 12px; line-height: 1.25;
+    padding: 4px 9px;
+    border-radius: 8px;
+    white-space: nowrap;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.55);
+  }
+  .gpin-label span { display: block; font-weight: 400; font-size: 10px; color: var(--color-accent-teal-light); }
+  .gpin-stem { width: 2px; height: 9px; background: var(--color-accent); }
+  .gpin-mark {
+    width: 13px; height: 13px; border-radius: 50%;
+    background: var(--color-accent);
+    border: 2px solid #fff;
+    animation: gpulse 2.2s infinite;
+  }
+  @keyframes gpulse {
+    0%   { box-shadow: 0 0 0 0 rgba(235,83,44,0.5); }
+    70%  { box-shadow: 0 0 0 13px rgba(235,83,44,0); }
+    100% { box-shadow: 0 0 0 0 rgba(235,83,44,0); }
+  }
+  .map-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 18px;
+    font-size: 12px; color: var(--color-text-muted);
+    margin: 4px 0 10px;
+  }
+  .map-legend span { display: inline-flex; align-items: center; gap: 7px; }
+  .map-legend .lg-dot {
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--color-accent); border: 2px solid #fff; flex-shrink: 0;
+  }
+  @media (max-width: 560px) {
+    .gpin-label { font-size: 10px; padding: 3px 6px; }
+    .gpin-label span { font-size: 9px; }
+  }
+
+  /* ============================================
+     ユーティリティボーナス：アイコン見出し＋表のカード
+     （2026-07-30 実アイコンに差し替え・カード化）
+     ============================================ */
+  .util-groups { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  @media (max-width: 720px) { .util-groups { grid-template-columns: 1fr; } }
+  .util-card {
+    background: linear-gradient(160deg, var(--color-bg-soft), var(--color-bg-soft2));
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 14px 16px 6px;
+    transition: transform .12s ease, border-color .15s ease, box-shadow .15s ease;
+  }
+  .util-card:hover { transform: translateY(-3px); border-color: var(--color-accent); box-shadow: 0 10px 26px rgba(0,0,0,0.4); }
+  .util-card.full { grid-column: 1 / -1; }
+  .util-card-head {
+    display: flex; align-items: center; justify-content: center;
+    padding: 8px 0 14px;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 4px;
+  }
+  .util-card-head img { width: 118px; height: 118px; object-fit: contain; }
+  .util-card-head .u-emoji { font-size: 68px; line-height: 1; }
+  .util-table { width: 100%; border-collapse: collapse; }
+  .util-table td { padding: 11px 4px; vertical-align: top; border-bottom: 1px solid var(--color-border); }
+  .util-table tr:last-child td { border-bottom: none; }
+  .util-bname { width: 36%; padding-right: 10px; }
+  .util-bname .jp { display: block; font-family: var(--font-heading-jp); font-weight: 700; font-size: 14px; color: var(--color-text); line-height: 1.3; }
+  .util-bname .en { display: block; font-size: 10.5px; color: var(--color-text-muted); }
+  .util-bdesc { font-size: 13px; color: var(--color-text); line-height: 1.6; }
+  .util-bdesc em { color: var(--color-text-muted); font-size: 11.5px; font-style: italic; }
+  @media (max-width: 380px) { .util-bname { width: 42%; } }
 </style>
+
+<style>
+/* ============================================================
+   TACTICAL TERMINAL テーマ（本番適用・2026-07-30）
+   既存CSSの後に読み込み、:root変数と要所の枠を上書きします。
+   元に戻したい時はこの<style>ブロックを削除するだけでOK。
+   ============================================================ */
+:root{
+  --color-bg:#05090c;
+  --color-bg-soft:#0b1519;
+  --color-bg-soft2:#0e1c22;
+  --color-text:#e8f5f8;
+  --color-text-muted:#83a8b2;
+  --color-border:#17505d;
+  --color-accent:#ff7a1a;
+  --color-accent-teal:#20c6df;
+  --color-accent-teal-light:#7ff2ff;
+  --color-header-bg:#0c1c23;
+  --color-header-text:#e6f7fb;
+  --hud:#20c6df;
+}
+body{
+  background:
+    repeating-linear-gradient(0deg, rgba(32,198,223,.045) 0 1px, transparent 1px 3px),
+    radial-gradient(1200px 720px at 50% -220px, rgba(255,122,26,.10), transparent 70%),
+    radial-gradient(900px 600px at 100% 6%, rgba(32,198,223,.10), transparent 65%),
+    #05090c;
+  background-attachment: fixed;
+}
+.container{ position:relative; }
+.container::before{
+  content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(32,198,223,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(32,198,223,.045) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: radial-gradient(circle at 50% 30%, #000 30%, transparent 80%);
+}
+header.page-header{
+  border-bottom:1px solid var(--hud);
+  box-shadow: inset 0 -14px 30px rgba(32,198,223,.08);
+}
+header.page-header::after{
+  content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTABLISHED";
+  position:absolute; left:14px; top:10px;
+  font-family: var(--font-display), monospace; letter-spacing:2px;
+  font-size:11px; color:var(--hud); opacity:.8;
+}
+section h2{
+  color:var(--color-text);
+  text-shadow:0 0 12px rgba(32,198,223,.25);
+}
+section h2::before{ background:var(--hud) !important; box-shadow:0 0 8px rgba(32,198,223,.6); }
+section h2::after{ background:linear-gradient(90deg, var(--hud) 0%, var(--color-accent) 60%, transparent 100%) !important; }
+nav.toc, .note, .newbox, .story-intro, .util-card, details.season,
+details.wcat, .map-frame, .season-summary-box, .table-scroll, .enemy-modal-box{
+  position:relative;
+  border:1px solid rgba(32,198,223,.28) !important;
+  border-radius:2px !important;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.4), 0 6px 22px rgba(0,0,0,.45), inset 0 0 30px rgba(32,198,223,.04);
+}
+nav.toc::before, .note::before, .newbox::before, .story-intro::before, .util-card::before,
+details.season::before, details.wcat::before, .map-frame::before, .season-summary-box::before,
+.table-scroll::before, .enemy-modal-box::before,
+nav.toc::after, .note::after, .newbox::after, .story-intro::after, .util-card::after,
+details.season::after, details.wcat::after, .map-frame::after, .season-summary-box::after,
+.table-scroll::after, .enemy-modal-box::after{
+  content:""; position:absolute; width:12px; height:12px; pointer-events:none; z-index:3;
+  border:2px solid var(--hud);
+}
+nav.toc::before, .note::before, .newbox::before, .story-intro::before, .util-card::before,
+details.season::before, details.wcat::before, .map-frame::before, .season-summary-box::before,
+.table-scroll::before, .enemy-modal-box::before{ top:-1px; left:-1px; border-right:none; border-bottom:none; }
+nav.toc::after, .note::after, .newbox::after, .story-intro::after, .util-card::after,
+details.season::after, details.wcat::after, .map-frame::after, .season-summary-box::after,
+.table-scroll::after, .enemy-modal-box::after{ bottom:-1px; right:-1px; border-left:none; border-top:none; }
+nav.toc a::before{ background:linear-gradient(150deg, var(--color-accent), #b5371c) !important; box-shadow:0 0 8px rgba(255,122,26,.4); }
+nav.toc li:hover{ border-color:var(--hud) !important; background:rgba(32,198,223,.10); }
+th{ background:#0c2028; color:var(--color-accent-teal-light); border-color:rgba(32,198,223,.25); text-shadow:0 0 8px rgba(32,198,223,.25); }
+td{ border-color:rgba(32,198,223,.16); }
+tr:nth-child(even) td{ background:rgba(32,198,223,.04); }
+.op-card, .wcard, .wchip, .effect-icon-box{ border-color:rgba(32,198,223,.22); }
+button.enemy-card:hover, .op-card:hover{ border-color:var(--hud); box-shadow:0 0 16px rgba(32,198,223,.25); }
+.wcard:hover{ border-color:var(--color-accent); box-shadow:0 0 18px rgba(255,122,26,.22); }
+.wchip{ background:#0c2028; border-color:rgba(32,198,223,.3); color:#dff6fb; }
+.season-badge, .wcat-count{ background:var(--color-accent); box-shadow:0 0 10px rgba(255,122,26,.4); }
+.new-tag{ box-shadow:0 0 10px rgba(255,122,26,.4); }
+.fab-top{ background:linear-gradient(150deg, var(--hud), #0f7d8c); box-shadow:0 0 18px rgba(32,198,223,.5); }
+nav.toc a:hover, .season-body .term, .term{ color:var(--color-accent-teal-light); }
+</style>
+
 </head>
 <body>
 
@@ -1104,11 +1454,24 @@
       </table>
     </div>
 
+    <div class="newbox">
+      <span class="new-tag">NEW · S05</span>
+      <h4>シーズン5で追加された新要素（2026/07/23〜）</h4>
+      <p><span class="term">バーンラン（Burn Run）</span>＝新アサインメント。爆弾を積んだ車で、炎に包まれた30個のアーチを制限時間内に走り抜けるタイムアタック。道中の<span class="term">Fear系の敵・オブジェクト</span>を轢くと時間が延長され、修理レンチやスピードブーストで車を維持しながらゴールを目指します。</p>
+      <p><span class="term">エキゾチックアビリティブースト</span>＝メジャー／マイナーアビリティを強化する新システム。クールダウン短縮・追加弾薬・追加ダメージ属性などが付与されます。アイテムケースから入手でき、主に<span class="term">ナイトメア地点</span>のアクティビティ／アサインメントで出やすい（Tacマップの報酬一覧で確認可）。各アビリティに2種のブーストがあり、ワイプするかアビリティを付け替えるまで維持されます。</p>
+      <p style="font-size:13px;color:var(--color-text-muted);margin-bottom:0;">※S05ではエンドゲーム無料開放が継続。S06以降はBO7所有者限定になる予定（公式パッチノート）。S05では新しい「グリッチ」の追加はありません。</p>
+    </div>
+
     <h3>アクティビティ・ミッション詳細</h3>
     <div class="table-scroll">
       <table>
         <thead><tr><th>名称</th><th>内容</th><th>備考</th></tr></thead>
         <tbody>
+          <tr>
+            <td data-label="名称">バーンラン（Burn Run）<span class="box-tag" style="background:rgba(235,83,44,0.22);color:#ffb59e;border-color:var(--color-accent);">S05</span></td>
+            <td data-label="内容">爆弾搭載車で炎の30アーチを制限時間内に走破する新アサインメント。Fear系の敵・オブジェクトを轢くと時間延長。修理レンチ・スピードブーストで車を維持</td>
+            <td data-label="備考">2026/07/23（S05）実装。公式パッチノート情報</td>
+          </tr>
           <tr>
             <td data-label="名称">パワーノード回収（ウィークリーミッション）</td>
             <td data-label="内容">「パワーノードを回収せよ」というウィークリーミッション。パワーノードは建物の上などにある、青く光るキューブ型のオブジェクト</td>
@@ -1128,11 +1491,29 @@
 
   <section id="avalon-map">
     <h2>4. アヴァロン マップ</h2>
-    <p class="lead">アヴァロンの主要ランドマークを日本語で示した参考マップです。グリッチの発生場所（コロッセオ／チョップショップ＝解体工場／旧兵器庫）もこの地図上で確認できます。<strong>個人作成の参考マップ</strong>で、公式マップの転載ではありません。</p>
-    <div class="map-wrap">
-<img src="assets/img/avalon_map.png" alt="アヴァロン マップ（日本語ラベル付き）" style="width:100%;height:auto;display:block;border-radius:12px;" loading="lazy">
+    <p class="lead">アヴァロン島のタクティカルマップです。<span style="color:var(--color-accent);font-weight:700;">🔴 赤いピン</span>は、実機確認済みのグリッチ発生場所（固定ランドマーク）を示しています。<strong>個人作成の参考マップ</strong>で、公式マップの転載ではありません。</p>
+    <div class="map-frame">
+      <img src="assets/img/avalon_map.webp" alt="アヴァロン島 タクティカルマップ（グリッチ発生場所ピン付き）" loading="lazy">
+      <div class="gpin" style="left:80.5%;top:27.5%;">
+        <div class="gpin-label">ウイルスインジェクション<span>コロッセオ</span></div>
+        <div class="gpin-stem"></div>
+        <div class="gpin-mark"></div>
+      </div>
+      <div class="gpin" style="left:51.5%;top:87%;">
+        <div class="gpin-label">ルートクラッシャー<span>チョップショップ（解体工場）</span></div>
+        <div class="gpin-stem"></div>
+        <div class="gpin-mark"></div>
+      </div>
+      <div class="gpin" style="left:67%;top:92%;">
+        <div class="gpin-label">リンクフォージャー<span>旧兵器庫（旧武器庫）</span></div>
+        <div class="gpin-stem"></div>
+        <div class="gpin-mark"></div>
+      </div>
     </div>
-    <div class="note"><strong>グリッチの場所について：</strong>グリッチ（グリッチフラクチャー）は、対応オペレーションをクリアし「同じ試合でギルドストライクボスを撃破」すると出現します。発生場所は多くが固定ランドマークで、実機確認済み：ルートクラッシャー＝解体工場／リンクフォージャー＝旧武器庫／ウイルスインジェクション＝コロシアム（いずれも推奨戦闘評価60）。コマンドキラー・プライムターゲットの発生場所は未確認です。</div>
+    <div class="map-legend">
+      <span><span class="lg-dot"></span>グリッチ発生場所（実機確認済み・固定）</span>
+    </div>
+    <div class="note"><strong>グリッチの場所について：</strong>グリッチ（グリッチフラクチャー）は、対応オペレーションをクリアし「同じ試合でギルドストライクボスを撃破」すると出現します。発生場所は多くが固定ランドマークで、実機確認済み：ルートクラッシャー＝チョップショップ（解体工場）／リンクフォージャー＝旧兵器庫（旧武器庫）／ウイルスインジェクション＝コロッセオ（いずれも推奨戦闘評価60）。<strong>コマンドキラー・プライムターゲットの発生場所は未確認</strong>のため、ピンは立てていません。</div>
     <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
   </section>
 
@@ -1140,6 +1521,7 @@
     <h2>5. グリッチ一覧</h2>
     <p class="lead">グリッチ（グリッチフラクチャー）は、通常のアヴァロンマップ外で行われる特殊アクティビティ。対応オペレーションをクリアし、同じ試合でギルドストライクボスを倒すと出現します。発生場所は多くが固定のランドマーク（実機確認済み）。カードをクリックすると各グリッチの詳細が開きます。</p>
     <div class="note"><strong>報酬について：</strong>グリッチをクリアすると「ナイトメアスキル」（最強クラスのパッシブ強化。1つだけ装備可・2回強化可・フル強化でCR+3）が得られます。推奨CRは45以上、エキゾチック武器の持ち込み推奨。</div>
+    <div class="note" style="border-left-color:var(--color-accent);"><strong>S05メモ：</strong>シーズン5では新しいグリッチの追加はありません。S05の新エンドゲーム要素は<strong>「バーンラン」アサインメント</strong>と<strong>エキゾチックアビリティブースト</strong>です（→<a href="#missions" style="color:var(--color-accent-teal-light);">セクション3</a>参照）。</div>
     <p class="enemy-hint">🖱️ グリッチカードをクリックすると詳細が開きます。</p>
     <div class="op-grid">
       <button type="button" class="op-card weapon-card">
@@ -1238,6 +1620,14 @@
           <tr>
             <td data-label="カテゴリ">ドロップアイテム</td>
             <td data-label="内容">シーズン04(2026/06)より、Restore Tokenがエンドゲームのルートとしてドロップするようになった</td>
+          </tr>
+          <tr>
+            <td data-label="カテゴリ">エキゾチックアビリティブースト（S05）</td>
+            <td data-label="内容">シーズン05で追加。メジャー／マイナーアビリティを強化するレアな追加効果（クールダウン短縮・追加弾薬・追加ダメージ属性など）。アイテムケースから入手し、主にナイトメア地点で出やすい。各アビリティに2種あり、ワイプまたはアビリティ付け替えまで維持される（公式パッチノート）</td>
+          </tr>
+          <tr>
+            <td data-label="カテゴリ">エンドゲームの利用条件（S05→S06）</td>
+            <td data-label="内容">S05終了までは無料開放が継続予定。S06開始以降はWarzoneメニューから遊べなくなり、BO7所有者限定になる予定（公式パッチノート）</td>
           </tr>
           <tr>
             <td data-label="カテゴリ">用語：Affinity Exotic</td>
@@ -1800,152 +2190,55 @@
        ============================================ -->
   <section id="utility-bonus">
     <h2>9. ユーティリティボーナス（汎用）</h2>
-    <p class="lead">属性に関係なく出現する汎用ボーナス。アイコンごとにグループ分けされている。</p>
-
-    <h3>🖐️ 手（機動力系）</h3>
-    <div class="effect-list">
-      <div class="effect-row">
-        <div class="effect-icon-box emoji">🖐️</div>
-        <div class="effect-name"><span class="jp">高速</span><span class="en">Lightspeed</span></div>
-        <div class="effect-desc">あらゆる移動速度が上昇 <em>(旧「Lightspeed（訳未確認）」。XM325・Akitaの実機日本語表示で確認)</em></div>
+    <p class="lead">属性に関係なく出現する汎用ボーナス。アイコン（グループ）ごとにまとめています。</p>
+    <div class="util-groups">
+      <div class="util-card">
+        <div class="util-card-head"><img src="assets/icons/util_hand.webp" alt="機動力系アイコン" loading="lazy"></div>
+        <table class="util-table"><tbody>
+          <tr><td class="util-bname"><span class="jp">高速</span><span class="en">Lightspeed</span></td><td class="util-bdesc">あらゆる移動速度が上昇 <em>(旧「Lightspeed（訳未確認）」。XM325・Akitaの実機日本語表示で確認)</em></td></tr>
+          <tr><td class="util-bname"><span class="jp">LIFESTYLE</span><span class="en">Lifestyle</span></td><td class="util-bdesc">ヘッドショットで敵をキルするとHPが回復 <em>(日本語ローカライズされておらず英語のまま表示。ファブリケーター選択画面・HYPERSURGEなどで確認)</em></td></tr>
+          <tr><td class="util-bname"><span class="jp">ウルトラライト</span></td><td class="util-bdesc">エイム中のプレイヤーの移動速度が低下しない <em>(HYPERSURGEで確認)</em></td></tr>
+          <tr><td class="util-bname"><span class="jp">キル&ラン</span></td><td class="util-bdesc">敵をキルすると一時的に移動速度がブースト</td></tr>
+          <tr><td class="util-bname"><span class="jp">コンバットレディ</span></td><td class="util-bdesc">エイムとダッシュ後の射撃速度が大幅に向上</td></tr>
+          <tr><td class="util-bname"><span class="jp">高速射撃</span></td><td class="util-bdesc">武器の連射速度が上昇 <em>(BARRAGEで確認)</em></td></tr>
+          <tr><td class="util-bname"><span class="jp">ガンマン</span></td><td class="util-bdesc">腰だめ撃ち時のばらつきと反動が大幅に向上 <em>(KILONOVA・崩脳弾ドロップ時で確認)</em></td></tr>
+          <tr><td class="util-bname"><span class="jp">リロード切替</span></td><td class="util-bdesc">武器が交換時に常にリロードされる <em>(TORRENTで確認)</em></td></tr>
+          <tr><td class="util-bname"><span class="jp">激化</span><span class="en">Escalation</span></td><td class="util-bdesc">トリガーを長く引くほど連射速度が向上 <em>(REDLINEで実機確認)</em></td></tr>
+        </tbody></table>
       </div>
-      <div class="effect-row">
-        <div class="effect-icon-box emoji">🖐️</div>
-        <div class="effect-name"><span class="jp">LIFESTYLE</span><span class="en">Lifestyle</span></div>
-        <div class="effect-desc">ヘッドショットで敵をキルするとHPが回復 <em>(日本語ローカライズされておらず英語のまま表示。ファブリケーター選択画面・HYPERSURGEなどで確認)</em></div>
+      <div class="util-card">
+        <div class="util-card-head"><img src="assets/icons/util_skull.webp" alt="ダメージ系アイコン" loading="lazy"></div>
+        <table class="util-table"><tbody>
+          <tr><td class="util-bname"><span class="jp">腰だめ撃ち地獄</span></td><td class="util-bdesc">腰だめ撃ちのダメージが増加 <em>(旧「Hip-inferno（訳未確認）」。HYPERSURGEで実機確認)</em></td></tr>
+          <tr><td class="util-bname"><span class="jp">狙い撃ち</span><span class="en">Sharpshooter</span></td><td class="util-bdesc">上半身に命中するとヘッドショットと同じダメージを与える（コミュニティ内ではスナイパーライフルとの組み合わせでメタ言及されることが多く、「シャープシューター」とカタカナで呼ばれることも。新規アサルトライフル「VX Compact」でも装備可能なことを確認）</td></tr>
+          <tr><td class="util-bname"><span class="jp">スラッシャー</span></td><td class="util-bdesc">近接攻撃を繰り出す速度が向上 <em>(近接武器以外での出現は未確認。近接武器専用の可能性あり。海外コミュニティ情報（Steamガイド）でも、通常武器のユーティリティ対応表のどこにも出現しておらず、近接武器専用説を補強する材料あり。ただし二次情報のため断定はできない)</em></td></tr>
+          <tr><td class="util-bname"><span class="jp">グレネード弾</span></td><td class="util-bdesc">弾丸が爆発し、追加の範囲ダメージを与える <em>(炸裂弾とは別のユーティリティボーナス。1911／REBOOTで確認)</em></td></tr>
+          <tr><td class="util-bname"><span class="jp">炸裂弾</span><span class="en">Explosive Bullets（推定）</span></td><td class="util-bdesc">弾丸が爆発し、追加の範囲ダメージを与える <em>(説明文はグレネード弾と同じだが、両者は別のユーティリティボーナス。炸裂弾はPULSEBREACH等でも確認され汎用枠として存在)</em></td></tr>
+          <tr><td class="util-bname"><span class="jp">Velox Akimbo 5.7</span><span class="en">表示は「デュアルVELOX 5.7」</span></td><td class="util-bdesc">対象武器がデュアル武器（2丁持ち）になる <em>【訂正】以前「デュアル[武器名]」という汎用枠と推測していたが、海外wiki情報によりMalspike専用の武器固有ボーナスであり、他の武器では出現しないことが判明</em></td></tr>
+          <tr><td class="util-bname"><span class="jp">ショットガニフィケーター</span><span class="en">Shotgunificator</span></td><td class="util-bdesc">武器の弾が拡散するようになる <em>(KILONOVA・花閃弾ドロップ時で確認。海外wiki確認: KILONOVA専用の武器固有ボーナスで他の武器では出現しない)</em></td></tr>
+          <tr><td class="util-bname"><span class="jp">Parry（パリー）</span><span class="en">未ローカライズ</span></td><td class="util-bdesc">強近接攻撃チャージ中の被ダメージを軽減（近接武器専用）。海外wikiの武器対応表では「紫」表記＝エキゾチック武器ケース限定の専用ボーナス</td></tr>
+        </tbody></table>
       </div>
-      <div class="effect-row">
-        <div class="effect-icon-box emoji">🖐️</div>
-        <div class="effect-name"><span class="jp">ウルトラライト</span></div>
-        <div class="effect-desc">エイム中のプレイヤーの移動速度が低下しない <em>(HYPERSURGEで確認)</em></div>
+      <div class="util-card">
+        <div class="util-card-head"><img src="assets/icons/util_ammo.webp" alt="弾薬系アイコン" loading="lazy"></div>
+        <table class="util-table"><tbody>
+          <tr><td class="util-bname"><span class="jp">撃ち放題</span></td><td class="util-bdesc">全ての弾薬が1つの大きなマガジンに入っている</td></tr>
+          <tr><td class="util-bname"><span class="jp">弾薬リチャージャー</span></td><td class="util-bdesc">武器の収納中に弾薬が補充される</td></tr>
+          <tr><td class="util-bname"><span class="jp">廃棄物ゼロ</span><span class="en">Zero Waste</span></td><td class="util-bdesc">弾丸を発射しても50%の確率で弾薬を消費しない <em>(ZEOTROPEで確認)</em></td></tr>
+          <tr><td class="util-bname"><span class="jp">弾薬減少</span></td><td class="util-bdesc">キル後に弾薬をマガジンに追加 <em>(PULSEBREACHで確認。弾薬リチャージャーとは発動条件が異なる別ボーナス)</em></td></tr>
+          <tr><td class="util-bname"><span class="jp">ロングバースト</span><span class="en">Longburst</span></td><td class="util-bdesc">各バーストで発射する弾の数が増える <em>(Pulsebreach(Swordfish A1)で確認)</em></td></tr>
+          <tr><td class="util-bname"><span class="jp">近接リロード</span></td><td class="util-bdesc">近接ヒット後、すぐに武器のマガジンが充填される <em>(SWARMFORGE・OVERCHARGEで確認。アイコンは弾薬系と共通と実機確認済み)</em></td></tr>
+        </tbody></table>
       </div>
-      <div class="effect-row">
-        <div class="effect-icon-box emoji">🖐️</div>
-        <div class="effect-name"><span class="jp">キル&ラン</span></div>
-        <div class="effect-desc">敵をキルすると一時的に移動速度がブースト</div>
-      </div>
-      <div class="effect-row">
-        <div class="effect-icon-box emoji">🖐️</div>
-        <div class="effect-name"><span class="jp">コンバットレディ</span></div>
-        <div class="effect-desc">エイムとダッシュ後の射撃速度が大幅に向上</div>
-      </div>
-      <div class="effect-row">
-        <div class="effect-icon-box emoji">🖐️</div>
-        <div class="effect-name"><span class="jp">高速射撃</span></div>
-        <div class="effect-desc">武器の連射速度が上昇 <em>(BARRAGEで確認)</em></div>
-      </div>
-      <div class="effect-row">
-        <div class="effect-icon-box emoji">🖐️</div>
-        <div class="effect-name"><span class="jp">ガンマン</span></div>
-        <div class="effect-desc">腰だめ撃ち時のばらつきと反動が大幅に向上 <em>(KILONOVA・崩脳弾ドロップ時で確認)</em></div>
-      </div>
-      <div class="effect-row">
-        <div class="effect-icon-box emoji">🖐️</div>
-        <div class="effect-name"><span class="jp">リロード切替</span></div>
-        <div class="effect-desc">武器が交換時に常にリロードされる <em>(TORRENTで確認)</em></div>
-      </div>
-      <div class="effect-row">
-        <div class="effect-icon-box emoji">🖐️</div>
-        <div class="effect-name"><span class="jp">激化</span><span class="en">Escalation</span></div>
-        <div class="effect-desc">トリガーを長く引くほど連射速度が向上 <em>(REDLINEで実機確認)</em></div>
+      <div class="util-card">
+        <div class="util-card-head"><img src="assets/icons/util_aim.webp" alt="反動・命中系アイコン" loading="lazy"></div>
+        <table class="util-table"><tbody>
+          <tr><td class="util-bname"><span class="jp">反動削除</span></td><td class="util-bdesc">反動制御が大幅に向上</td></tr>
+          <tr><td class="util-bname"><span class="jp">ロングショット</span></td><td class="util-bdesc">射程距離が大幅に向上。反動をわずかに軽減</td></tr>
+        </tbody></table>
       </div>
     </div>
 
-    <h3>💀 髑髏（ダメージ系）</h3>
-    <div class="effect-list">
-      <div class="effect-row">
-        <div class="effect-icon-box emoji">💀</div>
-        <div class="effect-name"><span class="jp">腰だめ撃ち地獄</span></div>
-        <div class="effect-desc">腰だめ撃ちのダメージが増加 <em>(旧「Hip-inferno（訳未確認）」。HYPERSURGEで実機確認)</em></div>
-      </div>
-      <div class="effect-row">
-        <div class="effect-icon-box emoji">💀</div>
-        <div class="effect-name"><span class="jp">狙い撃ち</span><span class="en">Sharpshooter</span></div>
-        <div class="effect-desc">上半身に命中するとヘッドショットと同じダメージを与える（コミュニティ内ではスナイパーライフルとの組み合わせでメタ言及されることが多く、「シャープシューター」とカタカナで呼ばれることも。新規アサルトライフル「VX Compact」でも装備可能なことを確認）</div>
-      </div>
-      <div class="effect-row">
-        <div class="effect-icon-box emoji">💀</div>
-        <div class="effect-name"><span class="jp">スラッシャー</span></div>
-        <div class="effect-desc">近接攻撃を繰り出す速度が向上 <em>(近接武器以外での出現は未確認。近接武器専用の可能性あり。海外コミュニティ情報（Steamガイド）でも、通常武器のユーティリティ対応表のどこにも出現しておらず、近接武器専用説を補強する材料あり。ただし二次情報のため断定はできない)</em></div>
-      </div>
-      <div class="effect-row">
-        <div class="effect-icon-box emoji">💀</div>
-        <div class="effect-name"><span class="jp">グレネード弾</span></div>
-        <div class="effect-desc">弾丸が爆発し、追加の範囲ダメージを与える <em>(炸裂弾とは別のユーティリティボーナス。1911／REBOOTで確認)</em></div>
-      </div>
-      <div class="effect-row">
-        <div class="effect-icon-box emoji">💀</div>
-        <div class="effect-name"><span class="jp">炸裂弾</span><span class="en">Explosive Bullets（推定）</span></div>
-        <div class="effect-desc">弾丸が爆発し、追加の範囲ダメージを与える <em>(説明文はグレネード弾と同じだが、両者は別のユーティリティボーナス。炸裂弾はPULSEBREACH等でも確認され汎用枠として存在)</em></div>
-      </div>
-      <div class="effect-row">
-        <div class="effect-icon-box emoji">💀</div>
-        <div class="effect-name"><span class="jp">Velox Akimbo 5.7</span><span class="en">表示は「デュアルVELOX 5.7」</span></div>
-        <div class="effect-desc">対象武器がデュアル武器（2丁持ち）になる <em>【訂正】以前「デュアル[武器名]」という汎用枠と推測していたが、海外wiki情報によりMalspike専用の武器固有ボーナスであり、他の武器では出現しないことが判明</em></div>
-      </div>
-      <div class="effect-row">
-        <div class="effect-icon-box emoji">💀</div>
-        <div class="effect-name"><span class="jp">ショットガニフィケーター</span><span class="en">Shotgunificator</span></div>
-        <div class="effect-desc">武器の弾が拡散するようになる <em>(KILONOVA・花閃弾ドロップ時で確認。海外wiki確認: KILONOVA専用の武器固有ボーナスで他の武器では出現しない)</em></div>
-      </div>
-    </div>
-
-    <h3>🎯 照準（反動・命中系）</h3>
-    <div class="effect-list">
-      <div class="effect-row">
-        <div class="effect-icon-box emoji">🎯</div>
-        <div class="effect-name"><span class="jp">反動削除</span></div>
-        <div class="effect-desc">反動制御が大幅に向上</div>
-      </div>
-      <div class="effect-row">
-        <div class="effect-icon-box emoji">🎯</div>
-        <div class="effect-name"><span class="jp">ロングショット</span></div>
-        <div class="effect-desc">射程距離が大幅に向上。反動をわずかに軽減</div>
-      </div>
-    </div>
-
-    <h3>🔫 弾薬系</h3>
-    <div class="effect-list">
-      <div class="effect-row">
-        <div class="effect-icon-box emoji">🔫</div>
-        <div class="effect-name"><span class="jp">撃ち放題</span></div>
-        <div class="effect-desc">全ての弾薬が1つの大きなマガジンに入っている</div>
-      </div>
-      <div class="effect-row">
-        <div class="effect-icon-box emoji">🔫</div>
-        <div class="effect-name"><span class="jp">弾薬リチャージャー</span></div>
-        <div class="effect-desc">武器の収納中に弾薬が補充される</div>
-      </div>
-      <div class="effect-row">
-        <div class="effect-icon-box emoji">🔫</div>
-        <div class="effect-name"><span class="jp">廃棄物ゼロ</span><span class="en">Zero Waste</span></div>
-        <div class="effect-desc">弾丸を発射しても50%の確率で弾薬を消費しない <em>(ZEOTROPEで確認)</em></div>
-      </div>
-      <div class="effect-row">
-        <div class="effect-icon-box emoji">🔫</div>
-        <div class="effect-name"><span class="jp">弾薬減少</span></div>
-        <div class="effect-desc">キル後に弾薬をマガジンに追加 <em>(PULSEBREACHで確認。弾薬リチャージャーとは発動条件が異なる別ボーナス)</em></div>
-      </div>
-      <div class="effect-row">
-        <div class="effect-icon-box emoji">🔫</div>
-        <div class="effect-name"><span class="jp">ロングバースト</span><span class="en">Longburst</span></div>
-        <div class="effect-desc">各バーストで発射する弾の数が増える <em>(Pulsebreach(Swordfish A1)で確認)</em></div>
-      </div>
-      <div class="effect-row">
-        <div class="effect-icon-box emoji">🔫</div>
-        <div class="effect-name"><span class="jp">近接リロード</span></div>
-        <div class="effect-desc">近接ヒット後、すぐに武器のマガジンが充填される <em>(SWARMFORGE・OVERCHARGEで確認。アイコンは弾薬系と共通と実機確認済み)</em></div>
-      </div>
-    </div>
-
-    <h3>⚔️ 近接系（アイコン未確認）</h3>
-    <div class="effect-list">
-      <div class="effect-row">
-        <div class="effect-icon-box emoji">⚔️</div>
-        <div class="effect-name"><span class="jp">Parry（パリー）</span><span class="en">未ローカライズ</span></div>
-        <div class="effect-desc">強近接攻撃チャージ中の被ダメージを軽減（近接武器専用）。海外wikiの武器対応表では「紫」表記＝エキゾチック武器ケース限定の専用ボーナス</div>
-      </div>
-    </div>
     <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
   </section>
 
@@ -2141,6 +2434,24 @@
         </div>
       </details>
 
+      <details class="season">
+        <summary>
+          <span class="season-badge">S5</span>
+          <span class="season-ttl">バーンランとアビリティ強化<span class="season-sub">　2026/07/23〜（新アサインメント／アビリティブースト）</span></span>
+          <span class="season-chevron" aria-hidden="true">▾</span>
+        </summary>
+        <div class="season-body">
+          <h4>エンドゲームの新要素</h4>
+          <p>シーズン5では、アヴァロンに新アサインメント「<span class="term">バーンラン（Burn Run）</span>」が追加されました。爆弾を積んだ車で炎に包まれた30個のアーチを制限時間内に走り抜けるタイムアタックで、道中のFear系の敵・オブジェクトを轢くと時間が延長されます。</p>
+          <p>あわせて「<span class="term">エキゾチックアビリティブースト</span>」が導入され、メジャー／マイナーアビリティをクールダウン短縮・追加弾薬・追加ダメージ属性などで強化できるようになりました。主にナイトメア地点のケースから入手します。</p>
+          <h4>プレイ環境の変化</h4>
+          <p>エンドゲームの無料開放はS05終了まで継続予定で、S06以降はBO7所有者限定になる予定です。</p>
+          <div class="season-summary-box">
+            <strong>メモ：</strong> S05のエンドゲーム更新は「新アクティビティ（バーンラン）＋アビリティ強化」が中心で、公式パッチノート上ではドーン／メイソン／ルークらの新たな物語章は明記されていません。ストーリー面で続きが判明したら追記します。
+          </div>
+        </div>
+      </details>
+
     </div>
 
     <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
@@ -2163,11 +2474,16 @@
       <li><span class="badge" style="background:var(--color-status-ok-bg);border-color:var(--color-status-ok-border);color:var(--color-status-ok-text);">確定</span> 名前付きエキゾチック武器の属性(Rounds)は、フレーバーテキストとは無関係にドロップごとにランダムに決定される。Killswitch/Hypersurge/Rebootなど複数の武器で同一武器でも毎回異なる属性がドロップする実例を確認。以前「一致」としていたKillswitchも別ドロップで不一致が確認されたため、フレーバーテキストとの一致は偶然であり、Roundsが固定されている武器は存在しないと判断できる</li>
       <li><span class="badge" style="background:var(--color-status-todo-bg);border-color:var(--color-status-todo-border);color:var(--color-status-todo-text);">要注意</span> <strong>ファブリケーターでのユーティリティボーナス変更は必ず元に戻せるとは限らない可能性。</strong>実例：デュアルアクション→デュアルVELOX5.7に変更後、再アクセス不可になり元に戻せなかった。再現性・条件を確認</li>
       <li><span class="badge">中</span> 「スラッシャー」が近接武器専用ボーナスかどうか継続検証（近接武器以外での出現例を探す）</li>
+      <li><span class="badge" style="background:var(--color-status-todo-bg);border-color:var(--color-status-todo-border);color:var(--color-status-todo-text);">S05</span> 新武器 <strong>Mammoth（LMG）</strong> がエンドゲームに登場するか、登場する場合の付くボーナスを確認（S05のイベント報酬武器。現状はMP/バトルパス情報のみ）</li>
+      <li><span class="badge" style="background:var(--color-status-todo-bg);border-color:var(--color-status-todo-border);color:var(--color-status-todo-text);">S05</span> <strong>バーンラン</strong>の詳細（制限時間・報酬・攻略のコツ）を実機で確認</li>
+      <li><span class="badge" style="background:var(--color-status-todo-bg);border-color:var(--color-status-todo-border);color:var(--color-status-todo-text);">S05</span> <strong>エキゾチックアビリティブースト</strong>の具体的な効果一覧（各アビリティ2種）を実機で確認</li>
     </ul>
     <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
   </section>
 
 </div>
+
+<a href="#top" class="fab-top" aria-label="先頭へ戻る" title="先頭へ戻る">↑</a>
 
 <footer>
   このページは個人の検証記録であり、公式情報ではありません。誤りに気づいた場合は随時修正します。
