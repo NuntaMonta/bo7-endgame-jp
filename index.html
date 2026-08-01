@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BO7 Endgame 日本語攻略メモ｜オペレーター・敵ボス・エキゾチック武器まとめ</title>
-<meta name="description" content="Call of Duty Black Ops 7（BO7）エンドゲームの日本語攻略メモ。オペレーター一覧、敵・ボス図鑑、エキゾチック武器と属性(Rounds)、ユーティリティボーナス、属性一致ボーナス、ストーリー年表を、実機検証と海外情報をもとにまとめた非公式まとめ（随時更新）。">
-<meta name="keywords" content="BO7,Black Ops 7,ブラックオプス7,エンドゲーム,Endgame,攻略,日本語,オペレーター,エキゾチック,ワールドボス,ゾンビザウルス,HEL-A27,ユーティリティボーナス,属性一致">
+<meta name="description" content="Call of Duty Black Ops 7（BO7）エンドゲームの日本語攻略メモ。メガアボミネーションの出現方法（第4章キングキラー作戦をクリア→ワールドイベント「ギルドストライク」→ナイトメアゾーンでギルドストライクボス撃破）を実機検証で解説。オペレーター一覧、敵・ボス図鑑、エキゾチック武器と属性、ユーティリティボーナス、ストーリー年表もまとめた非公式まとめ（随時更新）。">
+<meta name="keywords" content="BO7,Black Ops 7,ブラックオプス7,エンドゲーム,Endgame,攻略,日本語,メガアボミネーション,メガアボミネーション 出現方法,メガアボミネーション 出し方,ギルドストライク,ナイトメアゾーン,キングキラー作戦,オペレーター,エキゾチック,ワールドボス,ゾンビザウルス,HEL-A27,ユーティリティボーナス,属性一致">
 <link rel="canonical" href="https://nuntamonta.github.io/bo7-endgame-jp/">
 <!-- ▼ Google Search Console 所有権確認用：取得した確認タグをこの行の下に貼り付けてください
      例）<meta name="google-site-verification" content="ここに文字列"> -->
@@ -1319,9 +1319,9 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
 
   <section id="enemies">
     <h2>2. 敵・ボス図鑑</h2>
-    <p class="lead">まず「誰を・何を倒すのか」を把握するためのパート。スペシャル・エリートエネミーとワールドボスの一覧です。</p>
+    <p class="lead">まず「誰を・何を倒すのか」を把握するためのパート。エネミーとワールドボスの一覧です。</p>
 
-    <h3>スペシャル・エリートエネミー図鑑</h3>
+    <h3>エネミー図鑑</h3>
     <p class="enemy-hint"><svg class="ic-inline" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 2l15 9-6.6 1.5L10 20z"/></svg>カードをクリックすると詳細（特徴・攻撃パターン）が開きます。</p>
     <div class="op-grid">
       <button type="button" class="op-card enemy-card">
@@ -1369,6 +1369,33 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
           <p><strong>攻撃パターン：</strong>プレイヤーの動きを遅くする弾をばら撒く</p>
         </div>
       </button>
+      <button type="button" class="op-card enemy-card">
+        <img src="assets/enemies/fear.webp" alt="フィアーエネミー" loading="lazy">
+        <div class="op-name">フィアーエネミー</div>
+        <div class="op-en">Fear</div>
+        <div class="enemy-detail" hidden>
+          <p><strong>特徴：</strong>基本となるゾンビ型の敵</p>
+          <p><strong>攻撃パターン：</strong>足が速く、走って距離を詰めて接近攻撃してくる</p>
+        </div>
+      </button>
+      <button type="button" class="op-card enemy-card">
+        <img src="assets/enemies/scourge.webp" alt="スカージ" loading="lazy">
+        <div class="op-name">スカージ</div>
+        <div class="op-en">Scourge</div>
+        <div class="enemy-detail" hidden>
+          <p><strong>特徴：</strong>蜘蛛型のゾンビ</p>
+          <p><strong>攻撃パターン：</strong>飛びかかって攻撃してくる</p>
+        </div>
+      </button>
+      <button type="button" class="op-card enemy-card">
+        <img src="assets/enemies/infester.webp" alt="インフェスター" loading="lazy">
+        <div class="op-name">インフェスター</div>
+        <div class="op-en">Infester</div>
+        <div class="enemy-detail" hidden>
+          <p><strong>特徴：</strong>飛行型の敵</p>
+          <p><strong>攻撃パターン：</strong>液体を飛ばして攻撃してくる</p>
+        </div>
+      </button>
     </div>
 
     <h3 style="margin-top:28px;">ワールドボス</h3>
@@ -1392,11 +1419,14 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
         <img src="assets/enemies/megaabomination.webp" alt="メガアボミネーション" loading="lazy">
         <div class="op-name">メガアボミネーション</div>
         <div class="op-en">Mega Abomination</div>
+        <div class="op-en" style="color:var(--color-accent);font-weight:700;letter-spacing:.04em;">出現方法 確定 ✓</div>
         <div class="enemy-detail" hidden>
           <ul>
-            <li><strong>出現場所・条件：</strong>ミッション「謎のギルドコンテナ」終了後のナイトメアゾーンに出現するインタラクト可能な死体（?）を調べると発生。敵が大量発生し、数値が100%になると出現</li>
+            <li><strong>出現条件（実機確認・2026/08）：</strong>前提として<strong>全サイドミッションをクリア</strong>していること（エンドゲームオペレーション＝現状は第4章「キングキラー作戦」まで）。未クリアだと以降のアイコンや死体のインタラクトは出ない</li>
+            <li><strong>出現フロー：</strong>①ワールドイベント<strong>「ギルドストライク」</strong>を進めると、その地点に<strong>ナイトメアゾーン</strong>が発生 → ②ナイトメアの<strong>ギルドストライクボス</strong>（例：スウラク・バーウー／O.S.C.A.R.）を撃破 → ③mapに<strong>専用アイコン</strong>が出現 → ④その地点へ行くと<strong>死体</strong>があり、インタラクト → ⑤出現する敵を撃退するとメガアボミネーションが召喚される</li>
+            <li><strong>注意（必要ミッションは毎シーズン更新）：</strong>解禁に必要なオペレーションはシーズンごとに更新される。以前は第2章「ブロークンミラー」だったため、海外の旧動画が「Act 2」と説明していた。常に<strong>最新章まで全クリア</strong>しておくのが条件</li>
             <li><strong>見た目：</strong>3つの口を持ち、後ろ足と尻尾しかない特異な姿</li>
-            <li><strong>撃破報酬：</strong>エキゾチック武器ケースが確定ドロップ</li>
+            <li><strong>撃破報酬：</strong>3000パワー＋エキゾチック（特殊）武器</li>
           </ul>
         </div>
       </button>
@@ -1456,7 +1486,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
       <table>
         <thead><tr><th>項目</th><th>内容</th></tr></thead>
         <tbody>
-          <tr><td data-label="項目">死亡時のペナルティ</td><td data-label="内容">プレイ中に死ぬと、そのレベルで拾った武器（現地入手武器）はすべて失われる。ただし「復元トークン」（イベントパスやミッション報酬で入手）を持っていれば防げる</td></tr>
+          <tr><td data-label="項目">死亡時のペナルティ</td><td data-label="内容">死亡などで<strong>任務に失敗</strong>すると、その試合で上げた<strong>レベル</strong>（レベルアップで習得したスキルを含む）と<strong>現地入手武器</strong>をすべて失う。ただし「復元トークン」（イベントパスやミッション報酬で入手）を持っていれば現地入手武器の消失を防げる</td></tr>
           <tr><td data-label="項目">チームプレイのメリット</td><td data-label="内容">チームを組んでいる場合、倒れてもミッション失敗にはならず、リスポンできる（ソロだとミッション失敗になりやすい）</td></tr>
           <tr><td data-label="項目">ロードアウト武器の扱い</td><td data-label="内容">任務の成功・失敗に関わらず、常に設定・使用可能</td></tr>
           <tr><td data-label="項目">現地入手武器の制限</td><td data-label="内容">アタッチメントの設定などのカスタマイズはできない</td></tr>
