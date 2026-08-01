@@ -1538,18 +1538,28 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
     <p class="lead">アヴァロン島のタクティカルマップです。<span style="color:var(--color-accent);font-weight:700;"><span class="leg-dot"></span>赤いピン</span>は、実機確認済みのグリッチ発生場所（固定ランドマーク）を示しています。<strong>個人作成の参考マップ</strong>で、公式マップの転載ではありません。</p>
     <div class="map-frame">
       <img src="assets/img/avalon_map.webp" alt="アヴァロン島 タクティカルマップ（グリッチ発生場所ピン付き）" loading="lazy">
-      <div class="gpin" style="left:84%;top:29%;">
-        <div class="gpin-label">ウイルスインジェクション<span>コロッセオ</span></div>
+      <div class="gpin" style="left:83.2%;top:23.9%;">
+        <div class="gpin-label">ウイルスインジェクション<span>コロシアム</span></div>
         <div class="gpin-stem"></div>
         <div class="gpin-mark"></div>
       </div>
-      <div class="gpin" style="left:54%;top:88.5%;">
-        <div class="gpin-label">ルートクラッシャー<span>チョップショップ（解体工場）</span></div>
+      <div class="gpin" style="left:56.6%;top:79.5%;">
+        <div class="gpin-label">ルートクラッシャー<span>解体工場</span></div>
         <div class="gpin-stem"></div>
         <div class="gpin-mark"></div>
       </div>
-      <div class="gpin" style="left:69.2%;top:92.5%;">
-        <div class="gpin-label">リンクフォージャー<span>旧兵器庫（旧武器庫）</span></div>
+      <div class="gpin" style="left:71.2%;top:94.6%;">
+        <div class="gpin-label">リンクフォージャー<span>旧武器庫</span></div>
+        <div class="gpin-stem"></div>
+        <div class="gpin-mark"></div>
+      </div>
+      <div class="gpin" style="left:13.7%;top:58.5%;">
+        <div class="gpin-label">メインターゲット<span>沿岸警備施設</span></div>
+        <div class="gpin-stem"></div>
+        <div class="gpin-mark"></div>
+      </div>
+      <div class="gpin" style="left:43.6%;top:50%;">
+        <div class="gpin-label">コマンドキラー<span>ハイタウン</span></div>
         <div class="gpin-stem"></div>
         <div class="gpin-mark"></div>
       </div>
@@ -1557,7 +1567,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
     <div class="map-legend">
       <span><span class="lg-dot"></span>グリッチ発生場所（実機確認済み・固定）</span>
     </div>
-    <div class="note"><strong>グリッチの場所について：</strong>グリッチ（グリッチフラクチャー）は、対応オペレーションをクリアし「同じ試合でギルドストライクボスを撃破」すると出現します。発生場所は多くが固定ランドマークで、実機確認済み：ルートクラッシャー＝チョップショップ（解体工場）／リンクフォージャー＝旧兵器庫（旧武器庫）／ウイルスインジェクション＝コロッセオ（いずれも推奨戦闘評価60）。<strong>コマンドキラー・プライムターゲットの発生場所は未確認</strong>のため、ピンは立てていません。</div>
+    <div class="note"><strong>グリッチの場所について：</strong>グリッチ（グリッチフラクチャー）は、対応オペレーションをクリアし「同じ試合でギルドストライクボスを撃破」すると出現します。発生場所は多くが固定ランドマークで、実機確認済み：ルートクラッシャー＝解体工場／リンクフォージャー＝旧武器庫／ウイルスインジェクション＝コロシアム／メインターゲット（英語版：Prime Target）＝沿岸警備施設／コマンドキラー＝ハイタウン（いずれも推奨戦闘評価60）。<strong>5種すべての発生場所を実機で確認済み</strong>です。</div>
     <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
   </section>
 
@@ -1569,7 +1579,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
     <p class="enemy-hint"><svg class="ic-inline" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 2l15 9-6.6 1.5L10 20z"/></svg>グリッチカードをクリックすると詳細が開きます。</p>
     <div class="op-grid">
       <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph"><svg class="ph-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.7" fill="currentColor" stroke="none"/></svg></div>
+        <img src="assets/img/glitch.webp" alt="グリッチフラクチャー" loading="lazy">
         <div class="op-name">ルートクラッシャー</div>
         <div class="op-en">Root Crasher</div>
         <div class="enemy-detail" hidden data-title="ルートクラッシャー">
@@ -1583,7 +1593,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
         </div>
       </button>
       <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph"><svg class="ph-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.7" fill="currentColor" stroke="none"/></svg></div>
+        <img src="assets/img/glitch.webp" alt="グリッチフラクチャー" loading="lazy">
         <div class="op-name">リンクフォージャー</div>
         <div class="op-en">Link Forger</div>
         <div class="enemy-detail" hidden data-title="リンクフォージャー（Link Forger）">
@@ -1597,7 +1607,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
         </div>
       </button>
       <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph"><svg class="ph-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.7" fill="currentColor" stroke="none"/></svg></div>
+        <img src="assets/img/glitch.webp" alt="グリッチフラクチャー" loading="lazy">
         <div class="op-name">ウイルスインジェクション</div>
         <div class="op-en">Virus Injection</div>
         <div class="enemy-detail" hidden data-title="ウイルスインジェクション（Virus Injection）">
@@ -1611,7 +1621,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
         </div>
       </button>
       <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph"><svg class="ph-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.7" fill="currentColor" stroke="none"/></svg></div>
+        <img src="assets/img/glitch.webp" alt="グリッチフラクチャー" loading="lazy">
         <div class="op-name">コマンドキラー</div>
         <div class="op-en">Command Killer</div>
         <div class="enemy-detail" hidden data-title="コマンドキラー（Command Killer）">
@@ -1624,10 +1634,10 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
         </div>
       </button>
       <button type="button" class="op-card weapon-card">
-        <div class="weapon-ph"><svg class="ph-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.7" fill="currentColor" stroke="none"/></svg></div>
-        <div class="op-name">プライムターゲット</div>
+        <img src="assets/img/glitch.webp" alt="グリッチフラクチャー" loading="lazy">
+        <div class="op-name">メインターゲット</div>
         <div class="op-en">Prime Target</div>
-        <div class="enemy-detail" hidden data-title="プライムターゲット（Prime Target）">
+        <div class="enemy-detail" hidden data-title="メインターゲット（英語版：Prime Target）">
           <ul>
             <li><strong>実装：</strong>シーズン4 Reloaded・キングキラー作戦（Act4）</li>
             <li><strong>出現条件：</strong>キングキラー作戦の最終ステップ。Terminal Vectorアクティビティ経由で到達。Coastal Security南の島に出現</li>
