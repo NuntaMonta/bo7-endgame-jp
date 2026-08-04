@@ -825,12 +825,12 @@
     background-attachment: fixed;
   }
 
-  /* ヒーロー：タイトル背後にオレンジのグロー */
+  /* ヒーロー：背景と完全一体化（グロー撤去・フラットな#1b1432） */
   header.page-header::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(600px 320px at 50% 40%, rgba(235,83,44,0.30), transparent 70%);
+    background: transparent;
     z-index: -1;
   }
   .hero-image { box-shadow: none; }
@@ -1082,9 +1082,9 @@
 /* 背景：静かに（スキャンライン撤去・淡いグローのみ）*/
 body{
   background:
-    radial-gradient(1100px 640px at 50% -240px, rgba(255,122,26,.08), transparent 70%),
-    radial-gradient(900px 620px at 100% 4%, rgba(32,198,223,.07), transparent 65%),
-    #05090c;
+    radial-gradient(1100px 640px at 50% -240px, rgba(255,122,26,.06), transparent 70%),
+    radial-gradient(900px 620px at 100% 4%, rgba(32,198,223,.05), transparent 65%),
+    #1b1432;
   background-attachment: fixed; font-size:16px;
 }
 .container::before{
