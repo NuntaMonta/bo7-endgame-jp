@@ -1125,6 +1125,17 @@ details.wcat::before,details.wcat::after,.table-scroll::before,.table-scroll::af
 .newbox::before,.newbox::after,.map-frame::before,.map-frame::after{ content:""; position:absolute; width:14px; height:14px; border:2px solid var(--hud); pointer-events:none; z-index:3; display:block; }
 .newbox::before,.map-frame::before{ top:-1px; left:-1px; border-right:none; border-bottom:none; }
 .newbox::after,.map-frame::after{ bottom:-1px; right:-1px; border-left:none; border-top:none; }
+/* バーンライン注目セクション（コーナーブラケット＋オレンジ強調） */
+details.season.featured{ border:1px solid var(--color-accent) !important; border-radius:2px !important; position:relative; }
+details.season.featured::before,details.season.featured::after{ content:"" !important; display:block !important; position:absolute; width:16px; height:16px; border:2px solid var(--color-accent); pointer-events:none; z-index:3; }
+details.season.featured::before{ top:-1px; left:-1px; border-right:none; border-bottom:none; }
+details.season.featured::after{ bottom:-1px; right:-1px; border-left:none; border-top:none; }
+.season-badge.new{ background:var(--color-accent); color:#1a0d02; letter-spacing:.5px; }
+#burn-run{ scroll-margin-top:60px; }
+.toc-pickup{ display:flex; align-items:center; gap:8px; margin:0 0 14px; padding:9px 12px; border:1px solid var(--color-accent); border-radius:2px; background:rgba(235,83,44,0.12); color:var(--color-accent-teal-light); font-weight:700; font-size:14px; text-decoration:none; }
+.toc-pickup:hover{ background:rgba(235,83,44,0.22); }
+.toc-pickup .pk-badge{ background:var(--color-accent); color:#1a0d02; font-size:11px; padding:2px 7px; border-radius:3px; letter-spacing:.5px; }
+.visually-hidden{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 /* テーブル */
 th{ background:#0c2028; color:var(--color-accent-teal-light); border-color:rgba(32,198,223,.22); }
 td{ border-color:rgba(32,198,223,.14); }
@@ -1168,7 +1179,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
 
 </head>
 <body>
-<nav class="topnav" aria-label="セクションナビ"><div class="tn-inner"><span class="tn-brand">BO7 ENDGAME</span><a href="#top" data-sec="top">ホーム</a><a href="#operators" data-sec="operators">オペレーター</a><a href="#enemies" data-sec="enemies">敵ボス</a><a href="#missions" data-sec="missions">ミッション</a><a href="#avalon-map" data-sec="avalon-map">マップ</a><a href="#glitches" data-sec="glitches">グリッチ</a><a href="#game-rules" data-sec="game-rules">ルール</a><a href="#exotic-effects" data-sec="exotic-effects">エキゾ効果</a><a href="#weapon-traits" data-sec="weapon-traits">武器早見</a><a href="#utility-bonus" data-sec="utility-bonus">汎用ボーナス</a><a href="#affinity-bonus" data-sec="affinity-bonus">属性一致</a><a href="#named-exotics" data-sec="named-exotics">名前付き</a><a href="#weapon-specific" data-sec="weapon-specific">武器固有</a><a href="#story-timeline" data-sec="story-timeline">年表</a><a href="#todo" data-sec="todo">検証タスク</a></div></nav>
+<nav class="topnav" aria-label="セクションナビ"><div class="tn-inner"><span class="tn-brand">BO7 ENDGAME</span><a href="#top" data-sec="top">ホーム</a><a href="#burn-run" data-sec="burn-run" style="color:var(--color-accent);font-weight:700;">バーンライン</a><a href="#operators" data-sec="operators">オペレーター</a><a href="#enemies" data-sec="enemies">敵ボス</a><a href="#missions" data-sec="missions">ミッション</a><a href="#avalon-map" data-sec="avalon-map">マップ</a><a href="#glitches" data-sec="glitches">グリッチ</a><a href="#game-rules" data-sec="game-rules">ルール</a><a href="#exotic-effects" data-sec="exotic-effects">エキゾ効果</a><a href="#weapon-traits" data-sec="weapon-traits">武器早見</a><a href="#utility-bonus" data-sec="utility-bonus">汎用ボーナス</a><a href="#affinity-bonus" data-sec="affinity-bonus">属性一致</a><a href="#named-exotics" data-sec="named-exotics">名前付き</a><a href="#weapon-specific" data-sec="weapon-specific">武器固有</a><a href="#story-timeline" data-sec="story-timeline">年表</a><a href="#todo" data-sec="todo">検証タスク</a></div></nav>
 <div class="scanbeam" aria-hidden="true"></div>
 
 
@@ -1180,6 +1191,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
 
   <nav class="toc" aria-label="目次">
     <h2>目次</h2>
+    <a href="#burn-run" class="toc-pickup"><span class="pk-badge">NEW · S05</span>バーンライン攻略</a>
     <ol>
       <li><a href="#operators">オペレーター一覧</a></li>
       <li><a href="#enemies">敵・ボス図鑑</a></li>
@@ -1202,6 +1214,56 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
     <h3>エンドゲームとは</h3>
     <p>4人までのスクアッドを組み、最大32人が参加できる設計で、難易度が上がるゾーンを攻略しながら戦闘評価やスキルツリーを育て、成果を持ち帰るために脱出を目指す、脱出系シューター的なルールです。アヴァロンの広大な地を探索し、謎の毒素で汚染された危険地域を戦い抜きながら、ギルドの残存司令部を突き止めていきます。</p>
   </div>
+
+  <section id="burn-run">
+    <h2 class="visually-hidden">バーンライン攻略</h2>
+    <div class="season-list">
+    <details class="season featured">
+      <summary>
+        <span class="season-badge new">NEW · S05</span>
+        <span class="season-ttl">バーンライン攻略<span class="season-sub">　出現場所・手順・コツ・報酬</span></span>
+        <span class="season-chevron" aria-hidden="true">▾</span>
+      </summary>
+      <div class="season-body">
+        <p class="lead">バーンランは、爆弾を積んだ車で炎のアーチのコースを制限時間内に走破するミッション。戦闘ではなく<strong>“レース”として走る</strong>のがクリアのコツです。</p>
+        <p><span class="term">出現場所</span>は2か所（<strong>ハイタウン</strong>・<strong>ロータウン</strong>）。ハイタウンの短めのコースが練習向きです。</p>
+        <ol style="margin:0 0 16px;padding-left:20px;line-height:1.7;">
+          <li style="margin-bottom:6px;">ミッション場所にある車両にインタラクトして乗り込む</li>
+          <li style="margin-bottom:6px;">矢印のルート指示に従ってゴールを目指す</li>
+          <li style="margin-bottom:6px;">アーチは端をかすめず、中心を通るライン取りで通過する</li>
+        </ol>
+
+        <p style="margin:20px 0 8px;"><span class="term">時間・耐久の管理（拾う・轢く）</span></p>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>対象</th><th>効果</th></tr></thead>
+            <tbody>
+              <tr><td data-label="対象">Fearエネミーを轢く</td><td data-label="効果">時間＋数秒</td></tr>
+              <tr><td data-label="対象">道中のオブジェクト接触</td><td data-label="効果">時間追加</td></tr>
+              <tr><td data-label="対象">浮遊レンチ</td><td data-label="効果">車両を完全修理</td></tr>
+              <tr><td data-label="対象">炎を纏った浮遊タイヤ</td><td data-label="効果">スピードブーストをストック</td></tr>
+              <tr><td data-label="対象">炎の樽（味方が撃つ）</td><td data-label="効果">時間稼ぎ（チーム時）</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p style="margin:20px 0 8px;"><span class="term">コツ</span></p>
+        <ul style="margin:0 0 16px;padding-left:20px;line-height:1.7;">
+          <li style="margin-bottom:6px;">ブーストは「直線」「広いカーブ」「次のリングが見えるカーブ出口」だけで使う</li>
+          <li style="margin-bottom:6px;">最後の直線用にブーストを残す</li>
+          <li style="margin-bottom:6px;">最大のタイムロスは低速走行ではなく「見通しの悪いカーブでのブースト誤用」</li>
+        </ul>
+
+        <p style="margin:20px 0 8px;"><span class="term">報酬</span></p>
+        <ul style="margin:0 0 16px;padding-left:20px;line-height:1.7;">
+          <li style="margin-bottom:6px;">武器ケース</li>
+          <li style="margin-bottom:6px;">エキゾチック・アビリティ強化ケース（メジャー／マイナー両方が出る場合、1つの報酬画面で両方受け取れる）</li>
+        </ul>
+      </div>
+    </details>
+    </div>
+    <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
+  </section>
 
   <section id="operators">
     <h2>1. オペレーター一覧</h2>
@@ -1500,7 +1562,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
     <div class="newbox">
       <span class="new-tag">NEW · S05</span>
       <h4>シーズン5で追加された新要素（2026/07/23〜）</h4>
-      <p><span class="term">バーンラン（Burn Run）</span>＝新アサインメント。爆弾を積んだ車で、炎に包まれた30個のアーチを制限時間内に走り抜けるタイムアタック。道中の<span class="term">Fear系の敵・オブジェクト</span>を轢くと時間が延長され、修理レンチやスピードブーストで車を維持しながらゴールを目指します。</p>
+      <p><span class="term">バーンラン（Burn Run）</span>＝新アサインメント。爆弾を積んだ車で、炎に包まれたアーチのコースを制限時間内に走り抜けるタイムアタック。道中の<span class="term">Fear系の敵・オブジェクト</span>を轢くと時間が延長され、修理レンチやスピードブーストで車を維持しながらゴールを目指します。</p>
       <p><span class="term">エキゾチックアビリティブースト</span>＝メジャー／マイナーアビリティを強化する新システム。クールダウン短縮・追加弾薬・追加ダメージ属性などが付与されます。アイテムケースから入手でき、主に<span class="term">ナイトメア地点</span>のアクティビティ／アサインメントで出やすい（Tacマップの報酬一覧で確認可）。各アビリティに2種のブーストがあり、ワイプするかアビリティを付け替えるまで維持されます。</p>
       <p style="font-size:13px;color:var(--color-text-muted);margin-bottom:0;">※S05ではエンドゲーム無料開放が継続。S06以降はBO7所有者限定になる予定（公式パッチノート）。S05では新しい「グリッチ」の追加はありません。</p>
     </div>
@@ -1512,7 +1574,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
         <tbody>
           <tr>
             <td data-label="名称">バーンラン（Burn Run）<span class="box-tag" style="background:rgba(235,83,44,0.22);color:#ffb59e;border-color:var(--color-accent);">S05</span></td>
-            <td data-label="内容">爆弾搭載車で炎の30アーチを制限時間内に走破する新アサインメント。Fear系の敵・オブジェクトを轢くと時間延長。修理レンチ・スピードブーストで車を維持</td>
+            <td data-label="内容">爆弾搭載車で炎のアーチのコースを制限時間内に走破する新アサインメント。Fear系の敵・オブジェクトを轢くと時間延長。修理レンチ・スピードブーストで車を維持</td>
             <td data-label="備考">2026/07/23（S05）実装。公式パッチノート情報</td>
           </tr>
           <tr>
@@ -1529,6 +1591,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
       </table>
     </div>
 
+
         <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
   </section>
 
@@ -1538,27 +1601,27 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
     <div class="map-frame">
       <img src="assets/img/avalon_map.webp" alt="アヴァロン島 タクティカルマップ（グリッチ発生場所ピン付き）" loading="lazy">
       <div class="gpin" style="left:83.2%;top:23.9%;">
-        <div class="gpin-label">ウイルスインジェクション<span>コロシアム</span></div>
+        <div class="gpin-label">ウイルスインジェクション<span>Virus Injection</span></div>
         <div class="gpin-stem"></div>
         <div class="gpin-mark"></div>
       </div>
       <div class="gpin" style="left:56.6%;top:79.5%;">
-        <div class="gpin-label">ルートクラッシャー<span>解体工場</span></div>
+        <div class="gpin-label">ルートクラッシャー<span>Root Crasher</span></div>
         <div class="gpin-stem"></div>
         <div class="gpin-mark"></div>
       </div>
       <div class="gpin" style="left:71.2%;top:94.6%;">
-        <div class="gpin-label">リンクフォージャー<span>旧武器庫</span></div>
+        <div class="gpin-label">リンクフォージャー<span>Link Forger</span></div>
         <div class="gpin-stem"></div>
         <div class="gpin-mark"></div>
       </div>
       <div class="gpin" style="left:13.7%;top:58.5%;">
-        <div class="gpin-label">メインターゲット<span>沿岸警備施設</span></div>
+        <div class="gpin-label">メインターゲット<span>Prime Target</span></div>
         <div class="gpin-stem"></div>
         <div class="gpin-mark"></div>
       </div>
       <div class="gpin" style="left:43.6%;top:50%;">
-        <div class="gpin-label">コマンドキラー<span>ハイタウン</span></div>
+        <div class="gpin-label">コマンドキラー<span>Command Killer</span></div>
         <div class="gpin-stem"></div>
         <div class="gpin-mark"></div>
       </div>
@@ -2495,7 +2558,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
         </summary>
         <div class="season-body">
           <h4>エンドゲームの新要素</h4>
-          <p>シーズン5では、アヴァロンに新アサインメント「<span class="term">バーンラン（Burn Run）</span>」が追加されました。爆弾を積んだ車で炎に包まれた30個のアーチを制限時間内に走り抜けるタイムアタックで、道中のFear系の敵・オブジェクトを轢くと時間が延長されます。</p>
+          <p>シーズン5では、アヴァロンに新アサインメント「<span class="term">バーンラン（Burn Run）</span>」が追加されました。爆弾を積んだ車で炎に包まれたアーチのコースを制限時間内に走り抜けるタイムアタックで、道中のFear系の敵・オブジェクトを轢くと時間が延長されます。</p>
           <p>あわせて「<span class="term">エキゾチックアビリティブースト</span>」が導入され、メジャー／マイナーアビリティをクールダウン短縮・追加弾薬・追加ダメージ属性などで強化できるようになりました。主にナイトメア地点のケースから入手します。</p>
           <h4>プレイ環境の変化</h4>
           <p>エンドゲームの無料開放はS05終了まで継続予定で、S06以降はBO7所有者限定になる予定です。</p>
