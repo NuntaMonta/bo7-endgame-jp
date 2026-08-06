@@ -1180,7 +1180,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
 
 </head>
 <body>
-<nav class="topnav" aria-label="セクションナビ"><div class="tn-inner"><span class="tn-brand">BO7 ENDGAME</span><a href="#top" data-sec="top">ホーム</a><a href="#burn-run" data-sec="burn-run" style="color:var(--color-accent);font-weight:700;">バーンライン</a><a href="#operators" data-sec="operators">オペレーター</a><a href="#enemies" data-sec="enemies">敵ボス</a><a href="#missions" data-sec="missions">ミッション</a><a href="#avalon-map" data-sec="avalon-map">マップ</a><a href="#glitches" data-sec="glitches">グリッチ</a><a href="#game-rules" data-sec="game-rules">ルール</a><a href="#exotic-effects" data-sec="exotic-effects">エキゾ効果</a><a href="#weapon-traits" data-sec="weapon-traits">武器早見</a><a href="#utility-bonus" data-sec="utility-bonus">汎用ボーナス</a><a href="#affinity-bonus" data-sec="affinity-bonus">属性一致</a><a href="#named-exotics" data-sec="named-exotics">名前付き</a><a href="#weapon-specific" data-sec="weapon-specific">武器固有</a><a href="#story-timeline" data-sec="story-timeline">年表</a><a href="#todo" data-sec="todo">検証タスク</a></div></nav>
+<nav class="topnav" aria-label="セクションナビ"><div class="tn-inner"><span class="tn-brand">BO7 ENDGAME</span><a href="#top" data-sec="top">ホーム</a><a href="#burn-run" data-sec="burn-run" style="color:var(--color-accent);font-weight:700;">バーンライン</a><a href="#operators" data-sec="operators">オペレーター</a><a href="#enemies" data-sec="enemies">敵ボス</a><a href="#missions" data-sec="missions">ミッション</a><a href="#avalon-map" data-sec="avalon-map">マップ</a><a href="#glitches" data-sec="glitches">グリッチ</a><a href="#game-rules" data-sec="game-rules">ルール</a><a href="#exotic-acquire" data-sec="exotic-acquire">入手方法</a><a href="#exotic-effects" data-sec="exotic-effects">エキゾ効果</a><a href="#weapon-traits" data-sec="weapon-traits">武器早見</a><a href="#utility-bonus" data-sec="utility-bonus">汎用ボーナス</a><a href="#affinity-bonus" data-sec="affinity-bonus">属性一致</a><a href="#named-exotics" data-sec="named-exotics">名前付き</a><a href="#weapon-specific" data-sec="weapon-specific">武器固有</a><a href="#story-timeline" data-sec="story-timeline">年表</a><a href="#todo" data-sec="todo">検証タスク</a></div></nav>
 <div class="scanbeam" aria-hidden="true"></div>
 
 
@@ -1200,6 +1200,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
       <li><a href="#avalon-map">アヴァロン マップ</a></li>
       <li><a href="#glitches">グリッチ一覧</a></li>
       <li><a href="#game-rules">ゲームルール・仕様メモ</a></li>
+      <li><a href="#exotic-acquire">エキゾチック武器の入手方法</a></li>
       <li><a href="#exotic-effects">エキゾチック効果（Rounds）一覧</a></li>
       <li><a href="#weapon-traits">武器別 つくボーナス早見表</a></li>
       <li><a href="#utility-bonus">ユーティリティボーナス（汎用）</a></li>
@@ -1761,11 +1762,45 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
   </section>
 
   <!-- ============================================
-       1. エキゾチック効果
+       エキゾチック武器の入手方法
+       ============================================ -->
+  <section id="exotic-acquire">
+    <h2>7. エキゾチック武器の入手方法</h2>
+    <p class="lead">エキゾチック武器は、特定のワールドボスを撃破すると入手できます。</p>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>撃破するボス</th>
+            <th>入手できるもの</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td data-label="撃破するボス">ワールドボス「フォークナー」</td><td data-label="入手できるもの">エキゾチック武器ケースが確定ドロップ</td></tr>
+          <tr><td data-label="撃破するボス">ワールドボス「ズーサ」</td><td data-label="入手できるもの">エキゾチック武器ケースが確定ドロップ</td></tr>
+          <tr><td data-label="撃破するボス">メガアボミネーション</td><td data-label="入手できるもの">3000パワー＋エキゾチック（特殊）武器</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">各ボスの出現条件・攻略手順は<a href="#enemies" style="color:var(--color-accent-teal-light);">敵・ボス図鑑</a>を参照。エキゾチック武器ケースからは<a href="#named-exotics" style="color:var(--color-accent-teal-light);">名前付きエキゾチック武器</a>が手に入ります。</div>
+    <div class="note">エリア4（Zone IV）の一部のアクティビティも、クリアすると<strong>確率で</strong>武器ケースをドロップします（確定ではありません）。マップで各アクティビティにカーソルを合わせ、報酬に「エキゾチック武器ケース」が含まれるか確認できます。</div>
+    <div class="note" style="border-left:4px solid var(--color-accent); background:rgba(235,83,44,.08);">
+      <div style="font-weight:700; color:var(--color-accent); font-size:15px; margin-bottom:10px; letter-spacing:.03em;"><svg class="ic-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 6v12M6 12h12"/></svg>周回のコツ</div>
+      <p style="margin:0 0 10px;">エキゾチック武器を数多く集めたいなら、<strong>メガアボミネーション周回</strong>が有効です。</p>
+      <ul style="margin:0; padding-left:1.3em; line-height:1.8;">
+        <li style="margin-bottom:8px;">出現条件を満たしてマップにアイコンが表示されていれば、撃破後も<strong>数分後に再出現</strong>するので、繰り返し狩れます。</li>
+        <li>周囲に湧く<strong>エリートを狩ると、確率で武器ケースがドロップ</strong>します。</li>
+      </ul>
+    </div>
+    <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
+  </section>
+
+  <!-- ============================================
+       エキゾチック効果
        ============================================ -->
   <img src="assets/img/Exotic_Fabricator.gif" alt="エキゾチックファブリケーター エキゾチック特性を選択してリロール" style="display:block;width:100%;max-width:700px;height:auto;margin:0 auto 24px;">
   <section id="exotic-effects">
-    <h2>7. エキゾチック効果（Rounds）</h2>
+    <h2>8. エキゾチック効果（Rounds）</h2>
     <p class="lead">武器に付与可能な8種類の弾薬属性（Affinity）</p>
 
     <p class="enemy-hint"><svg class="ic-inline" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 2l15 9-6.6 1.5L10 20z"/></svg>属性アイコンをクリックすると効果の詳細が開きます。</p>
@@ -1843,7 +1878,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
   </section>
 
   <section id="weapon-traits">
-    <h2>8. 武器別 つくボーナス早見表</h2>
+    <h2>9. 武器別 つくボーナス早見表</h2>
     <p class="lead">各武器で入手できるエキゾチック特性（ユーティリティボーナス）の一覧です。各カードに、その武器に付くボーナスをすべて表示しています。</p>
     <div class="note"><strong>データ出典：</strong>Reddit r/bo7endgame の u/Fate_Messenger 氏「All weapons exotic traits list」（<a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRrbirGBrbZkHvkiJ9FdmynO3CBp9Fc6ydmlIZ1qjD7S1m0dOBaTIyIyA3VrPjht3lHATWQErO_CW2D/pubhtml" target="_blank" rel="noopener">元データ</a>）。表示中のボーナスはいずれも入手可能なもので、末尾に<strong>「（箱からの入手限定）」</strong>と付くものはエキゾボックス限定です。</div>
 
@@ -2306,7 +2341,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
        3. ユーティリティボーナス（汎用）
        ============================================ -->
   <section id="utility-bonus">
-    <h2>9. ユーティリティボーナス（汎用）</h2>
+    <h2>10. ユーティリティボーナス（汎用）</h2>
     <p class="lead">属性に関係なく出現する汎用ボーナス。アイコン（グループ）ごとにまとめています。</p>
     <div class="util-groups">
       <div class="util-card">
@@ -2363,7 +2398,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
        4. 属性一致ユーティリティボーナス
        ============================================ -->
   <section id="affinity-bonus">
-    <h2>10. 属性一致ユーティリティボーナス（推定訳）</h2>
+    <h2>11. 属性一致ユーティリティボーナス（推定訳）</h2>
     <p class="lead"><strong>【謎が解明・海外wiki情報】</strong>「Affinity Exotic」（対応する属性で発見された個体）の判定は<strong>発見時点のRounds属性で決まり、ファブリケーターでのリロール後も変わらない</strong>。Affinity Exoticは対応する属性一致ボーナスを<strong>確率で</strong>引く（保証ではない）ため、同じ個体でも出たり出なかったりする。これらのボーナスの多くは標準ユーティリティボーナスより弱いとされ、強さ目的ではなくレア度・見た目狙いで集めるものとされている。</p>
     <div class="note">
       ボーナス名は<strong>英語／日本語</strong>で併記しています。<strong>日本語名が未確認のものは（未確認）</strong>と表記しています。
@@ -2402,7 +2437,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
        2. 名前付きエキゾチック武器
        ============================================ -->
   <section id="named-exotics">
-    <h2>11. 名前付きエキゾチック武器</h2>
+    <h2>12. 名前付きエキゾチック武器</h2>
     <p class="lead">エンドゲームに存在する名前付きエキゾチック武器と、その元になる武器の一覧です。属性(Rounds)はドロップごとにランダムに決まるため、この表では割愛しています。</p>
 
     <div class="table-scroll">
@@ -2451,7 +2486,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
        5. 武器固有ボーナスの仮説
        ============================================ -->
   <section id="weapon-specific">
-    <h2>12. 武器固有ボーナスの仮説</h2>
+    <h2>13. 武器固有ボーナスの仮説</h2>
     <div class="table-scroll">
       <table>
         <thead><tr><th>武器</th><th>ボーナス</th><th>状態</th></tr></thead>
@@ -2471,7 +2506,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
        9. ストーリー年表（シーズン別アコーディオン）
        ============================================ -->
   <section id="story-timeline">
-    <h2>13. ストーリー年表（シーズンの流れ）</h2>
+    <h2>14. ストーリー年表（シーズンの流れ）</h2>
     <p class="lead">エンドゲームを初めて遊ぶ人が、世界観にグッと入り込めるように——各シーズンの物語の流れをまとめました。</p>
     <div class="note">
       <strong><svg class="ic-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l9 16H3z"/><path d="M12 10v4"/><circle cx="12" cy="16.7" r="0.6" fill="currentColor" stroke="none"/></svg>ストーリーのネタバレを含みます。</strong> 各シーズンは初期状態で閉じています。読みたいシーズンをクリックして開いてください。
@@ -2579,7 +2614,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
        ============================================ -->
 
   <section id="todo">
-    <h2>14. 今後の検証タスク</h2>
+    <h2>15. 今後の検証タスク</h2>
     <ul class="todo-list">
       <li><span class="badge">中</span> 18種の名前付きエキゾチック武器名の日本語表示を確認（カタカナ or 英語表記）</li>
       <li><span class="badge">高</span> 各属性一致ボーナスの実機日本語名を確認</li>
