@@ -1126,7 +1126,7 @@ details.wcat::before,details.wcat::after,.table-scroll::before,.table-scroll::af
 .newbox::before,.newbox::after,.map-frame::before,.map-frame::after{ content:""; position:absolute; width:14px; height:14px; border:2px solid var(--hud); pointer-events:none; z-index:3; display:block; }
 .newbox::before,.map-frame::before{ top:-1px; left:-1px; border-right:none; border-bottom:none; }
 .newbox::after,.map-frame::after{ bottom:-1px; right:-1px; border-left:none; border-top:none; }
-/* バーンライン注目セクション（コーナーブラケット＋オレンジ強調） */
+/* バーンラン注目セクション（コーナーブラケット＋オレンジ強調） */
 details.season.featured{ border:1px solid var(--color-accent) !important; border-radius:2px !important; position:relative; }
 details.season.featured::before,details.season.featured::after{ content:"" !important; display:block !important; position:absolute; width:16px; height:16px; border:2px solid var(--color-accent); pointer-events:none; z-index:3; }
 details.season.featured::before{ top:-1px; left:-1px; border-right:none; border-bottom:none; }
@@ -1181,7 +1181,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
 
 </head>
 <body>
-<nav class="topnav" aria-label="セクションナビ"><div class="tn-inner"><span class="tn-brand">BO7 ENDGAME</span><a href="#top" data-sec="top">ホーム</a><a href="#burn-run" data-sec="burn-run" style="color:var(--color-accent);font-weight:700;">バーンライン</a><a href="#operators" data-sec="operators">オペレーター</a><a href="#enemies" data-sec="enemies">敵ボス</a><a href="#missions" data-sec="missions">ミッション</a><a href="#avalon-map" data-sec="avalon-map">マップ</a><a href="#glitches" data-sec="glitches">グリッチ</a><a href="#game-rules" data-sec="game-rules">ルール</a><a href="#exotic-acquire" data-sec="exotic-acquire">入手方法</a><a href="#exotic-effects" data-sec="exotic-effects">エキゾ効果</a><a href="#weapon-traits" data-sec="weapon-traits">武器早見</a><a href="#utility-bonus" data-sec="utility-bonus">汎用ボーナス</a><a href="#affinity-bonus" data-sec="affinity-bonus">属性一致</a><a href="#named-exotics" data-sec="named-exotics">名前付き</a><a href="#weapon-specific" data-sec="weapon-specific">武器固有</a><a href="#story-timeline" data-sec="story-timeline">年表</a><a href="#todo" data-sec="todo">検証タスク</a></div></nav>
+<nav class="topnav" aria-label="セクションナビ"><div class="tn-inner"><span class="tn-brand">BO7 ENDGAME</span><a href="#top" data-sec="top">ホーム</a><a href="#burn-run" data-sec="burn-run" style="color:var(--color-accent);font-weight:700;">バーンラン</a><a href="#operators" data-sec="operators">オペレーター</a><a href="#enemies" data-sec="enemies">敵ボス</a><a href="#missions" data-sec="missions">ミッション</a><a href="#avalon-map" data-sec="avalon-map">マップ</a><a href="#glitches" data-sec="glitches">グリッチ</a><a href="#game-rules" data-sec="game-rules">ルール</a><a href="#exotic-acquire" data-sec="exotic-acquire">入手方法</a><a href="#exotic-effects" data-sec="exotic-effects">エキゾ効果</a><a href="#weapon-traits" data-sec="weapon-traits">武器早見</a><a href="#utility-bonus" data-sec="utility-bonus">汎用ボーナス</a><a href="#affinity-bonus" data-sec="affinity-bonus">属性一致</a><a href="#named-exotics" data-sec="named-exotics">名前付き</a><a href="#weapon-specific" data-sec="weapon-specific">武器固有</a><a href="#story-timeline" data-sec="story-timeline">年表</a><a href="#todo" data-sec="todo">検証タスク</a></div></nav>
 <div class="scanbeam" aria-hidden="true"></div>
 
 
@@ -1191,9 +1191,17 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
 
 <div class="container">
 
+  <div class="newbox">
+    <span class="new-tag">NEW · S05</span>
+    <h4>シーズン5で追加された新要素（2026/07/23〜）</h4>
+    <p><span class="term">バーンラン（Burn Run）</span>＝新アサインメント。爆弾を積んだ車で、炎に包まれたアーチのコースを制限時間内に走り抜けるタイムアタック。道中の<span class="term">Fear系の敵・オブジェクト</span>を轢くと時間が延長され、修理レンチやスピードブーストで車を維持しながらゴールを目指します。</p>
+    <p><span class="term">エキゾチックアビリティブースト</span>＝メジャー／マイナーアビリティを強化する新システム。クールダウン短縮・追加弾薬・追加ダメージ属性などが付与されます。アイテムケースから入手でき、主に<span class="term">ナイトメア地点</span>のアクティビティ／アサインメントで出やすい（Tacマップの報酬一覧で確認可）。各アビリティに2種のブーストがあり、ワイプするかアビリティを付け替えるまで維持されます。</p>
+    <p style="font-size:13px;color:var(--color-text-muted);margin-bottom:0;">※S05ではエンドゲーム無料開放が継続。S06以降はBO7所有者限定になる予定（公式パッチノート）。S05では新しい「グリッチ」の追加はありません。</p>
+  </div>
+
   <nav class="toc" aria-label="目次">
     <h2>目次</h2>
-    <a href="#burn-run" class="toc-pickup"><span class="pk-badge">NEW · S05</span>バーンライン攻略</a>
+    <a href="#burn-run" class="toc-pickup"><span class="pk-badge">NEW · S05</span>バーンラン攻略</a>
     <ol>
       <li><a href="#operators">オペレーター一覧</a></li>
       <li><a href="#enemies">敵・ボス図鑑</a></li>
@@ -1219,12 +1227,12 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
   </div>
 
   <section id="burn-run">
-    <h2 class="visually-hidden">バーンライン攻略</h2>
+    <h2 class="visually-hidden">バーンラン攻略</h2>
     <div class="season-list">
     <details class="season featured">
       <summary>
         <span class="season-badge new">NEW · S05</span>
-        <span class="season-ttl">バーンライン攻略<span class="season-sub">　出現場所・手順・コツ・報酬</span></span>
+        <span class="season-ttl">バーンラン攻略<span class="season-sub">　出現場所・手順・コツ・報酬</span></span>
         <span class="season-chevron" aria-hidden="true">▾</span>
       </summary>
       <div class="season-body">
@@ -1560,22 +1568,26 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
       </table>
     </div>
 
-    <h3 style="margin-top:28px;">プレステージ と 復帰をリセット の違い</h3>
-    <p class="lead">どちらも「レベル・スキルをリセットする」機能ですが、実行条件と失うものが異なります。混同しやすいので比較表でまとめました。</p>
-    <div class="table-scroll">
-      <table>
-        <thead><tr><th>項目</th><th>オペレータープレステージ</th><th>「復帰をリセット」（アビリティ＆スキル画面／LSボタン）</th></tr></thead>
-        <tbody>
-          <tr><td data-label="項目">実行条件</td><td data-label="オペレータープレステージ">レベルMAX到達＋エキゾチックスキルLv3＋ナイトメアスキルLv3。すべて満たすと「プレステージ可能」の表示が出る</td><td data-label="復帰をリセット">条件なし。<strong>いつでも実行可能</strong></td></tr>
-          <tr><td data-label="項目">回数制限</td><td data-label="オペレータープレステージ">最大3回まで（公式パッチノート情報）</td><td data-label="復帰をリセット">制限なし。プレステージの残り回数は消費しない</td></tr>
-          <tr><td data-label="項目">レベル・スキルトラック</td><td data-label="オペレータープレステージ">0に戻る（エキゾチック・ナイトメア含む）</td><td data-label="復帰をリセット">同様にリセットされる</td></tr>
-          <tr><td data-label="項目">現地入手武器</td><td data-label="オペレータープレステージ">厳選した武器も消失</td><td data-label="復帰をリセット">影響なし</td></tr>
-          <tr><td data-label="項目">ロードアウト武器</td><td data-label="オペレータープレステージ">ノーマルランクに戻る</td><td data-label="復帰をリセット">影響なし</td></tr>
-          <tr><td data-label="項目">アビリティブースト（メジャー／マイナー）</td><td data-label="オペレータープレステージ"><strong>消える</strong>（ユーザー実機確認）</td><td data-label="復帰をリセット"><strong>消えずに残る</strong>（ユーザー実機確認）</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="note">実行前に、ゲーム内の説明文をよく確認することを推奨します。どちらを進めるかはプレイヤー自身の判断です。</div>
+    <details class="wcat" style="margin-top:28px;">
+      <summary><span class="wcat-ttl">プレステージ と 復帰をリセット の違い</span><span class="wcat-chevron">▾</span></summary>
+      <div style="padding:14px;">
+      <p class="lead" style="margin-top:0;">どちらも「レベル・スキルをリセットする」機能ですが、実行条件と失うものが異なります。混同しやすいので比較表でまとめました。</p>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>項目</th><th>オペレータープレステージ</th><th>「復帰をリセット」（アビリティ＆スキル画面／LSボタン）</th></tr></thead>
+          <tbody>
+            <tr><td data-label="項目">実行条件</td><td data-label="オペレータープレステージ">レベルMAX到達＋エキゾチックスキルLv3＋ナイトメアスキルLv3。すべて満たすと「プレステージ可能」の表示が出る</td><td data-label="復帰をリセット">条件なし。<strong>いつでも実行可能</strong></td></tr>
+            <tr><td data-label="項目">回数制限</td><td data-label="オペレータープレステージ">最大3回まで（公式パッチノート情報）</td><td data-label="復帰をリセット">制限なし。プレステージの残り回数は消費しない</td></tr>
+            <tr><td data-label="項目">レベル・スキルトラック</td><td data-label="オペレータープレステージ">0に戻る（エキゾチック・ナイトメア含む）</td><td data-label="復帰をリセット">同様にリセットされる</td></tr>
+            <tr><td data-label="項目">現地入手武器</td><td data-label="オペレータープレステージ">厳選した武器も消失</td><td data-label="復帰をリセット">影響なし</td></tr>
+            <tr><td data-label="項目">ロードアウト武器</td><td data-label="オペレータープレステージ">ノーマルランクに戻る</td><td data-label="復帰をリセット">影響なし</td></tr>
+            <tr><td data-label="項目">アビリティブースト（メジャー／マイナー）</td><td data-label="オペレータープレステージ"><strong>消える</strong>（ユーザー実機確認）</td><td data-label="復帰をリセット"><strong>消えずに残る</strong>（ユーザー実機確認）</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">実行前に、ゲーム内の説明文をよく確認することを推奨します。どちらを進めるかはプレイヤー自身の判断です。</div>
+      </div>
+    </details>
 
     <details class="wcat" style="margin-top:14px;">
       <summary><span class="wcat-ttl">チャットでよく飛ぶ言葉（英・中）＋和訳</span><span class="wcat-chevron">▾</span></summary>
@@ -1602,14 +1614,6 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
     <div class="note">名前を言われてもピンと来ないときは、<a href="#avalon-map" style="color:var(--color-accent-teal-light);">アヴァロン マップ</a>のピンで位置を確認できます。（※自分で立てるマーカーはチームメンバーにしか見えません）</div>
       </div>
     </details>
-
-    <div class="newbox">
-      <span class="new-tag">NEW · S05</span>
-      <h4>シーズン5で追加された新要素（2026/07/23〜）</h4>
-      <p><span class="term">バーンラン（Burn Run）</span>＝新アサインメント。爆弾を積んだ車で、炎に包まれたアーチのコースを制限時間内に走り抜けるタイムアタック。道中の<span class="term">Fear系の敵・オブジェクト</span>を轢くと時間が延長され、修理レンチやスピードブーストで車を維持しながらゴールを目指します。</p>
-      <p><span class="term">エキゾチックアビリティブースト</span>＝メジャー／マイナーアビリティを強化する新システム。クールダウン短縮・追加弾薬・追加ダメージ属性などが付与されます。アイテムケースから入手でき、主に<span class="term">ナイトメア地点</span>のアクティビティ／アサインメントで出やすい（Tacマップの報酬一覧で確認可）。各アビリティに2種のブーストがあり、ワイプするかアビリティを付け替えるまで維持されます。</p>
-      <p style="font-size:13px;color:var(--color-text-muted);margin-bottom:0;">※S05ではエンドゲーム無料開放が継続。S06以降はBO7所有者限定になる予定（公式パッチノート）。S05では新しい「グリッチ」の追加はありません。</p>
-    </div>
 
     <h3>アクティビティ・ミッション詳細</h3>
     <div class="table-scroll">
@@ -1671,7 +1675,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
       </div>
     </div>
     <div class="map-legend">
-      <span><span class="lg-dot"></span>グリッチ発生場所（実機確認済み・固定）</span>
+      <span><span class="lg-dot"></span>グリッチ発生場所（固定）</span>
     </div>
     <div class="note"><strong>グリッチの場所について：</strong>グリッチ（グリッチフラクチャー）は、対応オペレーションをクリアし「同じ試合でギルドストライクボスを撃破」すると出現します。発生場所は多くが固定ランドマークで、実機確認済み：ルートクラッシャー＝解体工場／リンクフォージャー＝旧武器庫／ウイルスインジェクション＝コロシアム／メインターゲット（英語版：Prime Target）＝沿岸警備施設／コマンドキラー＝ハイタウン（いずれも推奨戦闘評価60）。<strong>5種すべての発生場所を実機で確認済み</strong>です。</div>
     <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
@@ -1681,7 +1685,6 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
     <h2>5. グリッチ一覧</h2>
     <p class="lead">グリッチ（グリッチフラクチャー）は、通常のアヴァロンマップ外で行われる特殊アクティビティ。対応オペレーションをクリアし、同じ試合でギルドストライクボスを倒すと出現します。発生場所は多くが固定のランドマーク（実機確認済み）。カードをクリックすると各グリッチの詳細が開きます。</p>
     <div class="note"><strong>報酬について：</strong>グリッチをクリアすると「ナイトメアスキル」（最強クラスのパッシブ強化。1つだけ装備可・2回強化可・フル強化でCR+3）が得られます。推奨CRは45以上、エキゾチック武器の持ち込み推奨。</div>
-    <div class="note" style="border-left-color:var(--color-accent);"><strong>S05メモ：</strong>シーズン5では新しいグリッチの追加はありません。S05の新エンドゲーム要素は<strong>「バーンラン」アサインメント</strong>と<strong>エキゾチックアビリティブースト</strong>です（→<a href="#missions" style="color:var(--color-accent-teal-light);">セクション3</a>参照）。</div>
     <p class="enemy-hint"><svg class="ic-inline" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 2l15 9-6.6 1.5L10 20z"/></svg>グリッチカードをクリックすると詳細が開きます。</p>
     <div class="op-grid">
       <button type="button" class="op-card weapon-card">
@@ -1770,24 +1773,16 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
             <td data-label="内容">現地調達の名前付きエキゾチック武器（銃器）は1つしか所持できない。新しいものを拾うと所持中のものと交換される。近接武器は別枠のため、銃器とは別に1つ所持可能</td>
           </tr>
           <tr>
-            <td data-label="カテゴリ">ファブリケーターの可逆性</td>
+            <td data-label="カテゴリ">エキゾチックファブリケーターの注意点</td>
             <td data-label="内容">ユーティリティボーナスの変更は必ず元に戻せるとは限らない可能性あり。実例:デュアルアクション→デュアルVELOX5.7変更後、再アクセス不可に</td>
           </tr>
           <tr>
-            <td data-label="カテゴリ">現地ドロップのRoundsはランダム</td>
+            <td data-label="カテゴリ">現地入手のエキゾチック武器のエキゾ効果（Rounds）</td>
             <td data-label="内容">現地入手のエキゾチック銃器は、付与されているRounds効果が武器の説明文と一致しないことがよくある。ランダムに決定される仕様と思われる</td>
           </tr>
           <tr>
-            <td data-label="カテゴリ">ドロップアイテム</td>
-            <td data-label="内容">シーズン04(2026/06)より、Restore Tokenがエンドゲームのルートとしてドロップするようになった</td>
-          </tr>
-          <tr>
-            <td data-label="カテゴリ">エキゾチックアビリティブースト（S05）</td>
-            <td data-label="内容">シーズン05で追加。メジャー／マイナーアビリティを強化するレアな追加効果（クールダウン短縮・追加弾薬・追加ダメージ属性など）。アイテムケースから入手し、主にナイトメア地点で出やすい。各アビリティに2種あり、ワイプまたはアビリティ付け替えまで維持される（公式パッチノート）</td>
-          </tr>
-          <tr>
-            <td data-label="カテゴリ">エンドゲームの利用条件（S05→S06）</td>
-            <td data-label="内容">S05終了までは無料開放が継続予定。S06開始以降はWarzoneメニューから遊べなくなり、BO7所有者限定になる予定（公式パッチノート）</td>
+            <td data-label="カテゴリ">エキゾチックアビリティブースト</td>
+            <td data-label="内容">メジャー／マイナーアビリティを強化する追加効果（クールダウン短縮・追加弾薬・追加ダメージ属性など）。アイテムケースから入手し、主にナイトメア地点で出やすい。各アビリティに2種あり。</td>
           </tr>
           <tr>
             <td data-label="カテゴリ">用語：Affinity Exotic</td>
@@ -1824,8 +1819,8 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
         </tbody>
       </table>
     </div>
-    <div class="note">各ボスの出現条件・攻略手順は<a href="#enemies" style="color:var(--color-accent-teal-light);">敵・ボス図鑑</a>を参照。エキゾチック武器ケースからは<a href="#named-exotics" style="color:var(--color-accent-teal-light);">名前付きエキゾチック武器</a>が手に入ります。</div>
     <div class="note">エリア4（Zone IV）の一部のアクティビティも、クリアすると<strong>確率で</strong>武器ケースをドロップします（確定ではありません）。マップで各アクティビティにカーソルを合わせ、報酬に「エキゾチック武器ケース」が含まれるか確認できます。</div>
+    <div class="note">各ボスの出現条件・攻略手順は<a href="#enemies" style="color:var(--color-accent-teal-light);">敵・ボス図鑑</a>を参照。エキゾチック武器ケースからは<a href="#named-exotics" style="color:var(--color-accent-teal-light);">名前付きエキゾチック武器</a>が手に入ります。</div>
     <div class="note" style="border-left:4px solid var(--color-accent); background:rgba(235,83,44,.08);">
       <div style="font-weight:700; color:var(--color-accent); font-size:15px; margin-bottom:10px; letter-spacing:.03em;"><svg class="ic-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 6v12M6 12h12"/></svg>周回のコツ</div>
       <p style="margin:0 0 10px;">エキゾチック武器を数多く集めたいなら、<strong>メガアボミネーション周回</strong>が有効です。</p>
@@ -1840,7 +1835,9 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
   <!-- ============================================
        エキゾチック効果
        ============================================ -->
-  <img src="assets/img/Exotic_Fabricator.gif" alt="エキゾチックファブリケーター エキゾチック特性を選択してリロール" style="display:block;width:100%;max-width:700px;height:auto;margin:0 auto 24px;">
+  <div style="max-width:700px;margin:0 auto 24px;border:1px solid rgba(32,198,223,.5);border-radius:4px;padding:6px;background:#0d0a18;">
+    <img src="assets/img/Exotic_Fabricator.gif" alt="エキゾチックファブリケーター エキゾチック特性を選択してリロール" style="display:block;width:100%;height:auto;border-radius:2px;">
+  </div>
   <section id="exotic-effects">
     <h2>8. エキゾチック効果（Rounds）</h2>
     <p class="lead">武器に付与可能な8種類の弾薬属性（Affinity）</p>
@@ -2144,7 +2141,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
     </div>
     </details>
     <details class="wcat">
-      <summary><span class="wcat-ttl">LMG</span><span class="wcat-count">3種</span><span class="wcat-chevron">▾</span></summary>
+      <summary><span class="wcat-ttl">LMG</span><span class="wcat-count">4種</span><span class="wcat-chevron">▾</span></summary>
       <div class="wgrid">
       <div class="wcard">
         <div class="wframe">
@@ -2166,6 +2163,13 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
           <div class="wname">XM325</div>
         </div>
         <div class="wchips"><span class="wchip">コンバットレディ</span><span class="wchip">反動削除</span><span class="wchip">激化</span><span class="wchip">高速</span></div>
+      </div>
+      <div class="wcard">
+        <div class="wframe">
+          <div class="wimg-wrap"><img src="assets/weapons/mammoth.webp" alt="Mammoth" loading="lazy"></div>
+          <div class="wname">Mammoth<span class="box-tag" style="background:rgba(235,83,44,0.22);color:#ffb59e;border-color:var(--color-accent);">S05</span></div>
+        </div>
+        <div class="wchips"><span class="wchip">反動削除</span><span class="wchip">ウルトラライト</span><span class="wchip">リロード切替</span><span class="wchip">コンバットレディ</span></div>
       </div>
     </div>
     </details>
@@ -2389,27 +2393,27 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
       <div class="util-card">
         <div class="util-card-head"><img src="assets/icons/util_hand.webp" alt="機動力系アイコン" loading="lazy"></div>
         <table class="util-table"><tbody>
-          <tr><td class="util-bname"><span class="jp">高速</span><span class="en">Lightspeed</span></td><td class="util-bdesc">あらゆる移動速度が上昇 <em>(旧「Lightspeed（訳未確認）」。XM325・Akitaの実機日本語表示で確認)</em></td></tr>
-          <tr><td class="util-bname"><span class="jp">LIFESTYLE</span><span class="en">Lifestyle</span></td><td class="util-bdesc">ヘッドショットで敵をキルするとHPが回復 <em>(日本語ローカライズされておらず英語のまま表示。ファブリケーター選択画面・HYPERSURGEなどで確認)</em></td></tr>
-          <tr><td class="util-bname"><span class="jp">ウルトラライト</span></td><td class="util-bdesc">エイム中のプレイヤーの移動速度が低下しない <em>(HYPERSURGEで確認)</em></td></tr>
+          <tr><td class="util-bname"><span class="jp">高速</span><span class="en">Lightspeed</span></td><td class="util-bdesc">あらゆる移動速度が上昇</td></tr>
+          <tr><td class="util-bname"><span class="jp">LIFESTYLE</span><span class="en">Lifestyle</span></td><td class="util-bdesc">ヘッドショットで敵をキルするとHPが回復</td></tr>
+          <tr><td class="util-bname"><span class="jp">ウルトラライト</span></td><td class="util-bdesc">エイム中のプレイヤーの移動速度が低下しない</td></tr>
           <tr><td class="util-bname"><span class="jp">キル&ラン</span></td><td class="util-bdesc">敵をキルすると一時的に移動速度がブースト</td></tr>
           <tr><td class="util-bname"><span class="jp">コンバットレディ</span></td><td class="util-bdesc">エイムとダッシュ後の射撃速度が大幅に向上</td></tr>
-          <tr><td class="util-bname"><span class="jp">高速射撃</span></td><td class="util-bdesc">武器の連射速度が上昇 <em>(BARRAGEで確認)</em></td></tr>
-          <tr><td class="util-bname"><span class="jp">ガンマン</span></td><td class="util-bdesc">腰だめ撃ち時のばらつきと反動が大幅に向上 <em>(KILONOVA・崩脳弾ドロップ時で確認)</em></td></tr>
-          <tr><td class="util-bname"><span class="jp">リロード切替</span></td><td class="util-bdesc">武器が交換時に常にリロードされる <em>(TORRENTで確認)</em></td></tr>
-          <tr><td class="util-bname"><span class="jp">激化</span><span class="en">Escalation</span></td><td class="util-bdesc">トリガーを長く引くほど連射速度が向上 <em>(REDLINEで実機確認)</em></td></tr>
+          <tr><td class="util-bname"><span class="jp">高速射撃</span></td><td class="util-bdesc">武器の連射速度が上昇</td></tr>
+          <tr><td class="util-bname"><span class="jp">ガンマン</span></td><td class="util-bdesc">腰だめ撃ち時のばらつきと反動が大幅に向上</td></tr>
+          <tr><td class="util-bname"><span class="jp">リロード切替</span></td><td class="util-bdesc">武器が交換時に常にリロードされる</td></tr>
+          <tr><td class="util-bname"><span class="jp">激化</span><span class="en">Escalation</span></td><td class="util-bdesc">トリガーを長く引くほど連射速度が向上</td></tr>
         </tbody></table>
       </div>
       <div class="util-card">
         <div class="util-card-head"><img src="assets/icons/util_skull.webp" alt="ダメージ系アイコン" loading="lazy"></div>
         <table class="util-table"><tbody>
-          <tr><td class="util-bname"><span class="jp">腰だめ撃ち地獄</span></td><td class="util-bdesc">腰だめ撃ちのダメージが増加 <em>(旧「Hip-inferno（訳未確認）」。HYPERSURGEで実機確認)</em></td></tr>
-          <tr><td class="util-bname"><span class="jp">狙い撃ち</span><span class="en">Sharpshooter</span></td><td class="util-bdesc">上半身に命中するとヘッドショットと同じダメージを与える（コミュニティ内ではスナイパーライフルとの組み合わせでメタ言及されることが多く、「シャープシューター」とカタカナで呼ばれることも。新規アサルトライフル「VX Compact」でも装備可能なことを確認）</td></tr>
-          <tr><td class="util-bname"><span class="jp">スラッシャー</span></td><td class="util-bdesc">近接攻撃を繰り出す速度が向上 <em>(近接武器以外での出現は未確認。近接武器専用の可能性あり。海外コミュニティ情報（Steamガイド）でも、通常武器のユーティリティ対応表のどこにも出現しておらず、近接武器専用説を補強する材料あり。ただし二次情報のため断定はできない)</em></td></tr>
-          <tr><td class="util-bname"><span class="jp">グレネード弾</span></td><td class="util-bdesc">弾丸が爆発し、追加の範囲ダメージを与える <em>(炸裂弾とは別のユーティリティボーナス。1911／REBOOTで確認)</em></td></tr>
-          <tr><td class="util-bname"><span class="jp">炸裂弾</span><span class="en">Explosive Bullets（推定）</span></td><td class="util-bdesc">弾丸が爆発し、追加の範囲ダメージを与える <em>(説明文はグレネード弾と同じだが、両者は別のユーティリティボーナス。炸裂弾はPULSEBREACH等でも確認され汎用枠として存在)</em></td></tr>
-          <tr><td class="util-bname"><span class="jp">Velox Akimbo 5.7</span><span class="en">表示は「デュアルVELOX 5.7」</span></td><td class="util-bdesc">対象武器がデュアル武器（2丁持ち）になる <em>【訂正】以前「デュアル[武器名]」という汎用枠と推測していたが、海外wiki情報によりMalspike専用の武器固有ボーナスであり、他の武器では出現しないことが判明</em></td></tr>
-          <tr><td class="util-bname"><span class="jp">ショットガニフィケーター</span><span class="en">Shotgunificator</span></td><td class="util-bdesc">武器の弾が拡散するようになる <em>(KILONOVA・花閃弾ドロップ時で確認。海外wiki確認: KILONOVA専用の武器固有ボーナスで他の武器では出現しない)</em></td></tr>
+          <tr><td class="util-bname"><span class="jp">腰だめ撃ち地獄</span></td><td class="util-bdesc">腰だめ撃ちのダメージが増加</td></tr>
+          <tr><td class="util-bname"><span class="jp">狙い撃ち</span><span class="en">Sharpshooter</span></td><td class="util-bdesc">上半身に命中するとヘッドショットと同じダメージを与える</td></tr>
+          <tr><td class="util-bname"><span class="jp">スラッシャー</span></td><td class="util-bdesc">近接攻撃を繰り出す速度が向上</td></tr>
+          <tr><td class="util-bname"><span class="jp">グレネード弾</span></td><td class="util-bdesc">弾丸が爆発し、追加の範囲ダメージを与える</td></tr>
+          <tr><td class="util-bname"><span class="jp">炸裂弾</span><span class="en">Explosive Bullets（推定）</span></td><td class="util-bdesc">弾丸が爆発し、追加の範囲ダメージを与える</td></tr>
+          <tr><td class="util-bname"><span class="jp">Velox Akimbo 5.7</span><span class="en">表示は「デュアルVELOX 5.7」</span></td><td class="util-bdesc">対象武器がデュアル武器（2丁持ち）になる</td></tr>
+          <tr><td class="util-bname"><span class="jp">ショットガニフィケーター</span><span class="en">Shotgunificator</span></td><td class="util-bdesc">武器の弾が拡散するようになる</td></tr>
           <tr><td class="util-bname"><span class="jp">Parry（パリー）</span><span class="en">未ローカライズ</span></td><td class="util-bdesc">強近接攻撃チャージ中の被ダメージを軽減（近接武器専用）。海外wikiの武器対応表では「紫」表記＝エキゾチック武器ケース限定の専用ボーナス</td></tr>
         </tbody></table>
       </div>
@@ -2418,10 +2422,10 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
         <table class="util-table"><tbody>
           <tr><td class="util-bname"><span class="jp">撃ち放題</span></td><td class="util-bdesc">全ての弾薬が1つの大きなマガジンに入っている</td></tr>
           <tr><td class="util-bname"><span class="jp">弾薬リチャージャー</span></td><td class="util-bdesc">武器の収納中に弾薬が補充される</td></tr>
-          <tr><td class="util-bname"><span class="jp">廃棄物ゼロ</span><span class="en">Zero Waste</span></td><td class="util-bdesc">弾丸を発射しても50%の確率で弾薬を消費しない <em>(ZEOTROPEで確認)</em></td></tr>
-          <tr><td class="util-bname"><span class="jp">弾薬減少</span></td><td class="util-bdesc">キル後に弾薬をマガジンに追加 <em>(PULSEBREACHで確認。弾薬リチャージャーとは発動条件が異なる別ボーナス)</em></td></tr>
-          <tr><td class="util-bname"><span class="jp">ロングバースト</span><span class="en">Longburst</span></td><td class="util-bdesc">各バーストで発射する弾の数が増える <em>(Pulsebreach(Swordfish A1)で確認)</em></td></tr>
-          <tr><td class="util-bname"><span class="jp">近接リロード</span></td><td class="util-bdesc">近接ヒット後、すぐに武器のマガジンが充填される <em>(SWARMFORGE・OVERCHARGEで確認。アイコンは弾薬系と共通と実機確認済み)</em></td></tr>
+          <tr><td class="util-bname"><span class="jp">廃棄物ゼロ</span><span class="en">Zero Waste</span></td><td class="util-bdesc">弾丸を発射しても50%の確率で弾薬を消費しない</td></tr>
+          <tr><td class="util-bname"><span class="jp">弾薬減少</span></td><td class="util-bdesc">キル後に弾薬をマガジンに追加</td></tr>
+          <tr><td class="util-bname"><span class="jp">ロングバースト</span><span class="en">Longburst</span></td><td class="util-bdesc">各バーストで発射する弾の数が増える</td></tr>
+          <tr><td class="util-bname"><span class="jp">近接リロード</span></td><td class="util-bdesc">近接ヒット後、すぐに武器のマガジンが充填される</td></tr>
         </tbody></table>
       </div>
       <div class="util-card">
@@ -2518,7 +2522,6 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
     </div>
 
     <div class="note">属性(Rounds)はドロップごとにランダムに決まります。フレーバーの属性に縛られず、<strong>好きなエキゾチック効果を狙って付けられます</strong>。</div>
-    <div class="note"><strong>確認中：</strong>発見時点のRounds属性で「属性一致ボーナス」を引く資格が決まるのか確認中。</div>
     <div class="note"><strong>ルール：</strong>Fabricatorでアップグレードした自作エキゾチックには属性一致ボーナスは付かない。Exotic Weapon Caseから出た名前付きエキゾチックのみ対象。</div>
     <div class="note">武器名・エキゾチック名は日本語版でも英語/ローマ字表記のまま（フレーバーテキストも付く）。<strong>（未確認）</strong>の武器モデル名は海外wiki情報などによるもので、実機表示は未確認です。</div>
     <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
@@ -2668,7 +2671,6 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
       <li><span class="badge" style="background:var(--color-status-ok-bg);border-color:var(--color-status-ok-border);color:var(--color-status-ok-text);">確定</span> 名前付きエキゾチック武器の属性(Rounds)は、フレーバーテキストとは無関係にドロップごとにランダムに決定される。Killswitch/Hypersurge/Rebootなど複数の武器で同一武器でも毎回異なる属性がドロップする実例を確認。以前「一致」としていたKillswitchも別ドロップで不一致が確認されたため、フレーバーテキストとの一致は偶然であり、Roundsが固定されている武器は存在しないと判断できる</li>
       <li><span class="badge" style="background:var(--color-status-todo-bg);border-color:var(--color-status-todo-border);color:var(--color-status-todo-text);">要注意</span> <strong>ファブリケーターでのユーティリティボーナス変更は必ず元に戻せるとは限らない可能性。</strong>実例：デュアルアクション→デュアルVELOX5.7に変更後、再アクセス不可になり元に戻せなかった。再現性・条件を確認</li>
       <li><span class="badge">中</span> 「スラッシャー」が近接武器専用ボーナスかどうか継続検証（近接武器以外での出現例を探す）</li>
-      <li><span class="badge" style="background:var(--color-status-todo-bg);border-color:var(--color-status-todo-border);color:var(--color-status-todo-text);">S05</span> 新武器 <strong>Mammoth（LMG）</strong> がエンドゲームに登場するか、登場する場合の付くボーナスを確認（S05のイベント報酬武器。現状はMP/バトルパス情報のみ）</li>
       <li><span class="badge" style="background:var(--color-status-todo-bg);border-color:var(--color-status-todo-border);color:var(--color-status-todo-text);">S05</span> <strong>バーンラン</strong>の詳細（制限時間・報酬・攻略のコツ）を実機で確認</li>
       <li><span class="badge" style="background:var(--color-status-todo-bg);border-color:var(--color-status-todo-border);color:var(--color-status-todo-text);">S05</span> <strong>エキゾチックアビリティブースト</strong>の具体的な効果一覧（各アビリティ2種）を実機で確認</li>
     </ul>
