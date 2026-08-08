@@ -907,6 +907,34 @@
     border-radius: 6px;
   }
 
+  /* 目次：カテゴリ別グループ（攻略／装備／データ） */
+  nav.toc .toc-group{ margin-top:18px; }
+  nav.toc .toc-group-ttl{
+    display:flex; align-items:baseline; gap:8px;
+    font-family:var(--font-display); font-weight:900; font-size:13px; letter-spacing:2px;
+    color:var(--hud); text-transform:uppercase;
+    padding-bottom:6px; margin-bottom:10px;
+    border-bottom:1px solid rgba(32,198,223,.28);
+  }
+  nav.toc .toc-group-ttl .tg-icon{ color:var(--color-accent); font-size:9px; letter-spacing:0; }
+  nav.toc .toc-group-ttl .tg-sub{ font-family:var(--font-heading-jp); font-weight:600; font-size:11px; letter-spacing:0; color:var(--color-text-muted); }
+  nav.toc .toc-grid{
+    display:grid; grid-template-columns:repeat(auto-fill, minmax(200px,1fr)); gap:8px;
+  }
+  nav.toc a.toc-chip{
+    display:flex; align-items:center; gap:10px; padding:9px 12px;
+    font-size:13px; font-family:var(--font-heading-jp);
+    color:var(--color-text); text-decoration:none;
+    border:1px solid var(--color-border); border-radius:8px; background:rgba(255,255,255,0.02);
+    transition:border-color .15s ease, transform .1s ease, background .15s ease;
+  }
+  nav.toc a.toc-chip:hover{ border-color:var(--color-accent-teal); transform:translateY(-2px); background:rgba(46,139,158,0.10); color:var(--color-accent-teal-light); text-decoration:none; }
+  nav.toc a.toc-chip::before{ content:none !important; }
+
+  /* 概念図（装備の全体像） */
+  .concept-figure{ max-width:760px; margin:10px auto 4px; border:1px solid rgba(32,198,223,.5); border-radius:4px; padding:10px; background:#0d0a18; }
+  .concept-figure svg{ display:block; width:100%; height:auto; }
+
   /* カード類：ホバーで浮き上がり＋アクセント枠 */
   .op-card, .effect-icon-box, .wcard {
     transition: transform .12s ease, border-color .15s ease, box-shadow .15s ease;
@@ -928,7 +956,7 @@
   .wchip { transition: background .15s ease, border-color .15s ease; }
   .wcard:hover .wchip { border-color: #6b5e94; }
 
-  /* 新コンテンツ用ハイライトカード（S05など） */
+  /* 新コンテンツ用ハイライトカード（シーズン5など） */
   .newbox {
     position: relative;
     border: 1px solid var(--color-accent);
@@ -1104,6 +1132,7 @@ body{
 .topnav a{ flex-shrink:0; font-family:var(--font-heading-jp); font-size:12.5px; font-weight:700; color:var(--color-text-muted); text-decoration:none; white-space:nowrap; padding:6px 11px; border-radius:6px; border:1px solid transparent; transition:all .15s ease; }
 .topnav a:hover{ color:var(--color-accent-teal-light); background:rgba(32,198,223,.08); }
 .topnav a.active{ color:#04222a; background:var(--hud); border-color:var(--hud); }
+.topnav .tn-group{ flex-shrink:0; align-self:center; font-family:var(--font-display); font-weight:900; font-size:10px; letter-spacing:1.5px; color:var(--color-accent); text-transform:uppercase; white-space:nowrap; padding:2px 6px 2px 10px; margin-left:4px; border-left:1px solid rgba(32,198,223,.30); }
 @media (max-width:600px){ .topnav .tn-brand{ display:none; } }
 section, header.page-header{ scroll-margin-top:60px; }
 /* ==== 見出し（統一）==== */
@@ -1121,7 +1150,7 @@ nav.toc::before,nav.toc::after,.note::before,.note::after,.story-intro::before,.
 .util-card::before,.util-card::after,details.season::before,details.season::after,
 details.wcat::before,details.wcat::after,.table-scroll::before,.table-scroll::after,
 .season-summary-box::before,.season-summary-box::after,.enemy-modal-box::before,.enemy-modal-box::after{ display:none !important; content:none !important; }
-/* ブラケット枠は「新着(S05)」「マップ」だけに限定 */
+/* ブラケット枠は「新着(シーズン5)」「マップ」だけに限定 */
 .newbox, .map-frame{ position:relative; border:1px solid rgba(32,198,223,.5) !important; border-radius:2px !important; }
 .newbox::before,.newbox::after,.map-frame::before,.map-frame::after{ content:""; position:absolute; width:14px; height:14px; border:2px solid var(--hud); pointer-events:none; z-index:3; display:block; }
 .newbox::before,.map-frame::before{ top:-1px; left:-1px; border-right:none; border-bottom:none; }
@@ -1181,7 +1210,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
 
 </head>
 <body>
-<nav class="topnav" aria-label="セクションナビ"><div class="tn-inner"><span class="tn-brand">BO7 ENDGAME</span><a href="#top" data-sec="top">ホーム</a><a href="#burn-run" data-sec="burn-run" style="color:var(--color-accent);font-weight:700;">バーンラン</a><a href="#operators" data-sec="operators">オペレーター</a><a href="#enemies" data-sec="enemies">敵ボス</a><a href="#missions" data-sec="missions">ミッション</a><a href="#avalon-map" data-sec="avalon-map">マップ</a><a href="#glitches" data-sec="glitches">グリッチ</a><a href="#game-rules" data-sec="game-rules">ルール</a><a href="#exotic-acquire" data-sec="exotic-acquire">入手方法</a><a href="#exotic-effects" data-sec="exotic-effects">エキゾ効果</a><a href="#weapon-traits" data-sec="weapon-traits">武器早見</a><a href="#utility-bonus" data-sec="utility-bonus">汎用ボーナス</a><a href="#affinity-bonus" data-sec="affinity-bonus">属性一致</a><a href="#named-exotics" data-sec="named-exotics">名前付き</a><a href="#weapon-specific" data-sec="weapon-specific">武器固有</a><a href="#story-timeline" data-sec="story-timeline">年表</a><a href="#todo" data-sec="todo">検証タスク</a></div></nav>
+<nav class="topnav" aria-label="セクションナビ"><div class="tn-inner"><span class="tn-brand">BO7 ENDGAME</span><a href="#top" data-sec="top">ホーム</a><a href="#burn-run" data-sec="burn-run" style="color:var(--color-accent);font-weight:700;">バーンラン</a><span class="tn-group">攻略</span><a href="#missions" data-sec="missions">ミッション</a><a href="#avalon-map" data-sec="avalon-map">マップ</a><a href="#glitches" data-sec="glitches">グリッチ</a><a href="#game-rules" data-sec="game-rules">ルール</a><span class="tn-group">装備</span><a href="#exotic-acquire" data-sec="exotic-acquire">入手方法</a><a href="#exotic-effects" data-sec="exotic-effects">エキゾ効果</a><a href="#weapon-traits" data-sec="weapon-traits">武器早見</a><a href="#utility-bonus" data-sec="utility-bonus">汎用ボーナス</a><a href="#affinity-bonus" data-sec="affinity-bonus">属性一致</a><a href="#named-exotics" data-sec="named-exotics">名前付き</a><a href="#weapon-specific" data-sec="weapon-specific">武器固有</a><span class="tn-group">データ</span><a href="#operators" data-sec="operators">オペレーター</a><a href="#enemies" data-sec="enemies">敵ボス</a><a href="#story-timeline" data-sec="story-timeline">年表</a><a href="#todo" data-sec="todo">検証タスク</a></div></nav>
 <div class="scanbeam" aria-hidden="true"></div>
 
 
@@ -1192,33 +1221,46 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
 <div class="container">
 
   <div class="newbox">
-    <span class="new-tag">NEW · S05</span>
+    <span class="new-tag">NEW · シーズン5</span>
     <h4>シーズン5で追加された新要素（2026/07/23〜）</h4>
     <p><span class="term">バーンラン（Burn Run）</span>＝新アサインメント。爆弾を積んだ車で、炎に包まれたアーチのコースを制限時間内に走り抜けるタイムアタック。道中の<span class="term">Fear系の敵・オブジェクト</span>を轢くと時間が延長され、修理レンチやスピードブーストで車を維持しながらゴールを目指します。</p>
     <p><span class="term">エキゾチックアビリティブースト</span>＝メジャー／マイナーアビリティを強化する新システム。クールダウン短縮・追加弾薬・追加ダメージ属性などが付与されます。アイテムケースから入手でき、主に<span class="term">ナイトメア地点</span>のアクティビティ／アサインメントで出やすい（Tacマップの報酬一覧で確認可）。各アビリティに2種のブーストがあり、ワイプするかアビリティを付け替えるまで維持されます。</p>
-    <p style="font-size:13px;color:var(--color-text-muted);margin-bottom:0;">※S05ではエンドゲーム無料開放が継続。S06以降はBO7所有者限定になる予定（公式パッチノート）。S05では新しい「グリッチ」の追加はありません。</p>
+    <p style="font-size:13px;color:var(--color-text-muted);margin-bottom:0;">※シーズン5ではエンドゲーム無料開放が継続。シーズン6以降はBO7所有者限定になる予定（公式パッチノート）。シーズン5では新しい「グリッチ」の追加はありません。</p>
   </div>
 
   <nav class="toc" aria-label="目次">
     <h2>目次</h2>
-    <a href="#burn-run" class="toc-pickup"><span class="pk-badge">NEW · S05</span>バーンラン攻略</a>
-    <ol>
-      <li><a href="#operators">オペレーター一覧</a></li>
-      <li><a href="#enemies">敵・ボス図鑑</a></li>
-      <li><a href="#missions">ミッション概要</a></li>
-      <li><a href="#avalon-map">アヴァロン マップ</a></li>
-      <li><a href="#glitches">グリッチ一覧</a></li>
-      <li><a href="#game-rules">ゲームルール・仕様メモ</a></li>
-      <li><a href="#exotic-acquire">エキゾチック武器の入手方法</a></li>
-      <li><a href="#exotic-effects">エキゾチック効果（Rounds）一覧</a></li>
-      <li><a href="#weapon-traits">武器別 つくボーナス早見表</a></li>
-      <li><a href="#utility-bonus">ユーティリティボーナス（汎用）</a></li>
-      <li><a href="#affinity-bonus">属性一致ユーティリティボーナス（推定訳）</a></li>
-      <li><a href="#named-exotics">名前付きエキゾチック武器</a></li>
-      <li><a href="#weapon-specific">武器固有ボーナスの仮説</a></li>
-      <li><a href="#story-timeline">ストーリー年表（シーズンの流れ）</a></li>
-      <li><a href="#todo">今後の検証タスク</a></li>
-    </ol>
+    <a href="#burn-run" class="toc-pickup"><span class="pk-badge">NEW · シーズン5</span>バーンラン攻略</a>
+    <div class="toc-group">
+      <div class="toc-group-ttl"><span class="tg-icon">▶</span>攻略<span class="tg-sub">進め方・攻略情報</span></div>
+      <div class="toc-grid">
+        <a class="toc-chip" href="#missions">ミッション概要</a>
+        <a class="toc-chip" href="#avalon-map">アヴァロン マップ</a>
+        <a class="toc-chip" href="#glitches">グリッチ一覧</a>
+        <a class="toc-chip" href="#game-rules">ゲームルール・仕様メモ</a>
+      </div>
+    </div>
+    <div class="toc-group">
+      <div class="toc-group-ttl"><span class="tg-icon">▶</span>装備<span class="tg-sub">武器・エキゾチック</span></div>
+      <div class="toc-grid">
+        <a class="toc-chip" href="#exotic-acquire">エキゾチック武器の入手方法</a>
+        <a class="toc-chip" href="#exotic-effects">エキゾチック効果（Rounds）一覧</a>
+        <a class="toc-chip" href="#weapon-traits">武器別 つくボーナス早見表</a>
+        <a class="toc-chip" href="#utility-bonus">ユーティリティボーナス（汎用）</a>
+        <a class="toc-chip" href="#affinity-bonus">属性一致ユーティリティボーナス（推定訳）</a>
+        <a class="toc-chip" href="#named-exotics">名前付きエキゾチック武器</a>
+        <a class="toc-chip" href="#weapon-specific">武器固有ボーナスの仮説</a>
+      </div>
+    </div>
+    <div class="toc-group">
+      <div class="toc-group-ttl"><span class="tg-icon">▶</span>データ<span class="tg-sub">資料・記録</span></div>
+      <div class="toc-grid">
+        <a class="toc-chip" href="#operators">オペレーター一覧</a>
+        <a class="toc-chip" href="#enemies">敵・ボス図鑑</a>
+        <a class="toc-chip" href="#story-timeline">ストーリー年表（シーズンの流れ）</a>
+        <a class="toc-chip" href="#todo">今後の検証タスク</a>
+      </div>
+    </div>
   </nav>
 
   <div class="story-intro">
@@ -1231,13 +1273,13 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
     <div class="season-list">
     <details class="season featured">
       <summary>
-        <span class="season-badge new">NEW · S05</span>
+        <span class="season-badge new">NEW · シーズン5</span>
         <span class="season-ttl">バーンラン攻略<span class="season-sub">　出現場所・手順・コツ・報酬</span></span>
         <span class="season-chevron" aria-hidden="true">▾</span>
       </summary>
       <div class="season-body">
         <p class="lead">バーンランは、爆弾を積んだ車で炎のアーチのコースを制限時間内に走破するミッション。戦闘ではなく<strong>“レース”として走る</strong>のがクリアのコツです。</p>
-        <p><span class="term">出現場所</span>は2か所（<strong>ハイタウン</strong>・<strong>ロータウン</strong>）。ハイタウンの短めのコースが練習向きです。</p>
+        <p><span class="term">出現場所</span>は3か所（<strong>ハイタウン</strong>・<strong>ロータウン</strong>・<strong>旧武器庫</strong>）。ハイタウンの短めのコースが練習向きです。</p>
         <ol style="margin:0 0 16px;padding-left:20px;line-height:1.7;">
           <li style="margin-bottom:6px;">ミッション場所にある車両にインタラクトして乗り込む</li>
           <li style="margin-bottom:6px;">矢印のルート指示に従ってゴールを目指す</li>
@@ -1277,7 +1319,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
   </section>
 
   <section id="operators">
-    <h2>1. オペレーター一覧</h2>
+    <h2>オペレーター一覧</h2>
 
     <h3 class="op-faction-ttl">スペクター1 <small>JSOC</small></h3>
     <div class="op-grid">
@@ -1369,7 +1411,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
         <img src="assets/operators/rook.webp" alt="レオン・ルーク" loading="lazy">
         <div class="op-name">レオン・ルーク</div>
         <div class="op-en">Leon Rook</div>
-        <div class="op-role">S4「キングキラー」の脅威</div>
+        <div class="op-role">シーズン4「キングキラー」の脅威</div>
       </div>
       <div class="op-card">
         <img src="assets/operators/grimm.webp" alt="アニカ・グリム" loading="lazy">
@@ -1390,7 +1432,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
   </section>
 
   <section id="enemies">
-    <h2>2. 敵・ボス図鑑</h2>
+    <h2>敵・ボス図鑑</h2>
     <p class="lead">まず「誰を・何を倒すのか」を把握するためのパート。エネミーとワールドボスの一覧です。</p>
 
     <h3>エネミー図鑑</h3>
@@ -1550,7 +1592,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
        7. ミッション概要
        ============================================ -->
   <section id="missions">
-    <h2>3. ミッション概要</h2>
+    <h2>ミッション概要</h2>
 
     <h3>基本ルール</h3>
     <p class="lead">モードの目標：<strong>「出発して50分以内に生きて帰る」</strong>。チームプレイ推奨。</p>
@@ -1562,16 +1604,61 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
           <tr><td data-label="項目">チームプレイのメリット</td><td data-label="内容">チームを組んでいる場合、倒れてもミッション失敗にはならず、リスポンできる（ソロだとミッション失敗になりやすい）</td></tr>
           <tr><td data-label="項目">ロードアウト武器の扱い</td><td data-label="内容">任務の成功・失敗に関わらず、常に設定・使用可能</td></tr>
           <tr><td data-label="項目">現地入手武器の制限</td><td data-label="内容">アタッチメントの設定などのカスタマイズはできない</td></tr>
-          <tr><td data-label="項目">レベルキャップ到達後の隠し仕様</td><td data-label="内容">通常のレベル上限に達すると経験値を貯めてもレベルが上がらなくなる。グリッチ(Glitch)をクリアするとスキル選択画面が表示され、「既存スキルのレベルを+1する」か「新しいナイトメアスキルを追加する」かを選択できる。このスキル選択がオペレーターレベルの上昇に連動しており、結果としてグリッチを3回クリアするとレベルが+3される仕組みになっている（ユーザー実機確認）</td></tr>
+          <tr><td data-label="項目">レベルMAX到達後の隠し仕様</td><td data-label="内容">通常のレベル上限に達すると経験値を貯めてもレベルが上がらなくなる。グリッチ(Glitch)をクリアするとスキル選択画面が表示され、「既存スキルのレベルを+1する」か「新しいナイトメアスキルを追加する」かを選択できる。このスキル選択がオペレーターレベルの上昇に連動しており、結果としてグリッチを3回クリアするとレベルが+3される仕組みになっている（ユーザー実機確認）</td></tr>
           <tr><td data-label="項目">グリッチ(Glitch)への参加方法</td><td data-label="内容">ソロクリアは相当な実力が必要な高難度ミッション。マップ内チャットで「グリッチ行きませんか？」といった募集が英語・中国語で行われることが多く、日本語チャットはほぼ見られない。参加するには翻訳しながらチャットするか、マッチしたチームメンバーとマップ上のグリッチ地点にマーキングしてアピールするなどの対応が必要。<br><strong>【Xboxでの翻訳手順例（ユーザー実践）】</strong> ①スマートフォンの翻訳アプリのカメラ翻訳でゲーム画面のチャット内容を確認 → ②返信メッセージを翻訳アプリで翻訳してコピー → ③スマートフォンのXboxアプリ（本体リモート操作画面）でメッセージ欄にペーストしてゲーム内に送信（※上記はXboxでの一例）</td></tr>
         </tbody>
       </table>
     </div>
 
+    <div class="note"><strong>「レベル」＝「戦闘評価（CR）」です。</strong> このモードのレベルは戦闘評価として表示されます。レベル0の状態で「推奨戦闘評価60」の地域に行くとほぼ歯が立たないので、まずは戦闘評価（レベル）を上げてから高難度エリアへ向かいましょう。</div>
+
     <details class="wcat" style="margin-top:28px;">
       <summary><span class="wcat-ttl">プレステージ と 復帰をリセット の違い</span><span class="wcat-chevron">▾</span></summary>
       <div style="padding:14px;">
       <p class="lead" style="margin-top:0;">どちらも「レベル・スキルをリセットする」機能ですが、実行条件と失うものが異なります。混同しやすいので比較表でまとめました。</p>
+
+      <p style="margin:18px 0 6px;font-weight:700;color:var(--color-accent-teal-light);">オペレータープレステージが可能になる3条件（＝入手元）</p>
+      <figure class="concept-figure">
+        <svg viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="pt-t pt-d">
+          <title id="pt-t">オペレータープレステージの3条件と入手元</title>
+          <desc id="pt-d">レベルMAX（通常育成）、エキゾチックスキルLv3（ワールドボス撃破）、ナイトメアスキルLv3（グリッチクリア）の3つをすべて満たすとプレステージ可能になる。</desc>
+          <defs>
+            <marker id="pt-ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path d="M0 0L10 5L0 10z" fill="var(--color-accent-teal)"/>
+            </marker>
+          </defs>
+          <style>
+            .pt-bx{ fill:var(--color-bg-soft2); stroke:var(--color-border); stroke-width:1.5; }
+            .pt-rs{ fill:rgba(32,198,223,.13); stroke:var(--hud); stroke-width:2; }
+            .pt-tt{ font-family:var(--font-heading-jp); font-size:14px; font-weight:700; fill:var(--color-text); }
+            .pt-lv{ font-family:var(--font-heading-jp); font-size:12px; font-weight:700; fill:var(--color-text); }
+            .pt-src{ font-family:var(--font-heading-jp); font-size:11.5px; font-weight:700; fill:var(--color-accent-teal-light); }
+            .pt-plus{ font-size:26px; font-weight:800; fill:var(--color-text-muted); }
+            .pt-rt{ font-family:var(--font-heading-jp); font-size:15px; font-weight:700; fill:var(--color-text); }
+            .pt-cap{ font-family:var(--font-heading-jp); font-size:11px; fill:var(--color-text-muted); }
+          </style>
+          <text class="pt-cap" x="410" y="24" text-anchor="middle">この3つを「すべて」満たすと「プレステージ可能」の表示が出る</text>
+          <rect class="pt-bx" x="20" y="40" width="230" height="96" rx="10"/>
+          <text class="pt-tt" x="135" y="70" text-anchor="middle" font-size="13">レベル（戦闘評価）MAX</text>
+          <text class="pt-lv" x="135" y="92" text-anchor="middle">上限まで到達</text>
+          <text class="pt-src" x="135" y="118" text-anchor="middle">入手元：通常のレベル上げ</text>
+          <text class="pt-plus" x="272" y="97" text-anchor="middle">＋</text>
+          <rect class="pt-bx" x="295" y="40" width="230" height="96" rx="10"/>
+          <text class="pt-tt" x="410" y="70" text-anchor="middle">エキゾチックスキル</text>
+          <text class="pt-lv" x="410" y="92" text-anchor="middle">Lv3 まで</text>
+          <text class="pt-src" x="410" y="118" text-anchor="middle">入手元：ワールドボス撃破</text>
+          <text class="pt-plus" x="547" y="97" text-anchor="middle">＋</text>
+          <rect class="pt-bx" x="570" y="40" width="230" height="96" rx="10"/>
+          <text class="pt-tt" x="685" y="70" text-anchor="middle">ナイトメアスキル</text>
+          <text class="pt-lv" x="685" y="92" text-anchor="middle">Lv3 まで</text>
+          <text class="pt-src" x="685" y="118" text-anchor="middle">入手元：グリッチクリア</text>
+          <line x1="410" y1="140" x2="410" y2="176" stroke="var(--color-accent-teal)" stroke-width="2.5" marker-end="url(#pt-ar)"/>
+          <rect class="pt-rs" x="210" y="178" width="400" height="58" rx="10"/>
+          <text class="pt-rt" x="410" y="205" text-anchor="middle">プレステージ可能</text>
+          <text class="pt-cap" x="410" y="224" text-anchor="middle">（最大3回まで／実行するとレベル・スキルは0に戻る）</text>
+        </svg>
+      </figure>
+
       <div class="table-scroll">
         <table>
           <thead><tr><th>項目</th><th>オペレータープレステージ</th><th>「復帰をリセット」（アビリティ＆スキル画面／LSボタン）</th></tr></thead>
@@ -1621,9 +1708,9 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
         <thead><tr><th>名称</th><th>内容</th><th>備考</th></tr></thead>
         <tbody>
           <tr>
-            <td data-label="名称">バーンラン（Burn Run）<span class="box-tag" style="background:rgba(235,83,44,0.22);color:#ffb59e;border-color:var(--color-accent);">S05</span></td>
+            <td data-label="名称">バーンラン（Burn Run）<span class="box-tag" style="background:rgba(235,83,44,0.22);color:#ffb59e;border-color:var(--color-accent);">シーズン5</span></td>
             <td data-label="内容">爆弾搭載車で炎のアーチのコースを制限時間内に走破する新アサインメント。Fear系の敵・オブジェクトを轢くと時間延長。修理レンチ・スピードブーストで車を維持</td>
-            <td data-label="備考">2026/07/23（S05）実装。公式パッチノート情報</td>
+            <td data-label="備考">2026/07/23（シーズン5）実装。公式パッチノート情報</td>
           </tr>
           <tr>
             <td data-label="名称">パワーノード回収（ウィークリーミッション）</td>
@@ -1644,7 +1731,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
   </section>
 
   <section id="avalon-map">
-    <h2>4. アヴァロン マップ</h2>
+    <h2>アヴァロン マップ</h2>
     <p class="lead">アヴァロン島のタクティカルマップです。<span style="color:var(--color-accent);font-weight:700;"><span class="leg-dot"></span>赤いピン</span>は、実機確認済みのグリッチ発生場所（固定ランドマーク）を示しています。<strong>個人作成の参考マップ</strong>で、公式マップの転載ではありません。</p>
     <div class="map-frame">
       <img src="assets/img/avalon_map.webp" alt="アヴァロン島 タクティカルマップ（グリッチ発生場所ピン付き）" loading="lazy">
@@ -1682,7 +1769,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
   </section>
 
   <section id="glitches">
-    <h2>5. グリッチ一覧</h2>
+    <h2>グリッチ一覧</h2>
     <p class="lead">グリッチ（グリッチフラクチャー）は、通常のアヴァロンマップ外で行われる特殊アクティビティ。対応オペレーションをクリアし、同じ試合でギルドストライクボスを倒すと出現します。発生場所は多くが固定のランドマーク（実機確認済み）。カードをクリックすると各グリッチの詳細が開きます。</p>
     <div class="note"><strong>報酬について：</strong>グリッチをクリアすると「ナイトメアスキル」（最強クラスのパッシブ強化。1つだけ装備可・2回強化可・フル強化でCR+3）が得られます。推奨CRは45以上、エキゾチック武器の持ち込み推奨。</div>
     <p class="enemy-hint"><svg class="ic-inline" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 2l15 9-6.6 1.5L10 20z"/></svg>グリッチカードをクリックすると詳細が開きます。</p>
@@ -1763,7 +1850,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
        6. ゲームルール・仕様メモ
        ============================================ -->
   <section id="game-rules">
-    <h2>6. ゲームルール・仕様メモ</h2>
+    <h2>ゲームルール・仕様メモ</h2>
     <div class="table-scroll">
       <table>
         <thead><tr><th>カテゴリ</th><th>内容</th></tr></thead>
@@ -1801,8 +1888,60 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
   <!-- ============================================
        エキゾチック武器の入手方法
        ============================================ -->
+  <section id="exotic-overview" aria-labelledby="exotic-overview-ttl">
+    <h2 id="exotic-overview-ttl">装備の全体像</h2>
+    <p class="lead">個別の表に入る前に、エキゾチック強化の「しくみ」を1枚で。ポイントは、<strong>Rounds属性とユーティリティボーナスは特定の武器の専売ではなく、どの武器（ロードアウト武器を含む）にも付与できる共通レイヤー</strong>だということです。</p>
+    <figure class="concept-figure">
+      <svg viewBox="0 0 800 452" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="cf-ttl cf-desc">
+        <title id="cf-ttl">エキゾチック強化のしくみ（全体像）</title>
+        <desc id="cf-desc">どの武器にもRounds属性とユーティリティボーナスが乗り、条件を満たすと属性一致ボーナス、さらに特定武器や箱限定の特殊ボーナスが加わる、という段階構造の図。</desc>
+        <defs>
+          <marker id="cf-ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0 0L10 5L0 10z" fill="var(--color-accent-teal)"/>
+          </marker>
+        </defs>
+        <style>
+          .cf-t{ font-family:var(--font-heading-jp); fill:var(--color-text); font-weight:700; }
+          .cf-s{ font-family:var(--font-heading-jp); fill:var(--color-text-muted); font-size:12px; }
+          .cf-base{ fill:var(--color-bg-soft2); stroke:var(--color-border); stroke-width:1.5; }
+          .cf-common{ fill:rgba(32,198,223,.13); stroke:var(--hud); stroke-width:2; }
+          .cf-cond{ fill:var(--color-bg-soft); stroke:var(--color-accent-teal); stroke-width:1.5; }
+          .cf-limit{ fill:rgba(255,122,26,.13); stroke:var(--color-accent); stroke-width:2; }
+        </style>
+
+        <!-- base -->
+        <rect class="cf-base" x="70" y="46" width="660" height="62" rx="10"/>
+        <text class="cf-t" x="400" y="74" text-anchor="middle" font-size="16">武器（ロードアウト武器も含む）</text>
+        <text class="cf-s" x="400" y="95" text-anchor="middle">すべての土台。どの武器にも強化を付与できる</text>
+        <line x1="400" y1="108" x2="400" y2="132" stroke="var(--color-accent-teal)" stroke-width="2.5" marker-end="url(#cf-ar)"/>
+
+        <!-- common layer -->
+        <rect class="cf-common" x="110" y="134" width="580" height="62" rx="10"/>
+        <text class="cf-t" x="400" y="164" text-anchor="middle" font-size="15">Rounds属性（8種）＋ ユーティリティボーナス（汎用）</text>
+        <text class="cf-s" x="400" y="184" text-anchor="middle">共通レイヤー — どの武器にも乗る基本強化</text>
+        <line x1="400" y1="196" x2="400" y2="220" stroke="var(--color-accent-teal)" stroke-width="2.5" marker-end="url(#cf-ar)"/>
+
+        <!-- conditional -->
+        <rect class="cf-cond" x="170" y="222" width="460" height="62" rx="10"/>
+        <text class="cf-t" x="400" y="252" text-anchor="middle" font-size="15">属性一致ボーナス</text>
+        <text class="cf-s" x="400" y="272" text-anchor="middle">発見時の属性が一致した個体のみ・確率で発動</text>
+        <line x1="400" y1="284" x2="400" y2="308" stroke="var(--color-accent-teal)" stroke-width="2.5" marker-end="url(#cf-ar)"/>
+
+        <!-- limited -->
+        <rect class="cf-limit" x="230" y="310" width="340" height="62" rx="10"/>
+        <text class="cf-t" x="400" y="340" text-anchor="middle" font-size="15">武器固有 ／ 箱限定ボーナス</text>
+        <text class="cf-s" x="400" y="360" text-anchor="middle">特定武器・エキゾボックス産だけの特殊枠</text>
+
+        <!-- footnote -->
+        <text class="cf-s" x="400" y="404" text-anchor="middle">※「エキゾ武器（名前付き）」は“武器のベース”側（希少度）の一種で、上の強化レイヤーとは別軸です。</text>
+        <text class="cf-s" x="400" y="426" text-anchor="middle">※下の段ほど条件・限定が強い＝レアな組み合わせになります。</text>
+      </svg>
+    </figure>
+    <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
+  </section>
+
   <section id="exotic-acquire">
-    <h2>7. エキゾチック武器の入手方法</h2>
+    <h2>エキゾチック武器の入手方法</h2>
     <p class="lead">エキゾチック武器は、特定のワールドボスを撃破すると入手できます。</p>
     <div class="table-scroll">
       <table>
@@ -1839,8 +1978,8 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
     <img src="assets/img/Exotic_Fabricator.gif" alt="エキゾチックファブリケーター エキゾチック特性を選択してリロール" style="display:block;width:100%;height:auto;border-radius:2px;">
   </div>
   <section id="exotic-effects">
-    <h2>8. エキゾチック効果（Rounds）</h2>
-    <p class="lead">武器に付与可能な8種類の弾薬属性（Affinity）</p>
+    <h2>エキゾチック効果（Rounds）</h2>
+    <p class="lead">武器に付与可能な8種類の弾薬属性（Affinity）。ロードアウト武器を含む、どの武器にも付与できます。</p>
 
     <p class="enemy-hint"><svg class="ic-inline" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 2l15 9-6.6 1.5L10 20z"/></svg>属性アイコンをクリックすると効果の詳細が開きます。</p>
     <div class="op-grid round-grid">
@@ -1917,7 +2056,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
   </section>
 
   <section id="weapon-traits">
-    <h2>9. 武器別 つくボーナス早見表</h2>
+    <h2>武器別 つくボーナス早見表</h2>
     <p class="lead">各武器で入手できるエキゾチック特性（ユーティリティボーナス）の一覧です。各カードに、その武器に付くボーナスをすべて表示しています。</p>
     <div class="note"><strong>データ出典：</strong>Reddit r/bo7endgame の u/Fate_Messenger 氏「All weapons exotic traits list」（<a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRrbirGBrbZkHvkiJ9FdmynO3CBp9Fc6ydmlIZ1qjD7S1m0dOBaTIyIyA3VrPjht3lHATWQErO_CW2D/pubhtml" target="_blank" rel="noopener">元データ</a>）。表示中のボーナスはいずれも入手可能なもので、末尾に<strong>「（箱からの入手限定）」</strong>と付くものはエキゾボックス限定です。</div>
 
@@ -2167,7 +2306,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
       <div class="wcard">
         <div class="wframe">
           <div class="wimg-wrap"><img src="assets/weapons/mammoth.webp" alt="Mammoth" loading="lazy"></div>
-          <div class="wname">Mammoth<span class="box-tag" style="background:rgba(235,83,44,0.22);color:#ffb59e;border-color:var(--color-accent);">S05</span></div>
+          <div class="wname">Mammoth<span class="box-tag" style="background:rgba(235,83,44,0.22);color:#ffb59e;border-color:var(--color-accent);">シーズン5</span></div>
         </div>
         <div class="wchips"><span class="wchip">反動削除</span><span class="wchip">ウルトラライト</span><span class="wchip">リロード切替</span><span class="wchip">コンバットレディ</span></div>
       </div>
@@ -2387,7 +2526,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
        3. ユーティリティボーナス（汎用）
        ============================================ -->
   <section id="utility-bonus">
-    <h2>10. ユーティリティボーナス（汎用）</h2>
+    <h2>ユーティリティボーナス（汎用）</h2>
     <p class="lead">属性に関係なく出現する汎用ボーナス。アイコン（グループ）ごとにまとめています。</p>
     <div class="util-groups">
       <div class="util-card">
@@ -2444,7 +2583,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
        4. 属性一致ユーティリティボーナス
        ============================================ -->
   <section id="affinity-bonus">
-    <h2>11. 属性一致ユーティリティボーナス（推定訳）</h2>
+    <h2>属性一致ユーティリティボーナス（推定訳）</h2>
     <p class="lead"><strong>【謎が解明・海外wiki情報】</strong>「Affinity Exotic」（対応する属性で発見された個体）の判定は<strong>発見時点のRounds属性で決まり、ファブリケーターでのリロール後も変わらない</strong>。Affinity Exoticは対応する属性一致ボーナスを<strong>確率で</strong>引く（保証ではない）ため、同じ個体でも出たり出なかったりする。これらのボーナスの多くは標準ユーティリティボーナスより弱いとされ、強さ目的ではなくレア度・見た目狙いで集めるものとされている。</p>
     <div class="note">
       ボーナス名は<strong>英語／日本語</strong>で併記しています。<strong>日本語名が未確認のものは（未確認）</strong>と表記しています。
@@ -2483,7 +2622,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
        2. 名前付きエキゾチック武器
        ============================================ -->
   <section id="named-exotics">
-    <h2>12. 名前付きエキゾチック武器</h2>
+    <h2>名前付きエキゾチック武器</h2>
     <p class="lead">エンドゲームに存在する名前付きエキゾチック武器と、その元になる武器の一覧です。属性(Rounds)はドロップごとにランダムに決まるため、この表では割愛しています。</p>
 
     <div class="table-scroll">
@@ -2531,7 +2670,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
        5. 武器固有ボーナスの仮説
        ============================================ -->
   <section id="weapon-specific">
-    <h2>13. 武器固有ボーナスの仮説</h2>
+    <h2>武器固有ボーナスの仮説</h2>
     <div class="table-scroll">
       <table>
         <thead><tr><th>武器</th><th>ボーナス</th><th>状態</th></tr></thead>
@@ -2551,7 +2690,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
        9. ストーリー年表（シーズン別アコーディオン）
        ============================================ -->
   <section id="story-timeline">
-    <h2>14. ストーリー年表（シーズンの流れ）</h2>
+    <h2>ストーリー年表（シーズンの流れ）</h2>
     <p class="lead">エンドゲームを初めて遊ぶ人が、世界観にグッと入り込めるように——各シーズンの物語の流れをまとめました。</p>
     <div class="note">
       <strong><svg class="ic-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l9 16H3z"/><path d="M12 10v4"/><circle cx="12" cy="16.7" r="0.6" fill="currentColor" stroke="none"/></svg>ストーリーのネタバレを含みます。</strong> 各シーズンは初期状態で閉じています。読みたいシーズンをクリックして開いてください。
@@ -2561,7 +2700,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
 
       <details class="season">
         <summary>
-          <span class="season-badge">S1</span>
+          <span class="season-badge">シーズン1</span>
           <span class="season-ttl">エンドゲームの結末<span class="season-sub">　ドーンのクーデターと、フォークナー討伐</span></span>
           <span class="season-chevron" aria-hidden="true">▾</span>
         </summary>
@@ -2580,7 +2719,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
 
       <details class="season">
         <summary>
-          <span class="season-badge">S2</span>
+          <span class="season-badge">シーズン2</span>
           <span class="season-ttl">プロジェクト・シナプス<span class="season-sub">　ギルドストライク、グリッチ追加、ジャベリン潜入</span></span>
           <span class="season-chevron" aria-hidden="true">▾</span>
         </summary>
@@ -2598,7 +2737,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
 
       <details class="season">
         <summary>
-          <span class="season-badge">S3</span>
+          <span class="season-badge">シーズン3</span>
           <span class="season-ttl">ポイズンピル作戦<span class="season-sub">　リンクフォージャー解禁、ブロークンミラー作戦</span></span>
           <span class="season-chevron" aria-hidden="true">▾</span>
         </summary>
@@ -2614,7 +2753,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
 
       <details class="season">
         <summary>
-          <span class="season-badge">S4</span>
+          <span class="season-badge">シーズン4</span>
           <span class="season-ttl">メイソン拘束からの二段構え<span class="season-sub">　ウォールブレーカー作戦、キングキラー作戦</span></span>
           <span class="season-chevron" aria-hidden="true">▾</span>
         </summary>
@@ -2633,7 +2772,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
 
       <details class="season">
         <summary>
-          <span class="season-badge">S5</span>
+          <span class="season-badge">シーズン5</span>
           <span class="season-ttl">バーンランとアビリティ強化<span class="season-sub">　2026/07/23〜（新アサインメント／アビリティブースト）</span></span>
           <span class="season-chevron" aria-hidden="true">▾</span>
         </summary>
@@ -2642,9 +2781,9 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
           <p>シーズン5では、アヴァロンに新アサインメント「<span class="term">バーンラン（Burn Run）</span>」が追加されました。爆弾を積んだ車で炎に包まれたアーチのコースを制限時間内に走り抜けるタイムアタックで、道中のFear系の敵・オブジェクトを轢くと時間が延長されます。</p>
           <p>あわせて「<span class="term">エキゾチックアビリティブースト</span>」が導入され、メジャー／マイナーアビリティをクールダウン短縮・追加弾薬・追加ダメージ属性などで強化できるようになりました。主にナイトメア地点のケースから入手します。</p>
           <h4>プレイ環境の変化</h4>
-          <p>エンドゲームの無料開放はS05終了まで継続予定で、S06以降はBO7所有者限定になる予定です。</p>
+          <p>エンドゲームの無料開放はシーズン5終了まで継続予定で、シーズン6以降はBO7所有者限定になる予定です。</p>
           <div class="season-summary-box">
-            <strong>メモ：</strong> S05のエンドゲーム更新は「新アクティビティ（バーンラン）＋アビリティ強化」が中心で、公式パッチノート上ではドーン／メイソン／ルークらの新たな物語章は明記されていません。ストーリー面で続きが判明したら追記します。
+            <strong>メモ：</strong> シーズン5のエンドゲーム更新は「新アクティビティ（バーンラン）＋アビリティ強化」が中心で、公式パッチノート上ではドーン／メイソン／ルークらの新たな物語章は明記されていません。ストーリー面で続きが判明したら追記します。
           </div>
         </div>
       </details>
@@ -2659,7 +2798,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
        ============================================ -->
 
   <section id="todo">
-    <h2>15. 今後の検証タスク</h2>
+    <h2>今後の検証タスク</h2>
     <ul class="todo-list">
       <li><span class="badge">中</span> 18種の名前付きエキゾチック武器名の日本語表示を確認（カタカナ or 英語表記）</li>
       <li><span class="badge">高</span> 各属性一致ボーナスの実機日本語名を確認</li>
@@ -2671,8 +2810,8 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
       <li><span class="badge" style="background:var(--color-status-ok-bg);border-color:var(--color-status-ok-border);color:var(--color-status-ok-text);">確定</span> 名前付きエキゾチック武器の属性(Rounds)は、フレーバーテキストとは無関係にドロップごとにランダムに決定される。Killswitch/Hypersurge/Rebootなど複数の武器で同一武器でも毎回異なる属性がドロップする実例を確認。以前「一致」としていたKillswitchも別ドロップで不一致が確認されたため、フレーバーテキストとの一致は偶然であり、Roundsが固定されている武器は存在しないと判断できる</li>
       <li><span class="badge" style="background:var(--color-status-todo-bg);border-color:var(--color-status-todo-border);color:var(--color-status-todo-text);">要注意</span> <strong>ファブリケーターでのユーティリティボーナス変更は必ず元に戻せるとは限らない可能性。</strong>実例：デュアルアクション→デュアルVELOX5.7に変更後、再アクセス不可になり元に戻せなかった。再現性・条件を確認</li>
       <li><span class="badge">中</span> 「スラッシャー」が近接武器専用ボーナスかどうか継続検証（近接武器以外での出現例を探す）</li>
-      <li><span class="badge" style="background:var(--color-status-todo-bg);border-color:var(--color-status-todo-border);color:var(--color-status-todo-text);">S05</span> <strong>バーンラン</strong>の詳細（制限時間・報酬・攻略のコツ）を実機で確認</li>
-      <li><span class="badge" style="background:var(--color-status-todo-bg);border-color:var(--color-status-todo-border);color:var(--color-status-todo-text);">S05</span> <strong>エキゾチックアビリティブースト</strong>の具体的な効果一覧（各アビリティ2種）を実機で確認</li>
+      <li><span class="badge" style="background:var(--color-status-todo-bg);border-color:var(--color-status-todo-border);color:var(--color-status-todo-text);">シーズン5</span> <strong>バーンラン</strong>の詳細（制限時間・報酬・攻略のコツ）を実機で確認</li>
+      <li><span class="badge" style="background:var(--color-status-todo-bg);border-color:var(--color-status-todo-border);color:var(--color-status-todo-text);">シーズン5</span> <strong>エキゾチックアビリティブースト</strong>の具体的な効果一覧（各アビリティ2種）を実機で確認</li>
     </ul>
     <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
   </section>
