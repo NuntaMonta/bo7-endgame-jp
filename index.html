@@ -1203,8 +1203,8 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
 @media (prefers-reduced-motion: reduce){ .scanbeam{ display:none; } }
 
 /* ==== たまに画面を横切るグラインドキャラ（お遊び演出） ==== */
-#grinder{ position:fixed; left:0; bottom:0; top:auto; z-index:5; pointer-events:none; opacity:0; will-change:transform,opacity; }
-#grinder img{ display:block; width:120px; height:auto; filter:drop-shadow(0 3px 6px rgba(0,0,0,.55)); }
+#grinder{ position:fixed; left:0; top:0; width:min(620px, 82vw); z-index:5; pointer-events:none; opacity:0; transition:opacity .5s ease; will-change:opacity; }
+#grinder img{ display:block; width:100%; height:auto; }
 @media (prefers-reduced-motion: reduce){ #grinder{ display:none !important; } }
 
 /* ==== アイコン（絵文字置換）==== */
@@ -3120,55 +3120,38 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
 
 <script>
 /* ============================================
-   たまに画面を横切る「飛行キャラ」（お遊び演出）
-   sita→naka→ue→naka でバタつかせながらスライド
+   たまに画面を斜めに横切る「飛行キャラ」（お遊び演出）
+   自作の透過アニメ(ningen_fly.webp)を、たまに再生。左右反転で反対側からも。
    ============================================ */
 (function(){
   var mq = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
-  if (mq && mq.matches) return;               /* モーション控えめ設定なら出さない */
-  var base = 'assets/img/';
-  var frames = ['ningen_sita','ningen_naka','ningen_ue','ningen_naka'];
+  if (mq && mq.matches) return;                 /* モーション控えめ設定なら出さない */
+  var src = 'assets/img/ningen_fly.webp';
+  var BLANK = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+  var CLIP = 10200;                             /* クリップ長ぶん表示（約10秒・1回のみ） */
   var wrap = document.createElement('div');
   wrap.id = 'grinder'; wrap.setAttribute('aria-hidden','true');
   var img = document.createElement('img');
-  img.alt = ''; img.decoding = 'async';
-  img.src = base + frames[0] + '.webp';
+  img.alt = ''; img.decoding = 'async'; img.src = src;
   wrap.appendChild(img); document.body.appendChild(wrap);
-  /* プリロード */
-  frames.forEach(function(f){ var p=new Image(); p.src=base+f+'.webp'; });
 
-  var frameTimer = null, running = false;
+  var running = false;
   function run(){
     if (running || document.hidden) { schedule(6000); return; }
     running = true;
-    var bands = [0.20, 0.34, 0.50, 0.64];            /* 縦位置をランダムに */
-    var bottom = bands[Math.floor(Math.random()*bands.length)] * window.innerHeight;
-    var rtl = Math.random() < 0.5;                    /* 進行方向もランダム */
-    var startX = rtl ? (window.innerWidth + 200) : -200;
-    var endX   = rtl ? -200 : (window.innerWidth + 200);
-    var dur = 8000 + Math.random()*3000;             /* 8〜11秒で横断 */
-    wrap.style.bottom = bottom + 'px';
-    img.style.transform = rtl ? 'scaleX(-1)' : 'none';   /* 向きを進行方向に合わせる */
-    wrap.style.transition = 'none';
-    wrap.style.transform = 'translateX(' + startX + 'px)';
-    void wrap.offsetWidth;                            /* reflow */
-    wrap.style.opacity = '0.85';
-    wrap.style.transition = 'transform ' + dur + 'ms linear';
-    wrap.style.transform = 'translateX(' + endX + 'px)';
-    var i = 0;
-    frameTimer = setInterval(function(){ i=(i+1)%frames.length; img.src=base+frames[i]+'.webp'; }, 360);
-    setTimeout(function(){
-      clearInterval(frameTimer);
-      wrap.style.opacity = '0';
-      running = false;
-      schedule();                                    /* 次回を予約 */
-    }, dur + 120);
+    var ew = Math.min(620, window.innerWidth * 0.82);                             /* 表示幅（小さめ） */
+    wrap.style.left = (Math.random() * Math.max(0, window.innerWidth - ew)) + 'px'; /* 横位置ランダム */
+    wrap.style.top = ((-0.02 + Math.random()*0.30) * window.innerHeight) + 'px';  /* 縦位置ランダム */
+    img.style.transform = (Math.random() < 0.5) ? 'scaleX(-1)' : 'none';          /* たまに反対側から */
+    img.src = BLANK;                                                              /* いったんクリア */
+    setTimeout(function(){ img.src = src; wrap.style.opacity = '0.6'; }, 50);      /* 先頭から再生・薄め */
+    setTimeout(function(){ wrap.style.opacity = '0'; running = false; schedule(); }, CLIP + 50);
   }
   function schedule(ms){
-    var wait = (typeof ms === 'number') ? ms : (75000 + Math.random()*105000); /* 約75〜180秒に1回 */
+    var wait = (typeof ms === 'number') ? ms : (80000 + Math.random()*110000);   /* 約80〜190秒に1回 */
     setTimeout(run, wait);
   }
-  setTimeout(run, 15000);                             /* 初回は15秒後 */
+  setTimeout(run, 15000);                        /* 初回は15秒後 */
 })();
 </script>
 </body>
