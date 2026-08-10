@@ -1203,7 +1203,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
 @media (prefers-reduced-motion: reduce){ .scanbeam{ display:none; } }
 
 /* ==== たまに画面を横切るグラインドキャラ（お遊び演出） ==== */
-#grinder{ position:fixed; left:0; top:0; width:min(620px, 82vw); z-index:5; pointer-events:none; opacity:0; transition:opacity .5s ease; will-change:opacity; }
+#grinder{ position:fixed; left:0; top:0; width:100vw; z-index:5; pointer-events:none; opacity:0; transition:opacity .5s ease; will-change:opacity; }
 #grinder img{ display:block; width:100%; height:auto; }
 @media (prefers-reduced-motion: reduce){ #grinder{ display:none !important; } }
 
@@ -1230,7 +1230,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
     <span class="new-tag">NEW · シーズン5</span>
     <h4>シーズン5で追加された新要素（2026/07/23〜）</h4>
     <p><span class="term">バーンラン（Burn Run）</span>＝新アサインメント。爆弾を積んだ車で、炎に包まれたアーチのコースを制限時間内に走り抜けるタイムアタック。道中の<span class="term">Fear系の敵・オブジェクト</span>を轢くと時間が延長され、修理レンチやスピードブーストで車を維持しながらゴールを目指します。</p>
-    <p><span class="term">エキゾチックアビリティブースト</span>＝メジャー／マイナーアビリティを強化する新システム。クールダウン短縮・追加弾薬・追加ダメージ属性などが付与されます。アイテムケースから入手でき、主に<span class="term">ナイトメア地点</span>のアクティビティ／アサインメントで出やすい（Tacマップの報酬一覧で確認可）。各アビリティに2種のブーストがあり、ワイプするかアビリティを付け替えるまで維持されます。</p>
+    <p><span class="term">エキゾチックアビリティブースト</span>＝メジャー／マイナーアビリティを強化する新システム。クールダウン短縮・追加弾薬・追加ダメージ属性などが付与されます。アイテムケースから入手でき、主に<span class="term">バーンラン</span>で出やすい（Tacマップの報酬一覧で確認可）。各アビリティに2種のブーストがあり、ワイプするかアビリティを付け替えるまで維持されます。</p>
     <p style="font-size:13px;color:var(--color-text-muted);margin-bottom:0;">※シーズン5ではエンドゲーム無料開放が継続。シーズン6以降はBO7所有者限定になる予定（公式パッチノート）。シーズン5では新しい「グリッチ」の追加はありません。</p>
   </div>
 
@@ -1286,7 +1286,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
             <tbody>
               <tr><td data-label="用語">戦闘評価（CR）</td><td data-label="意味">このモードの「レベル」の呼び名。レベルは戦闘評価として表示される（例：推奨戦闘評価60）。</td></tr>
               <tr><td data-label="用語">ギルドストライク</td><td data-label="意味">ワールドイベント。進めると、その地点に「ナイトメアゾーン」が発生する。</td></tr>
-              <tr><td data-label="用語">ナイトメア（ナイトメアゾーン）</td><td data-label="意味">ギルドストライクを進めると発生するゾーン。エキゾチックアビリティブースト等の報酬が出やすい。</td></tr>
+              <tr><td data-label="用語">ナイトメア（ナイトメアゾーン）</td><td data-label="意味">ギルドストライクを進めると発生するゾーン。エリア4と同様、エキゾチック武器（武器ケース）などの報酬が出やすい。</td></tr>
               <tr><td data-label="用語">グリッチ（グリッチフラクチャー）</td><td data-label="意味">対応オペレーションをクリアし、同じ試合でギルドストライクボスを撃破すると出現する要素。</td></tr>
               <tr><td data-label="用語">エキゾチック武器 / Rounds（属性）</td><td data-label="意味">エキゾチック武器に付く属性効果。現地入手ではドロップごとにランダムに決まる（固定武器は無い）。</td></tr>
               <tr><td data-label="用語">ユーティリティボーナス</td><td data-label="意味">武器に付く汎用の追加効果。Rounds属性とは別レイヤーで、どの武器にも付き得る。</td></tr>
@@ -1657,7 +1657,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
           </tr>
           <tr>
             <td data-label="カテゴリ">エキゾチックアビリティブースト</td>
-            <td data-label="内容">メジャー／マイナーアビリティを強化する追加効果（クールダウン短縮・追加弾薬・追加ダメージ属性など）。アイテムケースから入手し、主にナイトメア地点で出やすい。各アビリティに2種あり。</td>
+            <td data-label="内容">メジャー／マイナーアビリティを強化する追加効果（クールダウン短縮・追加弾薬・追加ダメージ属性など）。アイテムケースから入手し、主にバーンランで出やすい。各アビリティに2種あり。</td>
           </tr>
           <tr>
             <td data-label="カテゴリ">用語：Affinity Exotic</td>
@@ -2840,7 +2840,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
         <div class="season-body">
           <h4>エンドゲームの新要素</h4>
           <p>シーズン5では、アヴァロンに新アサインメント「<span class="term">バーンラン（Burn Run）</span>」が追加されました。爆弾を積んだ車で炎に包まれたアーチのコースを制限時間内に走り抜けるタイムアタックで、道中のFear系の敵・オブジェクトを轢くと時間が延長されます。</p>
-          <p>あわせて「<span class="term">エキゾチックアビリティブースト</span>」が導入され、メジャー／マイナーアビリティをクールダウン短縮・追加弾薬・追加ダメージ属性などで強化できるようになりました。主にナイトメア地点のケースから入手します。</p>
+          <p>あわせて「<span class="term">エキゾチックアビリティブースト</span>」が導入され、メジャー／マイナーアビリティをクールダウン短縮・追加弾薬・追加ダメージ属性などで強化できるようになりました。主にバーンランで出やすいです。</p>
           <h4>プレイ環境の変化</h4>
           <p>エンドゲームの無料開放はシーズン5終了まで継続予定で、シーズン6以降はBO7所有者限定になる予定です。</p>
           <div class="season-summary-box">
@@ -3128,7 +3128,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
   if (mq && mq.matches) return;                 /* モーション控えめ設定なら出さない */
   var src = 'assets/img/ningen_fly.webp';
   var BLANK = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-  var CLIP = 10200;                             /* クリップ長ぶん表示（約10秒・1回のみ） */
+  var CLIP = 5100;                              /* クリップ長ぶん表示（約5秒・1回のみ） */
   var wrap = document.createElement('div');
   wrap.id = 'grinder'; wrap.setAttribute('aria-hidden','true');
   var img = document.createElement('img');
@@ -3139,10 +3139,9 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
   function run(){
     if (running || document.hidden) { schedule(6000); return; }
     running = true;
-    var ew = Math.min(620, window.innerWidth * 0.82);                             /* 表示幅（小さめ） */
-    wrap.style.left = (Math.random() * Math.max(0, window.innerWidth - ew)) + 'px'; /* 横位置ランダム */
-    wrap.style.top = ((-0.02 + Math.random()*0.30) * window.innerHeight) + 'px';  /* 縦位置ランダム */
-    img.style.transform = (Math.random() < 0.5) ? 'scaleX(-1)' : 'none';          /* たまに反対側から */
+    wrap.style.left = '0';                                                        /* 全幅で端から端へ（移動は映像に内包） */
+    wrap.style.top = ((-0.02 + Math.random()*0.32) * window.innerHeight) + 'px';  /* 出現高さのみランダム */
+    img.style.transform = 'none';                                                /* 進行方向は映像に準拠（反転しない） */
     img.src = BLANK;                                                              /* いったんクリア */
     setTimeout(function(){ img.src = src; wrap.style.opacity = '0.6'; }, 50);      /* 先頭から再生・薄め */
     setTimeout(function(){ wrap.style.opacity = '0'; running = false; schedule(); }, CLIP + 50);
