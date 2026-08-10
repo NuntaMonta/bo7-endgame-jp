@@ -1210,7 +1210,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
 
 </head>
 <body>
-<nav class="topnav" aria-label="セクションナビ"><div class="tn-inner"><span class="tn-brand">BO7 ENDGAME</span><a href="#top" data-sec="top">ホーム</a><a href="#burn-run" data-sec="burn-run" style="color:var(--color-accent);font-weight:700;">バーンラン</a><span class="tn-group">攻略</span><a href="#missions" data-sec="missions">ミッション</a><a href="#avalon-map" data-sec="avalon-map">マップ</a><a href="#glitches" data-sec="glitches">グリッチ</a><a href="#game-rules" data-sec="game-rules">ルール</a><span class="tn-group">装備</span><a href="#exotic-acquire" data-sec="exotic-acquire">入手方法</a><a href="#exotic-effects" data-sec="exotic-effects">エキゾ効果</a><a href="#weapon-traits" data-sec="weapon-traits">武器早見</a><a href="#utility-bonus" data-sec="utility-bonus">汎用ボーナス</a><a href="#affinity-bonus" data-sec="affinity-bonus">属性一致</a><a href="#named-exotics" data-sec="named-exotics">名前付き</a><a href="#weapon-specific" data-sec="weapon-specific">武器固有</a><span class="tn-group">データ</span><a href="#operators" data-sec="operators">オペレーター</a><a href="#enemies" data-sec="enemies">敵ボス</a><a href="#story-timeline" data-sec="story-timeline">年表</a><a href="#todo" data-sec="todo">検証タスク</a></div></nav>
+<nav class="topnav" aria-label="セクションナビ"><div class="tn-inner"><span class="tn-brand">BO7 ENDGAME</span><a href="#top" data-sec="top">ホーム</a><a href="#burn-run" data-sec="burn-run" style="color:var(--color-accent);font-weight:700;">バーンラン</a><a href="#comms-coords" data-sec="comms-coords" style="color:var(--hud);font-weight:700;">チャット＆座標</a><span class="tn-group">攻略</span><a href="#missions" data-sec="missions">ミッション</a><a href="#avalon-map" data-sec="avalon-map">マップ</a><a href="#glitches" data-sec="glitches">グリッチ</a><a href="#game-rules" data-sec="game-rules">ルール</a><span class="tn-group">装備</span><a href="#exotic-acquire" data-sec="exotic-acquire">入手方法</a><a href="#exotic-effects" data-sec="exotic-effects">エキゾ効果</a><a href="#weapon-traits" data-sec="weapon-traits">武器早見</a><a href="#utility-bonus" data-sec="utility-bonus">汎用ボーナス</a><a href="#affinity-bonus" data-sec="affinity-bonus">属性一致</a><a href="#named-exotics" data-sec="named-exotics">名前付き</a><a href="#weapon-specific" data-sec="weapon-specific">武器固有</a><span class="tn-group">データ</span><a href="#operators" data-sec="operators">オペレーター</a><a href="#enemies" data-sec="enemies">敵ボス</a><a href="#story-timeline" data-sec="story-timeline">年表</a><a href="#todo" data-sec="todo">検証タスク</a></div></nav>
 <div class="scanbeam" aria-hidden="true"></div>
 
 
@@ -1231,6 +1231,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
   <nav class="toc" aria-label="目次">
     <h2>目次</h2>
     <a href="#burn-run" class="toc-pickup"><span class="pk-badge">NEW · シーズン5</span>バーンラン攻略</a>
+    <a href="#comms-coords" class="toc-pickup">チャット操作＆座標の読み方</a>
     <div class="toc-group">
       <div class="toc-group-ttl"><span class="tg-icon">▶</span>攻略<span class="tg-sub">進め方・攻略情報</span></div>
       <div class="toc-grid">
@@ -1315,6 +1316,35 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
       </div>
     </details>
     </div>
+    <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
+  </section>
+
+  <section id="comms-coords">
+    <h2>チャット＆座標メモ</h2>
+    <div class="newbox">
+      <h4>全体のチャットで見かける英数字</h4>
+      <p style="margin-bottom:0;">「<span class="term">チャットの出し方</span>」と「<span class="term">座標（G9など）の読み方</span>」を、実機からまとめました。英数字(G9等)チャットで書かれているのは<strong>MAPの座標</strong>です。</p>
+    </div>
+
+    <div style="border:1px solid rgba(32,198,223,.5);padding:6px;background:#0d0a18;border-radius:8px;max-width:780px;margin:8px auto 6px;">
+      <img src="assets/img/avalon_grid_map.webp" alt="アヴァロン島 座標グリッドマップ（横A〜J・縦0〜9）" loading="lazy" style="width:100%;height:auto;display:block;border-radius:4px;">
+    </div>
+    <p style="text-align:center;margin:4px 0 12px;">見方：横が<strong style="color:var(--hud)">A〜J</strong>（左→右）、縦が<strong style="color:var(--hud)">0〜9</strong>（上→下）。例：<strong style="color:var(--color-accent);font-size:1.05em;">G9</strong> ＝ 左から<strong>G列（7番目）</strong>×上から<strong>9行目</strong>のマス。各マスに座標が振ってあるので、言われた座標をそのまま地図上で探せます。</p>
+    <div class="note">※この座標マップは管理人の<strong>自作</strong>です。列＝A〜J・行＝0〜9はプレイヤー間で使われる区分に合わせています。</div>
+
+    <h3>プレイ中のチャット操作（Xbox）</h3>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>操作</th><th>内容</th></tr></thead>
+        <tbody>
+          <tr><td data-label="操作">チャットを出す</td><td data-label="内容">プレイ中に <strong>Viewボタンを長押し</strong> → 入力可能になる</td></tr>
+          <tr><td data-label="操作">チャット種別を切替</td><td data-label="内容">入力可能な状態で <strong>L1ボタン</strong> を押す → マッチ／パーティー／チームを切替</td></tr>
+          <tr><td data-label="操作">マッチ</td><td data-label="内容">MAP上の<strong>全員</strong>に届く</td></tr>
+          <tr><td data-label="操作">パーティー/チーム</td><td data-label="内容">（未確認）</td></tr>
+        </tbody>
+      </table>
+    </div>
+
     <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
   </section>
 
@@ -1765,6 +1795,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
       <span><span class="lg-dot"></span>グリッチ発生場所（固定）</span>
     </div>
     <div class="note"><strong>グリッチの場所について：</strong>グリッチ（グリッチフラクチャー）は、対応オペレーションをクリアし「同じ試合でギルドストライクボスを撃破」すると出現します。発生場所は多くが固定ランドマークで、実機確認済み：ルートクラッシャー＝解体工場／リンクフォージャー＝旧武器庫／ウイルスインジェクション＝コロシアム／メインターゲット（英語版：Prime Target）＝沿岸警備施設／コマンドキラー＝ハイタウン（いずれも推奨戦闘評価60）。<strong>5種すべての発生場所を実機で確認済み</strong>です。</div>
+    <div class="note"><strong>プレイヤー間の座標について：</strong>マッチチャットでは、場所を<strong>座標（例：G9）</strong>で伝え合う文化があります。座標の読み方は<a href="#comms-coords" style="color:var(--hud);font-weight:700;">チャット＆座標メモ</a>にまとめています。</div>
     <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
   </section>
 
@@ -2812,6 +2843,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
       <li><span class="badge">中</span> 「スラッシャー」が近接武器専用ボーナスかどうか継続検証（近接武器以外での出現例を探す）</li>
       <li><span class="badge" style="background:var(--color-status-todo-bg);border-color:var(--color-status-todo-border);color:var(--color-status-todo-text);">シーズン5</span> <strong>バーンラン</strong>の詳細（制限時間・報酬・攻略のコツ）を実機で確認</li>
       <li><span class="badge" style="background:var(--color-status-todo-bg);border-color:var(--color-status-todo-border);color:var(--color-status-todo-text);">シーズン5</span> <strong>エキゾチックアビリティブースト</strong>の具体的な効果一覧（各アビリティ2種）を実機で確認</li>
+      <li><span class="badge">低</span> チャットの<strong>パーティー／チーム</strong>の到達範囲を確認（現在ソロのため未確認）</li>
     </ul>
     <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
   </section>
