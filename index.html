@@ -1210,12 +1210,13 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
 
 </head>
 <body>
-<nav class="topnav" aria-label="セクションナビ"><div class="tn-inner"><span class="tn-brand">BO7 ENDGAME</span><a href="#top" data-sec="top">ホーム</a><a href="#burn-run" data-sec="burn-run" style="color:var(--color-accent);font-weight:700;">バーンラン</a><a href="#comms-coords" data-sec="comms-coords" style="color:var(--hud);font-weight:700;">チャット＆座標</a><span class="tn-group">攻略</span><a href="#missions" data-sec="missions">ミッション</a><a href="#avalon-map" data-sec="avalon-map">マップ</a><a href="#glitches" data-sec="glitches">グリッチ</a><a href="#game-rules" data-sec="game-rules">ルール</a><span class="tn-group">装備</span><a href="#exotic-acquire" data-sec="exotic-acquire">入手方法</a><a href="#exotic-effects" data-sec="exotic-effects">エキゾ効果</a><a href="#weapon-traits" data-sec="weapon-traits">武器早見</a><a href="#utility-bonus" data-sec="utility-bonus">汎用ボーナス</a><a href="#affinity-bonus" data-sec="affinity-bonus">属性一致</a><a href="#named-exotics" data-sec="named-exotics">名前付き</a><a href="#weapon-specific" data-sec="weapon-specific">武器固有</a><span class="tn-group">データ</span><a href="#operators" data-sec="operators">オペレーター</a><a href="#enemies" data-sec="enemies">敵ボス</a><a href="#story-timeline" data-sec="story-timeline">年表</a><a href="#todo" data-sec="todo">検証タスク</a></div></nav>
+<nav class="topnav" aria-label="セクションナビ"><div class="tn-inner"><span class="tn-brand">BO7 ENDGAME</span><a href="#top" data-sec="top">ホーム</a><a href="#glossary" data-sec="glossary">用語</a><a href="#burn-run" data-sec="burn-run" style="color:var(--color-accent);font-weight:700;">バーンラン</a><a href="#comms-coords" data-sec="comms-coords" style="color:var(--hud);font-weight:700;">チャット＆座標</a><span class="tn-group">攻略</span><a href="#missions" data-sec="missions">ミッション</a><a href="#avalon-map" data-sec="avalon-map">マップ</a><a href="#glitches" data-sec="glitches">グリッチ</a><a href="#game-rules" data-sec="game-rules">ルール</a><span class="tn-group">装備</span><a href="#exotic-acquire" data-sec="exotic-acquire">入手方法</a><a href="#exotic-effects" data-sec="exotic-effects">エキゾ効果</a><a href="#weapon-traits" data-sec="weapon-traits">武器早見</a><a href="#utility-bonus" data-sec="utility-bonus">汎用ボーナス</a><a href="#affinity-bonus" data-sec="affinity-bonus">属性一致</a><a href="#named-exotics" data-sec="named-exotics">名前付き</a><a href="#weapon-specific" data-sec="weapon-specific">武器固有</a><span class="tn-group">データ</span><a href="#operators" data-sec="operators">オペレーター</a><a href="#enemies" data-sec="enemies">敵ボス</a><a href="#story-timeline" data-sec="story-timeline">年表</a><a href="#todo" data-sec="todo">検証タスク</a></div></nav>
 <div class="scanbeam" aria-hidden="true"></div>
 
 
 <header class="page-header" id="top">
   <img src="assets/img/top_title.gif?v=20260804" alt="Call of Duty Black Ops 7 Endgame 日本語攻略メモ　日本語の攻略情報が少ないため、実機検証と海外情報をもとにまとめている非公式メモです（随時更新）" class="hero-image">
+  <p style="text-align:center;color:var(--hud);font-size:14px;letter-spacing:.5px;margin:10px auto 0;max-width:720px;padding:0 12px;">BO7エンドゲームの実機検証にもとづく日本語攻略メモ（非公式・随時更新）</p>
 </header>
 
 <div class="container">
@@ -1235,6 +1236,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
     <div class="toc-group">
       <div class="toc-group-ttl"><span class="tg-icon">▶</span>攻略<span class="tg-sub">進め方・攻略情報</span></div>
       <div class="toc-grid">
+        <a class="toc-chip" href="#glossary">用語集</a>
         <a class="toc-chip" href="#missions">ミッション概要</a>
         <a class="toc-chip" href="#avalon-map">アヴァロン マップ</a>
         <a class="toc-chip" href="#glitches">グリッチ一覧</a>
@@ -1267,6 +1269,28 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
   <div class="story-intro">
     <h3>エンドゲームとは</h3>
     <p>4人までのスクアッドを組み、最大32人が参加できる設計で、難易度が上がるゾーンを攻略しながら戦闘評価やスキルツリーを育て、成果を持ち帰るために脱出を目指す、脱出系シューター的なルールです。アヴァロンの広大な地を探索し、謎の毒素で汚染された危険地域を戦い抜きながら、ギルドの残存司令部を突き止めていきます。</p>
+  </div>
+
+  <div id="glossary" style="scroll-margin-top:60px;margin:16px 0 20px;">
+    <details class="wcat">
+      <summary><span class="wcat-ttl">用語集（初めての方向け）</span><span class="wcat-chevron">▾</span></summary>
+      <div style="padding:14px;">
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>用語</th><th>意味</th></tr></thead>
+            <tbody>
+              <tr><td data-label="用語">戦闘評価（CR）</td><td data-label="意味">このモードの「レベル」の呼び名。レベルは戦闘評価として表示される（例：推奨戦闘評価60）。</td></tr>
+              <tr><td data-label="用語">ギルドストライク</td><td data-label="意味">ワールドイベント。進めると、その地点に「ナイトメアゾーン」が発生する。</td></tr>
+              <tr><td data-label="用語">ナイトメア（ナイトメアゾーン）</td><td data-label="意味">ギルドストライクを進めると発生するゾーン。エキゾチックアビリティブースト等の報酬が出やすい。</td></tr>
+              <tr><td data-label="用語">グリッチ（グリッチフラクチャー）</td><td data-label="意味">対応オペレーションをクリアし、同じ試合でギルドストライクボスを撃破すると出現する要素。</td></tr>
+              <tr><td data-label="用語">エキゾチック武器 / Rounds（属性）</td><td data-label="意味">エキゾチック武器に付く属性効果。現地入手ではドロップごとにランダムに決まる（固定武器は無い）。</td></tr>
+              <tr><td data-label="用語">ユーティリティボーナス</td><td data-label="意味">武器に付く汎用の追加効果。Rounds属性とは別レイヤーで、どの武器にも付き得る。</td></tr>
+              <tr><td data-label="用語">ファブリケーター</td><td data-label="意味">エキゾチックの特性（Rounds／ユーティリティボーナス）をリロール（選び直し）できる装置。※必ず元に戻せるとは限らない点に注意。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </details>
   </div>
 
   <section id="burn-run">
@@ -1344,283 +1368,11 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
         </tbody>
       </table>
     </div>
+    <div class="note">グリッチ募集で飛び交う英語・中国語の定型文（glitch? ／ 1 ／ where? など）は <a href="#missions" style="color:var(--hud);font-weight:700;">ミッション概要の「チャットでよく飛ぶ言葉」</a> にまとめています。</div>
 
     <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
   </section>
 
-  <section id="operators">
-    <h2>オペレーター一覧</h2>
-
-    <h3 class="op-faction-ttl">スペクター1 <small>JSOC</small></h3>
-    <div class="op-grid">
-      <div class="op-card">
-        <img src="assets/operators/mason.webp" alt="デイビッド・メイソン" loading="lazy">
-        <div class="op-name">デイビッド・メイソン</div>
-        <div class="op-en">David Mason</div>
-        <div class="op-role">リーダー</div>
-      </div>
-      <div class="op-card">
-        <img src="assets/operators/harper.webp" alt="マイク・ハーパー" loading="lazy">
-        <div class="op-name">マイク・ハーパー</div>
-        <div class="op-en">Mike Harper</div>
-        <div class="op-role">エリート工作員</div>
-      </div>
-      <div class="op-card">
-        <img src="assets/operators/samuels.webp" alt="エリック・サミュエルズ" loading="lazy">
-        <div class="op-name">エリック・サミュエルズ</div>
-        <div class="op-en">Eric Samuels</div>
-        <div class="op-role">元シークレットサービス</div>
-      </div>
-      <div class="op-card">
-        <img src="assets/operators/tupuola.webp" alt="レイラニ・トゥプオラ" loading="lazy">
-        <div class="op-name">レイラニ・トゥプオラ</div>
-        <div class="op-en">Leilani Tupuola</div>
-        <div class="op-role">バイオニックボディ</div>
-      </div>
-    </div>
-
-    <h3 class="op-faction-ttl">スペクター2 <small>JSOC</small></h3>
-    <div class="op-grid">
-      <div class="op-card">
-        <img src="assets/operators/barrick.webp" alt="スレイド・バリック" loading="lazy">
-        <div class="op-name">スレイド・バリック</div>
-        <div class="op-en">Slade Barrick</div>
-        <div class="op-role">リーダー「レイザー」</div>
-      </div>
-      <div class="op-card">
-        <img src="assets/operators/vermaak.webp" alt="アクセル・フェルマーク" loading="lazy">
-        <div class="op-name">アクセル・フェルマーク</div>
-        <div class="op-en">Axel Vermaak</div>
-        <div class="op-role">偵察スペシャリスト</div>
-      </div>
-      <div class="op-card">
-        <img src="assets/operators/anderson.webp" alt="ノラ・アンダーソン" loading="lazy">
-        <div class="op-name">ノラ・アンダーソン</div>
-        <div class="op-en">Nora Anderson</div>
-        <div class="op-role">ベテランパイロット・大尉</div>
-      </div>
-      <div class="op-card">
-        <img src="assets/operators/weilin.webp" alt="ウェイ・リン" loading="lazy">
-        <div class="op-name">ウェイ・リン</div>
-        <div class="op-en">Wei Lin</div>
-        <div class="op-role">経験豊富な軍医</div>
-      </div>
-    </div>
-
-    <h3 class="op-faction-ttl">その他 <small>JSOC</small></h3>
-    <div class="op-grid">
-      <div class="op-card">
-        <img src="assets/operators/karma.webp" alt="クロエ・カルマ・リンチ" loading="lazy">
-        <div class="op-name">クロエ・カルマ・リンチ</div>
-        <div class="op-en">Chloe "Karma" Lynch</div>
-        <div class="op-role">ハッカー・オペレーティブ</div>
-      </div>
-      <div class="op-card">
-        <img src="assets/operators/donovan.webp" alt="コール・ドノヴァン" loading="lazy">
-        <div class="op-name">コール・ドノヴァン</div>
-        <div class="op-en">Cole Donovan</div>
-        <div class="op-role">偵察工作員「ジャベリン」</div>
-      </div>
-    </div>
-
-    <h3 class="op-faction-ttl">ギルド</h3>
-    <div class="op-grid">
-      <div class="op-card">
-        <img src="assets/operators/kagan.webp" alt="エマ・ケーガン" loading="lazy">
-        <div class="op-name">エマ・ケーガン</div>
-        <div class="op-en">Emma Kagan</div>
-        <div class="op-role">前CEO</div>
-      </div>
-      <div class="op-card">
-        <img src="assets/operators/falkner.webp" alt="ギデオン・フォークナー" loading="lazy">
-        <div class="op-name">ギデオン・フォークナー</div>
-        <div class="op-en">Gideon Falkner</div>
-        <div class="op-role">バイオ部門責任者</div>
-      </div>
-      <div class="op-card">
-        <img src="assets/operators/rook.webp" alt="レオン・ルーク" loading="lazy">
-        <div class="op-name">レオン・ルーク</div>
-        <div class="op-en">Leon Rook</div>
-        <div class="op-role">シーズン4「キングキラー」の脅威</div>
-      </div>
-      <div class="op-card">
-        <img src="assets/operators/grimm.webp" alt="アニカ・グリム" loading="lazy">
-        <div class="op-name">アニカ・グリム</div>
-        <div class="op-en">Anika Grimm</div>
-      </div>
-      <div class="op-card">
-        <img src="assets/operators/jurado.webp" alt="シロ・フラード" loading="lazy">
-        <div class="op-name">シロ・フラード</div>
-        <div class="op-en">Ciro Jurado</div>
-      </div>
-      <div class="op-card">
-        <img src="assets/operators/zaveri.webp" alt="プリヤ・ザヴェリ" loading="lazy">
-        <div class="op-name">プリヤ・ザヴェリ</div>
-        <div class="op-en">Priya Zaveri</div>
-      </div>
-    </div>
-  </section>
-
-  <section id="enemies">
-    <h2>敵・ボス図鑑</h2>
-    <p class="lead">まず「誰を・何を倒すのか」を把握するためのパート。エネミーとワールドボスの一覧です。</p>
-
-    <h3>エネミー図鑑</h3>
-    <p class="enemy-hint"><svg class="ic-inline" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 2l15 9-6.6 1.5L10 20z"/></svg>カードをクリックすると詳細（特徴・攻撃パターン）が開きます。</p>
-    <div class="op-grid">
-      <button type="button" class="op-card enemy-card">
-        <img src="assets/enemies/amalgam.webp" alt="アマルガム" loading="lazy">
-        <div class="op-name">アマルガム</div>
-        <div class="op-en">Amalgam</div>
-        <div class="enemy-detail" hidden>
-          <p><strong>特徴：</strong>複数体のゾンビが合体したような姿</p>
-          <p><strong>攻撃パターン：</strong>腕を伸ばして噛み付いて攻撃</p>
-        </div>
-      </button>
-      <button type="button" class="op-card enemy-card">
-        <img src="assets/enemies/mimics.webp" alt="シフター" loading="lazy">
-        <div class="op-name">シフター</div>
-        <div class="op-en">Mimics</div>
-        <div class="enemy-detail" hidden>
-          <p><strong>特徴：</strong>白い大きな口、背中からも腕が生えている</p>
-          <p><strong>攻撃パターン：</strong>背中の腕でプレイヤーを掴んで噛みつき攻撃</p>
-        </div>
-      </button>
-      <button type="button" class="op-card enemy-card">
-        <img src="assets/enemies/mangler.webp" alt="モーラー" loading="lazy">
-        <div class="op-name">モーラー</div>
-        <div class="op-en">Mangler</div>
-        <div class="enemy-detail" hidden>
-          <p><strong>特徴：</strong>通常の敵より体が大きく、重装甲を身にまとっている</p>
-          <p><strong>攻撃パターン：</strong>何かを喋っている（詳細不明）</p>
-        </div>
-      </button>
-      <button type="button" class="op-card enemy-card">
-        <img src="assets/enemies/elderdisciple.webp" alt="エルダーディサイプル" loading="lazy">
-        <div class="op-name">エルダーディサイプル</div>
-        <div class="op-en">Elder Disciple</div>
-        <div class="enemy-detail" hidden>
-          <p><strong>特徴：</strong>ローブ/フードをまとった人型の敵。空中を飛行する</p>
-          <p><strong>攻撃パターン：</strong>フィアーエネミーを召喚する</p>
-        </div>
-      </button>
-      <button type="button" class="op-card enemy-card">
-        <img src="assets/enemies/haunt.webp" alt="ホーント" loading="lazy">
-        <div class="op-name">ホーント</div>
-        <div class="op-en">Haunt</div>
-        <div class="enemy-detail" hidden>
-          <p><strong>特徴：</strong>白くて腕がなく、首から下は触手が沢山</p>
-          <p><strong>攻撃パターン：</strong>プレイヤーの動きを遅くする弾をばら撒く</p>
-        </div>
-      </button>
-      <button type="button" class="op-card enemy-card">
-        <img src="assets/enemies/fear.webp" alt="フィアーエネミー" loading="lazy">
-        <div class="op-name">フィアーエネミー</div>
-        <div class="op-en">Fear</div>
-        <div class="enemy-detail" hidden>
-          <p><strong>特徴：</strong>基本となるゾンビ型の敵</p>
-          <p><strong>攻撃パターン：</strong>足が速く、走って距離を詰めて接近攻撃してくる</p>
-        </div>
-      </button>
-      <button type="button" class="op-card enemy-card">
-        <img src="assets/enemies/scourge.webp" alt="スカージ" loading="lazy">
-        <div class="op-name">スカージ</div>
-        <div class="op-en">Scourge</div>
-        <div class="enemy-detail" hidden>
-          <p><strong>特徴：</strong>蜘蛛型のゾンビ</p>
-          <p><strong>攻撃パターン：</strong>飛びかかって攻撃してくる</p>
-        </div>
-      </button>
-      <button type="button" class="op-card enemy-card">
-        <img src="assets/enemies/infester.webp" alt="インフェスター" loading="lazy">
-        <div class="op-name">インフェスター</div>
-        <div class="op-en">Infester</div>
-        <div class="enemy-detail" hidden>
-          <p><strong>特徴：</strong>飛行型の敵</p>
-          <p><strong>攻撃パターン：</strong>液体を飛ばして攻撃してくる</p>
-        </div>
-      </button>
-    </div>
-
-    <h3 style="margin-top:28px;">ワールドボス</h3>
-    <p class="enemy-hint"><svg class="ic-inline" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 2l15 9-6.6 1.5L10 20z"/></svg>カードをクリックすると詳細（出現条件・攻略・報酬）が開きます。</p>
-    <div class="op-grid">
-      <button type="button" class="op-card enemy-card">
-        <img src="assets/enemies/elderdisciple.webp" alt="フォークナー" loading="lazy">
-        <div class="op-name">フォークナー</div>
-        <div class="op-en">Falkner</div>
-        <div class="enemy-detail" hidden>
-          <ul>
-            <li><strong>見た目：</strong>出現時はエルダーディサイプルと同じ姿。倒すと頭のない人間の体だけが地面に横たわっており、本体は人間と推測される</li>
-            <li><strong>出現場所・条件：</strong>マップ南西端の隔離された島。咲いている赤黒い花を破壊し、表示される数値が100%になると島のヘリポートに本物のボス「フォークナー」が出現</li>
-            <li><strong>攻略手順：</strong>倒した後、死体を確認するとミッションクリアとなり専用エンディングが流れて任務終了</li>
-            <li><strong>撃破報酬：</strong>エキゾチック武器ケースが確定ドロップ</li>
-            <li><strong>注意：</strong>討伐後、死体にインタラクトするとその時点でミッションクリアが確定する。武器ケースからの試し撃ち・交換作業中にうっかり死体へ触れると、意図しない所持状態のまま確定してしまう可能性があるため注意</li>
-          </ul>
-        </div>
-      </button>
-      <button type="button" class="op-card enemy-card">
-        <img src="assets/enemies/megaabomination.webp" alt="メガアボミネーション" loading="lazy">
-        <div class="op-name">メガアボミネーション</div>
-        <div class="op-en">Mega Abomination</div>
-        <div class="op-en" style="color:var(--color-accent);font-weight:700;letter-spacing:.04em;">出現方法 確定 ✓</div>
-        <div class="enemy-detail" hidden>
-          <ul>
-            <li><strong>出現条件（実機確認・2026/08）：</strong>前提として<strong>全サイドミッションをクリア</strong>していること（エンドゲームオペレーション＝現状は第4章「キングキラー作戦」まで）。未クリアだと以降のアイコンや死体のインタラクトは出ない</li>
-            <li><strong>出現フロー：</strong>①ワールドイベント<strong>「ギルドストライク」</strong>を進めると、その地点に<strong>ナイトメアゾーン</strong>が発生 → ②ナイトメアの<strong>ギルドストライクボス</strong>（例：スウラク・バーウー／O.S.C.A.R.）を撃破 → ③mapに<strong>専用アイコン</strong>が出現 → ④その地点へ行くと<strong>死体</strong>があり、インタラクト → ⑤出現する敵を撃退するとメガアボミネーションが召喚される</li>
-            <li><strong>注意（必要ミッションは毎シーズン更新）：</strong>解禁に必要なオペレーションはシーズンごとに更新される。以前は第2章「ブロークンミラー」だったため、海外の旧動画が「Act 2」と説明していた。常に<strong>最新章まで全クリア</strong>しておくのが条件</li>
-            <li><strong>見た目：</strong>3つの口を持ち、後ろ足と尻尾しかない特異な姿</li>
-            <li><strong>撃破報酬：</strong>3000パワー＋エキゾチック（特殊）武器</li>
-          </ul>
-        </div>
-      </button>
-      <button type="button" class="op-card enemy-card">
-        <img src="assets/enemies/zursa.webp" alt="ズーサ" loading="lazy">
-        <div class="op-name">ズーサ</div>
-        <div class="op-en">Zursa</div>
-        <div class="enemy-detail" hidden>
-          <ul>
-            <li><strong>出現場所・条件：</strong>ミッション「乗っ取られた車列」で、巡回している3台の装甲車を破壊すると出現</li>
-            <li><strong>見た目：</strong>腐ったクマのような姿。顔などに蜂の塊（巣？）が付着しており、その塊ごと飛んでくる</li>
-            <li><strong>撃破報酬：</strong>エキゾチック武器ケースを確定ドロップ</li>
-            <li><strong>【2026/07公式確認】：</strong>公式パッチノートによると、このボスに関連するアクティビティは「Possessed Convoy」と呼ばれる（Possessed Guild Convoyを破壊してズーサを撃破する内容）</li>
-          </ul>
-        </div>
-      </button>
-      <button type="button" class="op-card enemy-card">
-        <img src="assets/enemies/zrex.webp" alt="ゾンビザウルス" loading="lazy">
-        <div class="op-name">ゾンビザウルス</div>
-        <div class="op-en">Z-REX（巨大）</div>
-        <div class="enemy-detail" hidden data-title="ゾンビザウルス（ミッション名：トキシックタイラント）">
-          <ul>
-            <li><strong>出現場所・条件：</strong>ミッション発生時に通知が来る。ミッションエリア各所にひび割れたガラス状のものが出現</li>
-            <li><strong>攻略手順：</strong>敵が大量発生し、エリートエネミーを倒すとアイテムをドロップするので、それを拾ってガラスにインタラクト。10箇所終えると出現</li>
-            <li><strong>見た目：</strong>ゾンビのティラノサウルスのような姿</li>
-            <li><strong>撃破報酬：</strong>オペレーターにエキゾチックスキルが付くケースをドロップ</li>
-            <li><strong>名称：</strong>ミッション名は「トキシックタイラント」。ボス戦のHPバー表示名は「ゾンビザウルス」（2026/07確認）</li>
-          </ul>
-        </div>
-      </button>
-      <button type="button" class="op-card enemy-card">
-        <img src="assets/enemies/hel-a27.webp" alt="HEL-A27" loading="lazy">
-        <div class="op-name">アヴァロンの巨像</div>
-        <div class="op-en">HEL-A27（巨大）</div>
-        <div class="enemy-detail" hidden data-title="巨大ロボット アヴァロンの巨像「HEL-A27」">
-          <ul>
-            <li><strong>出現場所・条件：</strong>ミッション発生時に通知が来る。地面から指のようなものが出現し、赤い部分にインタラクトするとロボットの手足が生えてくる。倒し続けて100%まで貯まるとロボット本体が召喚される</li>
-            <li><strong>攻略手順：</strong>足の裏または背中から内部へ侵入可能。内部では敵を倒していると床の一部が赤く光り、踏むと赤い光が走ってどこかの壁/天井のランプが点灯するので、それを破壊。これを繰り返すと中央天井のコアのバリアが解除され攻撃可能になる。破壊を繰り返すと撃破。終了後は数秒以内に出口から脱出するか、上にジャンプして頭部へ行き任務終了するかの2択</li>
-            <li><strong>撃破報酬：</strong>オペレーターにエキゾチックスキルが付くケースをドロップ</li>
-          </ul>
-        </div>
-      </button>
-    </div>
-
-    <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
-  </section>
-
-  <!-- ============================================
-       7. ミッション概要
-       ============================================ -->
   <section id="missions">
     <h2>ミッション概要</h2>
 
@@ -1709,7 +1461,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
     <details class="wcat" style="margin-top:14px;">
       <summary><span class="wcat-ttl">チャットでよく飛ぶ言葉（英・中）＋和訳</span><span class="wcat-chevron">▾</span></summary>
       <div style="padding:14px;">
-      <p class="lead" style="margin-top:0;">グリッチ募集は英語・中国語で飛び交います。実プレイで頻出のやり取りをまとめました。</p>
+      <p class="lead" style="margin-top:0;">グリッチ募集は英語・中国語で飛び交います。実プレイで頻出のやり取りをまとめました。チャットの出し方や、飛んでくる英数字（G9など）の座標の読み方は <a href="#comms-coords" style="color:var(--hud);font-weight:700;">チャット＆座標メモ</a> を参照。</p>
     <div class="table-scroll">
       <table>
         <thead><tr><th>表記</th><th>意味</th><th>補足・返し方</th></tr></thead>
@@ -2720,6 +2472,279 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
   <!-- ============================================
        9. ストーリー年表（シーズン別アコーディオン）
        ============================================ -->
+  <section id="operators">
+    <h2>オペレーター一覧</h2>
+
+    <h3 class="op-faction-ttl">スペクター1 <small>JSOC</small></h3>
+    <div class="op-grid">
+      <div class="op-card">
+        <img src="assets/operators/mason.webp" alt="デイビッド・メイソン" loading="lazy">
+        <div class="op-name">デイビッド・メイソン</div>
+        <div class="op-en">David Mason</div>
+        <div class="op-role">リーダー</div>
+      </div>
+      <div class="op-card">
+        <img src="assets/operators/harper.webp" alt="マイク・ハーパー" loading="lazy">
+        <div class="op-name">マイク・ハーパー</div>
+        <div class="op-en">Mike Harper</div>
+        <div class="op-role">エリート工作員</div>
+      </div>
+      <div class="op-card">
+        <img src="assets/operators/samuels.webp" alt="エリック・サミュエルズ" loading="lazy">
+        <div class="op-name">エリック・サミュエルズ</div>
+        <div class="op-en">Eric Samuels</div>
+        <div class="op-role">元シークレットサービス</div>
+      </div>
+      <div class="op-card">
+        <img src="assets/operators/tupuola.webp" alt="レイラニ・トゥプオラ" loading="lazy">
+        <div class="op-name">レイラニ・トゥプオラ</div>
+        <div class="op-en">Leilani Tupuola</div>
+        <div class="op-role">バイオニックボディ</div>
+      </div>
+    </div>
+
+    <h3 class="op-faction-ttl">スペクター2 <small>JSOC</small></h3>
+    <div class="op-grid">
+      <div class="op-card">
+        <img src="assets/operators/barrick.webp" alt="スレイド・バリック" loading="lazy">
+        <div class="op-name">スレイド・バリック</div>
+        <div class="op-en">Slade Barrick</div>
+        <div class="op-role">リーダー「レイザー」</div>
+      </div>
+      <div class="op-card">
+        <img src="assets/operators/vermaak.webp" alt="アクセル・フェルマーク" loading="lazy">
+        <div class="op-name">アクセル・フェルマーク</div>
+        <div class="op-en">Axel Vermaak</div>
+        <div class="op-role">偵察スペシャリスト</div>
+      </div>
+      <div class="op-card">
+        <img src="assets/operators/anderson.webp" alt="ノラ・アンダーソン" loading="lazy">
+        <div class="op-name">ノラ・アンダーソン</div>
+        <div class="op-en">Nora Anderson</div>
+        <div class="op-role">ベテランパイロット・大尉</div>
+      </div>
+      <div class="op-card">
+        <img src="assets/operators/weilin.webp" alt="ウェイ・リン" loading="lazy">
+        <div class="op-name">ウェイ・リン</div>
+        <div class="op-en">Wei Lin</div>
+        <div class="op-role">経験豊富な軍医</div>
+      </div>
+    </div>
+
+    <h3 class="op-faction-ttl">その他 <small>JSOC</small></h3>
+    <div class="op-grid">
+      <div class="op-card">
+        <img src="assets/operators/karma.webp" alt="クロエ・カルマ・リンチ" loading="lazy">
+        <div class="op-name">クロエ・カルマ・リンチ</div>
+        <div class="op-en">Chloe "Karma" Lynch</div>
+        <div class="op-role">ハッカー・オペレーティブ</div>
+      </div>
+      <div class="op-card">
+        <img src="assets/operators/donovan.webp" alt="コール・ドノヴァン" loading="lazy">
+        <div class="op-name">コール・ドノヴァン</div>
+        <div class="op-en">Cole Donovan</div>
+        <div class="op-role">偵察工作員「ジャベリン」</div>
+      </div>
+    </div>
+
+    <h3 class="op-faction-ttl">ギルド</h3>
+    <div class="op-grid">
+      <div class="op-card">
+        <img src="assets/operators/kagan.webp" alt="エマ・ケーガン" loading="lazy">
+        <div class="op-name">エマ・ケーガン</div>
+        <div class="op-en">Emma Kagan</div>
+        <div class="op-role">前CEO</div>
+      </div>
+      <div class="op-card">
+        <img src="assets/operators/falkner.webp" alt="ギデオン・フォークナー" loading="lazy">
+        <div class="op-name">ギデオン・フォークナー</div>
+        <div class="op-en">Gideon Falkner</div>
+        <div class="op-role">バイオ部門責任者</div>
+      </div>
+      <div class="op-card">
+        <img src="assets/operators/rook.webp" alt="レオン・ルーク" loading="lazy">
+        <div class="op-name">レオン・ルーク</div>
+        <div class="op-en">Leon Rook</div>
+        <div class="op-role">シーズン4「キングキラー」の脅威</div>
+      </div>
+      <div class="op-card">
+        <img src="assets/operators/grimm.webp" alt="アニカ・グリム" loading="lazy">
+        <div class="op-name">アニカ・グリム</div>
+        <div class="op-en">Anika Grimm</div>
+      </div>
+      <div class="op-card">
+        <img src="assets/operators/jurado.webp" alt="シロ・フラード" loading="lazy">
+        <div class="op-name">シロ・フラード</div>
+        <div class="op-en">Ciro Jurado</div>
+      </div>
+      <div class="op-card">
+        <img src="assets/operators/zaveri.webp" alt="プリヤ・ザヴェリ" loading="lazy">
+        <div class="op-name">プリヤ・ザヴェリ</div>
+        <div class="op-en">Priya Zaveri</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="enemies">
+    <h2>敵・ボス図鑑</h2>
+    <p class="lead">まず「誰を・何を倒すのか」を把握するためのパート。エネミーとワールドボスの一覧です。</p>
+
+    <h3>エネミー図鑑</h3>
+    <p class="enemy-hint"><svg class="ic-inline" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 2l15 9-6.6 1.5L10 20z"/></svg>カードをクリックすると詳細（特徴・攻撃パターン）が開きます。</p>
+    <div class="op-grid">
+      <button type="button" class="op-card enemy-card">
+        <img src="assets/enemies/amalgam.webp" alt="アマルガム" loading="lazy">
+        <div class="op-name">アマルガム</div>
+        <div class="op-en">Amalgam</div>
+        <div class="enemy-detail" hidden>
+          <p><strong>特徴：</strong>複数体のゾンビが合体したような姿</p>
+          <p><strong>攻撃パターン：</strong>腕を伸ばして噛み付いて攻撃</p>
+        </div>
+      </button>
+      <button type="button" class="op-card enemy-card">
+        <img src="assets/enemies/mimics.webp" alt="シフター" loading="lazy">
+        <div class="op-name">シフター</div>
+        <div class="op-en">Mimics</div>
+        <div class="enemy-detail" hidden>
+          <p><strong>特徴：</strong>白い大きな口、背中からも腕が生えている</p>
+          <p><strong>攻撃パターン：</strong>背中の腕でプレイヤーを掴んで噛みつき攻撃</p>
+        </div>
+      </button>
+      <button type="button" class="op-card enemy-card">
+        <img src="assets/enemies/mangler.webp" alt="モーラー" loading="lazy">
+        <div class="op-name">モーラー</div>
+        <div class="op-en">Mangler</div>
+        <div class="enemy-detail" hidden>
+          <p><strong>特徴：</strong>通常の敵より体が大きく、重装甲を身にまとっている</p>
+          <p><strong>攻撃パターン：</strong>何かを喋っている（詳細不明）</p>
+        </div>
+      </button>
+      <button type="button" class="op-card enemy-card">
+        <img src="assets/enemies/elderdisciple.webp" alt="エルダーディサイプル" loading="lazy">
+        <div class="op-name">エルダーディサイプル</div>
+        <div class="op-en">Elder Disciple</div>
+        <div class="enemy-detail" hidden>
+          <p><strong>特徴：</strong>ローブ/フードをまとった人型の敵。空中を飛行する</p>
+          <p><strong>攻撃パターン：</strong>フィアーエネミーを召喚する</p>
+        </div>
+      </button>
+      <button type="button" class="op-card enemy-card">
+        <img src="assets/enemies/haunt.webp" alt="ホーント" loading="lazy">
+        <div class="op-name">ホーント</div>
+        <div class="op-en">Haunt</div>
+        <div class="enemy-detail" hidden>
+          <p><strong>特徴：</strong>白くて腕がなく、首から下は触手が沢山</p>
+          <p><strong>攻撃パターン：</strong>プレイヤーの動きを遅くする弾をばら撒く</p>
+        </div>
+      </button>
+      <button type="button" class="op-card enemy-card">
+        <img src="assets/enemies/fear.webp" alt="フィアーエネミー" loading="lazy">
+        <div class="op-name">フィアーエネミー</div>
+        <div class="op-en">Fear</div>
+        <div class="enemy-detail" hidden>
+          <p><strong>特徴：</strong>基本となるゾンビ型の敵</p>
+          <p><strong>攻撃パターン：</strong>足が速く、走って距離を詰めて接近攻撃してくる</p>
+        </div>
+      </button>
+      <button type="button" class="op-card enemy-card">
+        <img src="assets/enemies/scourge.webp" alt="スカージ" loading="lazy">
+        <div class="op-name">スカージ</div>
+        <div class="op-en">Scourge</div>
+        <div class="enemy-detail" hidden>
+          <p><strong>特徴：</strong>蜘蛛型のゾンビ</p>
+          <p><strong>攻撃パターン：</strong>飛びかかって攻撃してくる</p>
+        </div>
+      </button>
+      <button type="button" class="op-card enemy-card">
+        <img src="assets/enemies/infester.webp" alt="インフェスター" loading="lazy">
+        <div class="op-name">インフェスター</div>
+        <div class="op-en">Infester</div>
+        <div class="enemy-detail" hidden>
+          <p><strong>特徴：</strong>飛行型の敵</p>
+          <p><strong>攻撃パターン：</strong>液体を飛ばして攻撃してくる</p>
+        </div>
+      </button>
+    </div>
+
+    <h3 style="margin-top:28px;">ワールドボス</h3>
+    <p class="enemy-hint"><svg class="ic-inline" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 2l15 9-6.6 1.5L10 20z"/></svg>カードをクリックすると詳細（出現条件・攻略・報酬）が開きます。</p>
+    <div class="op-grid">
+      <button type="button" class="op-card enemy-card">
+        <img src="assets/enemies/elderdisciple.webp" alt="フォークナー" loading="lazy">
+        <div class="op-name">フォークナー</div>
+        <div class="op-en">Falkner</div>
+        <div class="enemy-detail" hidden>
+          <ul>
+            <li><strong>見た目：</strong>出現時はエルダーディサイプルと同じ姿。倒すと頭のない人間の体だけが地面に横たわっており、本体は人間と推測される</li>
+            <li><strong>出現場所・条件：</strong>マップ南西端の隔離された島。咲いている赤黒い花を破壊し、表示される数値が100%になると島のヘリポートに本物のボス「フォークナー」が出現</li>
+            <li><strong>攻略手順：</strong>倒した後、死体を確認するとミッションクリアとなり専用エンディングが流れて任務終了</li>
+            <li><strong>撃破報酬：</strong>エキゾチック武器ケースが確定ドロップ</li>
+            <li><strong>注意：</strong>討伐後、死体にインタラクトするとその時点でミッションクリアが確定する。武器ケースからの試し撃ち・交換作業中にうっかり死体へ触れると、意図しない所持状態のまま確定してしまう可能性があるため注意</li>
+          </ul>
+        </div>
+      </button>
+      <button type="button" class="op-card enemy-card">
+        <img src="assets/enemies/megaabomination.webp" alt="メガアボミネーション" loading="lazy">
+        <div class="op-name">メガアボミネーション</div>
+        <div class="op-en">Mega Abomination</div>
+        <div class="op-en" style="color:var(--color-accent);font-weight:700;letter-spacing:.04em;">出現方法 確定 ✓</div>
+        <div class="enemy-detail" hidden>
+          <ul>
+            <li><strong>出現条件（実機確認・2026/08）：</strong>前提として<strong>全サイドミッションをクリア</strong>していること（エンドゲームオペレーション＝現状は第4章「キングキラー作戦」まで）。未クリアだと以降のアイコンや死体のインタラクトは出ない</li>
+            <li><strong>出現フロー：</strong>①ワールドイベント<strong>「ギルドストライク」</strong>を進めると、その地点に<strong>ナイトメアゾーン</strong>が発生 → ②ナイトメアの<strong>ギルドストライクボス</strong>（例：スウラク・バーウー／O.S.C.A.R.）を撃破 → ③mapに<strong>専用アイコン</strong>が出現 → ④その地点へ行くと<strong>死体</strong>があり、インタラクト → ⑤出現する敵を撃退するとメガアボミネーションが召喚される</li>
+            <li><strong>注意（必要ミッションは毎シーズン更新）：</strong>解禁に必要なオペレーションはシーズンごとに更新される。以前は第2章「ブロークンミラー」だったため、海外の旧動画が「Act 2」と説明していた。常に<strong>最新章まで全クリア</strong>しておくのが条件</li>
+            <li><strong>見た目：</strong>3つの口を持ち、後ろ足と尻尾しかない特異な姿</li>
+            <li><strong>撃破報酬：</strong>3000パワー＋エキゾチック（特殊）武器</li>
+          </ul>
+        </div>
+      </button>
+      <button type="button" class="op-card enemy-card">
+        <img src="assets/enemies/zursa.webp" alt="ズーサ" loading="lazy">
+        <div class="op-name">ズーサ</div>
+        <div class="op-en">Zursa</div>
+        <div class="enemy-detail" hidden>
+          <ul>
+            <li><strong>出現場所・条件：</strong>ミッション「乗っ取られた車列」で、巡回している3台の装甲車を破壊すると出現</li>
+            <li><strong>見た目：</strong>腐ったクマのような姿。顔などに蜂の塊（巣？）が付着しており、その塊ごと飛んでくる</li>
+            <li><strong>撃破報酬：</strong>エキゾチック武器ケースを確定ドロップ</li>
+            <li><strong>【2026/07公式確認】：</strong>公式パッチノートによると、このボスに関連するアクティビティは「Possessed Convoy」と呼ばれる（Possessed Guild Convoyを破壊してズーサを撃破する内容）</li>
+          </ul>
+        </div>
+      </button>
+      <button type="button" class="op-card enemy-card">
+        <img src="assets/enemies/zrex.webp" alt="ゾンビザウルス" loading="lazy">
+        <div class="op-name">ゾンビザウルス</div>
+        <div class="op-en">Z-REX（巨大）</div>
+        <div class="enemy-detail" hidden data-title="ゾンビザウルス（ミッション名：トキシックタイラント）">
+          <ul>
+            <li><strong>出現場所・条件：</strong>ミッション発生時に通知が来る。ミッションエリア各所にひび割れたガラス状のものが出現</li>
+            <li><strong>攻略手順：</strong>敵が大量発生し、エリートエネミーを倒すとアイテムをドロップするので、それを拾ってガラスにインタラクト。10箇所終えると出現</li>
+            <li><strong>見た目：</strong>ゾンビのティラノサウルスのような姿</li>
+            <li><strong>撃破報酬：</strong>オペレーターにエキゾチックスキルが付くケースをドロップ</li>
+            <li><strong>名称：</strong>ミッション名は「トキシックタイラント」。ボス戦のHPバー表示名は「ゾンビザウルス」（2026/07確認）</li>
+          </ul>
+        </div>
+      </button>
+      <button type="button" class="op-card enemy-card">
+        <img src="assets/enemies/hel-a27.webp" alt="HEL-A27" loading="lazy">
+        <div class="op-name">アヴァロンの巨像</div>
+        <div class="op-en">HEL-A27（巨大）</div>
+        <div class="enemy-detail" hidden data-title="巨大ロボット アヴァロンの巨像「HEL-A27」">
+          <ul>
+            <li><strong>出現場所・条件：</strong>ミッション発生時に通知が来る。地面から指のようなものが出現し、赤い部分にインタラクトするとロボットの手足が生えてくる。倒し続けて100%まで貯まるとロボット本体が召喚される</li>
+            <li><strong>攻略手順：</strong>足の裏または背中から内部へ侵入可能。内部では敵を倒していると床の一部が赤く光り、踏むと赤い光が走ってどこかの壁/天井のランプが点灯するので、それを破壊。これを繰り返すと中央天井のコアのバリアが解除され攻撃可能になる。破壊を繰り返すと撃破。終了後は数秒以内に出口から脱出するか、上にジャンプして頭部へ行き任務終了するかの2択</li>
+            <li><strong>撃破報酬：</strong>オペレーターにエキゾチックスキルが付くケースをドロップ</li>
+          </ul>
+        </div>
+      </button>
+    </div>
+
+    <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
+  </section>
+
+  <!-- ============================================
+       7. ミッション概要
+       ============================================ -->
   <section id="story-timeline">
     <h2>ストーリー年表（シーズンの流れ）</h2>
     <p class="lead">エンドゲームを初めて遊ぶ人が、世界観にグッと入り込めるように——各シーズンの物語の流れをまとめました。</p>
@@ -2853,6 +2878,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
 <a href="#top" class="fab-top" aria-label="先頭へ戻る" title="先頭へ戻る">↑</a>
 
 <footer>
+  <p style="margin:0 0 6px;">最終更新：2026/08/10</p>
   このページは個人の検証記録であり、公式情報ではありません。誤りに気づいた場合は随時修正します。
 </footer>
 
