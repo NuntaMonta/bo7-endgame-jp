@@ -1202,6 +1202,11 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
 }
 @media (prefers-reduced-motion: reduce){ .scanbeam{ display:none; } }
 
+/* ==== たまに画面を横切るグラインドキャラ（お遊び演出） ==== */
+#grinder{ position:fixed; left:0; bottom:0; top:auto; z-index:5; pointer-events:none; opacity:0; will-change:transform,opacity; }
+#grinder img{ display:block; width:120px; height:auto; filter:drop-shadow(0 3px 6px rgba(0,0,0,.55)); }
+@media (prefers-reduced-motion: reduce){ #grinder{ display:none !important; } }
+
 /* ==== アイコン（絵文字置換）==== */
 .ic-inline{ width:1em; height:1em; vertical-align:-0.12em; margin-right:5px; color:var(--color-accent-teal-light); }
 .weapon-ph .ph-ic{ width:46px; height:46px; color:var(--hud); opacity:.9; }
@@ -3110,6 +3115,60 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
     });
   },{rootMargin:'-55% 0px -40% 0px',threshold:0});
   secs.forEach(function(x){ obs.observe(x); });
+})();
+</script>
+
+<script>
+/* ============================================
+   たまに画面を横切る「飛行キャラ」（お遊び演出）
+   sita→naka→ue→naka でバタつかせながらスライド
+   ============================================ */
+(function(){
+  var mq = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (mq && mq.matches) return;               /* モーション控えめ設定なら出さない */
+  var base = 'assets/img/';
+  var frames = ['ningen_sita','ningen_naka','ningen_ue','ningen_naka'];
+  var wrap = document.createElement('div');
+  wrap.id = 'grinder'; wrap.setAttribute('aria-hidden','true');
+  var img = document.createElement('img');
+  img.alt = ''; img.decoding = 'async';
+  img.src = base + frames[0] + '.webp';
+  wrap.appendChild(img); document.body.appendChild(wrap);
+  /* プリロード */
+  frames.forEach(function(f){ var p=new Image(); p.src=base+f+'.webp'; });
+
+  var frameTimer = null, running = false;
+  function run(){
+    if (running || document.hidden) { schedule(6000); return; }
+    running = true;
+    var bands = [0.20, 0.34, 0.50, 0.64];            /* 縦位置をランダムに */
+    var bottom = bands[Math.floor(Math.random()*bands.length)] * window.innerHeight;
+    var rtl = Math.random() < 0.5;                    /* 進行方向もランダム */
+    var startX = rtl ? (window.innerWidth + 200) : -200;
+    var endX   = rtl ? -200 : (window.innerWidth + 200);
+    var dur = 8000 + Math.random()*3000;             /* 8〜11秒で横断 */
+    wrap.style.bottom = bottom + 'px';
+    img.style.transform = rtl ? 'scaleX(-1)' : 'none';   /* 向きを進行方向に合わせる */
+    wrap.style.transition = 'none';
+    wrap.style.transform = 'translateX(' + startX + 'px)';
+    void wrap.offsetWidth;                            /* reflow */
+    wrap.style.opacity = '0.85';
+    wrap.style.transition = 'transform ' + dur + 'ms linear';
+    wrap.style.transform = 'translateX(' + endX + 'px)';
+    var i = 0;
+    frameTimer = setInterval(function(){ i=(i+1)%frames.length; img.src=base+frames[i]+'.webp'; }, 360);
+    setTimeout(function(){
+      clearInterval(frameTimer);
+      wrap.style.opacity = '0';
+      running = false;
+      schedule();                                    /* 次回を予約 */
+    }, dur + 120);
+  }
+  function schedule(ms){
+    var wait = (typeof ms === 'number') ? ms : (75000 + Math.random()*105000); /* 約75〜180秒に1回 */
+    setTimeout(run, wait);
+  }
+  setTimeout(run, 15000);                             /* 初回は15秒後 */
 })();
 </script>
 </body>
