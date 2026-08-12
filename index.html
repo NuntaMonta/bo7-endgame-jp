@@ -1087,6 +1087,12 @@
   .util-card-head .u-emoji { font-size: 68px; line-height: 1; }
   .util-table { width: 100%; border-collapse: collapse; }
   .util-table td { padding: 11px 4px; vertical-align: top; border-bottom: 1px solid var(--color-border); }
+  .ne-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; }
+  .ne-block { background: linear-gradient(160deg, var(--color-bg-soft), var(--color-bg-soft2)); border: 1px solid var(--color-border); border-radius: 12px; padding: 12px 15px; }
+  .ne-head { font-weight: 700; color: var(--hud); border-bottom: 1px solid var(--color-border); padding-bottom: 6px; margin-bottom: 6px; }
+  .ne-body { font-size: 13px; }
+  .ne-item { padding: 3px 0; padding-left: 1.2em; text-indent: -1.2em; line-height: 1.45; }
+  @media (max-width: 400px) { .ne-grid { grid-template-columns: 1fr; } }
   .util-table tr:last-child td { border-bottom: none; }
   .util-bname { width: 36%; padding-right: 10px; }
   .util-bname .jp { display: block; font-family: var(--font-heading-jp); font-weight: 700; font-size: 14px; color: var(--color-text); line-height: 1.3; }
@@ -1215,7 +1221,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
 
 </head>
 <body>
-<nav class="topnav" aria-label="セクションナビ"><div class="tn-inner"><span class="tn-brand">BO7 ENDGAME</span><a href="#top" data-sec="top">ホーム</a><a href="#glossary" data-sec="glossary">用語</a><a href="#burn-run" data-sec="burn-run" style="color:var(--color-accent);font-weight:700;">バーンラン</a><a href="#comms-coords" data-sec="comms-coords" style="color:var(--hud);font-weight:700;">チャット＆座標</a><span class="tn-group">攻略</span><a href="#missions" data-sec="missions">ミッション</a><a href="#avalon-map" data-sec="avalon-map">マップ</a><a href="#glitches" data-sec="glitches">グリッチ</a><a href="#game-rules" data-sec="game-rules">ルール</a><span class="tn-group">装備</span><a href="#exotic-acquire" data-sec="exotic-acquire">入手方法</a><a href="#exotic-effects" data-sec="exotic-effects">エキゾ効果</a><a href="#weapon-traits" data-sec="weapon-traits">武器早見</a><a href="#utility-bonus" data-sec="utility-bonus">汎用ボーナス</a><a href="#affinity-bonus" data-sec="affinity-bonus">属性一致</a><a href="#named-exotics" data-sec="named-exotics">名前付き</a><a href="#weapon-specific" data-sec="weapon-specific">武器固有</a><span class="tn-group">データ</span><a href="#operators" data-sec="operators">オペレーター</a><a href="#enemies" data-sec="enemies">敵ボス</a><a href="#story-timeline" data-sec="story-timeline">年表</a><a href="#todo" data-sec="todo">検証タスク</a></div></nav>
+<nav class="topnav" aria-label="セクションナビ"><div class="tn-inner"><span class="tn-brand">BO7 ENDGAME</span><a href="#top" data-sec="top">ホーム</a><a href="#glossary" data-sec="glossary">用語</a><a href="#burn-run" data-sec="burn-run" style="color:var(--color-accent);font-weight:700;">バーンラン</a><a href="#comms-coords" data-sec="comms-coords" style="color:var(--hud);font-weight:700;">チャット＆座標</a><span class="tn-group">攻略</span><a href="#missions" data-sec="missions">ミッション</a><a href="#avalon-map" data-sec="avalon-map">マップ</a><a href="#glitches" data-sec="glitches">グリッチ</a><a href="#game-rules" data-sec="game-rules">ルール</a><span class="tn-group">装備</span><a href="#exotic-acquire" data-sec="exotic-acquire">入手方法</a><a href="#exotic-effects" data-sec="exotic-effects">エキゾ効果</a><a href="#weapon-traits" data-sec="weapon-traits">武器早見</a><a href="#utility-bonus" data-sec="utility-bonus">汎用ボーナス</a><a href="#affinity-bonus" data-sec="affinity-bonus">属性一致</a><a href="#named-exotics" data-sec="named-exotics">名前付き</a><span class="tn-group">データ</span><a href="#operators" data-sec="operators">オペレーター</a><a href="#enemies" data-sec="enemies">敵ボス</a><a href="#story-timeline" data-sec="story-timeline">年表</a><a href="#todo" data-sec="todo">検証タスク</a></div></nav>
 <div class="scanbeam" aria-hidden="true"></div>
 
 
@@ -1257,7 +1263,6 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
         <a class="toc-chip" href="#utility-bonus">ユーティリティボーナス（汎用）</a>
         <a class="toc-chip" href="#affinity-bonus">属性一致ユーティリティボーナス（推定訳）</a>
         <a class="toc-chip" href="#named-exotics">名前付きエキゾチック武器</a>
-        <a class="toc-chip" href="#weapon-specific">武器固有ボーナスの仮説</a>
       </div>
     </div>
     <div class="toc-group">
@@ -2414,67 +2419,48 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
     <p class="lead">エンドゲームに存在する名前付きエキゾチック武器と、その元になる武器の一覧です。属性(Rounds)はドロップごとにランダムに決まるため、この表では割愛しています。</p>
 
     <p class="lead" style="margin-top:4px;">武器種別ごとに「エキゾチック名（元になる武器モデル名）」でまとめています。</p>
-    <div class="table-scroll">
-      <table>
-        <tbody>
-          <tr><th>アサルトライフル</th></tr>
-          <tr><td>Torrent（M15 Mod 0・トレント）</td></tr>
-          <tr><td>Collateral（EGRT-17・コラテラル）</td></tr>
-          <tr><td>Killswitch（AK-27・キルスイッチ）</td></tr>
-          <tr><td>DEFRAG（MK35 ISR・デフラグ）<em>（表記のまま）</em></td></tr>
-          <tr><th>サブマシンガン</th></tr>
-          <tr><td>Swarmforge（MPC-25・スウォームフォージ）</td></tr>
-          <tr><td>Backdrive（Dravec 45・バックドライブ）</td></tr>
-          <tr><td>Barrage（Razor 9mm・バラージ）</td></tr>
-          <tr><td>Kilonova（VST・キロノヴァ）</td></tr>
-          <tr><th>ショットガン</th></tr>
-          <tr><td>Zeotrope（Echo 12・ゾートロープ）</td></tr>
-          <tr><td>Overcharge（M10 Breacher・オーバーチャージ）</td></tr>
-          <tr><td>Infraradiance（SG-12・インフラレイディアンス）</td></tr>
-          <tr><th>LMG</th></tr>
-          <tr><td>Redline（XM325・レッドライン）</td></tr>
-          <tr><td>Hypersurge（Sokol 545・ハイパーサージ）</td></tr>
-          <tr><th>マークスマンライフル</th></tr>
-          <tr><td>Flashburst（M8A1・フラッシュバースト）</td></tr>
-          <tr><td>Neurowall（Warden 308・ニューロウォール）</td></tr>
-          <tr><td>Pulsebreach（Swordfish A1・パルスブリーチ）</td></tr>
-          <tr><th>スナイパーライフル</th></tr>
-          <tr><td>Continuum（Hawker HX・コンティヌウム）</td></tr>
-          <tr><td>Ghostmind（VS Recon・ゴーストマインド）</td></tr>
-          <tr><th>ピストル</th></tr>
-          <tr><td>Malspike（VELOX 5.7・マルスパイク）<em>（表記:MALSPIKE）</em></td></tr>
-          <tr><td>Reboot（1911・リブート）</td></tr>
-          <tr><th>ランチャー・特殊</th></tr>
-          <tr><td>Criticality（A.R.C. M1・クリティカリティ）</td></tr>
-          <tr><th>近接武器</th></tr>
-          <tr><td>Cryoshear（KATANA・クライオシアー）<em>（表記:CRYOSHEAR）</em></td></tr>
-        </tbody>
-      </table>
+    <div class="ne-grid">
+      <div class="ne-block">
+        <div class="ne-head">アサルトライフル</div>
+        <div class="ne-body"><div class="ne-item">Torrent（M15 Mod 0・トレント）</div><div class="ne-item">Collateral（EGRT-17・コラテラル）</div><div class="ne-item">Killswitch（AK-27・キルスイッチ）</div><div class="ne-item">DEFRAG（MK35 ISR・デフラグ）</div></div>
+      </div>
+      <div class="ne-block">
+        <div class="ne-head">サブマシンガン</div>
+        <div class="ne-body"><div class="ne-item">Swarmforge（MPC-25・スウォームフォージ）</div><div class="ne-item">Backdrive（Dravec 45・バックドライブ）</div><div class="ne-item">Barrage（Razor 9mm・バラージ）</div><div class="ne-item">Kilonova（VST・キロノヴァ）</div></div>
+      </div>
+      <div class="ne-block">
+        <div class="ne-head">ショットガン</div>
+        <div class="ne-body"><div class="ne-item">Zeotrope（Echo 12・ゾートロープ）</div><div class="ne-item">Overcharge（M10 Breacher・オーバーチャージ）</div><div class="ne-item">Infraradiance（SG-12・インフラレイディアンス）</div></div>
+      </div>
+      <div class="ne-block">
+        <div class="ne-head">LMG</div>
+        <div class="ne-body"><div class="ne-item">Redline（XM325・レッドライン）</div><div class="ne-item">Hypersurge（Sokol 545・ハイパーサージ）</div></div>
+      </div>
+      <div class="ne-block">
+        <div class="ne-head">マークスマンライフル</div>
+        <div class="ne-body"><div class="ne-item">Flashburst（M8A1・フラッシュバースト）</div><div class="ne-item">Neurowall（Warden 308・ニューロウォール）</div><div class="ne-item">Pulsebreach（Swordfish A1・パルスブリーチ）</div></div>
+      </div>
+      <div class="ne-block">
+        <div class="ne-head">スナイパーライフル</div>
+        <div class="ne-body"><div class="ne-item">Continuum（Hawker HX・コンティヌウム）</div><div class="ne-item">Ghostmind（VS Recon・ゴーストマインド）</div></div>
+      </div>
+      <div class="ne-block">
+        <div class="ne-head">ピストル</div>
+        <div class="ne-body"><div class="ne-item">MALSPIKE（VELOX 5.7・マルスパイク）</div><div class="ne-item">Reboot（1911・リブート）</div></div>
+      </div>
+      <div class="ne-block">
+        <div class="ne-head">ランチャー・特殊</div>
+        <div class="ne-body"><div class="ne-item">Criticality（A.R.C. M1・クリティカリティ）</div></div>
+      </div>
+      <div class="ne-block">
+        <div class="ne-head">近接武器</div>
+        <div class="ne-body"><div class="ne-item">CRYOSHEAR（KATANA・クライオシアー）</div></div>
+      </div>
     </div>
 
     <div class="note">属性(Rounds)はドロップごとにランダムに決まります。フレーバーの属性に縛られず、<strong>好きなエキゾチック効果を狙って付けられます</strong>。</div>
     <div class="note"><strong>ルール：</strong>Fabricatorでアップグレードした自作エキゾチックには属性一致ボーナスは付かない。Exotic Weapon Caseから出た名前付きエキゾチックのみ対象。</div>
     <div class="note">武器名・エキゾチック名は日本語版でも英語/ローマ字表記のまま（フレーバーテキストも付く）。</div>
-    <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
-  </section>
-
-  <!-- ============================================
-       5. 武器固有ボーナスの仮説
-       ============================================ -->
-  <section id="weapon-specific">
-    <h2>武器固有ボーナスの仮説</h2>
-    <div class="table-scroll">
-      <table>
-        <thead><tr><th>武器</th><th>ボーナス</th><th>状態</th></tr></thead>
-        <tbody>
-          <tr>
-            <td data-label="武器">1911</td>
-            <td data-label="ボーナス">グレネード弾／炸裂弾</td>
-            <td data-label="状態">他のハンドガンでは未確認。属性一致枠とは別の武器固有枠の可能性（仮説・要検証）</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
     <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
   </section>
 
