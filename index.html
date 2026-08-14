@@ -1139,7 +1139,15 @@ body{
 .topnav a:hover{ color:var(--color-accent-teal-light); background:rgba(32,198,223,.08); }
 .topnav a.active{ color:#04222a; background:var(--hud); border-color:var(--hud); }
 .topnav .tn-group{ flex-shrink:0; align-self:center; font-family:var(--font-display); font-weight:900; font-size:10px; letter-spacing:1.5px; color:var(--color-accent); text-transform:uppercase; white-space:nowrap; padding:2px 6px 2px 10px; margin-left:4px; border-left:1px solid rgba(32,198,223,.30); }
-@media (max-width:600px){ .topnav .tn-brand{ display:none; } }
+.tn-toggle{ display:none; }
+@media (max-width:600px){
+  .topnav .tn-brand{ display:none; }
+  .tn-toggle{ display:flex; align-items:center; gap:8px; width:100%; padding:11px 14px; background:transparent; border:none; color:var(--hud); font-family:var(--font-display); font-weight:900; font-size:14px; letter-spacing:1px; cursor:pointer; }
+  .topnav .tn-inner{ display:none; }
+  .topnav.open .tn-inner{ display:flex; flex-direction:column; align-items:stretch; gap:4px; position:absolute; left:0; right:0; top:100%; padding:8px 12px 14px; max-height:74vh; overflow-y:auto; overflow-x:hidden; background:rgba(6,12,15,.98); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); border-bottom:1px solid rgba(32,198,223,.28); box-shadow:0 14px 26px rgba(0,0,0,.45); }
+  .topnav.open .tn-inner a{ white-space:normal; padding:11px 12px; font-size:14px; }
+  .topnav.open .tn-inner .tn-group{ border-left:none; margin:10px 0 2px; padding:0 6px; }
+}
 section, header.page-header{ scroll-margin-top:60px; }
 /* ==== 見出し（統一）==== */
 section{ margin-bottom:48px; }
@@ -1236,7 +1244,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
 
 </head>
 <body>
-<nav class="topnav" aria-label="セクションナビ"><div class="tn-inner"><span class="tn-brand">BO7 ENDGAME</span><a href="#top" data-sec="top">ホーム</a><a href="#glossary" data-sec="glossary">用語</a><a href="#burn-run" data-sec="burn-run" style="color:var(--color-accent);font-weight:700;">バーンラン</a><a href="#comms-coords" data-sec="comms-coords" style="color:var(--hud);font-weight:700;">チャット＆座標</a><span class="tn-group">攻略</span><a href="#missions" data-sec="missions">ミッション</a><a href="#avalon-map" data-sec="avalon-map">マップ</a><a href="#glitches" data-sec="glitches">グリッチ</a><a href="#game-rules" data-sec="game-rules">ルール</a><span class="tn-group">装備</span><a href="#exotic-acquire" data-sec="exotic-acquire">入手方法</a><a href="#exotic-effects" data-sec="exotic-effects">エキゾ効果</a><a href="#weapon-traits" data-sec="weapon-traits">武器早見</a><a href="#utility-bonus" data-sec="utility-bonus">汎用ボーナス</a><a href="#affinity-bonus" data-sec="affinity-bonus">属性一致</a><a href="#named-exotics" data-sec="named-exotics">名前付き</a><span class="tn-group">データ</span><a href="#operators" data-sec="operators">オペレーター</a><a href="#enemies" data-sec="enemies">敵ボス</a><a href="#story-timeline" data-sec="story-timeline">年表</a><a href="#todo" data-sec="todo">検証タスク</a></div></nav>
+<nav class="topnav" aria-label="セクションナビ"><button type="button" class="tn-toggle" aria-expanded="false" aria-controls="tnInner" aria-label="メニュー"><span aria-hidden="true">☰</span> <span class="tn-toggle-label">メニュー</span></button><div class="tn-inner" id="tnInner"><span class="tn-brand">BO7 ENDGAME</span><a href="#top" data-sec="top">ホーム</a><a href="#glossary" data-sec="glossary">用語</a><a href="#burn-run" data-sec="burn-run" style="color:var(--color-accent);font-weight:700;">バーンラン</a><a href="#comms-coords" data-sec="comms-coords" style="color:var(--hud);font-weight:700;">チャット＆座標</a><span class="tn-group">攻略</span><a href="#missions" data-sec="missions">ミッション</a><a href="#avalon-map" data-sec="avalon-map">マップ</a><a href="#glitches" data-sec="glitches">グリッチ</a><a href="#game-rules" data-sec="game-rules">ルール</a><span class="tn-group">装備</span><a href="#exotic-acquire" data-sec="exotic-acquire">入手方法</a><a href="#exotic-effects" data-sec="exotic-effects">エキゾ効果</a><a href="#weapon-traits" data-sec="weapon-traits">武器早見</a><a href="#utility-bonus" data-sec="utility-bonus">汎用ボーナス</a><a href="#affinity-bonus" data-sec="affinity-bonus">属性一致</a><a href="#named-exotics" data-sec="named-exotics">名前付き</a><span class="tn-group">データ</span><a href="#operators" data-sec="operators">オペレーター</a><a href="#enemies" data-sec="enemies">敵ボス</a><a href="#story-timeline" data-sec="story-timeline">年表</a><a href="#todo" data-sec="todo">検証タスク</a></div></nav>
 <div class="scanbeam" aria-hidden="true"></div>
 
 
@@ -3216,6 +3224,23 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
     setTimeout(run, wait);
   }
   setTimeout(run, 15000);                        /* 初回は15秒後 */
+})();
+</script>
+<script>
+(function(){
+  var nav=document.querySelector('.topnav');
+  var btn=nav&&nav.querySelector('.tn-toggle');
+  var inner=nav&&nav.querySelector('.tn-inner');
+  if(!nav||!btn||!inner) return;
+  var label=btn.querySelector('.tn-toggle-label');
+  function setOpen(open){
+    nav.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open?'true':'false');
+    if(label) label.textContent = open?'閉じる':'メニュー';
+  }
+  btn.addEventListener('click', function(e){ e.stopPropagation(); setOpen(!nav.classList.contains('open')); });
+  inner.addEventListener('click', function(e){ if(e.target.closest('a')) setOpen(false); });
+  document.addEventListener('click', function(e){ if(nav.classList.contains('open') && !nav.contains(e.target)) setOpen(false); });
 })();
 </script>
 </body>
