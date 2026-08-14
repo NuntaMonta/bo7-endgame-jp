@@ -1172,6 +1172,21 @@ details.season.featured::after{ bottom:-1px; right:-1px; border-left:none; borde
 .toc-pickup:hover{ background:rgba(235,83,44,0.22); }
 .toc-pickup::before{ content:none !important; display:none !important; }
 .toc-pickup .pk-badge{ background:var(--color-accent); color:#1a0d02; font-size:11px; padding:2px 7px; border-radius:3px; letter-spacing:.5px; }
+/* スタートガイド（初めての方向け・目次先頭） */
+.quickstart{ margin:0 0 14px; }
+.quickstart .wcat-ttl .qs-badge{ display:inline-block; }
+.quickstart-hd{ display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin:0 0 4px; font-family:var(--font-display); font-weight:900; letter-spacing:1px; color:var(--hud); font-size:15px; }
+.quickstart-hd .qs-badge{ background:var(--hud); color:#05090c; font-size:11px; font-weight:800; padding:2px 8px; border-radius:3px; letter-spacing:.5px; }
+.quickstart-sub{ margin:0 0 12px; font-size:12.5px; line-height:1.6; color:var(--color-text-muted); }
+.qs-steps{ display:grid; gap:8px; }
+.qs-step{ display:flex; align-items:flex-start; gap:12px; padding:10px 12px; border:1px solid var(--color-border); border-radius:8px; background:rgba(255,255,255,0.02); color:var(--color-text); text-decoration:none; transition:border-color .15s ease, transform .1s ease, background .15s ease; }
+.qs-step:hover{ border-color:var(--hud); transform:translateY(-2px); background:rgba(32,198,223,.10); color:var(--color-text); text-decoration:none; }
+.qs-step::before{ content:none !important; display:none !important; }
+.qs-num{ flex-shrink:0; width:26px; height:26px; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-size:13px; color:#05090c; background:var(--hud); border-radius:6px; margin-top:1px; }
+.qs-txt{ display:flex; flex-direction:column; }
+.qs-q{ font-family:var(--font-heading-jp); font-weight:700; font-size:13.5px; line-height:1.35; }
+.qs-a{ font-size:12px; color:var(--color-text-muted); margin-top:3px; line-height:1.5; }
+.qs-arrow{ margin-left:auto; align-self:center; color:var(--hud); font-size:14px; flex-shrink:0; }
 .visually-hidden{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 /* テーブル */
 th{ background:#0c2028; color:var(--color-accent-teal-light); border-color:rgba(32,198,223,.22); }
@@ -1242,8 +1257,51 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
 
   <nav class="toc" aria-label="目次">
     <h2>目次</h2>
+
     <a href="#burn-run" class="toc-pickup"><span class="pk-badge">NEW · シーズン5</span>バーンラン攻略</a>
     <a href="#comms-coords" class="toc-pickup">チャット操作＆座標の読み方</a>
+
+    <div class="quickstart">
+    <details class="wcat">
+      <summary><span class="wcat-ttl"><span class="qs-badge" style="margin-right:8px;vertical-align:1px;">START</span>はじめての人へ：まず何をすればいい？</span><span class="wcat-chevron">▾</span></summary>
+      <div style="padding:14px 2px 2px;">
+      <p class="quickstart-sub" style="margin-top:0;">まずはこの順にたどれば大丈夫。各ステップは詳しい解説へジャンプします。</p>
+      <div class="qs-steps">
+        <a class="qs-step" href="#missions">
+          <span class="qs-num">1</span>
+          <span class="qs-txt"><span class="qs-q">目標を知る</span><span class="qs-a">「出発して50分以内に生きて帰る」のが目標。チームを組むと復活でき、失敗しにくい。</span></span>
+          <span class="qs-arrow">→</span>
+        </a>
+        <a class="qs-step" href="#missions">
+          <span class="qs-num">2</span>
+          <span class="qs-txt"><span class="qs-q">死んだらどうなる？</span><span class="qs-a">その試合で上げたレベル（CR）と現地入手武器を失う。ロードアウト武器は常に使える。</span></span>
+          <span class="qs-arrow">→</span>
+        </a>
+        <a class="qs-step" href="#missions">
+          <span class="qs-num">3</span>
+          <span class="qs-txt"><span class="qs-q">レベル（CR）を上げる</span><span class="qs-a">CR＝このモードのレベル。推奨CRの高い高難度エリアは、まずCRを上げてから向かう。</span></span>
+          <span class="qs-arrow">→</span>
+        </a>
+        <a class="qs-step" href="#exotic-acquire">
+          <span class="qs-num">4</span>
+          <span class="qs-txt"><span class="qs-q">何を持ち帰れる？</span><span class="qs-a">エキゾチック武器やスキルが成果。まずは入手方法をチェック。</span></span>
+          <span class="qs-arrow">→</span>
+        </a>
+        <a class="qs-step" href="#avalon-map">
+          <span class="qs-num">5</span>
+          <span class="qs-txt"><span class="qs-q">どのエリアまで行っていい？</span><span class="qs-a">マップで各エリアの難易度を確認。無理なエリアは後回しでOK。</span></span>
+          <span class="qs-arrow">→</span>
+        </a>
+        <a class="qs-step" href="#enemies">
+          <span class="qs-num">6</span>
+          <span class="qs-txt"><span class="qs-q">敵・モンスターの名前がわからない</span><span class="qs-a">ミッションで名前だけ言われても、敵・ボス図鑑で見た目と照らし合わせて確認できる。</span></span>
+          <span class="qs-arrow">→</span>
+        </a>
+      </div>
+      </div>
+    </details>
+    </div>
+
     <div class="toc-group">
       <div class="toc-group-ttl"><span class="tg-icon">▶</span>攻略<span class="tg-sub">進め方・攻略情報</span></div>
       <div class="toc-grid">
@@ -1522,7 +1580,14 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
       <summary><span class="wcat-ttl">詰まったとき</span><span class="wcat-chevron">▾</span></summary>
       <div style="padding:14px;">
         <p style="margin:0 0 8px; font-weight:700;">「勝てない、つまらない」と感じたら</p>
-        <p style="margin:0;">詰まったときの逃げ道の一例です。グレネード弾を付けたReboot（1911）と、狙い撃ちを付けたXR-3 IonまたはSokol 545、スキルはエコーシェルで、危なくなったら後ろを向いてアーマー回復をする。ソロでもグリッチをクリアできた報告があります。もちろん武器は好きなものでOK。合わなければ気軽に切り替えてください。</p>
+        <p style="margin:0 0 10px;">これは正解でも推奨テンプレでもなく、下手な自分でもグリッチをクリアできた時の構成の一例です。「これで確実に勝てる」でもないです。慣れたら自由に変えてください。</p>
+        <ul style="margin:0 0 10px; padding-left:1.2em; line-height:1.8;">
+          <li><strong>武器：</strong>グレネード弾を付けたReboot（1911）／狙い撃ちを付けたXR-3 IonまたはSokol 545</li>
+          <li><strong>スキル：</strong>ブルドーザー（アーマー自動回復&amp;自爆対策）／バーサーカー（キルでアーマー回復）／ガーディアン（堅牢）</li>
+          <li><strong>エキゾチックスキル：</strong>エコーシェル</li>
+          <li><strong>立ち回り：</strong>危なくなったら後ろを向いてアーマー回復</li>
+        </ul>
+        <p style="margin:0;">武器もスキルも好みでOK。合わなければ気軽に切り替えを。これはゴールではなく、困ったときに試してみては、くらいのものです。</p>
       </div>
     </details>
 
