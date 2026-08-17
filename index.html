@@ -1245,7 +1245,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
 
 </head>
 <body>
-<nav class="topnav" aria-label="セクションナビ"><button type="button" class="tn-toggle" aria-expanded="false" aria-controls="tnInner" aria-label="メニュー"><span aria-hidden="true">☰</span> <span class="tn-toggle-label">メニュー</span></button><div class="tn-inner" id="tnInner"><span class="tn-brand">BO7 ENDGAME</span><a href="#top" data-sec="top">ホーム</a><a href="#glossary" data-sec="glossary">用語</a><a href="#burn-run" data-sec="burn-run" style="color:var(--color-accent);font-weight:700;">バーンラン</a><a href="#comms-coords" data-sec="comms-coords" style="color:var(--hud);font-weight:700;">チャット＆座標</a><span class="tn-group">攻略</span><a href="#missions" data-sec="missions">ミッション</a><a href="#avalon-map" data-sec="avalon-map">マップ</a><a href="#glitches" data-sec="glitches">グリッチ</a><a href="#game-rules" data-sec="game-rules">ルール</a><span class="tn-group">装備</span><a href="#exotic-acquire" data-sec="exotic-acquire">入手方法</a><a href="#exotic-effects" data-sec="exotic-effects">エキゾ効果</a><a href="#weapon-traits" data-sec="weapon-traits">武器早見</a><a href="#utility-bonus" data-sec="utility-bonus">汎用ボーナス</a><a href="#affinity-bonus" data-sec="affinity-bonus">属性一致</a><a href="#named-exotics" data-sec="named-exotics">名前付き</a><span class="tn-group">データ</span><a href="#operators" data-sec="operators">オペレーター</a><a href="#enemies" data-sec="enemies">敵ボス</a><a href="#story-timeline" data-sec="story-timeline">年表</a><a href="#todo" data-sec="todo">検証タスク</a></div></nav>
+<nav class="topnav" aria-label="セクションナビ"><button type="button" class="tn-toggle" aria-expanded="false" aria-controls="tnInner" aria-label="メニュー"><span aria-hidden="true">☰</span> <span class="tn-toggle-label">メニュー</span></button><div class="tn-inner" id="tnInner"><span class="tn-brand">BO7 ENDGAME</span><a href="#top" data-sec="top">ホーム</a><a href="#glossary" data-sec="glossary">用語</a><a href="#burn-run" data-sec="burn-run" style="color:var(--color-accent);font-weight:700;">バーンラン</a><a href="#ability-boosts" data-sec="ability-boosts" style="color:var(--color-accent);font-weight:700;">ブースト一覧</a><a href="#comms-coords" data-sec="comms-coords" style="color:var(--hud);font-weight:700;">チャット＆座標</a><span class="tn-group">攻略</span><a href="#missions" data-sec="missions">ミッション</a><a href="#avalon-map" data-sec="avalon-map">マップ</a><a href="#glitches" data-sec="glitches">グリッチ</a><a href="#game-rules" data-sec="game-rules">ルール</a><span class="tn-group">装備</span><a href="#exotic-acquire" data-sec="exotic-acquire">入手方法</a><a href="#exotic-effects" data-sec="exotic-effects">エキゾ効果</a><a href="#weapon-traits" data-sec="weapon-traits">武器早見</a><a href="#utility-bonus" data-sec="utility-bonus">汎用ボーナス</a><a href="#affinity-bonus" data-sec="affinity-bonus">属性一致</a><a href="#named-exotics" data-sec="named-exotics">名前付き</a><span class="tn-group">データ</span><a href="#operators" data-sec="operators">オペレーター</a><a href="#enemies" data-sec="enemies">敵ボス</a><a href="#story-timeline" data-sec="story-timeline">年表</a><a href="#todo" data-sec="todo">検証タスク</a></div></nav>
 <div class="scanbeam" aria-hidden="true"></div>
 
 
@@ -1391,7 +1391,6 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
         <ol style="margin:0 0 16px;padding-left:20px;line-height:1.7;">
           <li style="margin-bottom:6px;">ミッション場所にある車両にインタラクトして乗り込む</li>
           <li style="margin-bottom:6px;">矢印のルート指示に従ってゴールを目指す</li>
-          <li style="margin-bottom:6px;">アーチは端をかすめず、中心を通るライン取りで通過する</li>
         </ol>
 
         <p style="margin:20px 0 8px;"><span class="term">時間・耐久の管理（拾う・轢く）</span></p>
@@ -1423,6 +1422,94 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
       </div>
     </details>
     </div>
+    <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
+  </section>
+
+  <section id="ability-boosts">
+    <style>
+      #ability-boosts td.ab-name{
+        vertical-align: middle;
+        font-weight: 700;
+        white-space: nowrap;
+        border-right: 1px solid rgba(32,198,223,.35);
+        width: 1%;
+      }
+      /* 縞を「行ごと」から「アビリティ2行1組ごと」に変更 */
+      #ability-boosts tbody tr td{ background: transparent; }
+      #ability-boosts tbody tr:nth-child(4n+3) td,
+      #ability-boosts tbody tr:nth-child(4n) td{ background: rgba(32,198,223,.10); }
+      @media (max-width: 600px){
+        #ability-boosts td.ab-name{
+          white-space: normal;
+          border-right: none;
+          border-bottom: 1px solid rgba(32,198,223,.35);
+        }
+        #ability-boosts td.ab-name::before{ display: none; }
+      }
+    </style>
+    <h2>エキゾチックアビリティブースト一覧</h2>
+    <p class="lead">メジャー／マイナーアビリティを強化する追加効果。各アビリティに2種あり、全40種。アイテムケースから入手でき、主に<span class="term">バーンラン</span>で出やすい（Tacマップの報酬一覧で確認可）。ワイプするかアビリティを付け替えるまで維持されます。</p>
+
+    <details class="wcat"><summary><span class="wcat-ttl">メジャーアビリティ（22種）</span><span class="wcat-chevron">▾</span></summary><div style="padding:14px;">
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>アビリティ名</th><th>ブースト名</th><th>効果</th></tr></thead>
+        <tbody>
+          <tr><td class="ab-name" rowspan="2">ドローンポッド</td><td data-label="ブースト名">スタンプロトコル</td><td data-label="効果">ドローンが一定確率で敵をスタンさせる</td></tr>
+          <tr><td data-label="ブースト名">ファーストストライク</td><td data-label="効果">ドローンに榴散効果を付与</td></tr>
+          <tr><td class="ab-name" rowspan="2">アクティブ迷彩</td><td data-label="ブースト名">ステルスファイア</td><td data-label="効果">武器を撃っても透明状態を維持</td></tr>
+          <tr><td data-label="ブースト名">時間延長</td><td data-label="効果">近接キルで迷彩の持続時間が延長</td></tr>
+          <tr><td class="ab-name" rowspan="2">センチネルプロトコル</td><td data-label="ブースト名">ターゲットリレー</td><td data-label="効果">ピンで指定した敵をギルドボットが攻撃。命中率が向上</td></tr>
+          <tr><td data-label="ブースト名">ショック弾</td><td data-label="効果">ギルドボットの武器にデッドワイヤー(MOD)を付与</td></tr>
+          <tr><td class="ab-name" rowspan="2">サーマルスパイク</td><td data-label="ブースト名">モルテンオーラ</td><td data-label="効果">接触した敵を炎上させる</td></tr>
+          <tr><td data-label="ブースト名">ショックブラスト</td><td data-label="効果">最初の爆発で敵をスタン</td></tr>
+          <tr><td class="ab-name" rowspan="2">ハンドキャノン</td><td data-label="ブースト名">大容量</td><td data-label="効果">弾薬数が増加</td></tr>
+          <tr><td data-label="ブースト名">ブラストスタン</td><td data-label="効果">弾薬が爆発を引き起こし、ターゲットをスタンさせる</td></tr>
+          <tr><td class="ab-name" rowspan="2">ビジョンパルス</td><td data-label="ブースト名">デスマーク</td><td data-label="効果">ピンを付けた敵が受けるダメージが増加</td></tr>
+          <tr><td data-label="ブースト名">EMPキル</td><td data-label="効果">ピンを付けた敵をキルするとEMP効果が発生</td></tr>
+          <tr><td class="ab-name" rowspan="2">ウォーマシン</td><td data-label="ブースト名">高速チャージ</td><td data-label="効果">チャージ時間が短縮</td></tr>
+          <tr><td data-label="ブースト名">大容量</td><td data-label="効果">弾薬数が増加</td></tr>
+          <tr><td class="ab-name" rowspan="2">シャドウブレイク</td><td data-label="ブースト名">重力井戸</td><td data-label="効果">シャドウブレイクが敵を中心に引き寄せる</td></tr>
+          <tr><td data-label="ブースト名">スカイドロップ</td><td data-label="効果">シャドウブレイクに入ると空中へテレポート</td></tr>
+          <tr><td class="ab-name" rowspan="2">デスマシーン</td><td data-label="ブースト名">クリティカルリターン</td><td data-label="効果">クリティカルキル時に一定確率で弾薬が回復</td></tr>
+          <tr><td data-label="ブースト名">大容量</td><td data-label="効果">弾薬数が増加（50発）</td></tr>
+          <tr><td class="ab-name" rowspan="2">クラッシュカート</td><td data-label="ブースト名">フルリストック</td><td data-label="効果">弾薬、アーマー、装備を回復</td></tr>
+          <tr><td data-label="ブースト名">ジャンボバッテリー</td><td data-label="効果">無敵時間が延長。スクアッド以外の味方も蘇生可能</td></tr>
+          <tr><td class="ab-name" rowspan="2">バリスティックシェル</td><td data-label="ブースト名">スタンシェル</td><td data-label="効果">シェルを近接攻撃した敵をスタンさせる</td></tr>
+          <tr><td data-label="ブースト名">シェル蘇生</td><td data-label="効果">ダウン状態の仲間がシェル内に入ると蘇生</td></tr>
+        </tbody>
+      </table>
+    </div>
+    </div></details>
+
+    <details class="wcat"><summary><span class="wcat-ttl">マイナーアビリティ（18種）</span><span class="wcat-chevron">▾</span></summary><div style="padding:14px;">
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>アビリティ名</th><th>ブースト名</th><th>効果</th></tr></thead>
+        <tbody>
+          <tr><td class="ab-name" rowspan="2">キネティックジャンプ</td><td data-label="ブースト名">ジャンプブースト</td><td data-label="効果">ジャンプ力が上昇し、HPを一部回復</td></tr>
+          <tr><td data-label="ブースト名">クイックチャージ</td><td data-label="効果">チャージタイムを短縮</td></tr>
+          <tr><td class="ab-name" rowspan="2">エーテルブレード</td><td data-label="ブースト名">スタンバウンス</td><td data-label="効果">跳ね返って敵をスタンさせる</td></tr>
+          <tr><td data-label="ブースト名">追加チャージ</td><td data-label="効果">チャージ数が1増加</td></tr>
+          <tr><td class="ab-name" rowspan="2">ブラッドバーナー</td><td data-label="ブースト名">タイムチャージ</td><td data-label="効果">パルス攻撃がキルではなく時間経過でチャージされる</td></tr>
+          <tr><td data-label="ブースト名">プロテクトフィールド</td><td data-label="効果">乗車中のダメージ軽減が増加</td></tr>
+          <tr><td class="ab-name" rowspan="2">グラップリングフック</td><td data-label="ブースト名">アクロバティック</td><td data-label="効果">チャージ数が1増加。空中で使用したチャージを返還</td></tr>
+          <tr><td data-label="ブースト名">スタンフック</td><td data-label="効果">命中した敵をスタン</td></tr>
+          <tr><td class="ab-name" rowspan="2">ポータルグレネード</td><td data-label="ブースト名">感染</td><td data-label="効果">召喚したフィアーが近くの敵を感染させる</td></tr>
+          <tr><td data-label="ブースト名">延長時間</td><td data-label="効果">召喚したフィアーの持続時間が延長</td></tr>
+          <tr><td class="ab-name" rowspan="2">フリッカー</td><td data-label="ブースト名">ワープダメージ</td><td data-label="効果">敵へのテレポートでダメージを与える</td></tr>
+          <tr><td data-label="ブースト名">自動リロード</td><td data-label="効果">武器の弾薬の一部を自動リロード</td></tr>
+          <tr><td class="ab-name" rowspan="2">サイコグレネード</td><td data-label="ブースト名">増援</td><td data-label="効果">強力な味方が一定確率で出現</td></tr>
+          <tr><td data-label="ブースト名">従属強化</td><td data-label="効果">従属効果の持続時間が延長。従属できる敵の数が増加</td></tr>
+          <tr><td class="ab-name" rowspan="2">ブラックハット</td><td data-label="ブースト名">チャージバック</td><td data-label="効果">攻撃成功時、メジャーアビリティのクールダウンが短縮</td></tr>
+          <tr><td data-label="ブースト名">バックドアプロトコル</td><td data-label="効果">ギルドとフィアーに対する攻撃が強化</td></tr>
+          <tr><td class="ab-name" rowspan="2">補給リンク</td><td data-label="ブースト名">フルプロテクト</td><td data-label="効果">自分と味方のアーマープレートを自動補充</td></tr>
+          <tr><td data-label="ブースト名">フルサプライ</td><td data-label="効果">自分と味方の装備を全て補充</td></tr>
+        </tbody>
+      </table>
+    </div>
+    </div></details>
+
     <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
   </section>
 
@@ -2521,7 +2608,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
           <tr><td data-label="属性"><span class="attr"><img src="assets/icons/photon.png" alt="光子弾アイコン">光子弾</span></td><td data-label="ボーナス名">Blessing<br>（未確認）</td><td data-label="効果">ヒールグリフに一時的なボーナス体力が付くことがある（未確認）</td></tr>
           <tr><td data-label="属性"><span class="attr"><img src="assets/icons/photon.png" alt="光子弾アイコン">光子弾</span></td><td data-label="ボーナス名">Dual Action<br>デュアルアクション</td><td data-label="効果">ヒールグリフ消費で体力自動回復が一時的に向上</td></tr>
           <tr><td data-label="属性"><span class="attr"><img src="assets/icons/shock.png" alt="電子弾アイコン">電子弾</span></td><td data-label="ボーナス名">Chain Lightning<br>チェーンライトニング</td><td data-label="効果">スタン効果を周囲の敵に拡散する</td></tr>
-          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/shock.png" alt="電子弾アイコン">電子弾</span></td><td data-label="ボーナス名">Lightning Strike<br>（未確認）</td><td data-label="効果">上空から雷が落ち、敵をスタンさせる（未確認）</td></tr>
+          <tr><td data-label="属性"><span class="attr"><img src="assets/icons/shock.png" alt="電子弾アイコン">電子弾</span></td><td data-label="ボーナス名">Lightning Strike<br>ライトニングストライク</td><td data-label="効果">上空から雷が落ち、敵をスタンさせる</td></tr>
           <tr><td data-label="属性"><span class="attr"><img src="assets/icons/shrapnel.png" alt="榴散弾アイコン">榴散弾</span></td><td data-label="ボーナス名">Blast Chain<br>ブラストチェイン</td><td data-label="効果">アーマーを破壊する爆発が発生すると、追加の爆発が3回連続で発生</td></tr>
           <tr><td data-label="属性"><span class="attr"><img src="assets/icons/shrapnel.png" alt="榴散弾アイコン">榴散弾</span></td><td data-label="ボーナス名">Blast Shield<br>（未確認）</td><td data-label="効果">榴散弾が複数の敵に命中すると、被ダメージが軽減される（未確認）</td></tr>
           <tr><td data-label="属性">全属性共通</td><td data-label="ボーナス名">Big Game<br>ビッグゲーム</td><td data-label="効果">対応する属性の効果がエリートエネミーにも発動するようになる（属性ごとに個別のBig Gameが存在）</td></tr>
@@ -2980,7 +3067,6 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
       <li><span class="badge" style="background:var(--color-status-todo-bg);border-color:var(--color-status-todo-border);color:var(--color-status-todo-text);">要注意</span> <strong>ファブリケーターでのユーティリティボーナス変更は必ず元に戻せるとは限らない可能性。</strong>実例：デュアルアクション→デュアルVELOX5.7に変更後、再アクセス不可になり元に戻せなかった。再現性・条件を確認</li>
       <li><span class="badge">中</span> 「スラッシャー」が近接武器専用ボーナスかどうか継続検証（近接武器以外での出現例を探す）</li>
       <li><span class="badge" style="background:var(--color-status-todo-bg);border-color:var(--color-status-todo-border);color:var(--color-status-todo-text);">シーズン5</span> <strong>バーンラン</strong>の詳細（制限時間・報酬・攻略のコツ）を実機で確認</li>
-      <li><span class="badge" style="background:var(--color-status-todo-bg);border-color:var(--color-status-todo-border);color:var(--color-status-todo-text);">シーズン5</span> <strong>エキゾチックアビリティブースト</strong>の具体的な効果一覧（各アビリティ2種）を実機で確認</li>
       <li><span class="badge">低</span> チャットの<strong>パーティー／チーム</strong>の到達範囲を確認（現在ソロのため未確認）</li>
     </ul>
     <a class="back-to-top" href="#top">↑ 先頭へ戻る</a>
