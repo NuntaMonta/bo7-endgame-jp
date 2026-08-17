@@ -1243,9 +1243,34 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
 .leg-dot{ display:inline-block; width:11px; height:11px; border-radius:50%; background:var(--color-accent); border:2px solid #fff; vertical-align:-1px; margin-right:5px; }
 </style>
 
+
+<style>
+/* ===== 左サイドバー（PC）／スマホは現状ハンバーガー: min-width:601pxのみ ===== */
+.tn-brand .tt1,.tn-brand .tt2,.tn-brand .tt3{ display:block; text-align:center; line-height:1.22; }
+.tn-brand .tt1{ font-size:13px; letter-spacing:2px; color:var(--hud); font-weight:900; }
+.tn-brand .tt2{ font-size:17px; letter-spacing:3px; color:#e8f5f8; font-weight:900; }
+.tn-brand .tt3{ font-size:11px; letter-spacing:1px; color:var(--color-accent); font-weight:700; margin-top:4px; }
+@media (min-width:601px){
+  body{ padding-left:212px; }
+  .topnav{ position:fixed; top:0; left:0; bottom:0; width:212px; height:100vh;
+    border-bottom:none; border-right:1px solid rgba(32,198,223,.28);
+    background:rgba(6,12,15,.97); overflow-y:auto; }
+  .topnav .tn-inner{ flex-direction:column; align-items:stretch; gap:1px;
+    overflow-x:hidden; overflow-y:visible; padding:12px 10px 24px; max-width:none; margin:0; }
+  .topnav .tn-inner::after{ display:none; }
+  .topnav .tn-brand{ border-right:none; border-bottom:1px solid rgba(32,198,223,.25);
+    padding:2px 6px 12px; margin:0 0 6px; width:100%; box-sizing:border-box; }
+  .topnav a{ white-space:normal; width:100%; box-sizing:border-box; font-size:12px; padding:5px 10px; }
+  .topnav a[data-sec="top"]{ font-size:15px; font-weight:900; color:var(--hud); padding:8px 10px; }
+  .topnav .tn-group{ border-left:none; width:100%; box-sizing:border-box;
+    font-size:12.5px; letter-spacing:1px; margin:4px 0 1px; padding:2px 6px; }
+  section, header.page-header{ scroll-margin-top:16px; }
+  #burn-run{ scroll-margin-top:16px; }
+}
+</style>
 </head>
 <body>
-<nav class="topnav" aria-label="セクションナビ"><button type="button" class="tn-toggle" aria-expanded="false" aria-controls="tnInner" aria-label="メニュー"><span aria-hidden="true">☰</span> <span class="tn-toggle-label">メニュー</span></button><div class="tn-inner" id="tnInner"><span class="tn-brand">BO7 ENDGAME</span><a href="#top" data-sec="top">ホーム</a><a href="#glossary" data-sec="glossary">用語</a><a href="#burn-run" data-sec="burn-run" style="color:var(--color-accent);font-weight:700;">バーンラン</a><a href="#ability-boosts" data-sec="ability-boosts" style="color:var(--color-accent);font-weight:700;">ブースト一覧</a><a href="#comms-coords" data-sec="comms-coords" style="color:var(--hud);font-weight:700;">チャット＆座標</a><span class="tn-group">攻略</span><a href="#missions" data-sec="missions">ミッション</a><a href="#avalon-map" data-sec="avalon-map">マップ</a><a href="#glitches" data-sec="glitches">グリッチ</a><a href="#game-rules" data-sec="game-rules">ルール</a><span class="tn-group">装備</span><a href="#exotic-acquire" data-sec="exotic-acquire">入手方法</a><a href="#exotic-effects" data-sec="exotic-effects">エキゾ効果</a><a href="#weapon-traits" data-sec="weapon-traits">武器早見</a><a href="#utility-bonus" data-sec="utility-bonus">汎用ボーナス</a><a href="#affinity-bonus" data-sec="affinity-bonus">属性一致</a><a href="#named-exotics" data-sec="named-exotics">名前付き</a><span class="tn-group">データ</span><a href="#operators" data-sec="operators">オペレーター</a><a href="#enemies" data-sec="enemies">敵ボス</a><a href="#story-timeline" data-sec="story-timeline">年表</a><a href="#todo" data-sec="todo">検証タスク</a></div></nav>
+<nav class="topnav" aria-label="セクションナビ"><button type="button" class="tn-toggle" aria-expanded="false" aria-controls="tnInner" aria-label="メニュー"><span aria-hidden="true">☰</span> <span class="tn-toggle-label">メニュー</span></button><div class="tn-inner" id="tnInner"><span class="tn-brand"><span class="tt1">CALL of DUTY</span><span class="tt2">BLACK OPS7</span><span class="tt3">日本語攻略メモ</span></span><a href="#top" data-sec="top">ホーム</a><a href="#glossary" data-sec="glossary">用語</a><a href="#burn-run" data-sec="burn-run" style="color:var(--color-accent);font-weight:700;">バーンラン</a><a href="#ability-boosts" data-sec="ability-boosts" style="color:var(--color-accent);font-weight:700;">ブースト一覧</a><a href="#comms-coords" data-sec="comms-coords" style="color:var(--hud);font-weight:700;">チャット＆座標</a><span class="tn-group">攻略</span><a href="#missions" data-sec="missions">ミッション</a><a href="#avalon-map" data-sec="avalon-map">マップ</a><a href="#glitches" data-sec="glitches">グリッチ</a><a href="#game-rules" data-sec="game-rules">ルール</a><span class="tn-group">武器・スキル</span><a href="#exotic-acquire" data-sec="exotic-acquire">入手方法</a><a href="#exotic-effects" data-sec="exotic-effects">エキゾ効果</a><a href="#weapon-traits" data-sec="weapon-traits">武器早見</a><a href="#utility-bonus" data-sec="utility-bonus">汎用ボーナス</a><a href="#affinity-bonus" data-sec="affinity-bonus">属性一致</a><a href="#named-exotics" data-sec="named-exotics">名前付き</a><span class="tn-group">データ</span><a href="#operators" data-sec="operators">オペレーター</a><a href="#enemies" data-sec="enemies">敵ボス</a><a href="#story-timeline" data-sec="story-timeline">年表</a><a href="#todo" data-sec="todo">検証タスク</a></div></nav>
 <div class="scanbeam" aria-hidden="true"></div>
 
 
