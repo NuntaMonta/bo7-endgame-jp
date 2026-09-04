@@ -914,7 +914,7 @@
     font-family:var(--font-display); font-weight:900; font-size:13px; letter-spacing:2px;
     color:var(--hud); text-transform:uppercase;
     padding-bottom:6px; margin-bottom:10px;
-    border-bottom:1px solid rgba(32,198,223,.28);
+    border-bottom:1px solid rgba(255,255,255,.28);
   }
   nav.toc .toc-group-ttl .tg-icon{ color:var(--color-accent); font-size:9px; letter-spacing:0; }
   nav.toc .toc-group-ttl .tg-sub{ font-family:var(--font-heading-jp); font-weight:600; font-size:11px; letter-spacing:0; color:var(--color-text-muted); }
@@ -932,7 +932,7 @@
   nav.toc a.toc-chip::before{ content:none !important; }
 
   /* 概念図（装備の全体像） */
-  .concept-figure{ max-width:760px; margin:10px auto 4px; border:1px solid rgba(32,198,223,.5); border-radius:4px; padding:10px; background:#0d0a18; }
+  .concept-figure{ max-width:760px; margin:10px auto 4px; border:1px solid rgba(255,255,255,.5); border-radius:4px; padding:10px; background:#0d0a18; }
   .concept-figure svg{ display:block; width:100%; height:auto; }
 
   /* カード類：ホバーで浮き上がり＋アクセント枠 */
@@ -1105,10 +1105,10 @@
 <style>
 /* ==== TACTICAL TERMINAL テーマ（本番・整理版 2026-07-30）==== */
 :root{
-  --color-bg:#05090c; --color-bg-soft:#0b1519; --color-bg-soft2:#0e1c22;
-  --color-text:#e8f5f8; --color-text-muted:#8aa9b2; --color-border:#1b4551;
-  --color-accent:#ff7a1a; --color-accent-teal:#20c6df; --color-accent-teal-light:#7ff2ff;
-  --color-header-bg:#0c1c23; --color-header-text:#e6f7fb; --hud:#20c6df;
+  --color-bg:#05090c; --color-bg-soft:#121212; --color-bg-soft2:#161616;
+  --color-text:#f2f3f5; --color-text-muted:#9aa0a6; --color-border:#2a2c2e;
+  --color-accent:#ff7a1a; --color-accent-teal:#ffffff; --color-accent-teal-light:#ffffff;
+  --color-header-bg:#161616; --color-header-text:#f2f3f5; --hud:#ffffff;
   --font-display:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif;
   --font-heading-jp:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif;
   --font-heading:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif;
@@ -1118,41 +1118,41 @@
 body{
   background:
     radial-gradient(1100px 640px at 50% -240px, rgba(255,122,26,.08), transparent 70%),
-    radial-gradient(900px 620px at 100% 4%, rgba(32,198,223,.07), transparent 65%),
+    radial-gradient(900px 620px at 100% 4%, rgba(255,255,255,.07), transparent 65%),
     #05090c;
   background-attachment: fixed; font-size:16px;
 }
 .container::before{
   content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
   background-image:
-    linear-gradient(rgba(32,198,223,.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(32,198,223,.03) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
   background-size:52px 52px;
   -webkit-mask-image:radial-gradient(circle at 50% 18%, #000 18%, transparent 74%);
   mask-image:radial-gradient(circle at 50% 18%, #000 18%, transparent 74%);
 }
 /* ==== 固定トップナビ ==== */
-.topnav{ position:sticky; top:0; z-index:1000; background:rgba(6,12,15,.92); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); border-bottom:1px solid rgba(32,198,223,.28); }
+.topnav{ position:sticky; top:0; z-index:1000; background:rgba(6,12,15,.92); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); border-bottom:1px solid rgba(255,255,255,.28); }
 .topnav .tn-inner{ position:relative; max-width:var(--max-width); margin:0 auto; display:flex; align-items:center; gap:5px; padding:8px 12px; overflow-x:auto; scrollbar-width:thin; }
 .topnav .tn-inner::after{ content:""; position:sticky; right:0; flex:0 0 auto; align-self:stretch; width:26px; margin-left:-26px; pointer-events:none; background:linear-gradient(to right, rgba(6,12,15,0), rgba(6,12,15,.95)); }
-.topnav .tn-brand{ flex-shrink:0; font-family:var(--font-display); font-weight:900; font-size:13px; letter-spacing:1px; color:var(--hud); padding-right:10px; border-right:1px solid rgba(32,198,223,.25); margin-right:4px; white-space:nowrap; }
+.topnav .tn-brand{ flex-shrink:0; font-family:var(--font-display); font-weight:900; font-size:13px; letter-spacing:1px; color:var(--hud); padding-right:10px; border-right:1px solid rgba(255,255,255,.25); margin-right:4px; white-space:nowrap; }
 .topnav a{ flex-shrink:0; font-family:var(--font-heading-jp); font-size:12.5px; font-weight:700; color:var(--color-text-muted); text-decoration:none; white-space:nowrap; padding:6px 9px; border-radius:6px; border:1px solid transparent; transition:all .15s ease; }
-.topnav a:hover{ color:var(--color-accent-teal-light); background:rgba(32,198,223,.08); }
-.topnav a.active{ color:#04222a; background:var(--hud); border-color:var(--hud); }
-.topnav .tn-group{ flex-shrink:0; align-self:center; font-family:var(--font-display); font-weight:900; font-size:10px; letter-spacing:1.5px; color:var(--color-accent); text-transform:uppercase; white-space:nowrap; padding:2px 6px 2px 10px; margin-left:4px; border-left:1px solid rgba(32,198,223,.30); }
+.topnav a:hover{ color:var(--color-accent-teal-light); background:rgba(255,255,255,.08); }
+.topnav a.active{ color:#111417; background:var(--hud); border-color:var(--hud); }
+.topnav .tn-group{ flex-shrink:0; align-self:center; font-family:var(--font-display); font-weight:900; font-size:10px; letter-spacing:1.5px; color:var(--color-accent); text-transform:uppercase; white-space:nowrap; padding:2px 6px 2px 10px; margin-left:4px; border-left:1px solid rgba(255,255,255,.30); }
 .tn-toggle{ display:none; }
 @media (max-width:600px){
   .topnav .tn-brand{ display:none; }
   .tn-toggle{ display:flex; align-items:center; gap:8px; width:100%; padding:11px 14px; background:transparent; border:none; color:var(--hud); font-family:var(--font-display); font-weight:900; font-size:14px; letter-spacing:1px; cursor:pointer; }
   .topnav .tn-inner{ display:none; }
-  .topnav.open .tn-inner{ display:flex; flex-direction:column; align-items:stretch; gap:4px; position:absolute; left:0; right:0; top:100%; padding:8px 12px 14px; max-height:74vh; overflow-y:auto; overflow-x:hidden; background:rgba(6,12,15,.98); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); border-bottom:1px solid rgba(32,198,223,.28); box-shadow:0 14px 26px rgba(0,0,0,.45); }
+  .topnav.open .tn-inner{ display:flex; flex-direction:column; align-items:stretch; gap:4px; position:absolute; left:0; right:0; top:100%; padding:8px 12px 14px; max-height:74vh; overflow-y:auto; overflow-x:hidden; background:rgba(6,12,15,.98); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); border-bottom:1px solid rgba(255,255,255,.28); box-shadow:0 14px 26px rgba(0,0,0,.45); }
   .topnav.open .tn-inner a{ white-space:normal; padding:11px 12px; font-size:14px; }
   .topnav.open .tn-inner .tn-group{ border-left:none; margin:10px 0 2px; padding:0 6px; }
 }
 section, header.page-header{ scroll-margin-top:60px; }
 /* ==== 見出し（統一）==== */
 section{ margin-bottom:48px; }
-section h2{ font-size:22px; color:var(--color-text); text-shadow:0 0 10px rgba(32,198,223,.18); }
+section h2{ font-size:22px; color:var(--color-text); text-shadow:0 0 10px rgba(255,255,255,.18); }
 section h2::before{ background:var(--hud) !important; }
 section h2::after{ background:linear-gradient(90deg, var(--hud) 0%, var(--color-accent) 60%, transparent 100%) !important; }
 section h3{ font-size:16px; }
@@ -1166,7 +1166,7 @@ nav.toc::before,nav.toc::after,.note::before,.note::after,.story-intro::before,.
 details.wcat::before,details.wcat::after,.table-scroll::before,.table-scroll::after,
 .season-summary-box::before,.season-summary-box::after,.enemy-modal-box::before,.enemy-modal-box::after{ display:none !important; content:none !important; }
 /* ブラケット枠は「新着(シーズン5)」「マップ」だけに限定 */
-.newbox, .map-frame{ position:relative; border:1px solid rgba(32,198,223,.5) !important; border-radius:2px !important; }
+.newbox, .map-frame{ position:relative; border:1px solid rgba(255,255,255,.5) !important; border-radius:2px !important; }
 .newbox::before,.newbox::after,.map-frame::before,.map-frame::after{ content:""; position:absolute; width:14px; height:14px; border:2px solid var(--hud); pointer-events:none; z-index:3; display:block; }
 .newbox::before,.map-frame::before{ top:-1px; left:-1px; border-right:none; border-bottom:none; }
 .newbox::after,.map-frame::after{ bottom:-1px; right:-1px; border-left:none; border-top:none; }
@@ -1189,7 +1189,7 @@ details.season.featured::after{ bottom:-1px; right:-1px; border-left:none; borde
 .quickstart-sub{ margin:0 0 12px; font-size:12.5px; line-height:1.6; color:var(--color-text-muted); }
 .qs-steps{ display:grid; gap:8px; }
 .qs-step{ display:flex; align-items:flex-start; gap:12px; padding:10px 12px; border:1px solid var(--color-border); border-radius:8px; background:rgba(255,255,255,0.02); color:var(--color-text); text-decoration:none; transition:border-color .15s ease, transform .1s ease, background .15s ease; }
-.qs-step:hover{ border-color:var(--hud); transform:translateY(-2px); background:rgba(32,198,223,.10); color:var(--color-text); text-decoration:none; }
+.qs-step:hover{ border-color:var(--hud); transform:translateY(-2px); background:rgba(255,255,255,.10); color:var(--color-text); text-decoration:none; }
 .qs-step::before{ content:none !important; display:none !important; }
 .qs-num{ flex-shrink:0; width:26px; height:26px; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-size:13px; color:#05090c; background:var(--hud); border-radius:6px; margin-top:1px; }
 .qs-txt{ display:flex; flex-direction:column; }
@@ -1198,31 +1198,31 @@ details.season.featured::after{ bottom:-1px; right:-1px; border-left:none; borde
 .qs-arrow{ margin-left:auto; align-self:center; color:var(--hud); font-size:14px; flex-shrink:0; }
 .visually-hidden{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 /* テーブル */
-th{ background:#0c2028; color:var(--color-accent-teal-light); border-color:rgba(32,198,223,.22); }
-td{ border-color:rgba(32,198,223,.14); }
-tr:nth-child(even) td{ background:rgba(32,198,223,.035); }
+th{ background:#18191b; color:var(--color-accent-teal-light); border-color:rgba(255,255,255,.22); }
+td{ border-color:rgba(255,255,255,.14); }
+tr:nth-child(even) td{ background:rgba(255,255,255,.035); }
 /* カード枠色 */
-.op-card,.wcard,.wchip,.effect-icon-box{ border-color:rgba(32,198,223,.2); }
+.op-card,.wcard,.wchip,.effect-icon-box{ border-color:rgba(255,255,255,.2); }
 .op-card:hover,button.enemy-card:hover{ border-color:var(--hud); box-shadow:0 6px 18px rgba(0,0,0,.4); }
 .wcard:hover{ border-color:var(--color-accent); box-shadow:0 6px 18px rgba(0,0,0,.4); }
-.wchip{ background:#0c2028; border-color:rgba(32,198,223,.28); color:#dff6fb; }
+.wchip{ background:#18191b; border-color:rgba(255,255,255,.28); color:#f0f0f0; }
 .season-badge,.wcat-count{ background:var(--color-accent); }
 nav.toc a::before{ background:linear-gradient(150deg, var(--color-accent), #b5371c) !important; }
 nav.toc li:hover{ border-color:var(--hud) !important; }
 header.page-header{ border-bottom:1px solid var(--hud); }
 header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTABLISHED"; position:absolute; left:14px; top:10px; font-family:var(--font-display); letter-spacing:2px; font-size:11px; color:var(--hud); opacity:.75; }
-.fab-top{ background:linear-gradient(150deg, var(--hud), #0f7d8c); box-shadow:0 4px 14px rgba(0,0,0,.5); }
+.fab-top{ background:linear-gradient(150deg, var(--hud), #b0b0b0); box-shadow:0 4px 14px rgba(0,0,0,.5); }
 /* ==== 走査線（下→上へ流れる光線・常時ループ）==== */
 .scanbeam{
   position:fixed; left:0; right:0; z-index:-1; pointer-events:none;
   height:2px; background:var(--hud);
-  box-shadow:0 0 12px 2px rgba(32,198,223,.4);
+  box-shadow:0 0 12px 2px rgba(255,255,255,.4);
   opacity:.18;
   animation:scanUp 13s linear infinite;
 }
 .scanbeam::before{
   content:""; position:absolute; left:0; right:0; bottom:0; height:120px;
-  background:linear-gradient(to top, rgba(32,198,223,.07), transparent);
+  background:linear-gradient(to top, rgba(255,255,255,.07), transparent);
 }
 @keyframes scanUp{
   0%{ transform:translateY(100vh); opacity:0; }
@@ -1248,17 +1248,17 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
 /* ===== 左サイドバー（PC）／スマホは現状ハンバーガー: min-width:601pxのみ ===== */
 .tn-brand .tt1,.tn-brand .tt2,.tn-brand .tt3{ display:block; text-align:center; line-height:1.22; }
 .tn-brand .tt1{ font-size:13px; letter-spacing:2px; color:var(--hud); font-weight:900; }
-.tn-brand .tt2{ font-size:17px; letter-spacing:3px; color:#e8f5f8; font-weight:900; }
+.tn-brand .tt2{ font-size:17px; letter-spacing:3px; color:#f2f3f5; font-weight:900; }
 .tn-brand .tt3{ font-size:11px; letter-spacing:1px; color:var(--color-accent); font-weight:700; margin-top:4px; }
 @media (min-width:601px){
   body{ padding-left:212px; }
   .topnav{ position:fixed; top:0; left:0; bottom:0; width:212px; height:100vh;
-    border-bottom:none; border-right:1px solid rgba(32,198,223,.28);
+    border-bottom:none; border-right:1px solid rgba(255,255,255,.28);
     background:rgba(6,12,15,.97); overflow-y:auto; }
   .topnav .tn-inner{ flex-direction:column; align-items:stretch; gap:1px;
     overflow-x:hidden; overflow-y:visible; padding:12px 10px 24px; max-width:none; margin:0; }
   .topnav .tn-inner::after{ display:none; }
-  .topnav .tn-brand{ border-right:none; border-bottom:1px solid rgba(32,198,223,.25);
+  .topnav .tn-brand{ border-right:none; border-bottom:1px solid rgba(255,255,255,.25);
     padding:2px 6px 12px; margin:0 0 6px; width:100%; box-sizing:border-box; }
   .topnav a{ white-space:normal; width:100%; box-sizing:border-box; font-size:12px; padding:5px 10px; }
   .topnav a[data-sec="top"]{ font-size:15px; font-weight:900; color:var(--hud); padding:8px 10px; }
@@ -1456,18 +1456,18 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
         vertical-align: middle;
         font-weight: 700;
         white-space: nowrap;
-        border-right: 1px solid rgba(32,198,223,.35);
+        border-right: 1px solid rgba(255,255,255,.35);
         width: 1%;
       }
       /* 縞を「行ごと」から「アビリティ2行1組ごと」に変更 */
       #ability-boosts tbody tr td{ background: transparent; }
       #ability-boosts tbody tr:nth-child(4n+3) td,
-      #ability-boosts tbody tr:nth-child(4n) td{ background: rgba(32,198,223,.10); }
+      #ability-boosts tbody tr:nth-child(4n) td{ background: rgba(255,255,255,.10); }
       @media (max-width: 600px){
         #ability-boosts td.ab-name{
           white-space: normal;
           border-right: none;
-          border-bottom: 1px solid rgba(32,198,223,.35);
+          border-bottom: 1px solid rgba(255,255,255,.35);
         }
         #ability-boosts td.ab-name::before{ display: none; }
       }
@@ -1545,7 +1545,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
       <p style="margin-bottom:0;">「<span class="term">チャットの出し方</span>」と「<span class="term">座標（G9など）の読み方</span>」を、実機からまとめました。英数字(G9等)チャットで書かれているのは<strong>MAPの座標</strong>です。</p>
     </div>
 
-    <div style="border:1px solid rgba(32,198,223,.5);padding:6px;background:#0d0a18;border-radius:8px;max-width:780px;margin:8px auto 6px;">
+    <div style="border:1px solid rgba(255,255,255,.5);padding:6px;background:#0d0a18;border-radius:8px;max-width:780px;margin:8px auto 6px;">
       <img src="assets/img/avalon_grid_map.webp" alt="アヴァロン島 座標グリッドマップ（横A〜J・縦0〜9）" loading="lazy" style="width:100%;height:auto;display:block;border-radius:4px;">
     </div>
     <p style="text-align:center;margin:4px 0 12px;">見方：横が<strong style="color:var(--hud)">A〜J</strong>（左→右）、縦が<strong style="color:var(--hud)">0〜9</strong>（上→下）。例：<strong style="color:var(--color-accent);font-size:1.05em;">G9</strong> ＝ 左から<strong>G列（7番目）</strong>×上から<strong>9行目</strong>のマス。各マスに座標が振ってあるので、言われた座標をそのまま地図上で探せます。</p>
@@ -1606,7 +1606,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
           </defs>
           <style>
             .pt-bx{ fill:var(--color-bg-soft2); stroke:var(--color-border); stroke-width:1.5; }
-            .pt-rs{ fill:rgba(32,198,223,.13); stroke:var(--hud); stroke-width:2; }
+            .pt-rs{ fill:rgba(255,255,255,.13); stroke:var(--hud); stroke-width:2; }
             .pt-tt{ font-family:var(--font-heading-jp); font-size:14px; font-weight:700; fill:var(--color-text); }
             .pt-lv{ font-family:var(--font-heading-jp); font-size:12px; font-weight:700; fill:var(--color-text); }
             .pt-src{ font-family:var(--font-heading-jp); font-size:11.5px; font-weight:700; fill:var(--color-accent-teal-light); }
@@ -1737,7 +1737,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
         <p style="margin:0 0 6px; font-weight:700;">「ワイナリーは後（winery last）」の意味</p>
         <p style="margin:0 0 12px;">チャットで見かける「ワイナリーは後」は、<strong>強いプレイヤーの効率的な動線</strong>にすぎません。可変側は場所が毎回変わり<strong>取り逃す</strong>ため先に向かい、固定のワイナリーは<strong>確実に残る</strong>ため後回しにする、という順番の話です。順番による追加報酬や隠し要素は無いので、特別な意味を探さなくて大丈夫です。</p>
 
-        <div style="border:1px solid rgba(32,198,223,.5); padding:8px 12px; background:#0d0a18; margin:0 0 12px;">
+        <div style="border:1px solid rgba(255,255,255,.5); padding:8px 12px; background:#0d0a18; margin:0 0 12px;">
           <p style="margin:0 0 6px; font-weight:700;">あまり強くないプレイヤーの立ち回り（管理人の実機メモ）</p>
           <ul style="margin:0; padding-left:1.2em; line-height:1.8;">
             <li>固定のワイナリーへ、<strong>発生前から先回り</strong>して待機する。</li>
@@ -1929,7 +1929,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
           .cf-t{ font-family:var(--font-heading-jp); fill:var(--color-text); font-weight:700; }
           .cf-s{ font-family:var(--font-heading-jp); fill:var(--color-text-muted); font-size:12px; }
           .cf-base{ fill:var(--color-bg-soft2); stroke:var(--color-border); stroke-width:1.5; }
-          .cf-common{ fill:rgba(32,198,223,.13); stroke:var(--hud); stroke-width:2; }
+          .cf-common{ fill:rgba(255,255,255,.13); stroke:var(--hud); stroke-width:2; }
           .cf-cond{ fill:var(--color-bg-soft); stroke:var(--color-accent-teal); stroke-width:1.5; }
           .cf-limit{ fill:rgba(255,122,26,.13); stroke:var(--color-accent); stroke-width:2; }
         </style>
@@ -1999,7 +1999,7 @@ header.page-header::after{ content:"JSOC TACTICAL TERMINAL // SECURE LINK: ESTAB
   <!-- ============================================
        エキゾチック効果
        ============================================ -->
-  <div style="max-width:700px;margin:0 auto 24px;border:1px solid rgba(32,198,223,.5);border-radius:4px;padding:6px;background:#0d0a18;">
+  <div style="max-width:700px;margin:0 auto 24px;border:1px solid rgba(255,255,255,.5);border-radius:4px;padding:6px;background:#0d0a18;">
     <img src="assets/img/Exotic_Fabricator.gif" alt="エキゾチックファブリケーター エキゾチック特性を選択してリロール" style="display:block;width:100%;height:auto;border-radius:2px;">
   </div>
   <section id="exotic-effects">
