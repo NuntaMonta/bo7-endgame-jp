@@ -76,6 +76,7 @@ jobs:
               'v2-skill-lab.css': 'css/skill-lab.css',
               'v2-skill-lab.html': 'skill-lab.html',
               'v2-story.html': 'story.html',
+              'v2-activity.html': 'activity.html',
           }
           for source, destination in overrides.items():
               shutil.copyfile(pathlib.Path('.github') / source, root / 'v2' / destination)
