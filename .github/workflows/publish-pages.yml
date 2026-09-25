@@ -70,6 +70,15 @@ jobs:
               assert story.count(old_id) == 2
               story = story.replace(old_id, new_id)
           story_html.write_text(story, encoding='utf-8')
+          # 承認されたスキルラボ画面と物語ページの外部リンク削除。
+          overrides = {
+              'v2-skill-lab.js': 'js/skill-lab.js',
+              'v2-skill-lab.css': 'css/skill-lab.css',
+              'v2-skill-lab.html': 'skill-lab.html',
+              'v2-story.html': 'story.html',
+          }
+          for source, destination in overrides.items():
+              shutil.copyfile(pathlib.Path('.github') / source, root / 'v2' / destination)
           for path in legacy:
               assert hashlib.sha256(path.read_bytes()).digest() == hashlib.sha256((root / path).read_bytes()).digest()
           assert (root / 'index.html').is_file()
