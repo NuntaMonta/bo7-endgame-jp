@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SKILL LAB - スキルラボ | BO7 ENDGAME</title>
+<meta name="description" content="気になるスキル効果を並べて、自分のビルドを考える。BO7エンドゲームのスキルラボ。">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./css/common.css?v=20260917-translucent">
+<link rel="stylesheet" href="./css/skill-lab.css?v=20260925-reference">
+<script src="./js/common.js" defer></script>
+<script type="module" src="./js/skill-lab.js?v=20260925-reference"></script>
+</head>
+<body class="lab-page">
+<main class="lab-shell">
+<header class="lab-header">
+<h1>SKILL LAB <span>- スキルラボ -</span></h1>
+<button type="button" class="lab-button lab-reset" id="lab-reset" disabled><span class="desktop-hint">リセット</span><span class="mobile-hint">RESET BUILD</span></button>
+<p class="lab-hint"><span class="desktop-hint">スキルカードはドラッグして表示順を変更できます。<br>※ゲーム内の取得順ではありません</span><span class="mobile-hint">▶でスキルを選択。気になる効果を並べて比較。</span></p>
+</header>
+<p id="lab-load" role="status">スキルを読み込み中…</p>
+<div class="lab-board" id="lab-board"></div>
+<div class="lab-bottom"><button type="button" class="lab-button" id="lab-copy" disabled>ビルドURLをコピー</button><p id="lab-status" role="status" aria-live="polite"></p></div>
+<details class="lab-notes"><summary>スキルの原稿・解放条件</summary><p>効果説明は提供されたゲーム画面の文字起こし（2026年9月20日）を掲載。段階の選択操作は設けず、各段階の説明をそのまま表示しています。</p><p>プレステージ1：EXOTICの2枠目、2：NIGHTMAREの2枠目、3：通常スキルの4枠目が解放されます。<a href="https://www.callofduty.com/patchnotes/2026/06/call-of-duty-black-ops-7-season-04-patch-notes" target="_blank" rel="noopener">公式パッチノート</a></p><p>ノヴァストライクの通常効果は、原稿と公式パッチの調整記載（通常段階から感電）に差があります。このページでは原稿を保持しています。クリティカルチェーン スピードは原稿の補完表記を使用しています。</p></details>
+<noscript><p>スキルを選択するにはJavaScriptを有効にしてください。</p></noscript>
+</main>
+<dialog class="lab-picker" id="lab-picker" aria-labelledby="lab-picker-title"><header><h2 id="lab-picker-title">スキルを選択</h2><button class="lab-button" type="button" id="lab-picker-close" autofocus>閉じる ×</button></header><div id="lab-picker-options"></div></dialog>
+<dialog class="lab-share" id="lab-share" aria-labelledby="lab-share-title"><h2 id="lab-share-title">ビルドURL</h2><p>自動コピーできない場合は、下のURLを選択してコピーしてください。</p><label for="lab-share-url">共有URL</label><textarea id="lab-share-url" readonly rows="4"></textarea><button class="lab-button" type="button" id="lab-share-close">閉じる</button></dialog>
+    <button class="menu-tab" type="button" data-menu-open aria-controls="guide-menu" aria-expanded="false" hidden>メニュー</button>
+    <dialog class="guide-menu" id="guide-menu" aria-label="攻略メニュー">
+      <button class="menu-close" type="button" autofocus>閉じる <span aria-hidden="true">×</span></button>
+      <nav class="menu-grid" aria-label="攻略カテゴリ">
+        <a class="menu-item glitch" href="./glitch.html">グリッチ攻略</a>
+        <a class="menu-item" href="./simulator.html">武器スキル<span>シミュレーター</span></a>
+        <button class="menu-item" type="button" disabled>エキゾチックウエポン<span>準備中</span></button>
+        <a class="menu-item" href="./skill-lab.html" aria-current="page">スキルラボ</a>
+        <span class="menu-placeholder">未定</span>
+        <a class="menu-item activity" href="./activity.html">アクティビティ</a>
+        <a class="menu-item mission" href="./mission.html">任務</a>
+        <button class="menu-item" type="button" disabled>オペレーター<span>準備中</span></button>
+        <span class="menu-placeholder">未定</span>
+        <span class="menu-placeholder">未定</span>
+      </nav>
+    </dialog>
+
+</body>
+</html>
