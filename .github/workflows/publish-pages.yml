@@ -62,6 +62,14 @@ jobs:
           old_link = 'href="./css/home.css"'
           assert html.count(old_link) == 1
           home_html.write_text(html.replace(old_link, 'href="./css/home.css?v=20260925-video-crop"'), encoding='utf-8')
+          # 指定された物語ページの動画IDのみ更新。
+          story_html = root / 'v2/story.html'
+          story = story_html.read_text(encoding='utf-8')
+          video_ids = {'iT7gWTlnR2E': 's12QVBPX94w', 'KxvPM63l2L4': '3sfxBk3b0f4', 'SSYsnSiReKM': 'x_Ob-rALhZY', '1QZ7pMRBASs': '6oVGm3Cc3bs'}
+          for old_id, new_id in video_ids.items():
+              assert story.count(old_id) == 2
+              story = story.replace(old_id, new_id)
+          story_html.write_text(story, encoding='utf-8')
           for path in legacy:
               assert hashlib.sha256(path.read_bytes()).digest() == hashlib.sha256((root / path).read_bytes()).digest()
           assert (root / 'index.html').is_file()
