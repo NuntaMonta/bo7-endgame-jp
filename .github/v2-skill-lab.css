@@ -183,3 +183,13 @@
   .lab-inline-close { position: absolute; top: clamp(39px, 3.7vw, 66px); right: 7px; padding: 0 2px; border: 0; background: #25292d; font-size: 20px; cursor: pointer; }
   .lab-inline-option:first-child { padding-right: 20px; }
 }
+
+/* PCの特殊スキルは選択内容にかかわらず同じ枠寸法を保つ。 */
+@media (min-width: 901px) {
+  .lab-special .lab-choose { height: clamp(146px, 11.6vw, 209px); min-height: 0; overflow: hidden; gap: 3px; }
+  .lab-special .lab-choose img { width: clamp(48px, 3.7vw, 66px); height: clamp(48px, 3.7vw, 66px); flex-shrink: 0; }
+  .lab-special .lab-name { max-width: calc(100% - 20px); font-size: clamp(14px, 1.2vw, 20px); font-weight: 400; line-height: 1.15; }
+  .lab-effect { height: clamp(86px, 6.45vw, 116px); min-height: 0; overflow-y: auto; font-size: clamp(12px, .9vw, 15px); font-weight: 400; line-height: 1.2; padding: 7px 8px; }
+  .is-prestige-3 .lab-special .lab-choose { height: 140px; min-height: 0; }
+  .is-prestige-3 .lab-effect { height: 140px; min-height: 0; }
+}
