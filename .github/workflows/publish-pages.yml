@@ -48,6 +48,13 @@ jobs:
                   dest = root.joinpath(*path.parts)
                   dest.parent.mkdir(parents=True, exist_ok=True)
                   dest.write_bytes(archive.read(item))
+          # PC版トップの上部余白だけを削除。スマホ用ルールは保持。
+          home_css = root / 'v2/css/home.css'
+          css = home_css.read_text(encoding='utf-8')
+          before = '.hero { min-height: 680px; margin-top: 80px;'
+          after = '.hero { min-height: 680px; margin-top: 0;'
+          assert css.count(before) == 1
+          home_css.write_text(css.replace(before, after), encoding='utf-8')
           for path in legacy:
               assert hashlib.sha256(path.read_bytes()).digest() == hashlib.sha256((root / path).read_bytes()).digest()
           assert (root / 'index.html').is_file()
