@@ -1,0 +1,74 @@
+name: BO7 旧サイトと新サイトを公開
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: 新サイトの公開用ファイルを取得・照合
+        run: |
+          curl --fail --location --retry 3 --output "$RUNNER_TEMP/v2.zip" 'https://github.com/NuntaMonta/bo7-endgame-jp/releases/download/site-v2-20260925/BO7-v2-publication.zip'
+          echo "e219bc89119e3afcaeafaf9a5ce1eb16d98dc809934ba8c8bdc36328eab8a786  $RUNNER_TEMP/v2.zip" | sha256sum --check
+      - name: 旧サイトを保持して新サイトを追加
+        run: |
+          python3 - <<'PY'
+          import os, pathlib, shutil, subprocess, zipfile, hashlib
+          root = pathlib.Path('_site')
+          root.mkdir()
+          legacy = []
+          for raw in subprocess.check_output(['git', 'ls-files', '-z']).split(b'\0'):
+              if not raw:
+                  continue
+              path = pathlib.Path(os.fsdecode(raw))
+              if path.parts[0] == '.github':
+                  continue
+              assert path.parts[0] != 'v2', 'Existing v2 requires review before replacement'
+              assert not path.is_symlink(), 'Unexpected symbolic link'
+              dest = root / path
+              dest.parent.mkdir(parents=True, exist_ok=True)
+              shutil.copyfile(path, dest)
+              legacy.append(path)
+          with zipfile.ZipFile(pathlib.Path(os.environ['RUNNER_TEMP']) / 'v2.zip') as archive:
+              files = archive.infolist()
+              assert len(files) == 241
+              for item in files:
+                  path = pathlib.PurePosixPath(item.filename)
+                  assert not path.is_absolute() and '..' not in path.parts
+                  assert path.parts[0] == 'v2'
+                  dest = root.joinpath(*path.parts)
+                  dest.parent.mkdir(parents=True, exist_ok=True)
+                  dest.write_bytes(archive.read(item))
+          for path in legacy:
+              assert hashlib.sha256(path.read_bytes()).digest() == hashlib.sha256((root / path).read_bytes()).digest()
+          assert (root / 'index.html').is_file()
+          assert (root / 'googlece7c9de5ea4b9fc0.html').is_file()
+          for page in ('index', 'story', 'operations', 'simulator', 'skill-lab', 'glitch', 'mission', 'activity'):
+              assert (root / 'v2' / (page + '.html')).is_file()
+          print(f'Preserved {len(legacy)} legacy files; added 241 v2 files.')
+          PY
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 両サイトを公開
+        id: deployment
+        uses: actions/deploy-pages@v4
